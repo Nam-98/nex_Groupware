@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::edu_theme_m" datatyperule="2.0">
+    <ScreenDefinition>
+      <Screen id="Desktop_screen" type="desktop" themeid="theme::edu_theme_m"/>
+    </ScreenDefinition>
+    <Variables/>
+    <Cookies/>
+    <httpheader/>
+  </Environment>
+</ENV>
