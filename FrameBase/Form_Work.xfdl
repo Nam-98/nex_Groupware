@@ -2,7 +2,9 @@
 <FDL version="2.1">
   <Form id="Form_Work" width="1080" height="670" titletext="Form_Work">
     <Layouts>
-      <Layout width="1080" height="670" screenid="Desktop_screen"/>
+      <Layout width="1080" height="670" screenid="Desktop_screen">
+        <ListBox id="ListBox00" taborder="0" left="224" top="129" width="241" height="76"/>
+      </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[]]></Script>
   </Form>
