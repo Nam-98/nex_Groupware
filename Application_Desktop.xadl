@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="Application_Desktop" screenid="Desktop_screen">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="true" width="1024" height="768" titletext="TopLeftFrame" statustext="STJ그룹웨어" statusbarheight="23" border="1px solid #1c2124">
+        <VFrameSet id="VFrameSet00" separatesize="50,*">
+          <Frames>
+            <ChildFrame id="TopFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Top.xfdl" width="1022" height="50"/>
+            <HFrameSet id="HFrameSet00" separatesize="160,*">
+              <Frames>
+                <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" width="160" height="633"/>
+                <VFrameSet id="VFrameSet00" separatesize="30,*">
+                  <Frames>
+                    <ChildFrame id="ChildFrame00" formurl="FrameBase::Form_MDI.xfdl" width="862" height="30" showtitlebar="false"/>
+                    <ChildFrame id="MainForm" formurl="" showtitlebar="false"/>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+  </Application>
+</ADL>
