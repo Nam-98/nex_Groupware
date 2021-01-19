@@ -22,4 +22,11 @@
       </MainFrame>
     </Layout>
   </Application>
+  <Script type="xscript5.1"><![CDATA[this.av_fsWork = "";
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	this.av_fsWork = this.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.FrameSet00;
+	trace(this.av_fsWork);
+};
+]]></Script>
 </ADL>

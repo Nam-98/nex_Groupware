@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="test" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <ListBox id="ListBox00" taborder="0" left="248" top="84" width="72" height="72"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

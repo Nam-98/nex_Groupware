@@ -3,7 +3,7 @@
   <Form id="Form_Left" width="160" height="663" titletext="Form_Left">
     <Layouts>
       <Layout width="160" height="663" screenid="Desktop_screen">
-        <Grid id="grd_left" taborder="0" left="0" top="0" width="160" height="633" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all">
+        <Grid id="grd_left" taborder="0" left="0" top="0" width="160" height="633" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -23,7 +23,6 @@
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
-//this.sTreePath = "";
 this.grd_left_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
 	this.fn_openForm2(e,obj);
@@ -36,6 +35,8 @@ this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 };
 this.fn_openForm2 = function (e,obj)
 {
+	trace(e);
+	trace(obj);
 	//home 화면에서 내가 띄울 창 열기 위해 vframe의 separatesize 조절
 	this.objApp.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
 	
@@ -108,6 +109,7 @@ this.btn_menu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	this.btn_myMenu.setSelectStatus(false);
 	this.grd_left.set_formatid("default"); 
 	this.grd_left.set_binddataset("gds_menu");
-};]]></Script>
+};
+]]></Script>
   </Form>
 </FDL>
