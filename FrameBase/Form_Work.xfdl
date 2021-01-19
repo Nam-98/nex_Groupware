@@ -4,5 +4,42 @@
     <Layouts>
       <Layout width="1080" height="670" screenid="Desktop_screen"/>
     </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.form_Work_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	var sID = this.getOwnerFrame().param.FORM_ID;
+	var objTab = objApp.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.ChildFrame00;
+	
+	//dataSet에서 삭제
+	var nRow = objApp.gds_openForm.findRow("FORM_ID",sID);
+	objApp.gds_openForm.deleteRow(nRow);
+	if(objApp.gds_openForm.getCount()==0){
+		objTab.form.fn_setFrameSize("home");
+	}
+	
+	//Tab 삭제
+	var nTabCnt = objTab.form.tab_mdi.getTabpageCount();
+	for(var i=0;i<nTabCnt; i++){
+		if(objTab.form.tab_mdi.tabpages[i].id == sID){
+			objTab.form.tab_mdi.removeTabpage(i);
+			break;
+		}
+	}
+
+};
+
+this.form_Work_onactivate = function(obj:nexacro.Form,e:nexacro.ActivateEventInfo)
+{
+		var objApp=nexacro.getApplication();
+		var objTab = objApp.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.ChildFrame00;
+           
+		var nTabCnt=objTab.form.tab_mdi.getTabpageCount();
+		for(var i=0; i<nTabCnt; i++)
+           {  //ACTIVATE된 FORM에 따라서 TAB INDEX 수정
+				if(objTab.form.tab_mdi.tabpages[i].name==this.param.FORM_ID)
+                   {objTab.form.tab_mdi.set_tabindex(i);//gds_openForm 데이터제거...
+				   }
+           }
+};]]></Script>
   </Form>
 </FDL>
