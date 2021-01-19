@@ -2,7 +2,9 @@
 <FDL version="2.1">
   <Form id="Form_Work" width="1080" height="670" titletext="Form_Work">
     <Layouts>
-      <Layout width="1080" height="670" screenid="Desktop_screen"/>
+      <Layout width="1080" height="670" screenid="Desktop_screen">
+        <Button id="Button00" taborder="0" text="누르면 만원 지급" left="300" top="337" width="177" height="67"/>
+      </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[]]></Script>
   </Form>
