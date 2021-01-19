@@ -2,12 +2,7 @@
 <FDL version="2.1">
   <Form id="Form_Work" width="1080" height="670" titletext="Form_Work">
     <Layouts>
-      <Layout width="1080" height="670" screenid="Desktop_screen">
-        <Button id="Button00" taborder="0" text="누르면 만원 지급" left="300" top="337" width="177" height="67"/>
-        <Grid id="Grid00" taborder="1" left="360" top="454" width="164" height="35"/>
-        <Div id="Div00" taborder="0" text="Div00" left="824" top="26" width="226" height="224"/>
-        <Div id="Div00_00" taborder="1" text="Div00" left="587" top="110" width="226" height="224"/>
-      </Layout>
+      <Layout width="1080" height="670" screenid="Desktop_screen"/>
     </Layouts>
   </Form>
 </FDL>
