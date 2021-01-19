@@ -1,10 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Work" width="1080" height="670" titletext="Form_Work">
+  <Form id="Form_Work" width="1080" height="670" titletext="Form_Work" onload="form_Work_onload" onclose="form_Work_onclose" onactivate="form_Work_onactivate">
     <Layouts>
-      <Layout width="1080" height="670" screenid="Desktop_screen"/>
+      <Layout width="1080" height="670" screenid="Desktop_screen">
+        <Radio id="Radio00" taborder="0" left="198" top="120" width="162" height="29"/>
+        <Div id="div_work" taborder="1" text="Div00" left="0.00%" top="20" right="0%" bottom="0" border="1px solid pink"/>
+      </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[this.form_Work_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+    <Script type="xscript5.1"><![CDATA[this.param = this.getOwnerFrame().param;
+this.form_Work_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	var objCF = this.getOwnerFrame();//화면을 담고있는 frame -> form_Left에서 생성한 childFrame을 의미.
+	//this.div_work.set_url(objCF.param.FORM_URL);
+	this.div_work.set_url("Workspace::test.xfdl");
+	this.div_work.form.resetScroll();//내부 화면에 맞게 form의 크기 조절하는 method
+	this.sta_title.set_text(objCF.param.TREE_PATH);
+	
+	var objApp = nexacro.getApplication();
+	var nRow = objApp.gds_myMenu.findRow("MENU_ID",this.param.MENU_ID);
+	if(nRow!=-1){
+		this.btn_myMenu.set_text("★");
+		this.fv_myMenu = true;
+	}
+};
+
+this.form_Work_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
 {
 	var objApp = nexacro.getApplication();
 	var sID = this.getOwnerFrame().param.FORM_ID;

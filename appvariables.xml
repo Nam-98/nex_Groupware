@@ -18,7 +18,7 @@
           <Col id="MENU_ID">1010</Col>
           <Col id="MENU_NAME">전자결재메인</Col>
           <Col id="MENU_LEVEL">1</Col>
-          <Col id="FORM_URL">Workspace:test.xfdl</Col>
+          <Col id="FORM_URL">Workspace::test.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">1020</Col>
@@ -186,6 +186,14 @@
           <Col id="MENU_LEVEL">1</Col>
         </Row>
       </Rows>
+    </Dataset>
+    <Dataset id="gds_openForm">
+      <ColumnInfo>
+        <Column id="FORM_ID" type="STRING" size="256"/>
+        <Column id="MENU_ID" type="STRING" size="256"/>
+        <Column id="MENU_NAME" type="STRING" size="256"/>
+        <Column id="FORM_URL" type="STRING" size="256"/>
+      </ColumnInfo>
     </Dataset>
   </Datasets>
   <Variables/>

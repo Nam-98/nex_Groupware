@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Work" width="862" height="30" titletext="Form_Work">
+  <Form id="Form_Work" width="862" height="30" titletext="Form_Work" onload="Form_Work_onload">
     <Layouts>
       <Layout height="30" mobileorientation="landscape" width="862" screenid="Desktop_screen">
         <Tab id="tab_mdi" taborder="0" tabindex="0" left="30" top="0" right="11.37%" bottom="0" onchanged="tab_mdi_onchanged" onextrabuttonclick="tab_mdi_onextrabuttonclick" showextrabutton="true">

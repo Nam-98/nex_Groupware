@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Left" width="160" height="663" titletext="Form_Left">
+  <Form id="Form_Left" width="160" height="663" titletext="Form_Left" onload="Form_Left_onload">
     <Layouts>
       <Layout width="160" height="663" screenid="Desktop_screen">
         <Grid id="grd_left" taborder="0" left="0" top="0" width="160" height="633" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick">
@@ -35,8 +35,6 @@ this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 };
 this.fn_openForm2 = function (e,obj)
 {
-	trace(e);
-	trace(obj);
 	//home 화면에서 내가 띄울 창 열기 위해 vframe의 separatesize 조절
 	this.objApp.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
 	
@@ -72,11 +70,12 @@ this.fn_openForm2 = function (e,obj)
 	objChildFrame.set_showtitlebar(false);
 	objChildFrame.set_resizable(true);
 	var oParam = {FORM_ID : sFormId, MENU_ID : sMenuId, MENU_NM : sMenuNm, FORM_URL : sUrl, TREE_PATH : sTreePath2}//json형태로 인자값 묶음
-	
+	trace("on left : "+oParam);
+			trace("on left : "+oParam.FORM_URL);
 	objChildFrame.param = oParam;
 		//objChildFrame객체에 param이라는 이름의 변수를 생성하여 oParam을 할당해준다.
 		//이 frame에서 원하는 값을 꺼내올 땐, param.key값 으로 꺼내오면 된다. 
-	objChildFrame.set_formurl("FrameBase::form_Work.xfdl");
+	objChildFrame.set_formurl("FrameBase::Form_Work.xfdl");
 	objChildFrame.set_titletext(sMenuNm);
 	objChildFrame.show();
 	
