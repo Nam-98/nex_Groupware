@@ -3,30 +3,25 @@
   <Application id="Application_Desktop" screenid="Desktop_screen" onload="Application_onload">
     <Layout>
       <MainFrame id="mainframe" showtitlebar="true" showstatusbar="true" width="1024" height="768" titletext="TopLeftFrame" statustext="STJ그룹웨어" statusbarheight="23" border="1px solid #1c2124">
-        <VFrameSet id="VFrameSet00" separatesize="50,*">
+        <HFrameSet id="HFrameSet00" separatesize="160,*">
           <Frames>
-            <ChildFrame id="TopFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Top.xfdl" width="1022" height="50"/>
-            <HFrameSet id="HFrameSet00" separatesize="160,*">
+            <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" width="160" height="633"/>
+            <VFrameSet id="VFrameSet00" separatesize="30,*,0">
               <Frames>
-                <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" width="160" height="633"/>
-                <VFrameSet id="VFrameSet00" separatesize="30,*,0">
-                  <Frames>
-                    <ChildFrame id="ChildFrame00" formurl="FrameBase::Form_MDI.xfdl" width="862" height="30" showtitlebar="false"/>
-                    <ChildFrame id="MainForm" formurl="" showtitlebar="false"/>
-                    <FrameSet id="FrameSet00"/>
-                  </Frames>
-                </VFrameSet>
+                <ChildFrame id="ChildFrame00" formurl="FrameBase::Form_MDI.xfdl" width="862" height="30" showtitlebar="false"/>
+                <ChildFrame id="MainForm" formurl="" showtitlebar="false"/>
+                <FrameSet id="FrameSet00"/>
               </Frames>
-            </HFrameSet>
+            </VFrameSet>
           </Frames>
-        </VFrameSet>
+        </HFrameSet>
       </MainFrame>
     </Layout>
   </Application>
   <Script type="xscript5.1"><![CDATA[this.av_fsWork = "";
 this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
 {
-	this.av_fsWork = this.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.FrameSet00;
+	this.av_fsWork = this.mainframe.HFrameSet00.VFrameSet00.FrameSet00;
 	trace(this.av_fsWork);
 };
 ]]></Script>

@@ -24,6 +24,7 @@
           <Col id="MENU_ID">1020</Col>
           <Col id="MENU_NAME">결재문서작성</Col>
           <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL">Workspace::mainpage.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">1030</Col>

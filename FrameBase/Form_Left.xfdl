@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Left" width="160" height="663" titletext="Form_Left" onload="Form_Left_onload">
+  <Form id="Form_Left" width="160" height="713" titletext="Form_Left" onload="Form_Left_onload">
     <Layouts>
-      <Layout width="160" height="663" screenid="Desktop_screen">
-        <Grid id="grd_left" taborder="0" left="0" top="0" width="160" height="633" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick">
+      <Layout width="160" height="713" screenid="Desktop_screen">
+        <Grid id="grd_left" taborder="0" left="0" top="50" width="160" height="633" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -18,8 +18,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_left_left" taborder="1" text="Button00" left="0" top="633" width="80" height="30"/>
-        <Button id="Button00" taborder="2" text="전체메뉴" left="80" top="633" width="80" height="30" onclick="Button00_onclick"/>
+        <Button id="btn_left_left" taborder="1" text="Button00" left="0" top="683" width="80" height="30"/>
+        <Button id="Button00" taborder="2" text="전체메뉴" left="80" top="683" width="80" height="30" onclick="Button00_onclick"/>
+        <Static id="Static00" taborder="3" left="0" top="0" height="50" width="160" text="LOGO" background="red"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
@@ -36,19 +37,18 @@ this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.fn_openForm2 = function (e,obj)
 {
 	//home 화면에서 내가 띄울 창 열기 위해 vframe의 separatesize 조절
-	this.objApp.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
+	this.objApp.mainframe.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
 	
 	//child frame 생성에 필요한 인자들 준비
 	var ds = obj.getBindDataset();
 	var sUrl = ds.getColumn(e.row, "FORM_URL");
 	var sMenuId = ds.getColumn(e.row, "MENU_ID");
 	var sMenuNm = ds.getColumn(e.row, "MENU_NAME");
+	
 	var sTreePath2 = nexacro.replaceAll(this.grd_left.getTreePath(e.row),".",">"); 	//전자결재.결재양식.임시보관문서 를 replace로 전자결재 > 결재양식 > 임시보관문서 와 같이 수정함
 	var sFormId = "FORM_"+sMenuId;
 	var nWidth = this.objApp.av_fsWork.getOffsetWidth();
 	var nHeight = this.objApp.av_fsWork.getOffsetHeight();
-	trace(e.row);
-	trace(sUrl);
 	//클릭한것의 url이 존재하는가?
 	if (sUrl.length<=0){return}
 	
@@ -86,13 +86,13 @@ this.fn_openForm2 = function (e,obj)
 	this.objApp.gds_openForm.setColumn(nRow,"FORM_URL", sUrl);
 	
 	//tab추가를 위해 다른 form에 있는 function 호출
-	this.objApp.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.ChildFrame00.form.fn_addTab(sFormId,sMenuNm);
+	this.objApp.mainframe.HFrameSet00.VFrameSet00.ChildFrame00.form.fn_addTab(sFormId,sMenuNm);
 };
 
 this.Form_Left_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	this.objApp.gds_menu.filter("MENU_ID.substring(0,2) == '10'");
-	this.btn_menu.setSelectStatus(true);
+// 	this.objApp.gds_menu.filter("MENU_ID.substring(0,2) == '10'");
+// 	this.btn_menu.setSelectStatus(true);
 };
 this.btn_myMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
