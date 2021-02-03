@@ -3,7 +3,7 @@
   <Form id="Form_Work" width="862" height="30" titletext="Form_Work" onload="Form_Work_onload">
     <Layouts>
       <Layout height="30" mobileorientation="landscape" width="862" screenid="Desktop_screen">
-        <Tab id="tab_mdi" taborder="0" tabindex="0" left="30" top="0" right="11.37%" bottom="0" onchanged="tab_mdi_onchanged" onextrabuttonclick="tab_mdi_onextrabuttonclick" showextrabutton="true">
+        <Tab id="tab_mdi" taborder="0" tabindex="0" left="0" top="0" right="14.85%" bottom="0" onchanged="tab_mdi_onchanged" onextrabuttonclick="tab_mdi_onextrabuttonclick" showextrabutton="true">
           <Tabpages>
             <Tabpage id="Tabpage2" text="Tabpage2">
               <Layouts>
@@ -13,8 +13,7 @@
             </Tabpage>
           </Tabpages>
         </Tab>
-        <Button id="btn_home" taborder="1" left="0" top="0" width="2.67%" bottom="0" border="0px none" onclick="btn_home_onclick" background="yellow"/>
-        <Button id="btn_cascade" taborder="2" left="tab_mdi:-1" top="0" width="2.67%" bottom="0" background="url('theme://images/btn_MDI_Min.png') no-repeat center center" border="0px none" onclick="btn_cascade_onclick"/>
+        <Button id="btn_cascade" taborder="1" left="tab_mdi:-1" top="0" width="2.67%" bottom="0" background="url('theme://images/btn_MDI_Min.png') no-repeat center center" border="0px none" onclick="btn_cascade_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.fn_addTab = function (pFormId,pMenuNm)
@@ -92,18 +91,13 @@ this.btn_closeAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo
 	objApp.gds_openForm.clearData();//dataSet의 모든 data를 삭제(삭제한 정보를 가지고 있음가 아닌 초기화 하는 method
 };
 
-this.btn_home_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	this.fn_setFrameSize(obj.id.substr(4,4));
-};
-
 this.fn_setFrameSize = function(pType){
 	var objApp = nexacro.getApplication();
 	if(pType=="home"){
 		//home화면 띄우기 -> 화면에서 home창 열기 위해 vframe의 separatesize 조절
-		objApp.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.set_separatesize("30,*,0");
+		objApp.mainframe.HFrameSet00.VFrameSet00.set_separatesize("30,*,0");
 	}else{
-		objApp.mainframe.VFrameSet00.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
+		objApp.mainframe.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
 	}
 
 }
