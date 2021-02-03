@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS type="1.0"><![CDATA[/* Grid Cell Move */
+.Static.sta_grd_move
+{
+	background			: #fef5f3;
+	-nexa-border			: 2px dotted #ff8e7c;
+	border-radius			: 0px;
+	color				: #d8351a;
+	font				: 14px "Malgun Gothic","Arial";
+	-nexa-padding			: 0px 5px 0px 5px;
+}
+.Div.div_cellMoveBox
+{
+	background			: #fef5f3;
+	-nexa-border			: 1px dashed #ff8e7c;
+}
+
+/* 엑셀 export,import */
+.Static.sta_WF_excel
+{
+	-nexa-text-align		: left;
+	-nexa-vertical-align		: middle;
+	background			: url('imagerc::icon_WF_excel.png') no-repeat left center;
+	color				: #222222;
+	font				: bold 11pt "Malgun Gothic","Arial";
+	-nexa-padding			: 0px 0px 0px 32px;
+}
+.Static.sta_WF_hancel
+{
+	-nexa-text-align		: left;
+	-nexa-vertical-align		: middle;
+	background			: url('imagerc::icon_WF_hancel.png') no-repeat left center;
+	color				: #222222;
+	font				: bold 11pt "Malgun Gothic","Arial";
+	-nexa-padding			: 0px 0px 0px 32px;
+}
+.Grid.grd_excel .head, .Grid.grd_excel .head[status=mouseover], .Grid.grd_excel .head[status=focused]
+{
+	background			: #666666;
+	-nexa-border			: 1px solid #333333, 0px none, 0px none, 0px none;
+}
+.Grid.grd_excel .head .row .cell, .Grid.grd_excel .head .row .cell[status=mouseover], .Grid.grd_excel .head .row .cell[status=focused]
+{
+	background		: #666666;
+	-nexa-background-odd	: #666666;
+	color			: #ffffff;
+	-nexa-color-odd		: #ffffff;
+	font			: bold 9pt "Malgun Gothic","Arial";
+	-nexa-border		: 1px solid #cbcbcb;
+}
+.Grid.grd_excel .head .row .cell[userstatus=selected], .Grid.grd_excel .head .row .cell[status=mouseover][userstatus=selected], .Grid.grd_excel .head .row .cell[status=focused][userstatus=selected]
+{
+	background		: ;
+	-nexa-border		: ;
+	color			: ;
+	font			: ;
+	-nexa-border		: ;
+}
+.Grid.grd_excel .body, .Grid.grd_excel .body[status=mouseover], .Grid.grd_excel .body[status=focused]
+{
+}
+.Grid.grd_excel .body .row .cell
+{
+	color :#222222;
+}
+.Grid.grd_excel .body .row .cell[userstatus=selected],.Grid.grd_excel .body .row .cell[status=focused],
+.Grid.grd_excel .body .row .cell[status=mouseover][userstatus=selected],.Grid.grd_excel .body .row .cell[status=focused][userstatus=selected]
+{
+	color			: #f55136;
+}
+
+/* Grid_red */
+.Grid.grd_red .head, .Grid.grd_red .head[status=mouseover], .Grid.grd_red .head[status=focused]
+{
+	background		: #d5e0f3;
+	-nexa-border		: 1px solid #d8351a, 0px none, 0px none, 0px none;
+}
+.Grid.grd_red .head .row .cell, .Grid.grd_red .head .row .cell[status=mouseover], .Grid.grd_red .head .row .cell[status=focused]
+{
+	background		: transparent;
+	-nexa-background-odd	: transparent;
+	color			: #d8351a;
+	-nexa-color-odd		: #d8351a;
+	font			: bold 9pt "Malgun Gothic","Arial";
+	-nexa-border		: 1px solid #ff6c54;
+}
+.Grid.grd_red .head .row .cell[userstatus=selected], .Grid.grd_red .head .row .cell[status=mouseover][userstatus=selected], .Grid.grd_red .head .row .cell[status=focused][userstatus=selected]
+{
+	background		: ;
+	-nexa-border		: ;
+	color			: ;
+	font			: ;
+	-nexa-border		: ;
+}
+.Grid.grd_red .body, .Grid.grd_red .body[status=focused]
+{
+	background		: #ffffff;
+	-nexa-border		: 0px none;
+}
+.Grid.grd_red .body .row .cell, .Grid.grd_red .body .row .cell[status=focused]
+{
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+	background		: #ffffff;
+	-nexa-background-odd	: #f7f7f7;
+	color			: #222222;
+	-nexa-color-odd		: #222222;
+	font			: ;
+	-nexa-border		: 1px solid #9c9c9c;
+	-nexa-padding		: 3px 5px 3px 5px;
+}
+.Grid.grd_red .body .row .cell[userstatus=selected], .Grid.grd_red .body .row .cell[status=focused][userstatus=selected]
+{
+	background		: #9c9c9c;
+	color			: #222222;
+	-nexa-border		: 1px solid #9c9c9c;
+}
+.Grid.grd_red .body[status=mouseover]
+{
+}
+.Grid.grd_red .body .row .cell[status=mouseover]
+{
+	color			: #222222;
+	-nexa-color-odd		: #222222;
+	background		: #9c9c9c;
+	-nexa-background-odd	: #9c9c9c;
+}
+.Grid.grd_red .body[status=disabled]
+{
+}
+.Grid.grd_red .body .row .cell[status=disabled]
+{
+	background		: #ffffff;
+	-nexa-background-odd	: #e5e5e5;
+	color			: #6e6e63;
+}
+.Grid.grd_red .body .row .cell[status=disabled][userstatus=selected]
+{
+	background		: #ffffff;
+	color			: #6e6e63;
+}
+
+/*** 개인화 그리드 ***/
+.Grid.grd_cellMove
+{
+	cursor	: pointer;
+}
+.Grid.grd_cellMove .head
+{
+	background		: #6682ae;
+	-nexa-border		: 0px none;
+}
+.Grid.grd_cellMove .head .row .cell
+{
+	background : url('imagerc::img_grd_cellMove.png') no-repeat left top #6682ae;
+	-nexa-background-odd : url('imagerc::img_grd_cellMove.png') no-repeat left top #6682ae;
+	color : #ffffff;
+	-nexa-color-odd	: #ffffff;
+	-nexa-border : 0px none,1px solid #dddddd;
+}
+.Grid.grd_cellMove .head[status=mouseover], .Grid.grd_cellMove .head[status=focused]
+{
+	background		: #efefef;
+	-nexa-border		: 0px none;
+}
+.Grid.grd_cellMove .head .row .cell[status=mouseover], .Grid.grd_cellMove .head .row .cell[status=focused]
+{
+	background		: url('imagerc::img_grd_cellMove_O.png') no-repeat left top #5a7bae;
+	-nexa-background-odd	: url('imagerc::img_grd_cellMove_O.png') no-repeat left top #5a7bae;
+	color			: #ffffff;
+	-nexa-color-odd		: #ffffff;
+	-nexa-border 		: 0px none,1px solid #dddddd;
+}
+.Grid.grd_cellMove .body, .Grid.grd_cellMove .body[status=focused]
+{
+	background		: #ffffff;
+	-nexa-border		: 0px none;
+}
+.Grid.grd_cellMove .body .row .cell, .Grid.grd_cellMove .body .row .cell[status=focused]
+{
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+	background		: #ffffff;
+	-nexa-background-odd	: #f7f7f7;
+	color			: #222222;
+	-nexa-color-odd		: #222222;
+	-nexa-border		: 1px solid #9c9c9c;
+	-nexa-padding		: 3px 5px 3px 5px;
+}
+.Grid.grd_cellMove .body .row .cell[userstatus=selected], .Grid.grd_cellMove .body .row .cell[status=focused][userstatus=selected]
+{
+	background		: #d5e0f3;
+	color			: #f55136;
+	-nexa-border		: 1px solid #9c9c9c;
+}
+.Grid.grd_cellMove .body[status=mouseover]
+{
+}
+.Grid.grd_cellMove .body .row .cell[status=mouseover]
+{
+	background		: #eaf0f9;
+	-nexa-background-odd	: #eaf0f9;
+	color			: #222222;
+	-nexa-color-odd		: #222222;
+}
+
+/* 동적 그리드 */
+.Grid.grd_dynamic,.Grid.grd_dynamic[status=mouseover],.Grid.grd_dynamic[status=focused]
+{
+	background		: transparent;
+	-nexa-border		: 0px none;
+	border-radius		: 0px;
+	color			: #222222;
+	cursor			: pointer;
+}
+.Grid.grd_dynamic .summary .row .cell
+{
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+}
+.Grid.grd_dynamic .head, .Grid.grd_dynamic .head[status=mouseover], .Grid.grd_dynamic .head[status=focused]
+{
+	background		: #6682ae;
+	-nexa-border		: 0px none;
+	border-radius		: 3px;
+}
+.Grid.grd_dynamic .head .row .cell, .Grid.grd_dynamic .head .row .cell[status=mouseover], .Grid.grd_dynamic .head .row .cell[status=focused]
+{
+	color			: #ffffff;
+	-nexa-color-odd		: #ffffff;
+	-nexa-border		: 0px none;
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+}
+.Grid.grd_dynamic .body, .Grid.grd_dynamic .body[status=focused]
+{
+	background		: ;
+	-nexa-border		: 0px none;
+	border-radius		: 0px;
+}
+ .Grid.grd_dynamic .body .row .cell, .Grid.grd_dynamic .body .row .cell[status=focused]
+{
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+	background		: #ffffff;
+	-nexa-edge		: url('imagerc::img_grd_Dynamic.png') 15px 15px;	
+	color			: #222222;
+	-nexa-border		: 0px none;
+	-nexa-padding		: 3px 5px 3px 5px;
+}
+.Grid.grd_dynamic .body .row .cell[userstatus=selected], .Grid.grd_dynamic .body .row .cell[status=focused][userstatus=selected]
+{
+	background		: #d5e0f3;
+	-nexa-edge		: url('imagerc::img_grd_Dynamic_S.png') 15px 15px;
+	color			: #d8351a;
+	-nexa-border		: 0px none;
+}
+.Grid.grd_dynamic .body[status=mouseover]
+{
+}
+.Grid.grd_dynamic .body .row .cell[status=mouseover]
+{
+	background		: #d5e0f3;
+	-nexa-edge		: url('imagerc::img_grd_Dynamic_O.png') 15px 15px;
+	-nexa-background-odd	: #d5e0f3;
+}
+.Grid.grd_dynamic .vscrollbar
+{
+	background		: #e8e8e8;
+	-nexa-border		: 0px none;
+	border-radius		: 10px;
+}
+.Grid.grd_dynamic .vscrollbar .incbutton, 
+.Grid.grd_dynamic .vscrollbar .incbutton[status=mouseover],
+.Grid.grd_dynamic .vscrollbar .incbutton[userstatus=pushed],
+.Grid.grd_dynamic .vscrollbar .incbutton[status=disabled]
+{
+	background		: ;
+}
+.Grid.grd_dynamic .vscrollbar .decbutton, 
+.Grid.grd_dynamic .vscrollbar .decbutton[status=mouseover],
+.Grid.grd_dynamic .vscrollbar .decbutton[userstatus=pushed],
+.Grid.grd_dynamic .vscrollbar .decbutton[status=disabled]
+{
+	background		: ;
+}
+
+
+/* 트리 Grid */
+.Grid.grd_tree
+{
+	background		: transparent;
+	-nexa-border		: 1px solid #9c9c9c;
+	color			: #222222;
+	cursor			: pointer;
+}
+.Grid.grd_tree .head .row .cell
+{
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+}
+.Grid.grd_tree .body .row .cell
+{
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+}
+.Grid.grd_tree .summary .row .cell
+{
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+}
+.Grid.grd_tree .head .row .cell[userstatus=selected]
+{
+	-nexa-border		: ;
+}
+.Grid.grd_tree .body .row .cell[userstatus=selected]
+{
+	-nexa-border		: ;
+}
+.Grid.grd_tree .summary .row .cell[userstatus=selected]
+{
+	-nexa-border		: ;
+}
+.Grid.grd_tree .body .row .cell .celltreeitem .treeitembutton[userstatus=collapse]
+{
+	-nexa-icon		: URL('imagerc::img_TreeCollapse.png');
+}
+.Grid.grd_tree .body .row .cell .celltreeitem .treeitemimage[userstatus=collapse]
+{
+	-nexa-icon		: URL('imagerc::img_TreeClose.png');
+}
+.Grid.grd_tree .body .row .cell .celltreeitem .treeitemimage[userstatus=expand]
+{
+	-nexa-icon		: URL('imagerc::img_TreeOpen.png');
+}
+.Grid.grd_tree .body .row .cell .celltreeitem .treeitemimage
+{
+	-nexa-icon		: URL('imagerc::img_TreeItem.png');
+}
+.Grid.grd_tree .body .row .cell .celltreeitem .treeitembutton[userstatus=expand]
+{
+	-nexa-icon		: URL('imagerc::img_TreeExpand.png');
+}
+]]></XCSS>

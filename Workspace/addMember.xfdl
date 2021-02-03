@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="addMember" width="800" height="600" titletext="New Form" onload="addMember_onload">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Static id="Static00" taborder="0" text="멤버 추가하는 페이지" left="10" top="10" width="120" height="20"/>
+        <Static id="Static01" taborder="1" text="ID" left="30" top="63" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="Edit00" taborder="2" left="102" top="56" width="106" height="22"/>
+        <Static id="Static01_00" taborder="3" text="NAME" left="30" top="97" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="Edit00_00" taborder="4" left="102" top="90" width="106" height="22"/>
+        <Static id="Static01_01" taborder="5" text="contact" left="31" top="180" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="Edit00_01" taborder="6" left="104" top="180" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_00_00" taborder="7" text="GENDER" left="30" top="130" width="69" height="14" onclick="Static01_onclick"/>
+        <Radio id="Radio00" taborder="8" left="103" top="123" width="280" height="35" onitemchanged="Radio00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">M</Col>
+                <Col id="datacolumn">Male</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">F</Col>
+                <Col id="datacolumn">Female</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Edit id="Edit00_01_00" taborder="9" left="104" top="218" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_01_00" taborder="10" text="address1" left="31" top="218" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="Edit00_01_01" taborder="11" left="106" top="253" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_01_01" taborder="12" text="address1" left="33" top="253" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="Edit00_01_02" taborder="13" left="104" top="286" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_01_02" text="zip_code" left="31" top="286" width="69" height="14" onclick="Static01_onclick"/>
+        <Static id="Static01_00_00_00" taborder="15" text="결혼여부" left="326" top="60" width="69" height="28" onclick="Static01_onclick"/>
+        <Radio id="Radio00_00" taborder="16" left="399" top="53" width="280" height="35" onitemchanged="Radio00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">Y</Col>
+                <Col id="datacolumn">기혼</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">N</Col>
+                <Col id="datacolumn">미혼</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Static01_00_00_00_00" taborder="17" text="부서" left="396" top="98" width="69" height="28" onclick="Static01_onclick"/>
+        <Static id="Static01_00_00_00_00_00" taborder="18" text="직급" left="393" top="142" width="69" height="28" onclick="Static01_onclick"/>
+        <Combo id="Combo00" taborder="19" text="Combo00" left="469" top="93" width="79" height="35"/>
+        <Combo id="Combo01" taborder="20" text="Combo01" left="472" top="141" width="76" height="35"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.addMember_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.transaction(
+		"loading", //transaction id
+		"/nex/loadMemList.nexacro", //url(to controller)
+		"", // in data set
+		"gds_stPosition=ds_out", // out data set
+		"", // variable send
+		"fn_callback" //callback function
+	);
+};
+
+this.fn_callback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};
+]]></Script>
+  </Form>
+</FDL>

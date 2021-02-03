@@ -11,94 +11,71 @@
       <Rows>
         <Row>
           <Col id="MENU_ID">10</Col>
-          <Col id="MENU_NAME">전자결재</Col>
+          <Col id="MENU_NAME">기본설정관리</Col>
           <Col id="MENU_LEVEL">0</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">1010</Col>
-          <Col id="MENU_NAME">전자결재메인</Col>
+          <Col id="MENU_NAME">로고등록</Col>
           <Col id="MENU_LEVEL">1</Col>
           <Col id="FORM_URL">Workspace::test.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">1020</Col>
-          <Col id="MENU_NAME">결재문서작성</Col>
+          <Col id="MENU_NAME">회사정보</Col>
           <Col id="MENU_LEVEL">1</Col>
           <Col id="FORM_URL">Workspace::mainpage.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">1030</Col>
-          <Col id="MENU_NAME">결재문서</Col>
+          <Col id="MENU_NAME">부서/직급설정</Col>
           <Col id="MENU_LEVEL">1</Col>
         </Row>
         <Row>
-          <Col id="MENU_ID">103010</Col>
-          <Col id="MENU_NAME">개인 문서함</Col>
-          <Col id="MENU_LEVEL">2</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">103020</Col>
-          <Col id="MENU_NAME">협조 문서함</Col>
-          <Col id="MENU_LEVEL">2</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">103030</Col>
-          <Col id="MENU_NAME">참조문서함</Col>
-          <Col id="MENU_LEVEL">2</Col>
-        </Row>
-        <Row>
           <Col id="MENU_ID">20</Col>
-          <Col id="MENU_NAME">업무일지</Col>
+          <Col id="MENU_NAME">게시글관리</Col>
           <Col id="MENU_LEVEL">0</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">2010</Col>
-          <Col id="MENU_NAME">업무일지메인</Col>
+          <Col id="MENU_NAME">공지사항</Col>
           <Col id="MENU_LEVEL">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">201010</Col>
+          <Col id="MENU_NAME">공지사항관리</Col>
+          <Col id="MENU_LEVEL">2</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">201020</Col>
+          <Col id="MENU_NAME">공지사항작성</Col>
+          <Col id="MENU_LEVEL">2</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">2020</Col>
-          <Col id="MENU_NAME">업무일지작성</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">2030</Col>
-          <Col id="MENU_NAME">업무일지확인</Col>
+          <Col id="MENU_NAME">사내 게시판관리</Col>
           <Col id="MENU_LEVEL">1</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">30</Col>
-          <Col id="MENU_NAME">쪽지</Col>
+          <Col id="MENU_NAME">직원계정관리</Col>
           <Col id="MENU_LEVEL">0</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">3010</Col>
-          <Col id="MENU_NAME">쪽지함</Col>
+          <Col id="MENU_NAME">직원관리</Col>
           <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">301010</Col>
-          <Col id="MENU_NAME">수신함</Col>
-          <Col id="MENU_LEVEL">2</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">301020</Col>
-          <Col id="MENU_NAME">발신함</Col>
-          <Col id="MENU_LEVEL">2</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">301030</Col>
-          <Col id="MENU_NAME">보관함</Col>
-          <Col id="MENU_LEVEL">2</Col>
+          <Col id="FORM_URL">Workspace::memberList.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">3020</Col>
-          <Col id="MENU_NAME">조직도검색</Col>
+          <Col id="MENU_NAME">직원등록</Col>
           <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL">Workspace::addMember.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">40</Col>
-          <Col id="MENU_NAME">일정</Col>
+          <Col id="MENU_NAME">근태관리</Col>
           <Col id="MENU_LEVEL">0</Col>
         </Row>
         <Row>
@@ -118,73 +95,88 @@
         </Row>
         <Row>
           <Col id="MENU_ID">5010</Col>
-          <Col id="MENU_NAME">출퇴근관리</Col>
+          <Col id="MENU_NAME">근무일설정</Col>
           <Col id="MENU_LEVEL">1</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">5020</Col>
-          <Col id="MENU_NAME">근태조정신청</Col>
+          <Col id="MENU_NAME">출퇴근체크설정</Col>
+          <Col id="MENU_LEVEL">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">5030</Col>
+          <Col id="MENU_NAME">근태조정신청관리</Col>
           <Col id="MENU_LEVEL">1</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">60</Col>
-          <Col id="MENU_NAME">조직도</Col>
+          <Col id="MENU_NAME">휴가관리</Col>
           <Col id="MENU_LEVEL">0</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">6010</Col>
-          <Col id="MENU_NAME">조직도보기</Col>
+          <Col id="MENU_NAME">휴가종류설정</Col>
           <Col id="MENU_LEVEL">1</Col>
         </Row>
         <Row>
+          <Col id="MENU_ID">6020</Col>
+          <Col id="MENU_NAME">휴무등록/삭제</Col>
+          <Col id="MENU_LEVEL">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">6030</Col>
+          <Col id="MENU_NAME">직원별휴가관리</Col>
+          <Col id="MENU_LEVEL">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">603010</Col>
+          <Col id="MENU_NAME">휴가일수설정</Col>
+          <Col id="MENU_LEVEL">2</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">603020</Col>
+          <Col id="MENU_NAME">휴가사용현황</Col>
+          <Col id="MENU_LEVEL">2</Col>
+        </Row>
+        <Row>
           <Col id="MENU_ID">70</Col>
-          <Col id="MENU_NAME">프로젝트</Col>
+          <Col id="MENU_NAME">전자결재관리</Col>
           <Col id="MENU_LEVEL">0</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">7010</Col>
-          <Col id="MENU_NAME">프로젝트관리</Col>
+          <Col id="MENU_NAME">결재종류관리</Col>
           <Col id="MENU_LEVEL">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">7020</Col>
+          <Col id="MENU_NAME">결재양식관리</Col>
+          <Col id="MENU_LEVEL">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">7030</Col>
+          <Col id="MENU_NAME">결재알림설정</Col>
+          <Col id="MENU_LEVEL">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">7040</Col>
+          <Col id="MENU_NAME">결재문서함</Col>
+          <Col id="MENU_LEVEL">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">704010</Col>
+          <Col id="MENU_NAME">전체문서함</Col>
+          <Col id="MENU_LEVEL">2</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">704020</Col>
+          <Col id="MENU_NAME">폐기결재문서함</Col>
+          <Col id="MENU_LEVEL">2</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">80</Col>
-          <Col id="MENU_NAME">커뮤니티</Col>
+          <Col id="MENU_NAME">버그리포팅</Col>
           <Col id="MENU_LEVEL">0</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">8010</Col>
-          <Col id="MENU_NAME">공지사항</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">8020</Col>
-          <Col id="MENU_NAME">시스템공지사항</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">8030</Col>
-          <Col id="MENU_NAME">회사소개</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">8040</Col>
-          <Col id="MENU_NAME">회사게시판</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">8050</Col>
-          <Col id="MENU_NAME">갤러리게시판</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">90</Col>
-          <Col id="MENU_NAME">마이페이지</Col>
-          <Col id="MENU_LEVEL">0</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">9010</Col>
-          <Col id="MENU_NAME">개인정보수정</Col>
-          <Col id="MENU_LEVEL">1</Col>
         </Row>
       </Rows>
     </Dataset>
@@ -194,6 +186,44 @@
         <Column id="MENU_ID" type="STRING" size="256"/>
         <Column id="MENU_NAME" type="STRING" size="256"/>
         <Column id="FORM_URL" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_stMember">
+      <ColumnInfo>
+        <Column id="id" type="STRING" size="256"/>
+        <Column id="password" type="STRING" size="256"/>
+        <Column id="name" type="STRING" size="256"/>
+        <Column id="birth" type="DATE" size="256"/>
+        <Column id="gender" type="STRING" size="256"/>
+        <Column id="contact" type="STRING" size="256"/>
+        <Column id="address1" type="STRING" size="256"/>
+        <Column id="address2" type="STRING" size="256"/>
+        <Column id="zip_code" type="STRING" size="256"/>
+        <Column id="is_married" type="STRING" size="256"/>
+        <Column id="dept_code" type="INT" size="256"/>
+        <Column id="position_code" type="INT" size="256"/>
+        <Column id="reg_date" type="DATE" size="256"/>
+        <Column id="retire_date" type="DATE" size="256"/>
+        <Column id="access_level_code" type="INT" size="256"/>
+        <Column id="break_total_count" type="FLOAT" size="256"/>
+        <Column id="break_use_count" type="FLOAT" size="256"/>
+        <Column id="dept_name" type="STRING" size="256"/>
+        <Column id="position_name" type="STRING" size="256"/>
+        <Column id="dept_level" type="INT" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_stPosition">
+      <ColumnInfo>
+        <Column id="position_code" type="INT" size="256"/>
+        <Column id="position_name" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_stDepartment">
+      <ColumnInfo>
+        <Column id="dept_code" type="STRING" size="256"/>
+        <Column id="dept_name" type="STRING" size="256"/>
+        <Column id="dept_dir_id" type="STRING" size="256"/>
+        <Column id="dept_level" type="STRING" size="256"/>
       </ColumnInfo>
     </Dataset>
   </Datasets>
