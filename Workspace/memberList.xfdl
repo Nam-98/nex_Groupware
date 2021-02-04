@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="memberList" width="1080" height="670" titletext="New Form" onload="memberList_onload">
+    <Layouts>
+      <Layout height="670" width="1080">
+        <Grid id="Grid00" taborder="0" left="23" top="20" width="1037" height="300" binddataset="gds_stMember" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="id"/>
+                <Cell col="1" text="name"/>
+                <Cell col="2" text="birth"/>
+                <Cell col="3" text="gender"/>
+                <Cell col="4" text="contact"/>
+                <Cell col="5" text="address1"/>
+                <Cell col="6" text="address2"/>
+                <Cell col="7" text="zip_code"/>
+                <Cell col="8" text="is_married"/>
+                <Cell col="9" text="reg_date"/>
+                <Cell col="10" text="access_level_code"/>
+                <Cell col="11" text="dept_name"/>
+                <Cell col="12" text="position_name"/>
+                <Cell col="13" text="dept_level"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:id"/>
+                <Cell col="1" text="bind:name"/>
+                <Cell col="2" text="bind:birth"/>
+                <Cell col="3" text="bind:gender"/>
+                <Cell col="4" text="bind:contact"/>
+                <Cell col="5" text="bind:address1"/>
+                <Cell col="6" text="bind:address2"/>
+                <Cell col="7" text="bind:zip_code"/>
+                <Cell col="8" text="bind:is_married"/>
+                <Cell col="9" text="bind:reg_date"/>
+                <Cell col="10" text="bind:access_level_code"/>
+                <Cell col="11" text="bind:dept_name"/>
+                <Cell col="12" text="bind:position_name"/>
+                <Cell col="13" text="bind:dept_level"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.memberList_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//본 화면이 로딩될 때 DB에 있는 모든 멤버 LIST를 불러 옴
+	this.transaction(
+		"loading", //transaction id
+		"/nex/loadMemList.nexacro", //url(to controller)
+		"", // in data set
+		"gds_stMember=ds_out", // out data set
+		"", // variable send
+		"fn_callback" //callback function
+	);
+};
+
+this.fn_callback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};]]></Script>
+  </Form>
+</FDL>
