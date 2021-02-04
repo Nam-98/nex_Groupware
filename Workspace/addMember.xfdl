@@ -7,9 +7,9 @@
         <Static id="Static01" taborder="1" text="ID" left="30" top="63" width="69" height="14" onclick="Static01_onclick"/>
         <Edit id="Edit00" taborder="2" left="102" top="56" width="106" height="22"/>
         <Static id="Static01_00" taborder="3" text="NAME" left="30" top="97" width="69" height="14" onclick="Static01_onclick"/>
-        <Edit id="Edit00_00" taborder="4" left="102" top="90" width="106" height="22"/>
+        <Edit id="Edit01" taborder="4" left="102" top="90" width="106" height="22"/>
         <Static id="Static01_01" taborder="5" text="contact" left="31" top="180" width="69" height="14" onclick="Static01_onclick"/>
-        <Edit id="Edit00_01" taborder="6" left="104" top="180" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Edit id="Edit02" taborder="6" left="104" top="180" width="106" height="22" onchanged="Edit00_01_onchanged"/>
         <Static id="Static01_00_00" taborder="7" text="GENDER" left="30" top="130" width="69" height="14" onclick="Static01_onclick"/>
         <Radio id="Radio00" taborder="8" left="103" top="123" width="280" height="35" onitemchanged="Radio00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
           <Dataset id="innerdataset">
@@ -29,11 +29,11 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Edit id="Edit00_01_00" taborder="9" left="104" top="218" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Edit id="Edit03" taborder="9" left="104" top="218" width="106" height="22" onchanged="Edit00_01_onchanged"/>
         <Static id="Static01_01_00" taborder="10" text="address1" left="31" top="218" width="69" height="14" onclick="Static01_onclick"/>
-        <Edit id="Edit00_01_01" taborder="11" left="106" top="253" width="106" height="22" onchanged="Edit00_01_onchanged"/>
-        <Static id="Static01_01_01" taborder="12" text="address1" left="33" top="253" width="69" height="14" onclick="Static01_onclick"/>
-        <Edit id="Edit00_01_02" taborder="13" left="104" top="286" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Edit id="Edit04" taborder="11" left="106" top="253" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_01_01" taborder="12" text="address2" left="33" top="253" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="Edit05" taborder="13" left="104" top="286" width="106" height="22" onchanged="Edit00_01_onchanged"/>
         <Static id="Static01_01_02" text="zip_code" left="31" top="286" width="69" height="14" onclick="Static01_onclick"/>
         <Static id="Static01_00_00_00" taborder="15" text="결혼여부" left="326" top="60" width="69" height="28" onclick="Static01_onclick"/>
         <Radio id="Radio00_00" taborder="16" left="399" top="53" width="280" height="35" onitemchanged="Radio00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
@@ -56,20 +56,24 @@
         </Radio>
         <Static id="Static01_00_00_00_00" taborder="17" text="부서" left="396" top="98" width="69" height="28" onclick="Static01_onclick"/>
         <Static id="Static01_00_00_00_00_00" taborder="18" text="직급" left="393" top="142" width="69" height="28" onclick="Static01_onclick"/>
-        <Combo id="Combo00" taborder="19" text="Combo00" left="469" top="93" width="79" height="35"/>
-        <Combo id="Combo01" taborder="20" text="Combo01" left="472" top="141" width="76" height="35"/>
+        <Combo id="Combo00" taborder="19" text="Combo00" left="469" top="93" width="79" height="35" innerdataset="gds_stDepartment" datacolumn="dept_name" codecolumn="dept_code"/>
+        <Combo id="Combo01" taborder="20" text="Combo01" left="472" top="141" width="76" height="35" innerdataset="gds_stPosition" datacolumn="position_name" codecolumn="position_code"/>
+        <Static id="Static01_01_03" taborder="21" text="연차갯수" left="392" top="200" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="Edit06" taborder="22" left="465" top="200" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Button id="Button00" taborder="23" text="직원 추가" left="289" top="320" width="84" height="56" onclick="Button00_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
 this.addMember_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
+	//position table 받기
 	this.transaction(
-		"loading", //transaction id
-		"/nex/loadMemList.nexacro", //url(to controller)
-		"", // in data set
-		"gds_stPosition=ds_out", // out data set
-		"", // variable send
-		"fn_callback" //callback function
+		"loadPo","/nex/loadPoList.nexacro","","gds_stPosition=ds_out","","fn_callback"
+	);
+	
+	//department table 받기
+	this.transaction(
+		"loadDept","/nex/loadDeptList.nexacro","","gds_stDepartment=ds_out","","fn_callback"
 	);
 };
 
@@ -79,6 +83,31 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(ErrorCode);
 	trace(ErrorMsg);
 };
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	 this.transaction(
+  		"insertMem", //transaction id
+  		"/nex/insertMem.nexacro", //url(to controller)
+  		"ds_in=gds_stMember:U", // in data set
+  		"", // out data set
+ 		"", // variable send
+  		"fn_callback" //callback function
+  	);
+};
 ]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Edit00" propid="value" datasetid="gds_stMember" columnid="id"/>
+      <BindItem id="item1" compid="Edit01" propid="value" datasetid="gds_stMember" columnid="name"/>
+      <BindItem id="item2" compid="Radio00" propid="value" datasetid="gds_stMember" columnid="gender"/>
+      <BindItem id="item3" compid="Edit02" propid="value" datasetid="gds_stMember" columnid="contact"/>
+      <BindItem id="item4" compid="Edit03" propid="value" datasetid="gds_stMember" columnid="address1"/>
+      <BindItem id="item5" compid="Edit04" propid="value" datasetid="gds_stMember" columnid="address2"/>
+      <BindItem id="item6" compid="Edit05" propid="value" datasetid="gds_stMember" columnid="zip_code"/>
+      <BindItem id="item7" compid="Radio00_00" propid="value" datasetid="gds_stMember" columnid="is_married"/>
+      <BindItem id="item8" compid="Combo00" propid="value" datasetid="gds_stMember" columnid="dept_code"/>
+      <BindItem id="item9" compid="Combo01" propid="value" datasetid="gds_stMember" columnid="position_code"/>
+      <BindItem id="item10" compid="Edit06" propid="value" datasetid="gds_stMember" columnid="break_total_count"/>
+    </Bind>
   </Form>
 </FDL>
