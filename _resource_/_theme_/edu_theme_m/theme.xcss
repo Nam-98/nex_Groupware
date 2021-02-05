@@ -1072,11 +1072,11 @@
 .Tab .tabbuttonitem
 {
 	-nexa-border : 1px solid #9c9c9c , 1px solid #9c9c9c , 1px solid #0c589e,1px solid #9c9c9c;
-	-nexa-padding : 3px 5px 3px 5px;
 	background : #e0e3e5;
 	border-radius : 0px;
 	color : #222222;
 	font : 12px "Verdana";
+	-nexa-padding : 5px 10px;
 }
 .Tab .tabbuttonitem[status=mouseover]
 {

@@ -13,7 +13,7 @@
             </Tabpage>
           </Tabpages>
         </Tab>
-        <Button id="btn_home" taborder="1" left="0" top="0" width="2.67%" bottom="0" border="0px none" onclick="btn_home_onclick" background="yellow"/>
+        <Button id="btn_home" taborder="1" top="0" bottom="0" border="0px none" onclick="btn_home_onclick" background="yellow" left="0" width="30"/>
         <Button id="btn_cascade" taborder="2" left="tab_mdi:-1" top="0" width="2.67%" bottom="0" background="url('theme://images/btn_MDI_Min.png') no-repeat center center" border="0px none" onclick="btn_cascade_onclick"/>
       </Layout>
     </Layouts>
