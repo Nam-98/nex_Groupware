@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="addMember" width="800" height="600" titletext="New Form" onload="addMember_onload">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Static id="Static00" taborder="0" text="멤버 추가하는 페이지" left="10" top="10" width="120" height="20"/>
+        <Static id="Static01" taborder="1" text="ID" left="30" top="63" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="editId" taborder="2" left="102" top="56" width="106" height="22"/>
+        <Static id="Static01_00" taborder="3" text="NAME" left="30" top="97" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="editName" taborder="4" left="102" top="90" width="106" height="22"/>
+        <Static id="Static01_01" taborder="5" text="contact" left="31" top="180" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="editContact" taborder="6" left="104" top="180" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_00_00" taborder="7" text="GENDER" left="30" top="130" width="69" height="14" onclick="Static01_onclick"/>
+        <Radio id="radioGender" taborder="8" left="103" top="123" width="280" height="35" onitemchanged="Radio00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">M</Col>
+                <Col id="datacolumn">Male</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">F</Col>
+                <Col id="datacolumn">Female</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Edit id="editAdd1" taborder="9" left="104" top="218" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_01_00" taborder="10" text="address1" left="31" top="218" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="editAdd2" taborder="11" left="106" top="253" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_01_01" taborder="12" text="address2" left="33" top="253" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="editZip" taborder="13" left="104" top="286" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Static id="Static01_01_02" text="zip_code" left="31" top="286" width="69" height="14" onclick="Static01_onclick"/>
+        <Static id="Static01_00_00_00" taborder="15" text="결혼여부" left="326" top="60" width="69" height="28" onclick="Static01_onclick"/>
+        <Radio id="radioMarried" taborder="16" left="399" top="53" width="280" height="35" onitemchanged="Radio00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">Y</Col>
+                <Col id="datacolumn">기혼</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">N</Col>
+                <Col id="datacolumn">미혼</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Static01_00_00_00_00" taborder="17" text="부서" left="396" top="98" width="69" height="28" onclick="Static01_onclick"/>
+        <Static id="Static01_00_00_00_00_00" taborder="18" text="직급" left="393" top="142" width="69" height="28" onclick="Static01_onclick"/>
+        <Combo id="comboDept" taborder="19" text="Combo00" left="469" top="93" width="79" height="35" innerdataset="gds_stDepartment" datacolumn="dept_name" codecolumn="dept_code"/>
+        <Combo id="comboPo" taborder="20" text="Combo01" left="472" top="141" width="76" height="35" innerdataset="gds_stPosition" datacolumn="position_name" codecolumn="position_code"/>
+        <Static id="Static01_01_03" taborder="21" text="연차갯수" left="392" top="200" width="69" height="14" onclick="Static01_onclick"/>
+        <Edit id="editBreak" taborder="22" left="465" top="200" width="106" height="22" onchanged="Edit00_01_onchanged"/>
+        <Button id="Button00" taborder="23" text="직원 추가" left="236" top="394" width="84" height="56" onclick="Button00_onclick"/>
+        <Calendar id="calBirth" taborder="24" left="466" top="244" width="148" height="40"/>
+        <Static id="Static01_01_03_00" taborder="25" text="생일" left="386" top="257" width="69" height="14" onclick="Static01_onclick"/>
+        <Static id="Static01_01_03_00_00" taborder="26" text="입사일" left="385" top="318" width="69" height="14" onclick="Static01_onclick"/>
+        <Calendar id="calBirth00" taborder="27" left="465" top="305" width="148" height="40"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.addMember_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//position table 받기
+	this.transaction(
+		"loadPo","/nex/loadPoList.nexacro","","gds_stPosition=ds_out","","fn_callback"
+	);
+	
+	//department table 받기
+	this.transaction(
+		"loadDept","/nex/loadDeptList.nexacro","","gds_stDepartment=ds_out","","fn_callback"
+	);
+};
+
+this.fn_callback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	 this.transaction(
+  		"insertMem", //transaction id
+  		"/nex/insertMem.nexacro", //url(to controller)
+  		"ds_in=ds_addMem:U", // in data set
+  		"", // out data set
+ 		"", // variable send
+  		"fn_callback" //callback function
+  	);
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="radioGender" propid="value" datasetid="ds_addMem" columnid="gender"/>
+      <BindItem id="item1" compid="editContact" propid="value" datasetid="ds_addMem" columnid="contact"/>
+      <BindItem id="item2" compid="editAdd1" propid="value" datasetid="ds_addMem" columnid="address1"/>
+      <BindItem id="item3" compid="editAdd2" propid="value" datasetid="ds_addMem" columnid="address2"/>
+      <BindItem id="item4" compid="editZip" propid="value" datasetid="ds_addMem" columnid="zip_code"/>
+      <BindItem id="item5" compid="radioMarried" propid="value" datasetid="ds_addMem" columnid="is_married"/>
+      <BindItem id="item6" compid="comboDept" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
+      <BindItem id="item7" compid="comboPo" propid="value" datasetid="ds_addMem" columnid="position_code"/>
+      <BindItem id="item8" compid="editBreak" propid="value" datasetid="ds_addMem" columnid="break_total_count"/>
+      <BindItem id="item9" compid="calBirth" propid="value" datasetid="ds_addMem" columnid="birth"/>
+      <BindItem id="item10" compid="editId" propid="value" datasetid="ds_addMem" columnid="id"/>
+      <BindItem id="item11" compid="editName" propid="value" datasetid="ds_addMem" columnid="name"/>
+      <BindItem id="item12" compid="calBirth00" propid="value" datasetid="ds_addMem" columnid="reg_date"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_addMem">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="gender" type="STRING" size="256"/>
+          <Column id="contact" type="STRING" size="256"/>
+          <Column id="address1" type="STRING" size="256"/>
+          <Column id="address2" type="STRING" size="256"/>
+          <Column id="zip_code" type="STRING" size="256"/>
+          <Column id="is_married" type="STRING" size="256"/>
+          <Column id="dept_code" type="INT" size="256"/>
+          <Column id="position_code" type="INT" size="256"/>
+          <Column id="break_total_count" type="FLOAT" size="256"/>
+          <Column id="birth" type="DATE" size="256"/>
+          <Column id="reg_date" type="DATE" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

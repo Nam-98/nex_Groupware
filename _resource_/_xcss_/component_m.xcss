@@ -1,0 +1,1937 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS type="1.0"><![CDATA[/* BOX */
+.Static.sta_cp_box01,
+.Static.sta_cp_box01[status=mouseover],.Static.sta_cp_box01[status=disabled]
+{
+	background			: #f7f7f7;
+	-nexa-border			: 1px solid #cbcbcb;
+	color				: #222222;
+	font				: 16pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding			: 0px 0px 0px 20px;
+}
+.Static.sta_cp_static
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: ;
+	-nexa-edge			: URL('imagerc::img_WF_static.png') 0px 0px;
+	color				: #ffffff;
+}
+.ImageViewer.imv_cp_imageViewer
+{
+	background			: url('imagerc::img_WF_imgeveiwer.png') no-repeat center center #ffffff;
+}
+
+/* Button */
+.Button.btn_cp_basic01, .Button.btn_cp_basic01[status=mouseover], .Button.btn_cp_basic01[userstatus=pushed],
+.Button.btn_cp_basic01[status=focused], .Button.btn_cp_basic01[userstatus=selected], .Button.btn_cp_basic01[status=disabled]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #3d68ac;
+	-nexa-border			: 1px solid #163a73;
+	border-radius			: 0px;
+	color				: #ffffff;
+	cursor				: pointer;
+	font				: 18px "Malgun Gothic","Arial","Helvetica";
+}
+.Button.btn_cp_basic02, .Button.btn_cp_basic02[status=mouseover], .Button.btn_cp_basic02[userstatus=pushed],
+.Button.btn_cp_basic02[status=focused], .Button.btn_cp_basic02[userstatus=selected], .Button.btn_cp_basic02[status=disabled]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #9a88a7;
+	-nexa-border			: 1px solid #836c93;
+	border-radius			: 0px;
+	color				: #ffffff;
+	cursor				: pointer;
+	font				: 18px "Malgun Gothic","Arial","Helvetica";
+}
+.Button.btn_cp_basic03, .Button.btn_cp_basic03[status=mouseover], .Button.btn_cp_basic03[userstatus=pushed],
+.Button.btn_cp_basic03[status=focused], .Button.btn_cp_basic03[userstatus=selected], .Button.btn_cp_basic03[status=disabled]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #43b0b1;
+	-nexa-border			: 1px solid #1d8a8b;
+	border-radius			: 0px;
+	color				: #ffffff;
+	cursor				: pointer;
+	font				: 18px "Malgun Gothic","Arial","Helvetica";
+}
+.Button.btn_cp_basic04, .Button.btn_cp_basic04[status=mouseover], .Button.btn_cp_basic04[userstatus=pushed],
+.Button.btn_cp_basic04[status=focused], .Button.btn_cp_basic04[userstatus=selected], .Button.btn_cp_basic04[status=disabled]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #d8d8d8;
+	-nexa-border			: 1px solid #b9b9b9;
+	border-radius			: 0px;
+	color				: #222222;
+	cursor				: pointer;
+	font				: 18px "Malgun Gothic","Arial","Helvetica";
+}
+/* Static */
+.Static.sta_basic01
+{
+	-nexa-text-align		: left;
+	-nexa-vertical-align		: middle;
+	background			: transparent;
+	-nexa-border			: 0px none;
+	border-radius			: ;
+	color				: #222222;
+	cursor				: ;
+	font				: 9pt "Malgun Gothic","Arial","Helvetica";
+	opacity				: ;
+	-nexa-padding			: ;
+	box-shadow			: ;
+}
+.Static.sta_basic01[status=disabled]
+{
+	color				: #aaaaaa;
+}
+
+/* Edit*/
+.Edit.ed_basic01
+{
+	-nexa-text-align		: left;
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	color				: #222222;
+	cursor				: ;
+	font				: 13pt "Malgun Gothic","Arial","Helvetica";
+	opacity				: ;
+	-nexa-padding			: 0px 7px 0px 7px;
+	box-shadow			: ;
+}
+.Edit.ed_basic01[status=mouseover], .Edit.ed_basic01[status=focused]
+{
+	background			: #e2e9f5;
+	-nexa-border			: 1px solid #6682ae;
+	color				: #113367;
+}
+.Edit.ed_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+.Edit.ed_basic02, .Edit.ed_basic02[status=mouseover], .Edit.ed_basic02[status=focused]
+{
+	-nexa-text-align		: left;
+	background			: #e2e9f5;
+	-nexa-border			: 1px solid #6682ae;
+	color				: #113367;
+	font				: 13pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+/* MaskEdit */
+.MaskEdit.msk_basic01
+{
+	-nexa-text-align		: right;
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	color				: #222222;
+	font				: 13pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.MaskEdit.msk_basic01[status=mouseover], .MaskEdit.msk_basic01[status=focused]
+{
+	background			: #e2e9f5;
+	-nexa-border			: 1px solid #6682ae;
+	color				: #113367;
+}
+.MaskEdit.msk_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+.MaskEdit.msk_basic02, .MaskEdit.msk_basic02[status=mouseover], .MaskEdit.msk_basic02[status=focused]
+{
+	-nexa-text-align		: right;
+	background			: #e2e9f5;
+	-nexa-border			: 1px solid #6682ae;
+	color				: #113367;	
+	font				: 13pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+/* TextArea */
+.TextArea.txa_basic01
+{
+	-nexa-text-align		: left;
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 2px;
+	color				: #222222;
+	-nexa-padding			: 7px 7px 7px 7px;
+	font				: 15pt "Malgun Gothic","Arial","Helvetica";
+}
+.TextArea.txa_basic01[status=mouseover], .TextArea.txa_basic01[status=focused]
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	color				: #222222;
+}
+.TextArea.txa_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+
+/* Combo */
+.Static.sta_cp_Combo
+{
+	background			: url('imagerc::img_cp_viewCombo.png') no-repeat left top;
+}
+.Combo.cmb_basic01
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	color				: #222222;
+}
+.Combo.cmb_basic01[status=mouseover]
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #6682ae;
+	color				: #222222;
+}
+.Combo.cmb_basic01[status=focused]
+{
+	color				: #222222;
+}
+.Combo.cmb_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+.Combo.cmb_basic01 .comboedit
+{
+	-nexa-text-align		: left;
+	background			: transparent;
+	-nexa-border			: 0px none;
+	border-radius			: 0px;
+	color				: #222222;
+	-nexa-padding			: 0px 4px 0px 4px;
+}
+.Combo.cmb_basic01 .comboedit[status=mouseover],.Combo.cmb_basic01 .comboedit[status=focused]
+{
+	-nexa-border			: 0px none;
+	color				: #222222;
+	-nexa-padding			: 0px 4px 0px 4px;
+}
+.Combo.cmb_basic01 .comboedit[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 0px none;
+	color				: #aaaaaa;
+}
+.Combo.cmb_basic01 .dropbutton
+{
+	background			: transparent;
+	-nexa-border			: 0px none;
+	cursor				: pointer;
+	-nexa-icon			: URL("imagerc::btn_cp_drop.png");
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Combo.cmb_basic01 .dropbutton[status=mouseover], .Combo.cmb_basic01 .dropbutton[userstatus=pushed]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_drop_O.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+	background : transparent;
+}
+.Combo.cmb_basic01 .dropbutton[status=disabled]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_drop_D.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+.Combo.cmb_basic01 .combolist
+{
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 0px;
+	color				: #222222;
+}
+.Combo.cmb_basic01 .combolist .listboxitem
+{
+	background			: #ffffff;
+	-nexa-border			: 0px none;
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.Combo.cmb_basic01 .combolist[status=mouseover]
+{
+}
+.Combo.cmb_basic01 .combolist .listboxitem[status=mouseover]
+{
+	background			: #f0f0f0;
+}
+.Combo.cmb_basic01 .combolist .listboxitem[userstatus=selected]
+{
+	background		: #d5e0f3;
+	color 			: #113367;
+}
+.Combo.cmb_basic01 .combolist[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 0px none;
+	color				: #aaaaaa;
+}
+
+/* ListBox */
+.ListBox.lst_basic01
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 2px;
+	font				: 13pt "Malgun Gothic","Arial","Helvetica";
+	cursor				: pointer;
+}
+.ListBox.lst_basic01 .listboxitem
+{
+	background			: #ffffff;
+	-nexa-border			: 0px none;
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.ListBox.lst_basic01[status=mouseover], .ListBox.lst_basic01[status=focused]
+{
+}
+.ListBox.lst_basic01 .listboxitem[status=mouseover], .ListBox.lst_basic01 .listboxitem[status=focused]
+{
+	background			: #f0f0f0;
+}
+.ListBox.lst_basic01 .listboxitem[userstatus=selected]
+{
+	background	: #d5e0f3;
+	color 		: #113367;
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.ListBox.lst_basic01 .listboxitem[userstatus=selected][status=mouseover]
+{
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.ListBox.lst_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+
+/* Spin */
+
+.Spin.sp_basic01
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 2px;
+	color				: #222222;
+	font				: 13pt "Malgun Gothic","Arial","Helvetica";
+}
+.Spin.sp_basic01[status=mouseover], .Spin.sp_basic01[status=focused]
+{
+	background			: #e2e9f5;
+	-nexa-border			: 1px solid #6682ae;
+}
+.Spin.sp_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+
+.Spin.sp_basic01 .spinedit, .Spin.sp_basic01 .spinedit[status=focused]
+{
+	-nexa-text-align		: right;
+	background			: ;
+	-nexa-border			: 0px none;
+	border-radius			: ;
+	color				: #222222;
+	cursor				: ;
+	font				: ;
+	opacity				: ;
+	-nexa-padding			: 0px 5px 0px 5px;
+	box-shadow			: ;
+}
+.Spin.sp_basic01 .spinedit[status=mouseover],
+.Spin.sp_basic02 .spinedit, .Spin.sp_basic02 .spinedit[status=mouseover]
+{
+	-nexa-padding			: 0px 5px 0px 5px;
+	color				: #113367;
+}
+.Spin.sp_basic01 .spinedit[status=disabled]
+{
+	background			: #dddddd;
+}
+.Spin.sp_basic01 .spinupbutton,.Spin.sp_basic01 .spinupbutton[status=focused]
+{
+	-nexa-border			: 0px none;
+	cursor				: pointer;
+	-nexa-icon			: URL('imagerc::btn_cp_spinUp.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Spin.sp_basic01 .spinupbutton[status=mouseover], .Spin.sp_basic01 .spinupbutton[userstatus=pushed]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinUp_O.png');
+}
+
+.Spin.sp_basic01 .spinupbutton[status=disabled]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinUp_D.png');
+}
+.Spin.sp_basic01 .spindownbutton,.Spin.sp_basic01 .spindownbutton[status=focused]
+{
+	background			: ;
+	-nexa-border			: 0px none;
+	border-radius			: ;
+	color				: ;
+	cursor				: pointer;
+	font				: ;
+	-nexa-icon			: URL('imagerc::btn_cp_spinDown.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	opacity				: ;
+	-nexa-padding			: ;
+	box-shadow			: ;
+}
+.Spin.sp_basic01 .spindownbutton[status=mouseover], .Spin.sp_basic01 .spindownbutton[userstatus=pushed]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinDown_O.png');
+}
+.Spin.sp_basic01 .spindownbutton[status=disabled]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinDown_D.png');
+}
+
+.Spin.sp_basic02, .Spin.sp_basic02[status=mouseover], .Spin.sp_basic02[status=focused]
+{
+	background			: #e2e9f5;
+	-nexa-border			: 1px solid #6682ae;
+	font				: 13pt "Malgun Gothic","Arial","Helvetica";
+}
+.Spin.sp_basic02 .spinupbutton
+{
+	cursor				: pointer;
+	-nexa-icon				: URL('imagerc::btn_cp_spinUp.png');
+}
+.Spin.sp_basic02 .spinupbutton[status=mouseover], .Spin.sp_basic02 .spinupbutton[userstatus=pushed]
+{
+	cursor				: pointer;
+	-nexa-icon				: URL('imagerc::btn_cp_spinUp_O.png');
+}
+.Spin.sp_basic02 .spindownbutton
+{
+	cursor				: pointer;
+	-nexa-icon				: URL('imagerc::btn_cp_spinDown.png');
+}
+.Spin.sp_basic02 .spindownbutton[status=mouseover], .Spin.sp_basic02 .spindownbutton[userstatus=pushed]
+{
+	cursor				: pointer;
+	-nexa-icon			: URL('imagerc::btn_cp_spinDown_O.png');
+}
+.Spin.sp_basic02 .spindownbutton[status=disabled]
+{
+	cursor				: pointer;
+	-nexa-icon			: URL('imagerc::btn_cp_spinDown_D.png');
+}
+
+/* Calendar */
+.Calendar.cal_basic01
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 2px;
+	color				: #222222;
+}
+.Calendar.cal_basic01 .datepicker .body .dayitem
+{
+	-nexa-border			: 0px none;
+	border-radius			: 0px;
+	color				: #222222;
+	font				: ;
+}
+.Calendar.cal_basic01[status=mouseover], .Calendar.cal_basic01[status=focused]
+{
+	background			: #ffffff;
+	-nexa-border 			: 1px solid #6682ae;
+}
+
+.Calendar.cal_basic01 .datepicker[status=mouseover]
+{
+        font				: 9pt Arial,"Malgun Gothic","Arial","Helvetica";
+}
+.Calendar.cal_basic01 .datepicker .body .dayitem[status=mouseover], .Calendar.cal_basic01 .datepicker .body .dayitem[status=focused]
+{
+	background			: #f0f3f5;
+	-nexa-border			: 0px none;
+	font				: 10pt "Malgun Gothic","Arial","Helvetica";
+	color				: #222222;
+}
+.Calendar.cal_basic01 .datepicker .body .dayitem[userstatus=selected]
+{
+	background			: #ff6c54;
+	-nexa-border			: 0px none;
+	font				: 10pt "Malgun Gothic","Arial","Helvetica";
+	color				: #ffffff;
+}
+.Calendar.cal_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+.Calendar.cal_basic01 .datepicker .body .dayitem[status=disabled]
+{
+	background			: #dddddd;
+	color				: #aaaaaa;
+}
+
+.Calendar.cal_basic01 .calendaredit
+{
+	background			: #ffffff;
+	-nexa-border			: 0px none;
+	font				: 12pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.Calendar.cal_basic01 .calendaredit[status=focused]
+{
+	color				: #222222;
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.Calendar.cal_basic01 .calendaredit[status=mouseover]
+{
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.Calendar.cal_basic01 .calendaredit[status=disabled]
+{
+	background			: #dddddd;
+	color				: #aaaaaa;
+}
+.Calendar.cal_basic01 .dropbutton,.Calendar.cal_basic01 .dropbutton[status=focused]
+{
+	background			: transparent;
+	-nexa-border			: 0px none;
+	cursor				: pointer;
+	-nexa-icon			: URL('imagerc::btn_cp_cal.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+
+}
+.Calendar.cal_basic01 .dropbutton[status=mouseover],
+.Calendar.cal_basic01 .dropbutton[userstatus=selected],
+.Calendar.cal_basic01 .dropbutton[userstatus=pushed]
+{
+	-nexa-icon			: URL('imagerc::btn_cp_cal_O.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Calendar.cal_basic01 .dropbutton[status=disabled]
+{
+	-nexa-icon			: URL('imagerc::btn_cp_cal_D.png');
+}
+.Calendar.cal_basic01 .calendarspinupbutton,
+.Calendar.cal_basic01 .calendarspinupbutton[status=focused]
+{
+
+	-nexa-border			: 0px none;
+	-nexa-icon			: URL('imagerc::btn_cp_spinUp.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Calendar.cal_basic01 .calendarspinupbutton[status=mouseover], .Calendar.cal_basic01 .calendarspinupbutton[userstatus=pushed]
+{
+	-nexa-icon			: URL('imagerc::btn_cp_spinUp_O.png');
+	background 			: transparent;
+}
+.Calendar.cal_basic01 .calendarspinupbutton[status=disabled]
+{
+	-nexa-icon			: URL('imagerc::btn_cp_spinUp_D.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Calendar.cal_basic01 .calendarspindownbutton,
+.Calendar.cal_basic01 .calendarspindownbutton[status=focused]
+{
+	background			: ;
+	-nexa-border			: 0px none;
+	-nexa-icon			: URL('imagerc::btn_cp_spinDown.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Calendar.cal_basic01 .calendarspindownbutton[status=mouseover], .Calendar.cal_basic01 .calendarspindownbutton[userstatus=pushed]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinDown_O.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+	background 				: transparent;
+}
+.Calendar.cal_basic01 .calendarspindownbutton[status=disabled]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinDown_D.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+
+.Calendar.cal_basic01 .datepicker
+{
+	background			: ;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 0px;
+	font				: 10pt "Malgun Gothic","Arial","Helvetica";
+	color				: #222222;
+}
+
+/* CheckBox */
+.CheckBox.chk_basic01
+{
+	-nexa-text-align		: left;
+	-nexa-vertical-align		: middle;
+	background			: transparent;
+	-nexa-border			: 0px none;
+	-nexa-icon			: URL("imagerc::btn_cp_chk_N.png");
+	color				: #222222;
+	cursor				: pointer;
+	font				: 18px "Malgun Gothic","Arial","Helvetica";
+	-nexa-text-padding		: 0px 0px 0px 7px;
+}
+.CheckBox.chk_basic01[status=mouseover], .CheckBox.chk_basic01[status=focused]
+{	
+	-nexa-icon			: URL("imagerc::btn_cp_chk_M.png");
+}
+.CheckBox.chk_basic01[status=disabled]
+{
+	-nexa-icon			: URL("imagerc::btn_cp_chk_D.png");
+	color				: #aaaaaa;
+}
+.CheckBox.chk_basic01[status=disabled][userstatus=selected]
+{
+	-nexa-icon			: URL("imagerc::btn_cp_chk_DS.png");
+}
+.CheckBox.chk_basic01[userstatus=selected]
+{
+	-nexa-icon			: URL("imagerc::btn_cp_chk_MS.png");
+}
+.CheckBox.chk_basic01[userstatus=selected][status=mouseover]
+{
+	-nexa-icon			: URL("imagerc::btn_cp_chk_MS.png");
+}
+.CheckBox.chk_basic02[status=disabled]
+{
+	-nexa-text-align		: left;
+	-nexa-vertical-align		: middle;
+	background			: transparent;
+	-nexa-border			: 0px none;
+	-nexa-icon			: URL('imagerc::btn_cp_chk_D.png');
+	color				: #222222;
+	-nexa-text-padding		: 0px 0px 0px 3px;
+}
+
+/* Div */
+.Div.div_basic01
+{
+	background		: #ffffff;
+	-nexa-border		: 1px solid #9c9c9c;
+	border-radius		: 2px;
+	color			: #222222;
+	font			: 15pt "Malgun Gothic","Arial","Helvetica";
+}
+
+/* FileUpload */
+.FileUpload.fileup_basic01
+{
+	background		: transparent;
+	-nexa-border		: 0px none;
+	border-radius		: 0px;
+	color			: rgba(138,140,157,1);
+	cursor			: pointer;
+	font			: 10pt "Malgun Gothic","Arial","Helvetica";
+}
+.FileUpload.fileup_basic01 .fileuploaditem .fileuploaditembutton,.FileUpload.fileup_basic01 .fileuploaditem .fileuploaditembutton[status=mouseover],
+.FileUpload.fileup_basic01 .fileuploaditem .fileuploaditembutton[status=focused]
+{
+	background		: url('imagerc::btn_cp_fileUpload.png') no-repeat left center #e8e8e8;
+	-nexa-border		: 1px solid #cbcbcb;
+	border-radius		: 0px;
+	color			: #222222;
+	font			: 14pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding		: 0px 0px 0px 35px;
+}
+.FileUpload.fileup_basic01 .fileuploaditem .fileuploaditemedit
+{
+	background		: #ffffff;
+	-nexa-border		: 1px solid #cbcbcb, 0px none, 1px solid #cbcbcb, 1px solid #cbcbcb;
+	border-radius		: 0px;
+	color			: #222222;
+	font			: 9pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding		: 0px 5px 0px 5px;
+}
+.FileUpload.fileup_basic01 .fileuploaditem .fileuploaditembutton[userstatus=pushed]
+{
+	background		: url('imagerc::btn_cp_fileUpload.png') no-repeat left center #d8d8d8;
+}
+.FileUpload.fileup_basic01[status=disabled]
+{
+}
+.FileUpload.fileup_basic01 .fileuploaditem .fileuploaditembutton[status=disabled]
+{
+	background		: #dddddd;
+	-nexa-border		: 1px solid #aaaaaa;
+	color			: #aaaaaa;
+}
+.FileUpload.fileup_basic01 .fileuploaditem .fileuploaditemedit[status=disabled]
+{
+	background		: #dddddd;
+	-nexa-border		: 1px solid #aaaaaa;
+	color			: #aaaaaa;
+}
+
+/* FileDownload */
+.FileDownload.filedown_basic01,.FileDownload.filedown_basic01[status=mouseover],.FileDownload.filedown_basic01[status=focused]
+{
+	-nexa-text-align		: left;
+	-nexa-vertical-align		: middle;
+	background			: url('imagerc::btn_cp_fileDownload.png') no-repeat left center #e8e8e8;
+	-nexa-border			: 1px solid #cbcbcb;
+	border-radius			: 0px;
+	cursor				: pointer;
+	font				: 14pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding			: 0px 0px 0px 55px;
+}
+.FileDownload.filedown_basic01[userstatus=pushed]
+{
+	background			: url('imagerc::btn_cp_fileDownload.png') no-repeat left center #d8d8d8;
+}
+
+.FileDownload.filedown_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+
+/* Grid */
+.Grid.grd_basic01
+{
+	background			: transparent;
+	-nexa-border			: 1px solid #9c9c9c;
+	color				: #222222;
+}
+.Grid.grd_basic01 .summary .row .cell
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Grid.grd_basic01 .summary .row .cell[userstatus=selected]
+{
+	-nexa-border		: ;
+}
+.Grid.grd_basic01 .body .row .cell .celltreeitem .treeitembutton[userstatus=collapse]
+{
+	-nexa-icon		: URL('imagerc::img_TreeCollapse.png');
+}
+.Grid.grd_basic01 .body .row .cell .celltreeitem .treeitemimage[userstatus=collapse]
+{
+	-nexa-icon		: URL('imagerc::img_TreeClose.png');
+}
+.Grid.grd_basic01 .body .row .cell .celltreeitem .treeitemimage[userstatus=expand]
+{
+	-nexa-icon		: URL('imagerc::img_TreeOpen.png');
+}
+.Grid.grd_basic01 .body .row .cell .celltreeitem .treeitemimage
+{
+	-nexa-icon		: URL('imagerc::img_TreeItem.png');
+}
+.Grid.grd_basic01 .body .row .cell .celltreeitem .treeitembutton[userstatus=expand]
+{
+	-nexa-icon		: URL('imagerc::img_TreeExpand.png');
+}
+.Grid.grd_basic01 .head, .Grid.grd_basic01 .head[status=mouseover], .Grid.grd_basic01 .head[status=focused]
+{
+	background			: #efefef;
+	-nexa-border			: 0px none;
+}
+.Grid.grd_basic01 .head .row .cell, .Grid.grd_basic01 .head .row .cell[status=mouseover], .Grid.grd_basic01 .head .row .cell[status=focused]
+{
+	background			: transparent;
+	color				: #222222;
+	-nexa-color-odd			: #222222;
+	font				: bold 10pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-border			: 1px solid #9c9c9c;
+	-nexa-vertical-align 		: middle;
+	-nexa-text-align 		: center;
+}
+.Grid.grd_basic01 .head .row .cell[userstatus=selected], .Grid.grd_basic01 .head .row .cell[status=mouseover][userstatus=selected], .Grid.grd_basic01 .head .row .cell[status=focused][userstatus=selected]
+{
+	background		: ;
+	-nexa-border		: ;
+	color			: ;
+	font			: ;
+	-nexa-border		: ;
+}
+.Grid.grd_basic01 .body, .Grid.grd_basic01 .body[status=focused]
+{
+	background		: #ffffff;
+	-nexa-border		: 0px none;
+}
+.Grid.grd_basic01 .body .row .cell, .Grid.grd_basic01 .body .row .cell[status=focused]
+{
+	-nexa-text-align	: center;
+	-nexa-vertical-align	: middle;
+	background		: #ffffff;
+	-nexa-background-odd	: #f7f7f7;
+	color			: #222222;
+	-nexa-color-odd		: #222222;
+	-nexa-border		: 1px solid #9c9c9c;
+	-nexa-padding		: 3px 5px 3px 5px;
+}
+.Grid.grd_basic01 .body .row .cell[userstatus=selected], .Grid.grd_basic01 .body .row .cell[status=focused][userstatus=selected]
+{
+	background		: #d5e0f3;
+	color			: #ff6c54;
+	-nexa-border		: 1px solid #9c9c9c;
+}
+.Grid.grd_basic01 .body[status=mouseover]
+{
+}
+.Grid.grd_basic01 .body .row .cell[status=mouseover]
+{
+	background		: #fef5f3;
+	-nexa-background-odd	: #fef5f3;
+	color			: #113367;
+	-nexa-color-odd		: #113367;
+}
+.Grid.grd_basic01 .body[status=disabled]
+{
+}
+.Grid.grd_basic01 .body .row .cell[status=disabled]
+{
+	background		: #ffffff;
+	-nexa-background-odd	: rgba(229,229,229,0.4);
+	color			: #6e6e63;
+}
+.Grid.grd_basic01 .body .row .cell[status=disabled][userstatus=selected]
+{
+	background		: #ffffff;
+	color			: #6e6e63;
+}
+.Grid.grd_basic01 .body .row .cell .celledit
+{
+	-nexa-text-align	: left;
+	background		: #ffffff;
+	-nexa-border		: 1px solid #9c9c9c;
+	border-radius		: 2px;
+	color			: #222222;
+	font			: 10pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding		: 0px 7px 0px 7px;
+}
+.Grid.grd_basic01 .body .row .cell .celledit[status=mouseover], .Grid.grd_basic01 .body .row .cell .celledit[status=focused]
+{
+	background			: #fef5f3;
+	-nexa-border			: 1px solid #ff6c54;
+	color				: #113367;
+}
+.Grid.grd_basic01 .body .row .cell .celledit[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+.Grid.grd_basic01 .body .row .cell .cellmaskedit
+{
+	-nexa-text-align		: right;
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 2px;
+	color				: #222222;
+	font				: 10pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.Grid.grd_basic01 .body .row .cell .cellmaskedit[status=mouseover], .Grid.grd_basic01 .body .row .cell .cellmaskedit[status=focused]
+{
+	background			: #fef5f3;
+	-nexa-border			: 1px solid #ff6c54;
+	color				: #113367;
+}
+.Grid.grd_basic01 .body .row .cell .cellmaskedit[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+.Grid.grd_basic01 .body .row .cell .celltextarea
+{
+	-nexa-text-align		: left;
+	background			: url('imagerc::img_cp_textarea.png') no-repeat right bottom #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 2px;
+	color				: #222222;
+	-nexa-padding			: 7px 7px 7px 7px;
+}
+.Grid.grd_basic01 .body .row .cell .celltextarea[status=mouseover], .Grid.grd_basic01 .body .row .cell .celltextarea[status=focused]
+{
+	background			: url('imagerc::img_cp_textarea.png') no-repeat right bottom #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	color				: #222222;
+}
+.Grid.grd_basic01 .body .row .cell .celltextarea[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+
+.Grid.grd_basic01 .body .row .cell .cellbutton
+{ 
+	-nexa-text-align           	: center;
+	-nexa-vertical-align           	: middle;
+	background      		: #e1897b;
+	-nexa-border          		: 1px solid #d16959;
+	border-radius      		: 3px;
+	font            		: 9pt "Malgun Gothic","Arial","Helvetica";
+	color           		: #ffffff;
+	cursor				: pointer;
+}
+.Grid.grd_basic01 .body .row .cell .cellbutton[status=mouseover], .Grid.grd_basic01 .body .row .cell .cellbutton[userstatus=pushed]
+{
+	background      		: #d97a6a;
+	-nexa-border          		: 1px solid #c66151;
+}
+.Grid.grd_basic01 .body .row .cell .cellbutton[status=disabled]
+{
+	background      		: #dddddd;
+	-nexa-border          		: 1px solid #aaaaaa;
+	color           		: #aaaaaa;
+}
+.Grid.grd_basic01 .body .row .cell .cellcheckbox
+{
+	-nexa-text-align		: left;
+	-nexa-vertical-align		: middle;
+	background			: transparent;
+	-nexa-border			: 0px none;
+	-nexa-icon-position		: left;
+	-nexa-icon			: URL('imagerc::btn_cp_chk.png');
+	color				: #222222;
+	cursor				: pointer;
+	font				: 10pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-text-padding		: 0px 0px 0px 3px;
+}
+.Grid.grd_basic01 .body .row .cell .cellcheckbox[status=mouseover],.Grid.grd_basic01 .body .row .cell .cellcheckbox[status=focused]
+{
+	-nexa-icon			: URL('imagerc::btn_cp_chk_N1.png');
+}
+.Grid.grd_basic01 .body .row .cell .cellcheckbox[userstatus=selected]
+{
+	-nexa-icon			: URL('imagerc::btn_cp_chk.png');
+}
+.Grid.grd_basic01 .body .row .cell .cellcheckbox[status=disabled]
+{
+	-nexa-icon			: URL('imagerc::btn_cp_chk_D.png');
+	color				: #aaaaaa;
+}
+/* Grid>#controlcombo */
+.Grid.grd_basic01 .body .row .cell .cellcombo
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 0px;
+	color				: #222222;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo[status=mouseover]
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #ff6c54;
+	color				: #222222;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo[status=focused]
+{
+	color				: #222222;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .comboedit
+{
+	-nexa-text-align		: left;
+	background			: transparent;
+	-nexa-border			: 0px none;
+	border-radius			: 0px;
+	color				: #222222;
+	-nexa-padding			: 0px 4px 0px 4px;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .comboedit[status=mouseover], .Grid.grd_basic01 .body .row .cell .cellcombo .comboedit[status=focused]
+{
+	-nexa-border			: 0px none;
+	color				: #222222;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .comboedit[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 0px none;
+	color				: #aaaaaa;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .dropbutton
+{
+	-nexa-icon			: URL('imagerc::btn_cp_drop.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .dropbutton[status=mouseover], .Grid.grd_basic01 .body .row .cell .cellcombo .dropbutton[userstatus=pushed]
+{
+	
+	-nexa-icon			: URL('imagerc::btn_cp_drop_O.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .dropbutton[status=disabled]
+{
+	-nexa-icon			: URL('imagerc::btn_cp_drop_D.png');
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .combolist
+{
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 0px;
+	color				: #222222;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .combolist .listboxitem
+{
+	background			: #ffffff;
+	-nexa-border			: 0px none;
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .combolist[status=mouseover]
+{
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .combolist .listboxitem[status=mouseover]
+{
+	background			: #f0f0f0;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .combolist .listboxitem[userstatus=selected]
+{
+	background			: #d5e0f3;
+}
+.Grid.grd_basic01 .body .row .cell .cellcombo .combolist[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 0px none;
+	color				: #aaaaaa;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 2px;
+	color				: #222222;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .datepicker .body .dayitem
+{
+	-nexa-border			: 0px none;
+	border-radius			: 0px;
+	color				: #222222;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar[status=mouseover]
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .datepicker .body .dayitem[status=mouseover]
+{
+	background			: #e8e8e8;
+	-nexa-border			: 0px none;
+	font				: 9pt "Malgun Gothic","Arial","Helvetica";
+	color				: #222222;
+}
+
+.Grid.grd_basic01 .body .row .cell .cellcalendar .datepicker .body .dayitem[userstatus=selected]
+{
+	background			: #ff6c54;
+	-nexa-border			: 0px none;
+	font				: 9pt "Malgun Gothic","Arial","Helvetica";
+	color				: #ffffff;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .datepicker .body .dayitem[status=disabled]
+{
+	background			: #dddddd;
+	color				: #aaaaaa;
+}
+
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendaredit
+{
+	background			: #ffffff;
+	-nexa-border			: 0px none;
+	font				: 9pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding			: 0px 7px 0px 7px;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendaredit[status=focused]
+{
+	background		: #ff6c54;
+	color			: #ffffff;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .dropbutton
+{
+	background				: transparent;
+	-nexa-border				: 0px none;
+	-nexa-icon				: URL('imagerc::btn_cp_cal.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .dropbutton[status=mouseover]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_cal.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .dropbutton[status=disabled]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_cal_D.png');
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendarspinupbutton
+{
+	-nexa-border				: 0px none;
+	-nexa-icon				: URL('imagerc::btn_cp_spinUp.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendarspinupbutton[status=mouseover],
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendarspinupbutton[userstatus=pushed]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinUp_O.png');
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendarspinupbutton[status=disabled]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinUp_D.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendarspindownbutton
+{
+	-nexa-border				: 0px none;
+	-nexa-icon				: URL('imagerc::btn_cp_spinDown.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendarspindownbutton[status=mouseover], 
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendarspindownbutton[userstatus=pushed]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinDown_O.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .calendarspindownbutton[status=disabled]
+{
+	-nexa-icon				: URL('imagerc::btn_cp_spinDown_D.png');
+	-nexa-text-align			: center;
+	-nexa-vertical-align			: middle;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .datepicker
+{
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 0px;
+	font				: 9pt "Malgun Gothic","Arial","Helvetica";
+	color				: #222222;
+	-nexa-padding 			: 40px 0px 0px 0px;
+}
+.Grid.grd_basic01 .body .row .cell .cellcalendar .datepicker[status=mouseover]
+{
+	background			: #ffffff;
+        font				: 9pt "Malgun Gothic","Arial","Helvetica";
+}
+.Grid.grd_basic01 .vscrollbar
+{
+	background			: #e8e8e8;
+	-nexa-border			: 1px solid #9c9c9c, 0px none;
+	border-radius			: 0px;
+}
+.Grid.grd_basic01 .hscrollbar
+{
+	background			: #e8e8e8;
+	-nexa-border			: 0px none, 1px solid #9c9c9c;
+	border-radius			: 0px;
+}
+
+/* GroupBox */
+.GroupBox.grb_basic01
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #9c9c9c;
+	border-radius			: 3px;
+	color				: #222222;
+	font				: bold 13pt "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding 			: 5px;
+}
+.GroupBox.grb_basic01 .groupboxtitle
+{
+	background			: #ffffff;
+	-nexa-padding 			: 0px 5px 0px 5px;
+	-nexa-icon			: URL('imagerc::ico_cp_group.png');	
+	-nexa-icon-position		: left;
+	-nexa-text-padding 		: 0px 10px 0px 5px;
+}
+.GroupBox.grb_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border 			: 1px solid #aaaaaa;
+	color				: #aaaaaa;
+}
+
+/* ImageViewer */
+.Static.sta_cp_imageViewer
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #e1897b;
+	-nexa-border			: 1px solid #d16959;
+	border-radius			: 20px;
+	color				: #ffffff;
+	font				: 14pt Malgun Gothci,Arial;
+	-nexa-padding			: 0px;
+}
+
+/* Menu */
+.Static.sta_menu_bg
+{
+	background			: #f7f7f7;
+	-nexa-border			: 1px solid #cbcbcb;
+}
+.Static.sta_menu_icon
+{
+	-nexa-text-align		: left;
+	-nexa-vertical-align		: middle;
+	background			: url('imagerc::ico_cp_menu.png') no-repeat left center;
+	color				: #222222;
+	font				: 13pt Arial;
+	-nexa-padding			: 0px 0px 0px 34px;
+}
+
+.Menu.menu_basic01,.Menu.menu_basic01[status=focused]
+{
+	background			: #f7f7f7;
+	-nexa-border			: 0px none;
+	border-radius			: ;
+	color				: #222222;
+	cursor				: pointer;
+	font				: 12pt "Malgun Gothic","Arial","Helvetica";
+}
+.Menu.menu_basic01 .menupopupmenu .popupmenuitem .popupmenuitemcheckbox
+{
+	-nexa-icon			: ;
+}
+.Menu.menu_basic01 .menupopupmenu .popupmenuitem .popupmenuitemexpandimage
+{
+	-nexa-icon			: URL('imagerc::btn_menu_next.png');
+}
+.Menu.menu_basic01 .menuitem,.Menu.menu_basic01 .menuitem[status=focused]
+{
+	background : #f7f7f7;
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	color				: #222222;
+	-nexa-border			: 0px none;
+	border-radius			: 0px;
+	-nexa-padding			: 5px 30px 5px 30px;
+	font 				: 13pt/normal "Malgun Gothic","Arial","Helvetica";
+}
+.Menu.menu_basic01 .menupopupmenu
+{
+	background			: #ffffff;
+	-nexa-border			: 1px solid #cbcbcb;
+	border-radius			: 0px;
+	color				: #222222;
+	font				: 10pt "Malgun Gothic","Arial","Helvetica";
+}
+
+.Menu.menu_basic01 .menupopupmenu .popupmenuitem,
+.Menu.menu_basic01 .menupopupmenu .popupmenuitem[status=focused]
+{
+	background		: #f7f7f7;
+	-nexa-border		: 0px none;
+	border-radius		: 0px;
+	-nexa-padding		: 7px 10px 7px 10px;
+	color			: #222222;
+}
+.Menu.menu_basic01[status=mouseover]
+{
+	background 		: #f7f7f7;
+	color			: #222222;
+	font			: 11pt "Malgun Gothic","Arial","Helvetica";
+}
+.Menu.menu_basic01 .menuitem[status=mouseover]
+{
+	background 		: #f7f7f7;
+	color			: #222222;
+	-nexa-padding		: 5px 30px 5px 30px;
+	-nexa-text-decoration 	: underline;
+}
+.Menu.menu_basic01 .menupopupmenu[status=mouseover]
+{
+	background : #f7f7f7;
+	color			: #222222;
+}
+.Menu.menu_basic01 .menupopupmenu .popupmenuitem[status=mouseover]
+{
+	background		: #e1e1e1;
+	color			: #222222;
+}
+.Menu.menu_basic01[status=disabled]
+{
+}
+.Menu.menu_basic01 .menupopupmenu[status=disabled]
+{
+	color			: #b4b4b4;
+}
+
+/* PopupDiv */
+.Button.btn_cp_popDiv, .Button.btn_cp_popDiv[status=focused], .Button.btn_cp_popDiv[userstatus=selected]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #4e75b3;
+	-nexa-border			: 1px solid #22457c;
+	border-radius			: 0px;
+	color				: #ffffff;
+	cursor				: pointer;
+	font				: 15pt "Malgun Gothic","Arial","Helvetica";
+	box-shadow			: 0px 3px 1px rgba(207,207,207,1);
+}
+.Button.btn_cp_popDiv[status=mouseover], .Button.btn_cp_popDiv[userstatus=pushed]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #4169a8;
+	-nexa-border			: 1px solid #163a73;
+	border-radius			: 0px;
+	color				: #ffffff;
+	cursor				: pointer;
+	font				: 15pt "Malgun Gothic","Arial","Helvetica";
+	box-shadow			: 0px 3px 1px rgba(207,207,207,1);
+}
+.Button.btn_cp_popDiv[status=disabled]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	border-radius			: 0px;
+	color				: #aaaaaa;
+	cursor				: pointer;
+	font				: 15pt "Malgun Gothic","Arial","Helvetica";
+	box-shadow			: 0px 3px 1px rgba(207,207,207,1);
+}
+
+/* PopupMenu */
+.Button.btn_cp_popMenu, .Button.btn_cp_popMenu[status=focused], .Button.btn_cp_popMenu[userstatus=selected]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #53c0c1;
+	-nexa-border			: 1px solid #1e9495;
+	border-radius			: 0px;
+	color				: #ffffff;
+	cursor				: pointer;
+	font				: 15pt "Malgun Gothic","Arial","Helvetica";
+	box-shadow			: 0px 3px 1px rgba(207,207,207,1);
+	-nexa-padding 			: 0px 0px 2px;
+}
+.Button.btn_cp_popMenu[status=mouseover], .Button.btn_cp_popMenu[userstatus=pushed]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #49acad;
+	-nexa-border			: 1px solid #1e9495;
+	border-radius			: 0px;
+	color				: #ffffff;
+	cursor				: pointer;
+	font				: 15pt "Malgun Gothic","Arial","Helvetica";
+	box-shadow			: 0px 3px 1px rgba(207,207,207,1);
+}
+.Button.btn_cp_popMenu[status=disabled]
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: middle;
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	border-radius			: 0px;
+	color				: #aaaaaa;
+	cursor				: pointer;
+	font				: 15pt "Malgun Gothic","Arial","Helvetica";
+	box-shadow			: 0px 3px 1px rgba(207,207,207,1);
+}
+
+.PopupMenu.pm_basic01
+{
+	background			: #f7f7f7;
+	-nexa-border			: 1px solid #cbcbcb;
+	border-radius			: 0px;
+	color				: #222222;
+	cursor				: pointer;
+	font				: ;
+	opacity				: ;
+	-nexa-padding			: ;
+	box-shadow			: ;
+}
+.PopupMenu.pm_basic01 .popupmenuitem .popupmenuitemcheckbox
+{
+	-nexa-icon			: URL('imagerc::ico_menu_check.png');
+}
+.PopupMenu.pm_basic01 .popupmenuitem .popupmenuitemexpandimage
+{
+	-nexa-icon			: URL('imagerc::btn_menu_next.png');
+}
+.PopupMenu.pm_basic01 .popupmenuitem
+{
+	background			: ;
+	-nexa-border			: 0px none;
+	border-radius			: 0px;
+	-nexa-padding			: 3px 5px 3px 5px;
+}
+.PopupMenu.pm_basic01[status=mouseover]
+{
+	background			: #f7f7f7;
+	color				: #222222;
+}
+.PopupMenu.pm_basic01 .popupmenuitem[status=mouseover]
+{
+	background 			: #e1e1e1;
+	-nexa-border			: 0px none;
+}
+.PopupMenu.pm_basic01[status=disabled]
+{
+	color				: #aaaaaa;
+}
+.PopupMenu.pm_basic01 .popupmenuitem[status=disabled]
+{
+	background 			: ;
+}
+
+/* Radio */
+.Radio.rdo_basic01
+{
+	background			: transparent;
+	-nexa-border			: 0px none;
+	border-radius			: ;
+	color				: #222222;
+	cursor				: pointer;
+	font				: 18px "Malgun Gothic","Arial","Helvetica";
+	opacity				: ;
+	-nexa-padding			: ;
+	box-shadow			: ;
+}
+.Radio.rdo_basic01 .radioitem
+{
+	-nexa-icon-position		: left;
+	-nexa-icon			: URL('imagerc::btn_cp_radio_N.png');
+	background			: ;
+	-nexa-border			: ;
+	border-radius			: ;
+	-nexa-padding			: ;
+	-nexa-text-padding		: 0px 0px 0px 7px;
+}
+.Radio.rdo_basic01[status=mouseover], .Radio.rdo_basic01[status=focused]
+{
+}
+.Radio.rdo_basic01[status=disabled]
+{
+	color				: #b4b4b4;
+}
+.Radio.rdo_basic01 .radioitem[status=disabled]
+{
+	-nexa-icon			: URL('imagerc::btn_radio_D.png');
+}
+.Radio.rdo_basic01 .radioitem[status=disabled][userstatus=selected]
+{
+	-nexa-icon			: URL('imagerc::btn_radio_DS.png');
+}
+
+
+/* StepControl */
+.Static.sta_cp_stepImg01
+{
+	background			: url('imagerc::img_cp_step01.png') no-repeat left top;
+}
+.Static.sta_cp_stepImg02
+{
+	background			: url('imagerc::img_cp_step02.png') no-repeat left top;
+}
+.Static.sta_cp_stepImg03
+{
+	background			: url('imagerc::img_cp_step03.png') no-repeat left top;
+}
+
+/* Tab */
+.Tab.tab_basic01
+{
+	background			: transparent;
+	-nexa-border			: 1px solid #cbcbcb;
+	border-radius			: 0px;
+	color				: #222222;
+	cursor				: pointer;
+	font				: 10pt "Malgun Gothic","Arial","Helvetica";
+	opacity				: ;
+	box-shadow			: ;
+}
+.Tab.tab_basic01 .tabbuttonitem
+{
+	background			: #f7f7f7;
+	-nexa-border			: 1px solid #cbcbcb;
+	border-radius			: 0px;
+	-nexa-padding			: 0px 5px 0px 5px;
+}
+.Tab.tab_basic01[status=mouseover]
+{
+	color				: #222222;
+	cursor				: pointer;
+}
+.Tab.tab_basic01 .tabbuttonitem[status=mouseover]
+{
+	background			: #efefef;
+	-nexa-border			: 1px solid #cbcbcb;
+}
+ .Tab.tab_basic01[status=focused]
+{
+	color				: #113367;
+}
+.Tab.tab_basic01 .tabbuttonitem[userstatus=selected], .Tab.tab_basic01 .tabbuttonitem[status=focused]
+{
+	background			: #ffffff;
+	-nexa-border 			: 1px solid #cbcbcb,1px solid #cbcbcb,0px none;
+	color				: #113367;
+}
+.Tab.tab_basic01[status=disabled]
+{
+	-nexa-border			: 1px solid #b4b4b4;
+	color				: #b4b4b4;
+}
+.Tab.tab_basic01 .tabbuttonitem[status=disabled]
+{
+	-nexa-border			: 1px solid #b4b4b4;
+	background			: #d6d6d6;
+}
+
+/* ProgressBar */
+.ProgressBar.prg_basic01,
+.ProgressBar.prg_basic01[status=focused],
+.ProgressBar.prg_basic01[status=mouseover]
+{
+	background			: #cbcbcb;
+	-nexa-border			: 1px solid #cbcbcb;
+	color				: #ffffff;
+	font				: 13pt "Malgun Gothic","Arial","Helvetica";
+}
+.ProgressBar.prg_basic01 .progressbaritem
+{
+	background			: #122c56;
+	-nexa-icon			: ;
+}
+.ProgressBar.prg_basic01 .progressendcap
+{
+	-nexa-icon			: ;
+}
+.ProgressBar.prg_basic01 .progressstartcap
+{
+	-nexa-icon			: ;
+}
+.ProgressBar.prg_basic01[status=disabled]
+{
+	background			: #dddddd;
+	-nexa-border			: 1px solid #aaaaaa;
+	color				: #f7f7f7;
+}
+.ProgressBar.prg_basic01 .progressbaritem[status=disabled]
+{
+}
+
+/* 확장 컴포넌트 */
+.Static.sta_cp_box02
+{
+	background			: #f7f7f7;
+	-nexa-border			: 1px solid #cbcbcb;
+	color				: #222222;
+	font				: bold 12pt Arial,Malgun gothic;
+	-nexa-padding			: 0px 0px 0px 10px;
+}
+.Radio.rdo_basic01 .radioitem[status=mouseover]
+{
+	-nexa-icon	: URL('imagerc::btn_cp_radio_M.png');
+}
+.Radio.rdo_basic01 .radioitem[userstatus=selected]
+{
+	-nexa-icon	: URL('imagerc::btn_cp_radio_S.png');
+}
+.Radio.rdo_basic01 .radioitem[userstatus=selected][status=mouseover]
+{
+	-nexa-icon	: URL('imagerc::btn_cp_radio_MS.png');
+}
+.GroupBox.grb_basic01 .groupboxcontents
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #d6d4d5;
+}
+.GroupBox.grb_basic01 .groupboxcontents[status=disabled]
+{
+	background : #efefef;
+}
+/* MultiCombo */
+.Edit.MultiComboEdit,.Edit.MultiComboEdit[status=readonly]
+{
+	background : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-padding : 1px 9px 0px 9px;
+}
+.Button.MultiComboButton,.Button.MultiComboButton[status=mouseover],.Button.MultiComboButton[userstatus=pushed],.Button.MultiComboButton[userstatus=selected],.Button.MultiComboButton[status=focused],.Button.MultiComboButton[status=disabled]
+{
+	background : url('theme://images/cmb_WF_Drop.png') no-repeat center center transparent;
+	-nexa-border : 0px none;
+}
+.PopupDiv.MultiComboPopupDiv
+{
+	background : #dfdfdf;
+	-nexa-border : 1px solid #c7c7c7;
+}
+
+.Grid.grd_calGrd,.Grid.grd_calGrd[status=focused]
+{
+	-nexa-border : 2px solid #032c6c,1px solid #c7c7c7,1px solid #c7c7c7;
+}
+.Grid.grd_calGrd .body .row .cell
+{
+	-nexa-border : 0px none;	
+}
+.Grid.grd_calGrd .body .row .cell[userstatus=selected]
+{
+	background : #f5785b;
+	-nexa-border : 0px none;
+	color : #ffffff;
+}
+.Grid.grd_calGrd .head .row .cell,.Grid.grd_calGrd .head .row .cell[status=mouseover],
+.Grid.grd_calGrd .head .row .cell[status=focused],.Grid.grd_calGrd .head .row .cell[userstatus=selected]
+{
+	-nexa-border : 0px none;
+}
+/* calendar */
+.Button.btn_WF_calendarF, .Button.btn_WF_calendarF[status=focused], .Button.btn_WF_calendarF[userstatus=selected]
+{
+	background			: url('imagerc::img_WF_calendarF.png') no-repeat center #1b4b95;
+	-nexa-border			: 0px none;
+	border-radius			: 50%;	
+	cursor				: pointer;	
+}
+.Button.btn_WF_calendarF[status=mouseover], .Button.btn_WF_calendarF[userstatus=pushed]
+{
+	background			: url('imagerc::img_WF_calendarF.png') no-repeat center #123b7b;
+	-nexa-border			: 0px none;	
+	cursor				: pointer;
+}
+.Button.btn_WF_calendarL, .Button.btn_WF_calendarL[status=focused], .Button.btn_WF_calendarL[userstatus=selected]
+{
+	background			: url('imagerc::img_WF_calendarL.png') no-repeat center #1b4b95;
+	-nexa-border			: 0px none;
+	border-radius			: 50%;	
+	cursor				: pointer;	
+}
+.Button.btn_WF_calendarL[status=mouseover], .Button.btn_WF_calendarL[userstatus=pushed]
+{
+	background			: url('imagerc::img_WF_calendarL.png') no-repeat center #123b7b;
+	-nexa-border			: 0px none;	
+	cursor				: pointer;
+}
+.Button.btn_WF_calendarPrev, .Button.btn_WF_calendarPrev[status=focused], .Button.btn_WF_calendarPrev[userstatus=selected]
+{
+	background			: url('imagerc::img_WF_calendarPrev.png') no-repeat center #1b4b95;
+	-nexa-border			: 0px none;
+	border-radius			: 50%;	
+	cursor				: pointer;	
+}
+.Button.btn_WF_calendarPrev[status=mouseover], .Button.btn_WF_calendarPrev[userstatus=pushed]
+{
+	background			: url('imagerc::img_WF_calendarPrev.png') no-repeat center #123b7b;
+	-nexa-border			: 0px none;	
+	cursor				: pointer;
+}
+.Button.btn_WF_calendarNext, .Button.btn_WF_calendarNext[status=focused], .Button.btn_WF_calendarNext[userstatus=selected]
+{
+	background			: url('imagerc::img_WF_calendarNext.png') no-repeat center #1b4b95;
+	-nexa-border			: 0px none;
+	border-radius			: 50%;	
+	cursor				: pointer;	
+}
+.Button.btn_WF_calendarNext[status=mouseover], .Button.btn_WF_calendarNext[userstatus=pushed]
+{
+	background			: url('imagerc::img_WF_calendarNext.png') no-repeat center #123b7b;
+	-nexa-border			: 0px none;	
+	cursor				: pointer;
+}
+.Button.btn_WF_listviewList
+{
+	background			: url('imagerc::img_WF_listviewListM.png') no-repeat center #ffffff;
+	-nexa-border			: 1px solid #888888;
+	border-radius			: 3px;	
+	cursor				: pointer;	
+}
+.Button.btn_WF_listviewList[status=focused],.Button.btn_WF_listviewList[userstatus=selected], .Button.btn_WF_listviewList[userstatus=pushed],
+.Button.btn_WF_listviewList[status=mouseover]
+{
+	background			: url('imagerc::img_WF_listviewListM.png') no-repeat center #f6f6f6;
+	-nexa-border			: 1px solid #adadad;
+}
+.Button.btn_WF_listviewList[status=disabled]
+{
+	background			: url('imagerc::img_WF_listviewListM.png') no-repeat center #f7f7f7;
+}
+.Button.btn_WF_listviewCross
+{
+	background			: url('imagerc::img_WF_listviewCrossM.png') no-repeat center #ffffff;
+	-nexa-border			: 1px solid #888888;
+	border-radius			: 3px;	
+	cursor				: pointer;	
+}
+.Button.btn_WF_listviewCross[status=focused], .Button.btn_WF_listviewCross[userstatus=selected], .Button.btn_WF_listviewCross[userstatus=pushed],
+.Button.btn_WF_listviewCross[status=mouseover]
+{
+	background			: url('imagerc::img_WF_listviewCrossM.png') no-repeat center #f6f6f6;
+	-nexa-border			: 1px solid #adadad;
+}
+.Button.btn_WF_listviewCross[status=disabled]
+{
+	background			: url('imagerc::img_WF_listviewCrossM.png') no-repeat center #f7f7f7;
+}
+.Button.btn_WF_animation, .Button.btn_WF_animation[status=focused], .Button.btn_WF_animation[userstatus=selected]
+{	
+	-nexa-text-align 		: left;
+	-nexa-vertical-align		: middle;
+	background			: #d5e2f5;
+	-nexa-border			: 1px solid #98b3dc;
+	border-radius			: 0px;
+	color				: #484f59;
+	cursor				: pointer;
+	font				: normal 700 23px/normal "Malgun Gothic","Arial","Helvetica";
+	-nexa-padding 			: 10px;	
+}.Button.btn_WF_animation[status=mouseover], .Button.btn_WF_animation[userstatus=pushed]
+{
+	-nexa-text-align 		: left;
+	-nexa-vertical-align		: middle;
+	background			: #b6cbe9;
+	-nexa-border			: 1px solid #98b3dc;
+	border-radius			: 0px;
+	color				: #484f59;
+	cursor				: pointer;
+	font				: normal 700 23px/normal "Malgun Gothic","Arial","Helvetica";	
+	-nexa-padding 			: 10px;	
+}
+
+/* 191017 추가 */
+
+.Button.btn_WF_arrange01,
+.Button.btn_WF_arrange01[status=disabled],
+.Button.btn_WF_arrange01[status=mouseover],
+.Button.btn_WF_arrange01[status=focused],
+.Button.btn_WF_arrange01[userstatus=pushed],
+.Button.btn_WF_arrange01[userstatus=selected]
+{
+	background : #f2dadd;
+	-nexa-border : 2px solid #d8402b,1px solid #a2a2a2,1px solid #a2a2a2;
+	color : #222222;
+}
+.Button.btn_WF_arrange02,
+.Button.btn_WF_arrange02[status=disabled],
+.Button.btn_WF_arrange02[status=mouseover],
+.Button.btn_WF_arrange02[status=focused],
+.Button.btn_WF_arrange02[userstatus=pushed],
+.Button.btn_WF_arrange02[userstatus=selected]
+{
+	background : #c9dfec;
+	-nexa-border : 2px solid #043b7f,1px solid #a2a2a2,1px solid #a2a2a2;
+	color : #222222;
+}
+.Button.btn_WF_arrange03,
+.Button.btn_WF_arrange03[status=disabled],
+.Button.btn_WF_arrange03[status=mouseover],
+.Button.btn_WF_arrange03[status=focused],
+.Button.btn_WF_arrange03[userstatus=pushed],
+.Button.btn_WF_arrange03[userstatus=selected]
+{
+	background : #fffef4;
+	color : #222222;
+}
+.Div.div_WF_box01,
+.Div.div_WF_box01[status=mouseover],
+.Div.div_WF_box01[status=focused]
+{
+	background : #f6f6f6;
+	-nexa-border : 1px solid #cbcbcb;	
+}
+
+.Button.btn_WF_monthCal,
+.Button.btn_WF_monthCal[status=disabled],
+.Button.btn_WF_monthCal[status=mouseover],
+.Button.btn_WF_monthCal[status=focused],
+.Button.btn_WF_monthCal[userstatus=pushed],
+.Button.btn_WF_monthCal[userstatus=selected]
+{	
+	background : transparent;
+	-nexa-border : 1px solid #9c9c9c,1px solid #9c9c9c,1px solid #9c9c9c,0px none;
+	-nexa-icon : URL("imagerc::btn_cp_cal.png");
+	-nexa-padding : 0px 0px 0px 2px;
+}
+/* 다국어 */
+.Static.sta_WF_iconKorea
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: bottom;
+	font				: 11pt "Malgun Gothic","Arial","Helvetica";
+	background 			: url('imagerc::icon_WF_korea.png') no-repeat;
+}
+.Static.sta_WF_iconUSA
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: bottom;
+	background			: url('imagerc::icon_WF_usa.png') no-repeat;
+	font				: 11pt "Malgun Gothic","Arial","Helvetica";
+}
+.Static.sta_WF_iconChina
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: bottom;
+	background			: url('imagerc::icon_WF_china.png') no-repeat center top;
+	font				: 11pt "Malgun Gothic","Arial","Helvetica";
+}
+.Static.sta_WF_iconRussia
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: bottom;
+	background			: url('imagerc::icon_WF_russia.png') no-repeat center top;
+	font				: 11pt "Malgun Gothic","Arial","Helvetica";
+}
+.Static.sta_WF_iconCzech
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: bottom;
+	background			: url('imagerc::icon_WF_czech.png') no-repeat center top;
+	font				: 11pt "Malgun Gothic","Arial","Helvetica";
+}
+.Static.sta_WF_iconGeman
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: bottom;
+	background			: url('imagerc::icon_WF_geman.png') no-repeat center top;
+	font				: 11pt "Malgun Gothic","Arial","Helvetica";
+}
+.Static.sta_WF_iconSpain
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: bottom;
+	background			: url('imagerc::icon_WF_spain.png') no-repeat center top;
+	font				: 11pt "Malgun Gothic","Arial","Helvetica";
+}
+.Static.sta_WF_iconArabic
+{
+	-nexa-text-align		: center;
+	-nexa-vertical-align		: bottom;
+	background			: url('imagerc::icon_WF_arabic.png') no-repeat center top;
+	font				: 11pt "Malgun Gothic","Arial","Helvetica";
+}
+
+/*-----------------------------------head------------------------------------*/
+.Grid.grid_WF_moveCell .head .row .cell
+{
+	font : bold 12px "Malgun Gothic","Arial","Helvetica";
+	color : #2f2f2f;
+	background : linear-gradient(to top, #eff0f0, #f9fafa);
+	-nexa-border : 1px solid #cacaca;
+	-nexa-padding : 4px 4px 4px 4px;
+	-nexa-text-align : center;
+}
+.Grid.grid_WF_moveCell .head .row .cell[status=disabled]
+{
+	color : #999999;
+}
+.Grid.grid_WF_moveCell .body .row .cell[status=disabled][userstatus=selected]
+{
+	background : #f0f0f0;
+}
+.Grid.grid_WF_moveCell .body .row .cell,
+.Grid.grid_WF_moveCell .body .row .cell[status=focused],
+.Grid.grid_WF_moveCell .body .row .cell[status=mouseover]
+{
+	color : #666666;
+	-nexa-border : 1px solid #dbdee2;
+	-nexa-padding : 4px 4px 4px 4px;
+	background: #ffffff;
+	-nexa-background-odd : #ffffff;
+	-nexa-color-odd : #666666;
+}
+.Grid.grid_WF_moveCell .body .row .cell.edited,
+.Grid.grid_WF_moveCell .body .row .cell.edited[status=mouseover],
+.Grid.grid_WF_moveCell .body .row .cell.edited[status=focused]
+{
+	background : purple;
+	-nexa-background-odd : purple;
+	-nexa-color-odd : #ffffff;
+	color : #ffffff;
+}
+.Grid.grid_WF_moveCell .body .row .cell.selected,
+.Grid.grid_WF_moveCell .body .row .cell[userstatus=selected],
+.Grid.grid_WF_moveCell .body .row .cell.selected[status=focused],
+.Grid.grid_WF_moveCell .body .row .cell.selected[status=mouseover],
+.Grid.grid_WF_moveCell .body .row .cell.selected[userstatus=selected]
+{
+	background : #f48574;
+	-nexa-background-odd : #f48574;
+	-nexa-color-odd : #ffffff;
+	color : #ffffff;
+	-nexa-border : 1px solid #dbdee2;
+}
+.Grid.grid_WF_moveCell .body .row .cell[status=disabled]
+{
+	color : #999999;
+}
+
+/*-----------------------------------summary------------------------------------*/
+.Grid.grid_WF_moveCell .summary
+{
+	-nexa-border : 1px solid #c8c1c2, 0px none, 0px none, 0px none;
+}
+.Grid.grid_WF_moveCell .summary .row .cell
+{
+	font : bold 12px "Malgun Gothic","Arial","Helvetica";
+	color : #666666;
+	background : #fdfbe5;
+	-nexa-border : 1px solid #c8c1c2;
+	-nexa-text-align : center;
+}
+
+/*-----------------------------------Grid hscrollbar:------------------------------------*/
+.Grid.grid_WF_moveCell .hscrollbar
+{
+	-nexa-border : 1px solid #b1b1b1, 0px none, 0px none, 0px none;
+}
+
+/*-----------------------------------Grid vscrollbar:------------------------------------*/
+.Grid.grid_WF_moveCell .vscrollbar
+{
+	-nexa-border : 0px none, 0px none, 0px none, 1px solid #b1b1b1;
+}
+
+.Grid.grid_WF_moveCell .body .row .cell[status=focused][userstatus=selected]
+{
+	color : #666666;
+	background : red;
+	-nexa-background-odd : red;
+	-nexa-color-odd : #666666;
+}
+
+
+
+]]></XCSS>

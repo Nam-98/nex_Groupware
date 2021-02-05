@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
+<<<<<<< HEAD
   <Form id="Form_Work" width="862" height="30" titletext="Form_Work">
     <Layouts>
       <Layout height="30" mobileorientation="landscape" width="862" screenid="Desktop_screen">
         <Tab id="tab_mdi" taborder="0" tabindex="0" left="30" top="0" right="11.37%" bottom="0" onchanged="tab_mdi_onchanged" onextrabuttonclick="tab_mdi_onextrabuttonclick" showextrabutton="true">
+=======
+  <Form id="Form_Work" width="862" height="30" titletext="Form_Work" onload="Form_Work_onload">
+    <Layouts>
+      <Layout height="30" mobileorientation="landscape" width="862" screenid="Desktop_screen">
+        <Tab id="tab_mdi" taborder="0" tabindex="0" left="0" top="0" right="14.85%" bottom="0" onchanged="tab_mdi_onchanged" onextrabuttonclick="tab_mdi_onextrabuttonclick" showextrabutton="true">
+>>>>>>> 78a781b54ea096ce82706f61fdb6e12d5e141ef4
           <Tabpages>
             <Tabpage id="Tabpage2" text="Tabpage2">
               <Layouts>
@@ -13,6 +20,7 @@
             </Tabpage>
           </Tabpages>
         </Tab>
+<<<<<<< HEAD
         <Button id="btn_home" taborder="1" left="0" top="0" width="2.67%" bottom="0" border="0px none" onclick="btn_home_onclick" background="yellow"/>
         <Button id="btn_cascade" taborder="2" left="tab_mdi:-1" top="0" width="2.67%" bottom="0" background="url('theme://images/btn_MDI_Min.png') no-repeat center center" border="0px none" onclick="btn_cascade_onclick"/>
       </Layout>
@@ -29,5 +37,103 @@ this.Form_Work_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 };
 
 ]]></Script>
+=======
+        <Button id="btn_cascade" taborder="1" left="tab_mdi:-1" top="0" width="2.67%" bottom="0" background="url('theme://images/btn_MDI_Min.png') no-repeat center center" border="0px none" onclick="btn_cascade_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.fn_addTab = function (pFormId,pMenuNm)
+{
+	this.tab_mdi.insertTabpage(pFormId,-1,"",pMenuNm);
+	this.fn_setFrameSize("Form");
+};
+
+this.Form_Work_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.tab_mdi.removeTabpage(0);
+};
+
+
+this.tab_mdi_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	//tab이 변경될 때, work form에 보이는 childframe변경
+	var objApp = nexacro.getApplication();
+	var sID = obj.tabpages[e.postindex].name;
+	
+	//띄우고자 하는 frame이 이미 띄워져 있는 frame이라면 해당 frame을 맨 앞으로 보이게끔 설정한다. 
+	objApp.av_fsWork[sID].form.setFocus();
+};
+
+this.tab_mdi_onextrabuttonclick = function(obj:nexacro.Tab,e:nexacro.TabMouseEventInfo)
+{
+	//tab property > showextrabutton 에 true 했을 때 사용 가능한 method
+	var sID = obj.tabpages[e.index].name;
+	var objApp = nexacro.getApplication();
+	objApp.av_fsWork[sID].form.close();
+	//obj.removeTabpage(e.index);, form에서 close event상에 tabclose가 있기 때문에 중복 방지를 위해사용 안함.
+	
+	var nRow = objApp.gds_openForm.findRow("FORM_ID",sID);
+	objApp.gds_openForm.deleteRow(nRow);
+	//trace(objApp.gds_openForm.saveXML());
+};
+
+this.btn_cascade_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	var arrFs = objApp.av_fsWork.all;
+	var nTop = 0;
+	for(var i=0; i<arrFs.length; i++){
+		objApp.av_fsWork.frames[i].set_showtitlebar(true);
+		objApp.av_fsWork.frames[i].set_openstatus("nomal");
+		objApp.av_fsWork.frames[i].set_border("1px solid pink");
+		//frames : FrameSet 에 등록된 자식 Frame 들을 Collection 형태로 갖는 읽기전용 속성입니다.		
+	}
+	objApp.av_fsWork.arrange("cascade");//frame들을 cascade형태로 정렬해줌.
+};
+
+this.btn_max_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	var arrFs = objApp.av_fsWork.all;
+	for(var i=0; i<arrFs.length; i++){
+		objApp.av_fsWork.frames[i].set_showtitlebar(false);
+		objApp.av_fsWork.frames[i].set_openstatus("maximize");
+	}
+};
+
+this.btn_closeAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_setFrameSize("home");
+	var objApp = nexacro.getApplication();
+	var arrFs = objApp.av_fsWork.all;
+	//뒤에서부터 삭제하는 이유 : removeTabpage나, frameSet처럼 collection들은 앞에서 부터 지우면 index도 삭제한 것에 맞춰 변화하기 때문에 몇몇개의 tab/frame이 안닫힐 수 있다. 
+	//때문에 위에서 부터 삭제하게 되면 앞의 index는 변화하지 않기 때문에 모든 tab/frame을 삭제할 수 있는 보장이 있다. 
+	for(var i=arrFs.length-1; i>=0; i--){
+		arrFs[i].form.close();
+		this.tab_mdi.removeTabpage(i);
+		trace("i : "+i);
+	}
+	
+	objApp.gds_openForm.clearData();//dataSet의 모든 data를 삭제(삭제한 정보를 가지고 있음가 아닌 초기화 하는 method
+};
+
+this.fn_setFrameSize = function(pType){
+	var objApp = nexacro.getApplication();
+	if(pType=="home"){
+		//home화면 띄우기 -> 화면에서 home창 열기 위해 vframe의 separatesize 조절
+		objApp.mainframe.HFrameSet00.VFrameSet00.set_separatesize("30,*,0");
+	}else{
+		objApp.mainframe.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
+	}
+
+}
+
+
+this.tab_mdi_onlbuttondown = function(obj:nexacro.Tab,e:nexacro.MouseEventInfo)
+{
+	if(obj.getTabpageCount()>0){
+		this.fn_setFrameSize("Form");
+	}
+};]]></Script>
+>>>>>>> 78a781b54ea096ce82706f61fdb6e12d5e141ef4
   </Form>
 </FDL>

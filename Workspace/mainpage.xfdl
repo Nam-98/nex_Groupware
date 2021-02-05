@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="mainpage" width="800" height="600" titletext="New Form">
+    <Layouts>
+      <Layout height="600" width="800">
+        <ListBox id="ListBox00" taborder="0" left="148" top="41" width="152" height="95"/>
+        <Spin id="Spin00" taborder="1" left="536" top="76" width="48" height="76"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

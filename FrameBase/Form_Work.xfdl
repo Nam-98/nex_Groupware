@@ -1,9 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
+<<<<<<< HEAD
   <Form id="Form_Work" width="1080" height="670" titletext="Form_Work">
     <Layouts>
       <Layout width="1080" height="670" screenid="Desktop_screen"/>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[]]></Script>
+=======
+  <Form id="Form_Work" width="1080" height="670" titletext="Form_Work" onload="form_Work_onload" onclose="form_Work_onclose" onactivate="form_Work_onactivate">
+    <Layouts>
+      <Layout width="1080" height="670" screenid="Desktop_screen">
+        <Radio id="Radio00" taborder="0" left="198" top="120" width="162" height="29"/>
+        <Div id="div_work" taborder="1" text="Div00" left="0.00%" top="0" right="0.00%" bottom="0" border="1px solid pink">
+          <Layouts>
+            <Layout>
+              <Static id="sta_title" taborder="1" text="Static00" left="275" top="395" width="141" height="93"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.param = this.getOwnerFrame().param;
+this.form_Work_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	var objCF = this.getOwnerFrame();//화면을 담고있는 frame -> form_Left에서 생성한 childFrame을 의미.
+	this.div_work.set_url(objCF.param.FORM_URL);
+	this.div_work.form.resetScroll();//내부 화면에 맞게 form의 크기 조절하는 method
+	//this.sta_title.set_text(objCF.param.TREE_PATH);
+	var objApp = nexacro.getApplication();
+	var nRow = objApp.gds_menuAll.findRow("MENU_ID",this.param.MENU_ID);
+// 	if(nRow!=-1){
+// 		this.btn_myMenu.set_text("★");
+// 		this.fv_myMenu = true;
+// 	}
+};
+
+this.form_Work_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	var sID = this.getOwnerFrame().param.FORM_ID;
+	var objTab = objApp.mainframe.HFrameSet00.VFrameSet00.ChildFrame00;
+	
+	//dataSet에서 삭제
+	var nRow = objApp.gds_openForm.findRow("FORM_ID",sID);
+	objApp.gds_openForm.deleteRow(nRow);
+	if(objApp.gds_openForm.getCount()==0){
+		objTab.form.fn_setFrameSize("home");
+	}
+	
+	//Tab 삭제
+	var nTabCnt = objTab.form.tab_mdi.getTabpageCount();
+	for(var i=0;i<nTabCnt; i++){
+		if(objTab.form.tab_mdi.tabpages[i].id == sID){
+			objTab.form.tab_mdi.removeTabpage(i);
+			break;
+		}
+	}
+
+};
+
+this.form_Work_onactivate = function(obj:nexacro.Form,e:nexacro.ActivateEventInfo)
+{
+		var objApp=nexacro.getApplication();
+		var objTab = objApp.mainframe.HFrameSet00.VFrameSet00.ChildFrame00;
+           
+		var nTabCnt=objTab.form.tab_mdi.getTabpageCount();
+		for(var i=0; i<nTabCnt; i++)
+           {  //ACTIVATE된 FORM에 따라서 TAB INDEX 수정
+				if(objTab.form.tab_mdi.tabpages[i].name==this.param.FORM_ID)
+                   {objTab.form.tab_mdi.set_tabindex(i);//gds_openForm 데이터제거...
+				   }
+           }
+};]]></Script>
+>>>>>>> 78a781b54ea096ce82706f61fdb6e12d5e141ef4
   </Form>
 </FDL>
