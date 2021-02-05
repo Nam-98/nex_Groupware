@@ -9,7 +9,7 @@
             <VFrameSet id="VFrameSet00" separatesize="30,*,0">
               <Frames>
                 <ChildFrame id="ChildFrame00" formurl="FrameBase::Form_MDI.xfdl" width="862" height="30" showtitlebar="false"/>
-                <ChildFrame id="MainForm" formurl="" showtitlebar="false"/>
+                <ChildFrame id="MainForm" formurl="" showtitlebar="false" background="url('theme://images/img_WF_workLogo.png') no-repeat center center"/>
                 <FrameSet id="FrameSet00"/>
               </Frames>
             </VFrameSet>

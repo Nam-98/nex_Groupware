@@ -1,21 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="memberList" width="1080" height="670" titletext="New Form" onload="memberList_onload">
+  <Form id="memberList" width="980" height="790" titletext="New Form" onload="memberList_onload">
     <Layouts>
-      <Layout height="670" width="1080">
-        <Grid id="Grid00" taborder="0" left="23" top="20" width="1037" height="300" binddataset="gds_stMember" autofittype="col">
+      <Layout height="790" width="980">
+        <Grid id="grdList" taborder="0" useinputpanel="false" left="0" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="670">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
                 <Column size="80"/>
                 <Column size="80"/>
                 <Column size="80"/>
@@ -27,40 +18,116 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="id"/>
-                <Cell col="1" text="name"/>
-                <Cell col="2" text="birth"/>
-                <Cell col="3" text="gender"/>
-                <Cell col="4" text="contact"/>
-                <Cell col="5" text="address1"/>
-                <Cell col="6" text="address2"/>
-                <Cell col="7" text="zip_code"/>
-                <Cell col="8" text="is_married"/>
-                <Cell col="9" text="reg_date"/>
-                <Cell col="10" text="access_level_code"/>
-                <Cell col="11" text="dept_name"/>
-                <Cell col="12" text="position_name"/>
-                <Cell col="13" text="dept_level"/>
+                <Cell text="아이디" expandimage="url('imagerc::grd_sort.png')" expandshow="show" background="#f3f7f7"/>
+                <Cell col="1" text="성명" background="#f3f7f7" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="2" text="연락처" expandimage="url('imagerc::grd_sort.png')" expandshow="show" background="#f3f7f7"/>
+                <Cell col="3" text="부서" expandimage="url('imagerc::grd_sort.png')" expandshow="show" background="#f3f7f7"/>
+                <Cell col="4" text="직급" expandimage="url('imagerc::grd_sort.png')" expandshow="show" background="#f3f7f7"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:id"/>
                 <Cell col="1" text="bind:name"/>
-                <Cell col="2" text="bind:birth"/>
-                <Cell col="3" text="bind:gender"/>
-                <Cell col="4" text="bind:contact"/>
-                <Cell col="5" text="bind:address1"/>
-                <Cell col="6" text="bind:address2"/>
-                <Cell col="7" text="bind:zip_code"/>
-                <Cell col="8" text="bind:is_married"/>
-                <Cell col="9" text="bind:reg_date"/>
-                <Cell col="10" text="bind:access_level_code"/>
-                <Cell col="11" text="bind:dept_name"/>
-                <Cell col="12" text="bind:position_name"/>
-                <Cell col="13" text="bind:dept_level"/>
+                <Cell col="2" text="bind:contact"/>
+                <Cell col="3" text="bind:dept_code"/>
+                <Cell col="4" text="bind:position_code"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
+        <Static id="Static01" taborder="1" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static00" taborder="2" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Div id="div_Search00" taborder="3" left="0" top="0" right="20" height="49" cssclass="div_WF_SearchBg">
+          <Layouts>
+            <Layout>
+              <Static id="Static34" taborder="0" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Static id="Button00" taborder="1" text="계정명" cssclass="sta_WF_SearchLabel" left="16" top="7" width="130" height="33" wordWrap="char"/>
+              <Static id="Static00" taborder="2" text="8" visible="false" left="145" top="3" width="8" height="38" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Static id="Static09" taborder="3" text="12" visible="false" left="177" top="0" width="120" height="12" background="rgba(251,123,123,0.47843137254901963)" textAlign="center" verticalAlign="middle" font="9pt Gulim"/>
+              <Static id="Static10" taborder="4" text="12" visible="false" left="177" top="35" width="120" height="12" background="rgba(251,123,123,0.47843137254901963)" textAlign="center" verticalAlign="middle" font="9pt Gulim"/>
+              <Combo id="Combo00" taborder="5" codecolumn="codecolumn" datacolumn="datacolumn" left="153" top="12" width="150" height="23" innerdataset="innerdataset">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">1</Col>
+                      <Col id="datacolumn">선택2</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">2</Col>
+                      <Col id="datacolumn">선택3</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static80" taborder="4" text="임/직원 리스트" usedecorate="true" cssclass="sta_WF_title01" left="0" top="69" width="400" height="23" wordWrap="english"/>
+        <Div id="Div00" taborder="5" top="94" right="20" width="640" height="334" cssclass="div_WF_DetailBg" text="">
+          <Layouts>
+            <Layout width="912" height="393">
+              <Static id="Static06" taborder="0" cssclass="sta_WF_Labelbg" left="2" top="252" right="0" height="37"/>
+              <Static id="Static07" taborder="1" cssclass="sta_WF_Labelbg" left="2" top="288" right="0" height="37"/>
+              <Static id="Static37" taborder="2" cssclass="sta_WF_title01" left="2" top="180" right="0" height="37" text="사원정보"/>
+              <Static id="Static00" taborder="3" cssclass="sta_WF_Labelbg" left="2" top="216" right="0" height="37"/>
+              <Static id="Static01" taborder="4" cssclass="sta_WF_Labelbg" left="2" top="144" right="0" height="37"/>
+              <Static id="Static02" taborder="5" cssclass="sta_WF_Labelbg" left="2" top="108" right="0" height="37"/>
+              <Static id="Static03" taborder="6" cssclass="sta_WF_Labelbg" left="2" top="72" right="0" height="37"/>
+              <Static id="Static04" taborder="7" cssclass="sta_WF_Labelbg" left="2" top="36" right="0" height="37" text=""/>
+              <Static id="Static05" taborder="8" cssclass="sta_WF_Labelbg" left="2" top="0" right="0" height="37"/>
+              <Static id="sta_docNm02" taborder="9" text="아이디" cssclass="sta_WF_Label_P" left="2" top="0" width="110" height="37" wordWrap="english"/>
+              <Edit id="Edit00" taborder="10" left="117" top="7" width="200" height="23"/>
+              <Static id="sta_docNm00" taborder="11" text="연락처" cssclass="sta_WF_Label_P" left="2" top="36" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm01" taborder="12" text="우편번호" cssclass="sta_WF_Label_P" left="2" top="108" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm03" taborder="13" text="주소" cssclass="sta_WF_Label_P" left="2" top="72" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm05" taborder="14" text="??" cssclass="sta_WF_Label" left="2" top="144" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm06" taborder="15" text="부서" cssclass="sta_WF_Label_P" left="2" top="216" width="110" height="37" wordWrap="english"/>
+              <Button id="btn_ptnr00" taborder="16" onclick="div_condition1_btn_ptnr_onclick" cssclass="btn_WF_SearchSmall" left="294" top="223" width="23" height="23"/>
+              <Edit id="ed_mtrlCd00" taborder="17" left="117" top="223" width="175" height="23" enable="false"/>
+              <Static id="sta_docNm07" taborder="18" text="입사일" cssclass="sta_WF_Label_P" left="2" top="252" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm08" taborder="19" text="사용휴가일수" cssclass="sta_WF_Label" left="2" top="288" width="110" height="37" wordWrap="english"/>
+              <Edit id="Edit05" taborder="20" left="117" top="295" width="40" height="25"/>
+              <Static id="sta_docNm11" taborder="21" text="퇴사일" cssclass="sta_WF_Label" left="322" top="252" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm12" taborder="22" text="직위" cssclass="sta_WF_Label_P" left="322" top="216" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm15" taborder="23" text="결혼유무" cssclass="sta_WF_Label" left="322" top="108" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm16" taborder="24" text="상세주소" cssclass="sta_WF_Label_P" left="322" top="72" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm18" taborder="25" text="성명" cssclass="sta_WF_Label_P" left="322" top="0" width="110" height="37" wordWrap="english" onclick="Div00_sta_docNm18_onclick"/>
+              <Edit id="Edit06" taborder="26" left="437" top="7" width="200" height="23"/>
+              <Radio id="Radio04" taborder="27" index="0" codecolumn="code" datacolumn="name" value="0" direction="vertical" left="437" top="115" width="131" height="23" innerdataset="ds_married"/>
+              <Edit id="ed_mtrlCd02" taborder="28" left="437" top="223" width="175" height="23" enable="false"/>
+              <Button id="btn_ptnr02" taborder="29" onclick="div_condition1_btn_ptnr_onclick" cssclass="btn_WF_SearchSmall" left="614" top="223" width="23" height="23"/>
+              <Edit id="Edit00_00" taborder="30" left="117" top="43" width="200" height="23"/>
+              <Static id="sta_docNm00_00" taborder="31" text="성별" cssclass="sta_WF_Label_P" left="322" top="36" width="110" height="37" wordWrap="english"/>
+              <Radio id="Radio02_00" taborder="32" index="0" value="0" direction="vertical" left="437" top="43" width="134" height="23" onitemchanged="Div00_Radio02_00_onitemchanged" innerdataset="ds_gender" datacolumn="name" codecolumn="code"/>
+              <Edit id="Edit00_00_00" taborder="33" left="117" top="79" width="200" height="23"/>
+              <Calendar id="Calendar00" taborder="34" left="117" top="259" width="200" height="23"/>
+              <Calendar id="Calendar00_00" taborder="35" left="437" top="259" width="200" height="23"/>
+              <Edit id="Edit00_00_00_00" taborder="36" left="117" top="115" width="200" height="23"/>
+              <Edit id="Edit00_00_00_01" taborder="37" left="437" top="79" width="200" height="23" onchanged="Div00_Edit00_00_00_01_onchanged"/>
+              <Edit id="Edit05_00" taborder="38" left="225" top="295" width="40" height="25"/>
+              <Static id="Static08" taborder="39" text="일 (전체 :          일)" left="150" top="289" width="201" height="35" cssclass="sta_WF_SearchLabel"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Button id="Button58" taborder="6" text="행추가" cssclass="btn_WF_add" top="67" right="735" width="62" height="23" wordWrap="char"/>
+        <Button id="Button82" taborder="7" text="행삭제" cssclass="btn_WF_delete" top="67" right="670" width="62" height="23" wordWrap="char"/>
+        <Static id="Static06" taborder="8" text="h 5" visible="false" left="1670" top="488" width="78" height="5" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static02" taborder="9" text="개인정보" left="320" top="69" width="400" height="23" cssclass="sta_WF_title01"/>
+        <Div id="Div01" taborder="10" text="Div01" top="428" width="640" height="334" right="20">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="프로필정보" left="2" top="0" width="110" height="37" cssclass="sta_WF_title01"/>
+              <Static id="Static01" taborder="1" left="2" top="36" cssclass="sta_WF_Labelbg" height="108" width="638"/>
+              <Static id="Static02" taborder="2" text="사진 등록" left="2" top="36" width="110" height="108" cssclass="sta_WF_Label_P"/>
+              <Static id="Static02_00" taborder="3" text="미리보기" left="322" top="36" width="110" height="108" cssclass="sta_WF_Label"/>
+              <ImageViewer id="ImageViewer00" taborder="4" text="ImageViewer00" left="475" top="39" width="131" height="146"/>
+            </Layout>
+          </Layouts>
+        </Div>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -75,6 +142,7 @@ this.memberList_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 		"", // variable send
 		"fn_callback" //callback function
 	);
+	
 };
 
 this.fn_callback = function (id, ErrorCode, ErrorMsg)
@@ -82,6 +150,56 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
-};]]></Script>
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.Edit00" propid="value" datasetid="gds_stMember" columnid="id"/>
+      <BindItem id="item1" compid="Div00.form.Edit06" propid="value" datasetid="gds_stMember" columnid="name"/>
+      <BindItem id="item2" compid="Div00.form.Edit00_00" propid="value" datasetid="gds_stMember" columnid="contact"/>
+      <BindItem id="item6" compid="Div00.form.Edit00_00_00" propid="value" datasetid="gds_stMember" columnid="address1"/>
+      <BindItem id="item7" compid="Div00.form.Calendar00" propid="value" datasetid="gds_stMember" columnid="reg_date"/>
+      <BindItem id="item8" compid="Div00.form.Calendar00_00" propid="value" datasetid="gds_stMember" columnid="retire_date"/>
+      <BindItem id="item12" compid="Div00.form.Edit00_00_00_00" propid="value" datasetid="gds_stMember" columnid="zip_code"/>
+      <BindItem id="item13" compid="Div00.form.Edit00_00_00_01" propid="value" datasetid="gds_stMember" columnid="address2"/>
+      <BindItem id="item14" compid="Div00.form.ed_mtrlCd00" propid="value" datasetid="gds_stMember" columnid="dept_code"/>
+      <BindItem id="item15" compid="Div00.form.ed_mtrlCd02" propid="value" datasetid="gds_stMember" columnid="position_code"/>
+      <BindItem id="item4" compid="Div00.form.Radio04" propid="value" datasetid="gds_stMember" columnid="is_married"/>
+      <BindItem id="item5" compid="Div00.form.Edit05" propid="value" datasetid="gds_stMember" columnid="break_use_count"/>
+      <BindItem id="item9" compid="Div00.form.Edit05_00" propid="value" datasetid="gds_stMember" columnid="break_total_count"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_gender">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">M</Col>
+            <Col id="name">남자</Col>
+          </Row>
+          <Row>
+            <Col id="code">F</Col>
+            <Col id="name">여자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_married">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">Y</Col>
+            <Col id="name">기혼</Col>
+          </Row>
+          <Row>
+            <Col id="code">N</Col>
+            <Col id="name">미혼</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
   </Form>
 </FDL>
