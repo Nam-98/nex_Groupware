@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.Static.sta_WF_box01
+{
+	background : #ffffff;
+	color : #101010;
+	font : 14px "나눔고딕";
+	-nexa-border : 1px solid #d3d5d8;
+	-nexa-text-align : center;
+}
+.Static.sta_WF_box02
+{
+	background : #f2f2f2;
+	color : #101010;
+	font : 14px "나눔고딕";
+	-nexa-border : 1px solid #d3d5d8;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 10px;
+}
+.Static.sta_WF_searchID
+{
+	font : normal 600 16px "나눔고딕";
+	-nexa-text-align : right;
+}
+.Static.sta_WF_docScript01
+{
+	background : #797a6c;
+	color : #ffffff;
+	font : normal 500 14px "나눔고딕";
+	-nexa-border : 3px solid #bcbda5;
+	-nexa-vertical-align : middle;
+	-nexa-padding : 0px 0px 0px 60px;
+}
+/* 의료진 선택 */
+.Static.sta_WF_doctor01
+{
+	-nexa-edge : url("imagerc::img_WF_doctor01.png") 0px 0px;
+}
+.Static.sta_WF_doctor02
+{
+	-nexa-edge : url("imagerc::img_WF_doctor02.png") 0px 0px;
+}
+.Static.sta_WF_doctor03
+{
+	-nexa-edge : url("imagerc::img_WF_doctor03.png") 0px 0px;
+}
+.Static.sta_WF_doctor04
+{
+	-nexa-edge : url("imagerc::img_WF_doctor04.png") 0px 0px;
+}
+.Static.sta_WF_doctor05
+{
+	-nexa-edge : url("imagerc::img_WF_doctor05.png") 0px 0px;
+}
+.Static.sta_WF_doctor06
+{
+	-nexa-edge : url("imagerc::img_WF_doctor06.png") 0px 0px;
+}
+.Static.sta_WF_doctor07
+{
+	-nexa-edge : url("imagerc::img_WF_doctor07.png") 0px 0px;
+}
+.Static.sta_WF_doctor08
+{
+	-nexa-edge : url("imagerc::img_WF_doctor08.png") 0px 0px;
+}
+.Static.sta_WF_doctor09
+{
+	-nexa-edge : url("imagerc::img_WF_doctor09.png") 0px 0px;
+}
+.Static.sta_WF_doctor10
+{
+	-nexa-edge : url("imagerc::img_WF_doctor10.png") 0px 0px;
+}
+.Static.sta_WF_doctor11
+{
+	-nexa-edge : url("imagerc::img_WF_doctor11.png") 0px 0px;
+}
+.Static.sta_WF_doctor12
+{
+	-nexa-edge : url("imagerc::img_WF_doctor12.png") 0px 0px;
+}
+.Button.btn_WF_width,.Button.btn_WF_width[status=focused],.Button.btn_WF_width[userstatus=selected]
+{
+	background : url("imagerc::btn_WF_width.png") no-repeat center center #1c67cc;
+	border-radius : 5px;
+	cursor : pointer;
+	-nexa-border : 0px none;
+}
+.Button.btn_WF_width[status=mouseover],.Button.btn_WF_width[userstatus=pushed]
+{
+	background : url("imagerc::btn_WF_width.png") no-repeat center center #135aba;
+	border-radius : 5px;
+	cursor : pointer;
+	-nexa-border : 0px none;
+}
+.Button.btn_WF_width[status=disabled]
+{
+	background : url("imagerc::btn_WF_width.png") no-repeat center center #959595;
+	border-radius : 5px;
+	cursor : pointer;
+	-nexa-border : 0px none;
+}
+.Button.btn_WF_height,.Button.btn_WF_height[status=focused],.Button.btn_WF_height[userstatus=selected]
+{
+	background : url("imagerc::btn_WF_height.png") no-repeat center center #1c67cc;
+	border-radius : 5px;
+	cursor : pointer;
+	-nexa-border : 0px none;
+}
+.Button.btn_WF_height[status=mouseover],.Button.btn_WF_height[userstatus=pushed]
+{
+	background : url("imagerc::btn_WF_height.png") no-repeat center center #135aba;
+	border-radius : 5px;
+	cursor : pointer;
+	-nexa-border : 0px none;
+}
+.Button.btn_WF_height[status=disabled]
+{
+	background : url("imagerc::btn_WF_height.png") no-repeat center center #959595;
+	border-radius : 5px;
+	cursor : pointer;
+	-nexa-border : 0px none;
+}]]></XCSS>
