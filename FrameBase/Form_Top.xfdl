@@ -5,7 +5,7 @@
       <Layout width="1022" height="50" screenid="Desktop_screen">
         <Static id="Static01" taborder="2" left="Static00:-1" top="0" height="50" right="0" background="#546169" text=""/>
         <Static id="Static00" taborder="1" left="0" top="0" height="50" width="160" text="LOGO" background="red"/>
-        <Button id="btn_lMenu" taborder="3" left="Static00:-1" top="10" width="30" height="30" cssclass="btn_TF_Mnu" onclick="btn_lMenu_onclick"/>
+        <Button id="btn_lMenu" taborder="3" left="Static00:-1" top="10" width="30" height="30" onclick="btn_lMenu_onclick"/>
         <Menu id="Menu00" taborder="0" left="btn_lMenu:0" top="10" height="30" right="0.00%" innerdataset="ds_menu" captioncolumn="MENU_NAME" idcolumn="MENU_ID" levelcolumn="MENU_LEVEL" userdatacolumn="MENU_NAME" onmenuclick="Menu00_onmenuclick" color="#ffffff" background="#546169"/>
       </Layout>
     </Layouts>

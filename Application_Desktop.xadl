@@ -2,14 +2,14 @@
 <ADL version="2.0">
   <Application id="Application_Desktop" screenid="Desktop_screen" onload="Application_onload">
     <Layout>
-      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="true" width="1024" height="768" titletext="TopLeftFrame" statustext="STJ그룹웨어" statusbarheight="23" border="1px solid #1c2124">
-        <HFrameSet id="HFrameSet00" separatesize="160,*">
+      <MainFrame id="mainframe" showtitlebar="true" width="1280" height="720" titletext="STJ그룹웨어" statustext="STJ그룹웨어" border="1px solid #1c2124" layered="false" statusbarheight="23" showstatusbar="true">
+        <HFrameSet id="HFrameSet00" separatesize="284,*">
           <Frames>
             <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" width="160" height="633"/>
             <VFrameSet id="VFrameSet00" separatesize="30,*,0">
               <Frames>
                 <ChildFrame id="ChildFrame00" formurl="FrameBase::Form_MDI.xfdl" width="862" height="30" showtitlebar="false"/>
-                <ChildFrame id="MainForm" formurl="" showtitlebar="false" background="url('theme://images/img_WF_workLogo.png') no-repeat center center"/>
+                <ChildFrame id="MainForm" formurl="" showtitlebar="false" background="url('theme://images/img_WF_workLogo.png') no-repeat center center" dragmovetype="none"/>
                 <FrameSet id="FrameSet00"/>
               </Frames>
             </VFrameSet>
