@@ -2,10 +2,7 @@
 <FDL version="2.1">
   <Form id="test" width="800" height="600" titletext="New Form">
     <Layouts>
-      <Layout height="600" width="800">
-        <MaskEdit id="MaskEdit00" taborder="0" left="100" top="103" width="92" height="87"/>
-        <Radio id="Radio00" taborder="1" left="260" top="114" width="46" height="36"/>
-      </Layout>
+      <Layout height="600" width="800"/>
     </Layouts>
   </Form>
 </FDL>
