@@ -1,16 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-<<<<<<< HEAD
-  <Form id="Form_Work" width="862" height="30" titletext="Form_Work">
-    <Layouts>
-      <Layout height="30" mobileorientation="landscape" width="862" screenid="Desktop_screen">
-        <Tab id="tab_mdi" taborder="0" tabindex="0" left="30" top="0" right="11.37%" bottom="0" onchanged="tab_mdi_onchanged" onextrabuttonclick="tab_mdi_onextrabuttonclick" showextrabutton="true">
-=======
+
   <Form id="Form_Work" width="862" height="30" titletext="Form_Work" onload="Form_Work_onload">
     <Layouts>
       <Layout height="30" mobileorientation="landscape" width="862" screenid="Desktop_screen">
         <Tab id="tab_mdi" taborder="0" tabindex="0" left="0" top="0" right="14.85%" bottom="0" onchanged="tab_mdi_onchanged" onextrabuttonclick="tab_mdi_onextrabuttonclick" showextrabutton="true">
->>>>>>> 78a781b54ea096ce82706f61fdb6e12d5e141ef4
           <Tabpages>
             <Tabpage id="Tabpage2" text="Tabpage2">
               <Layouts>
@@ -20,24 +14,6 @@
             </Tabpage>
           </Tabpages>
         </Tab>
-<<<<<<< HEAD
-        <Button id="btn_home" taborder="1" left="0" top="0" width="2.67%" bottom="0" border="0px none" onclick="btn_home_onclick" background="yellow"/>
-        <Button id="btn_cascade" taborder="2" left="tab_mdi:-1" top="0" width="2.67%" bottom="0" background="url('theme://images/btn_MDI_Min.png') no-repeat center center" border="0px none" onclick="btn_cascade_onclick"/>
-      </Layout>
-    </Layouts>
-    <Script type="xscript5.1"><![CDATA[this.fn_addTab = function (pFormId,pMenuNm)
-{
-	this.tab_mdi.insertTabpage(pFormId,-1,"",pMenuNm);
-	this.fn_setFrameSize("Form");
-};
-
-this.Form_Work_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
-{
-	this.tab_mdi.removeTabpage(0);
-};
-
-]]></Script>
-=======
         <Button id="btn_cascade" taborder="1" left="tab_mdi:-1" top="0" width="2.67%" bottom="0" background="url('theme://images/btn_MDI_Min.png') no-repeat center center" border="0px none" onclick="btn_cascade_onclick"/>
       </Layout>
     </Layouts>
@@ -134,6 +110,6 @@ this.tab_mdi_onlbuttondown = function(obj:nexacro.Tab,e:nexacro.MouseEventInfo)
 		this.fn_setFrameSize("Form");
 	}
 };]]></Script>
->>>>>>> 78a781b54ea096ce82706f61fdb6e12d5e141ef4
+
   </Form>
 </FDL>

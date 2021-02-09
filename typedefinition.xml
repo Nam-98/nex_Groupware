@@ -31,10 +31,6 @@
     <Component type="JavaScript" id="Plugin" classname="nexacro.Plugin"/>
     <Component type="JavaScript" id="Dataset" classname="nexacro.NormalDataset"/>
     <Component type="JavaScript" id="ListView" classname="nexacro.ListView"/>
-<<<<<<< HEAD
-=======
-    <Component type="JavaScript" id="FileUpTransfer" classname="nexacro.FileUpTransfer"/>
->>>>>>> 78a781b54ea096ce82706f61fdb6e12d5e141ef4
   </Components>
   <Services>
     <Service prefixid="theme" type="resource" url="./_resource_/_theme_/" version="0" cachelevel="session" include_subdir="true"/>

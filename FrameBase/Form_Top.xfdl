@@ -9,43 +9,6 @@
         <Menu id="Menu00" taborder="0" left="btn_lMenu:0" top="10" height="30" right="0.00%" innerdataset="ds_menu" captioncolumn="MENU_NAME" idcolumn="MENU_ID" levelcolumn="MENU_LEVEL" userdatacolumn="MENU_NAME" onmenuclick="Menu00_onmenuclick" color="#ffffff" background="#546169"/>
       </Layout>
     </Layouts>
-<<<<<<< HEAD
-    <Script type="xscript5.1"><![CDATA[
-
-this.fn_setTopMenu = function()
-{
-	var objApp = nexacro.getApplication();
-	objApp.gds_menuAll.filter("MENU_LEVEL == '0'");//global dataSet에 filtering함
-	this.ds_menu.copyData(objApp.gds_menuAll,true);//이 form에 생성된 ds_menu에 필터링된 dataset을 복붙함
-};
-
-this.fn_setLeftMenu = function (pMenuId)
-{
-	nexacro.getApplication().gds_menuAll.filter("MENU_ID.substring(0,2) == '"+pMenuId+"'");
-	
-};
-
-this.Form_Top_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
-{
-	this.fn_setTopMenu();
-	nexacro.getApplication().gds_menuAll.filter("");	
-};
-
-this.Menu00_onmenuclick = function(obj:nexacro.Menu,e:nexacro.MenuClickEventInfo)
-{
-	this.fn_setLeftMenu(e.id);
-};
-
-this.btn_lMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	var objApp = nexacro.getApplication();
-	var left = objApp.mainframe.VFrameSet00.HFrameSet00.separatesize;
-	if(left=="160,*"){
-		objApp.mainframe.VFrameSet00.HFrameSet00.set_separatesize("0,*");
-	}else{
-		objApp.mainframe.VFrameSet00.HFrameSet00.set_separatesize("160,*");
-		}
-=======
     <Script type="xscript5.1"><![CDATA[
 this.fn_setTopMenu = function()
 {
@@ -80,7 +43,6 @@ this.btn_lMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	}else{
 		objApp.mainframe.VFrameSet00.HFrameSet00.set_separatesize("160,*");
 		}
->>>>>>> 78a781b54ea096ce82706f61fdb6e12d5e141ef4
 };]]></Script>
     <Objects>
       <Dataset id="ds_menu"/>

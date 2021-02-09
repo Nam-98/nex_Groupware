@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-<<<<<<< HEAD
-  <Form id="Form_Work" width="1080" height="670" titletext="Form_Work">
-    <Layouts>
-      <Layout width="1080" height="670" screenid="Desktop_screen"/>
-    </Layouts>
-    <Script type="xscript5.1"><![CDATA[]]></Script>
-=======
   <Form id="Form_Work" width="1080" height="670" titletext="Form_Work" onload="form_Work_onload" onclose="form_Work_onclose" onactivate="form_Work_onactivate">
     <Layouts>
       <Layout width="1080" height="670" screenid="Desktop_screen">
@@ -72,6 +65,5 @@ this.form_Work_onactivate = function(obj:nexacro.Form,e:nexacro.ActivateEventInf
 				   }
            }
 };]]></Script>
->>>>>>> 78a781b54ea096ce82706f61fdb6e12d5e141ef4
   </Form>
 </FDL>
