@@ -31,6 +31,9 @@
     <Component type="JavaScript" id="Plugin" classname="nexacro.Plugin"/>
     <Component type="JavaScript" id="Dataset" classname="nexacro.NormalDataset"/>
     <Component type="JavaScript" id="ListView" classname="nexacro.ListView"/>
+    <Component type="JavaScript" id="FileUpTransfer" classname="nexacro.FileUpTransfer"/>
+    <Component type="JavaScript" id="VirtualFile" classname="nexacro.VirtualFile"/>
+    <Component type="JavaScript" id="FileDialog" classname="nexacro.FileDialog"/>
   </Components>
   <Services>
     <Service prefixid="theme" type="resource" url="./_resource_/_theme_/" version="0" cachelevel="session" include_subdir="true"/>

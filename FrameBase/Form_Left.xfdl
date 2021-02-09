@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Left" width="160" height="713" titletext="Form_Left" onload="Form_Left_onload">
+  <Form id="Form_Left" width="294" height="720" titletext="Form_Left" onload="Form_Left_onload">
     <Layouts>
-      <Layout width="160" height="713" screenid="Desktop_screen">
-        <Grid id="grd_left" taborder="0" left="0" top="50" width="160" height="633" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick">
+      <Layout width="294" height="720" screenid="Desktop_screen">
+        <Grid id="grd_left" taborder="0" left="0" top="12" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick" cssclass="grd_LF_TreeGrd" scrollbartype="default default" right="0" bottom="210">
           <Formats>
             <Format id="default">
               <Columns>
@@ -21,7 +21,6 @@
 
         <Button id="btn_left_left" taborder="1" text="Button00" left="0" top="683" width="80" height="30"/>
         <Button id="Button00" taborder="2" text="전체메뉴" left="80" top="683" width="80" height="30" onclick="Button00_onclick"/>
-        <Static id="Static00" taborder="3" left="0" top="0" height="50" width="160" text="LOGO" background="red"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();

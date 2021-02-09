@@ -196,6 +196,62 @@
         <Column id="position_name" type="STRING" size="256"/>
         <Column id="dept_level" type="INT" size="256"/>
       </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="id">test7</Col>
+          <Col id="password">1234</Col>
+          <Col id="name">테스터7</Col>
+          <Col id="birth">21/01/21</Col>
+          <Col id="gender">M</Col>
+          <Col id="contact">01012341234</Col>
+          <Col id="address1">addre1</Col>
+          <Col id="address2">addre2</Col>
+          <Col id="zip_code">zipcode</Col>
+          <Col id="is_married">Y</Col>
+          <Col id="dept_code">5</Col>
+          <Col id="position_code">0</Col>
+          <Col id="reg_date">21/01/21</Col>
+          <Col id="access_level_code">2</Col>
+          <Col id="break_total_count">12</Col>
+          <Col id="break_use_count">0</Col>
+        </Row>
+        <Row>
+          <Col id="id">hoihoi914</Col>
+          <Col id="password">hoihoi914</Col>
+          <Col id="name">양혜림</Col>
+          <Col id="birth">94/09/14</Col>
+          <Col id="gender">F</Col>
+          <Col id="contact">01076686995</Col>
+          <Col id="address1">서울시 구로구</Col>
+          <Col id="address2">새말로93</Col>
+          <Col id="zip_code">08288</Col>
+          <Col id="is_married">N</Col>
+          <Col id="dept_code">5</Col>
+          <Col id="position_code">2</Col>
+          <Col id="reg_date">20/08/01</Col>
+          <Col id="access_level_code">0</Col>
+          <Col id="break_total_count">1</Col>
+          <Col id="break_use_count">0</Col>
+        </Row>
+        <Row>
+          <Col id="id">1111</Col>
+          <Col id="password">1111</Col>
+          <Col id="name">테스터</Col>
+          <Col id="birth">21/01/18</Col>
+          <Col id="gender">M</Col>
+          <Col id="contact">01012345678</Col>
+          <Col id="address1">주소1111</Col>
+          <Col id="address2">주소2222</Col>
+          <Col id="zip_code">12345</Col>
+          <Col id="is_married">N</Col>
+          <Col id="dept_code">3</Col>
+          <Col id="position_code">3</Col>
+          <Col id="reg_date">21/01/18</Col>
+          <Col id="access_level_code">2</Col>
+          <Col id="break_total_count">50</Col>
+          <Col id="break_use_count">0</Col>
+        </Row>
+      </Rows>
     </Dataset>
     <Dataset id="gds_stPosition">
       <ColumnInfo>
