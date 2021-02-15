@@ -3,7 +3,6 @@
   <Form id="Form_Work" width="1080" height="670" titletext="Form_Work" onload="form_Work_onload" onclose="form_Work_onclose" onactivate="form_Work_onactivate">
     <Layouts>
       <Layout width="1080" height="670" screenid="Desktop_screen">
-        <Radio id="Radio00" taborder="0" left="198" top="120" width="162" height="29"/>
         <Div id="div_work" taborder="1" text="Div00" left="0.00%" top="0" right="0.00%" bottom="0" border="1px solid pink">
           <Layouts>
             <Layout>
