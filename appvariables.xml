@@ -50,6 +50,7 @@
           <Col id="MENU_ID">201020</Col>
           <Col id="MENU_NAME">공지사항작성</Col>
           <Col id="MENU_LEVEL">2</Col>
+          <Col id="FORM_URL">Workspace::noticeWrite.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">2020</Col>

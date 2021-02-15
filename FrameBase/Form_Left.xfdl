@@ -18,6 +18,7 @@
             </Format>
           </Formats>
         </Grid>
+
         <Button id="btn_left_left" taborder="1" text="Button00" left="0" top="683" width="80" height="30"/>
         <Button id="Button00" taborder="2" text="전체메뉴" left="80" top="683" width="80" height="30" onclick="Button00_onclick"/>
       </Layout>
