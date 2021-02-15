@@ -6,6 +6,7 @@
     <Module url="Grid.json"/>
     <Module url="ListView.json"/>
     <Module url="DeviceAPI.json"/>
+    <Module url="Graphics.json"/>
   </Modules>
   <Components>
     <Component type="JavaScript" id="Button" classname="nexacro.Button"/>
@@ -34,6 +35,7 @@
     <Component type="JavaScript" id="FileUpTransfer" classname="nexacro.FileUpTransfer"/>
     <Component type="JavaScript" id="VirtualFile" classname="nexacro.VirtualFile"/>
     <Component type="JavaScript" id="FileDialog" classname="nexacro.FileDialog"/>
+    <Component type="JavaScript" id="Graphics" classname="nexacro.Graphics"/>
   </Components>
   <Services>
     <Service prefixid="theme" type="resource" url="./_resource_/_theme_/" version="0" cachelevel="session" include_subdir="true"/>
@@ -46,6 +48,7 @@
     <Service prefixid="Server" type="JSP" url="http://localhost/" version="0" cachelevel="none" include_subdir="false" communicationversion="0"/>
     <Service prefixid="Workspace" type="form" url="./Workspace/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="Approval" type="form" url="./Approval/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="lib_tna_setWorkingDays" type="js" url="./lib_tna_setWorkingDays/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
   </Services>
   <Protocols/>
   <DeviceAdaptors/>
