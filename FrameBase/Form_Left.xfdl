@@ -3,7 +3,7 @@
   <Form id="Form_Left" width="294" height="720" titletext="Form_Left" onload="Form_Left_onload">
     <Layouts>
       <Layout width="294" height="720" screenid="Desktop_screen">
-        <Grid id="grd_left" taborder="0" left="0" top="12" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick" cssclass="grd_LF_TreeGrd" scrollbartype="default default" right="0" bottom="210">
+        <Grid id="grd_left" taborder="0" left="0" top="12" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick" cssclass="grd_tree" scrollbartype="default default" right="0" bottom="210">
           <Formats>
             <Format id="default">
               <Columns>

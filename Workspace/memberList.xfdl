@@ -126,7 +126,9 @@
                   </Format>
                 </Formats>
               </Grid>
-              <Button id="Button00" taborder="6" text="저장" left="133" top="133" width="59" height="31" cssclass="btn_WF_add" onclick="btn_save00_onclick"/>
+              <Button id="Button00" taborder="6" text="저장" top="9" width="62" height="23" cssclass="btn_WF_add" onclick="btn_save00_onclick" right="0"/>
+              <Static id="Static03" taborder="7" text="파일을 끌어다 올려놓으세요" left="120" top="43" width="193" height="69" border="3px dotted crimson" color="crimson" textAlign="center"/>
+              <Static id="Static04" taborder="8" text="png 형식 파일 첨부" left="120" top="109" width="192" height="60"/>
             </Layout>
           </Layouts>
         </Div>
