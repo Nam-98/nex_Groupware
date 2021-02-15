@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form_pop_po" width="600" height="400" titletext="New Form" onload="form_pop_po_onload">
+    <Layouts>
+      <Layout height="400" width="600">
+        <Div id="divSearch" taborder="0" text="" left="0" top="0" height="49" right="0" cssclass="div_WF_SearchBg">
+          <Layouts>
+            <Layout>
+              <Button id="btnSearch" taborder="1" top="0" height="47" onclick="fnSearch" cssclass="btn_WF_search01" right="0" width="47"/>
+              <Edit id="edtKeyword" taborder="0" left="155" top="12" width="150" height="23"/>
+              <Static id="Static01" taborder="2" text="검색조건" left="10" top="12" width="64" height="23" cssclass="sta_WF_SeaFieldLabel"/>
+              <Combo id="cboCondition" taborder="3" text="전체" left="86" top="12" width="67" height="23" value="" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn"/>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">TITLE</Col>
+                      <Col id="datacolumn">제목</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">CONTENTS</Col>
+                      <Col id="datacolumn">내용</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnAdd" taborder="1" text="OK" left="230" width="65" height="29" bottom="20" onclick="fnAdd"/>
+        <Button id="btnDel" taborder="2" text="Cancel" left="305" width="65" height="29" bottom="20" onclick="fnDel"/>
+        <Static id="Static01" taborder="3" text="." visible="false" left="-1" right="1" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static54" taborder="4" text="h10" visible="false" left="89" top="49" width="102" height="10" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Grid id="Grid00" taborder="5" left="0" top="60" right="0" bottom="68" binddataset="gds_stPosition" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="직급코드"/>
+                <Cell col="1" text="직급"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:position_code"/>
+                <Cell col="1" text="bind:position_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_position"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.gds_stPosition = nexacro.getApplication().gds_stPosition;
+
+this.fnAdd = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sCode = this.gds_stPosition.getColumn(this.gds_stPosition.rowposition, "position_code");
+	var sName = this.gds_stPosition.getColumn(this.gds_stPosition.rowposition, "position_name");
+	
+	var sRtn = sCode+"|"+sName;
+	nexacro.getApplication().trace(sRtn);
+	this.close(sRtn);
+};
+
+
+
+this.fnDel = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//position table 받기
+	this.transaction(
+		"loadPo","/nex/loadPoList.nexacro","","ds_position=ds_out","","fn_callback"
+	);
+};
+
+this.fn_callback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};]]></Script>
+  </Form>
+</FDL>
