@@ -82,6 +82,7 @@
           <Col id="MENU_ID">4010</Col>
           <Col id="MENU_NAME">근무일설정</Col>
           <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL">Workspace::tna_setWorkingDays.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">4020</Col>
