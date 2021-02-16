@@ -12,6 +12,7 @@
             <Format id="default">
               <Columns>
                 <Column size="80"/>
+                <Column size="48"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -19,9 +20,11 @@
               </Rows>
               <Band id="head">
                 <Cell text="문서명"/>
+                <Cell col="1" text="코드"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:app_type_name" textAlign="center" edittype="none" displaytype="normal"/>
+                <Cell col="1" text="bind:app_type_code"/>
               </Band>
             </Format>
           </Formats>
@@ -129,7 +132,9 @@ this.edt_app_type_name_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEve
 	trace("문서명 변경 이벤트에 들어옴");
 	var bindDs = this.ds_approval_type;
 	bindDs.setColumn(this.selectedRowInx, 1, obj.value);
-	bindDs.setColumn(this.selectedRowInx, 3, "update");
+
+	//insert라면 update라는 표식을 넣지 않는다.
+	if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
 };
 
 //template변경사항 저장
@@ -139,42 +144,50 @@ this.btn_template_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
 	var contents = this.wb_summernote.getProperty('window').callMethod("getContents");
 	//ds에 template변경사항을 반영한다.
 	var bindDs = this.ds_approval_type;
-	bindDs.setColumn(this.selectedRowInx, 2, contents);
+	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+	var result = bindDs.setColumn(this.selectedRowInx, 2, contents);
 	
 	//insert라면 update라는 표식을 넣지 않는다.
-	if(bindDs.getColumn(this.selectedRowInx,3)=="insert"){return;}
-	bindDs.setColumn(this.selectedRowInx, 3, "update");
+	if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
+	if(result){alert(name+" 문서의 template을 저장하였습니다.");}
 };
 
 //문서 삭제
 this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var bindDs = this.ds_approval_type;
-	//delete전용 dataSet에 내용 저장
-	var delInx = this.ds_approval_type_deleted.addRow();
-		//삭제한 column의 code값 들고 옴
-	var code = this.ds_approval_type.getColumn(e.row,0);
-	this.ds_approval_type_deleted.setColumn(delInx,0,code);//삭제전용 ds에 추가
-	
-	//삭제
-	bindDs.deleteRow(this.selectedRowInx);
-	
-	//삭제된 row에 focus준것을 삭제함
-	this.selectedRowInx = '';
-	var code = this.ds_approval_type.getColumn(e.row,0);
+	//삭제할 column의 code값 들고 옴
+	var code = this.ds_approval_type.getColumn(this.selectedRowInx,0);
+	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+	var ans = this.confirm(name+" 양식을 삭제하시겠습니까?");
+	if(ans){
+		var bindDs = this.ds_approval_type;
+		//delete전용 dataSet에 내용 저장
+		var delInx = this.ds_approval_type_deleted.addRow();
+		this.ds_approval_type_deleted.setColumn(delInx,0,code);//삭제전용 ds에 추가
+		
+		//삭제
+		bindDs.deleteRow(this.selectedRowInx);
+		
+		//삭제된 row에 focus준것을 삭제함
+		this.selectedRowInx = '';
+	}
+
 };
 
 //문서 변경사항 저장
 this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	this.transaction(
-		"nxAppTypeUpdate", //transaction id
-		"/nex/nxAppTypeUpdate.nexacro", //url(to controller)
-		"ds_in=ds_approval_type:U ds_del=ds_approval_type_deleted", // in data set
-		"", // out data set
-		"", // variable send
-		"fn_save_callback" //callback function
-	);
+{	
+	var ans = confirm("문서 변경사항을 저장하시겠습니까?");
+	if(ans){
+		this.transaction(
+			"nxAppTypeUpdate", //transaction id
+			"/nex/nxAppTypeUpdate.nexacro", //url(to controller)
+			"ds_in=ds_approval_type:U ds_del=ds_approval_type_deleted:A", // in data set
+			"", // out data set
+			"", // variable send
+			"fn_save_callback" //callback function
+		);
+	}
 };
 
 //문서 변경사항 저장 callback
@@ -185,10 +198,10 @@ this.fn_save_callback  =  function(strSvcID, nErrorCode, strErrorMag)
 	trace("에러 메세지 : "+strErrorMag);
 	if(nErrorCode>-1){
 		alert("정상적으로 저장되었습니다.");
-		this.reload();//화면 재구성
 	}else{
 		alert("저장하지 못하였습니다. 관리자에게 문의 바랍니다. 에러코드 : "+nErrorCode);
 	}
+	this.reload();//화면 재구성
 };
 ]]></Script>
   </Form>
