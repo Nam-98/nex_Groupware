@@ -3,10 +3,10 @@
   <Form id="scheduler" width="820" height="600" titletext="New Form" onload="scheduler_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="820">
-        <Graphics id="grpScheduler" taborder="0" left="10" top="60" ondblclick="grpScheduler_ondblclick" right="10" bottom="40" onclick="grpScheduler_onclick" onsize="grpScheduler_onsize" minwidth="100" maxwidth="" minheight="100" maxheight=""/>
-        <Button id="btnPrev" taborder="1" text="&lt;" left="221" top="10" width="60" height="40" onclick="btnPrev_onclick"/>
-        <Button id="btnNext" taborder="2" text="&gt;" left="491" top="10" width="60" height="40" onclick="btnNext_onclick"/>
-        <Static id="stYearMonth" taborder="3" left="297" top="11" width="178" height="39" textAlign="center" font="bold 24px/normal &quot;Gulim&quot;"/>
+        <Graphics id="grpScheduler" taborder="0" left="10" top="150" ondblclick="grpScheduler_ondblclick" right="10" bottom="40" onclick="grpScheduler_onclick" onsize="grpScheduler_onsize" minwidth="100" maxwidth="" minheight="100" maxheight=""/>
+        <Button id="btnPrev" taborder="1" text="&lt;" left="500" top="100" width="40" height="30" onclick="btnPrev_onclick"/>
+        <Button id="btnNext" taborder="2" text="&gt;" left="750" top="100" width="40" height="30" onclick="btnNext_onclick"/>
+        <Static id="stYearMonth" taborder="3" left="560" top="100" width="174" height="30" textAlign="center" font="bold 24px/normal &quot;Gulim&quot;"/>
         <Button id="btnNew" taborder="4" text="신규일정" left="750" top="10" width="60" height="40" onclick="btnNew_onclick"/>
       </Layout>
     </Layouts>

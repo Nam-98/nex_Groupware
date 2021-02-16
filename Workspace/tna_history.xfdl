@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="tna_history" width="970" height="600" titletext="New Form" onload="tna_history_onload">
+    <Layouts>
+      <Layout height="600" mobileorientation="landscape" width="970">
+        <Grid id="grd_postList" taborder="0" left="0" top="100" right="0" bottom="0" binddataset="gds_postList" oncellclick="grd_postList_oncellclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="34"/>
+                <Column size="43"/>
+                <Column size="294"/>
+                <Column size="96"/>
+                <Column size="95"/>
+                <Column size="73"/>
+                <Column size="95"/>
+                <Column size="74"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="chk" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="No"/>
+                <Cell col="2" text="내용"/>
+                <Cell col="3" text="변경요청상태"/>
+                <Cell col="4" text="신청인"/>
+                <Cell col="5" text="부서"/>
+                <Cell col="6" text="신청일"/>
+                <Cell col="7" text="상태"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:chk" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y" edittype="checkbox"/>
+                <Cell col="1" text="bind:write_id"/>
+                <Cell col="2" text="bind:write_title"/>
+                <Cell col="3"/>
+                <Cell col="4" text="bind:id"/>
+                <Cell col="5"/>
+                <Cell col="6"/>
+                <Cell col="7"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static80" taborder="1" text="근태 조정 신청 관리" usedecorate="true" cssclass="sta_WF_title01" left="0" top="70" width="400" height="23" wordWrap="english" onclick="Static80_onclick"/>
+        <Button id="btnSearch" taborder="2" top="56" height="34" onclick="fnSearch" cssclass="btn_WF_search01" right="30" width="40"/>
+        <Combo id="Combo00" taborder="3" text="Combo00" left="770" top="54" width="120" height="39"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+
+this.tna_history_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	alert("onload");
+	this.transaction(
+				"tnaHistory" //1.strSvcID(스트링형으로)
+				,"/nex/tnaHistory.nexacro"//2.strURL : 넥사크로와 이클립스 연동
+				,""//3.strInDatasets Sds = Fds :U, :A, :N
+				,"ds_tnaHistory=ds_out"	//4.strOutDatasets - select Fds=Sds
+				,""//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
+				,"fn_callback" //6.strCallbackFunc
+		);
+};
+
+this.fn_callback = function(id, ErrorCode, ErrorMsg){
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_tnaHistory"/>
+    </Objects>
+  </Form>
+</FDL>
