@@ -43,13 +43,13 @@ this.fn_openForm2 = function (e,obj)
 	var sUrl = ds.getColumn(e.row, "FORM_URL");
 	var sMenuId = ds.getColumn(e.row, "MENU_ID");
 	var sMenuNm = ds.getColumn(e.row, "MENU_NAME");
-	
+		
 	var sTreePath2 = nexacro.replaceAll(this.grd_left.getTreePath(e.row),".",">"); 	//전자결재.결재양식.임시보관문서 를 replace로 전자결재 > 결재양식 > 임시보관문서 와 같이 수정함
 	var sFormId = "FORM_"+sMenuId;
 	var nWidth = this.objApp.av_fsWork.getOffsetWidth();
 	var nHeight = this.objApp.av_fsWork.getOffsetHeight();
 	//클릭한것의 url이 존재하는가?
-	if (sUrl.length<=0){return}
+	if (sUrl.length<=0){trace("url존재하지 않음");return}
 	
 	//현재 해당 frameSet에 띄워져 있는 childFrame정보 모두 가져옴
 	var arrObj = this.objApp.av_fsWork.all;

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="company_information" width="980" height="790" titletext="New Form" onload="company_information_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="sta_wid" taborder="0" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="sta_wid00" taborder="1" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
+        <Static id="sta_higt" taborder="2" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="sta_wid00_00" taborder="3" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="275"/>
+        <WebBrowser id="wb_summernote" taborder="4" left="280" top="71" right="20" bottom="20" onloadcompleted="wb_summernote_onloadcompleted" url="url"/>
+        <Static id="sta_title_wb" taborder="5" text="회사 개요 수정" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00_00:0" top="10" width="270" height="23" wordWrap="english" onclick="sta_title_grd_onclick"/>
+        <Static id="sta_title_logo" taborder="6" text="회사 로고 변경" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00:0" top="10" width="270" height="23" wordWrap="english" onclick="sta_title_grd_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_approval_type">
+        <ColumnInfo>
+          <Column id="app_type_code" type="INT" size="256"/>
+          <Column id="app_type_name" type="STRING" size="256"/>
+          <Column id="app_type_template" type="STRING" size="50000"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="app_type_code">0</Col>
+            <Col id="app_type_name">기안서</Col>
+          </Row>
+          <Row>
+            <Col id="app_type_code">1</Col>
+            <Col id="app_type_name">지출결의서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.company_information_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//웹 브라우저에 url세팅, service(Server::)를 이용하지 않고 세팅한다. 
+	var domain = document.location.href;
+    var arrdomain = domain.split('/');
+    var currentfile = arrdomain.pop();
+    domain = domain.replace(currentfile, "nxToSummernote.nexacro")
+	trace("domain : "+domain);
+    this.wb_summernote.set_url(domain);
+};
+]]></Script>
+  </Form>
+</FDL>
