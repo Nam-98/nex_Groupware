@@ -3,53 +3,57 @@
   <Form id="tna_history" width="970" height="600" titletext="New Form" onload="tna_history_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="970">
-        <Grid id="grd_postList" taborder="0" left="0" top="100" right="0" bottom="0" binddataset="gds_postList" oncellclick="grd_postList_oncellclick" autofittype="col">
+        <Grid id="grd_tnaHistory" taborder="0" left="0" top="100" right="0" bottom="0" binddataset="ds_tnaHistory" autofittype="col" oncellclick="grd_tnaHistory_oncellclick">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="34"/>
-                <Column size="43"/>
-                <Column size="294"/>
-                <Column size="96"/>
-                <Column size="95"/>
-                <Column size="73"/>
-                <Column size="95"/>
-                <Column size="74"/>
+                <Column size="36"/>
+                <Column size="254"/>
+                <Column size="81"/>
+                <Column size="81"/>
+                <Column size="81"/>
+                <Column size="81"/>
+                <Column size="94"/>
+                <Column size="81"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="chk" displaytype="checkboxcontrol"/>
-                <Cell col="1" text="No"/>
+                <Cell text="CHK" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="NO"/>
                 <Cell col="2" text="내용"/>
-                <Cell col="3" text="변경요청상태"/>
-                <Cell col="4" text="신청인"/>
+                <Cell col="3" text="신청인"/>
+                <Cell col="4" text="신청일"/>
                 <Cell col="5" text="부서"/>
-                <Cell col="6" text="신청일"/>
-                <Cell col="7" text="상태"/>
+                <Cell col="6" text="직급"/>
+                <Cell col="7" text="변경요청상태"/>
+                <Cell col="8" text="상태"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:chk" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y" edittype="checkbox"/>
-                <Cell col="1" text="bind:write_id"/>
-                <Cell col="2" text="bind:write_title"/>
-                <Cell col="3"/>
-                <Cell col="4" text="bind:id"/>
-                <Cell col="5"/>
-                <Cell col="6"/>
-                <Cell col="7"/>
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:TNA_OBJ_SEQ"/>
+                <Cell col="2" text="bind:TNA_OBJ_REASON"/>
+                <Cell col="3" text="bind:TNA_OBJ_ID"/>
+                <Cell col="4" text="bind:TNA_OBJ_REG_DATE"/>
+                <Cell col="5" text="bind:DEPT_NAME"/>
+                <Cell col="6" text="bind:POSITION_NAME"/>
+                <Cell col="7" text="bind:TNA_STATUS_NAME"/>
+                <Cell col="8" text="bind:TNA_OBJ_PROC_STATUS_NAME"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
         <Static id="Static80" taborder="1" text="근태 조정 신청 관리" usedecorate="true" cssclass="sta_WF_title01" left="0" top="70" width="400" height="23" wordWrap="english" onclick="Static80_onclick"/>
-        <Button id="btnSearch" taborder="2" top="56" height="34" onclick="fnSearch" cssclass="btn_WF_search01" right="30" width="40"/>
-        <Combo id="Combo00" taborder="3" text="Combo00" left="770" top="54" width="120" height="39"/>
+        <Button id="btnSearch" taborder="2" top="56" height="39" cssclass="btn_WF_search01" right="20" width="50" onclick="btnSearch_onclick"/>
+        <Combo id="Combo00" taborder="3" text="Combo00" top="56" width="120" height="39" right="80" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
 
+//근태조정 list 불러옴.
 this.tna_history_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	alert("onload");
@@ -68,9 +72,83 @@ this.fn_callback = function(id, ErrorCode, ErrorMsg){
 	trace(ErrorCode);
 	trace(ErrorMsg);
 };
+
+
+
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	let sel = this.Combo00.value;
+	trace(sel);
+	this.transaction(
+				"tnaHistorySearch" //1.strSvcID(스트링형으로)
+				,"/nex/tnaHistorySearch.nexacro"//2.strURL : 넥사크로와 이클립스 연동
+				,""//3.strInDatasets Sds = Fds :U, :A, :N
+				,"ds_tnaHistory=ds_out"	//4.strOutDatasets - select Fds=Sds
+				,"sel='sel'"//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
+				,"fn_callback" //6.strCallbackFunc
+		);
+};
 ]]></Script>
     <Objects>
-      <Dataset id="ds_tnaHistory"/>
+      <Dataset id="ds_tnaHistory">
+        <ColumnInfo>
+          <Column id="TNA_OBJ_SEQ" type="INT" size="256"/>
+          <Column id="TNA_OBJ_REASON" type="STRING" size="256"/>
+          <Column id="TNA_OBJ_ID" type="STRING" size="256"/>
+          <Column id="TNA_OBJ_REG_DATE" type="DATE" size="256"/>
+          <Column id="TNA_OBJ_CHANGED_CODE" type="INT" size="256"/>
+          <Column id="TNA_STATUS_NAME" type="STRING" size="256"/>
+          <Column id="TNA_SEQ" type="INT" size="256"/>
+          <Column id="TNA_OBJ_STATUS" type="STRING" size="256"/>
+          <Column id="TNA_OBJ_ORI_STATUS_CODE" type="INT" size="256"/>
+          <Column id="TNA_ORI_STATUS_NAME" type="STRING" size="256"/>
+          <Column id="TNA_OBJ_TIME" type="DATE" size="256"/>
+          <Column id="TNA_OBJ_PROC_STATUS_CODE" type="INT" size="256"/>
+          <Column id="TNA_OBJ_PROC_STATUS_NAME" type="STRING" size="256"/>
+          <Column id="DEPT_CODE" type="INT" size="256"/>
+          <Column id="POSITION_CODE" type="INT" size="256"/>
+          <Column id="DEPT_NAME" type="STRING" size="256"/>
+          <Column id="POSITION_NAME" type="STRING" size="256"/>
+          <Column id="RN" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TNA_OBJ_SEQ">1</Col>
+            <Col id="TNA_OBJ_PROC_STATUS_CODE">1</Col>
+            <Col id="TNA_OBJ_PROC_STATUS_NAME">조정중</Col>
+          </Row>
+          <Row>
+            <Col id="TNA_OBJ_SEQ">2</Col>
+            <Col id="TNA_OBJ_PROC_STATUS_CODE">1</Col>
+            <Col id="TNA_OBJ_PROC_STATUS_NAME">조정중</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_status">
+        <ColumnInfo>
+          <Column id="TNA_OBJ_PROC_STATUS_CODE" type="STRING" size="256"/>
+          <Column id="TNA_OBJ_PROC_STATUS_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TNA_OBJ_PROC_STATUS_CODE">1</Col>
+            <Col id="TNA_OBJ_PROC_STATUS_NAME">조정중</Col>
+          </Row>
+          <Row>
+            <Col id="TNA_OBJ_PROC_STATUS_CODE">2</Col>
+            <Col id="TNA_OBJ_PROC_STATUS_NAME">반려</Col>
+          </Row>
+          <Row>
+            <Col id="TNA_OBJ_PROC_STATUS_CODE">3</Col>
+            <Col id="TNA_OBJ_PROC_STATUS_NAME">승인</Col>
+          </Row>
+        </Rows>
+      </Dataset>
     </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Combo00" propid="value" datasetid="ds_tnaHistory" columnid="TNA_OBJ_ORI_STATUS_CODE"/>
+    </Bind>
   </Form>
 </FDL>
