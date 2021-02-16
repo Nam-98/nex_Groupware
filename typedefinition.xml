@@ -36,6 +36,7 @@
     <Component type="JavaScript" id="VirtualFile" classname="nexacro.VirtualFile"/>
     <Component type="JavaScript" id="FileDialog" classname="nexacro.FileDialog"/>
     <Component type="JavaScript" id="Graphics" classname="nexacro.Graphics"/>
+    <Component type="JavaScript" id="WebBrowser" classname="nexacro.WebBrowser"/>
   </Components>
   <Services>
     <Service prefixid="theme" type="resource" url="./_resource_/_theme_/" version="0" cachelevel="session" include_subdir="true"/>
@@ -45,7 +46,7 @@
     <Service prefixid="font" type="resource" url="./_resource_/_font_/" version="0" cachelevel="session" include_subdir="false"/>
     <Service prefixid="Base" type="form" url="./Base/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="FrameBase" type="form" url="./FrameBase/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
-    <Service prefixid="Server" type="JSP" url="http://localhost/" version="0" cachelevel="none" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="Server" type="JSP" url="http://localhost/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="Workspace" type="form" url="./Workspace/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="lib_tna_setWorkingDays" type="js" url="./lib_tna_setWorkingDays/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
   </Services>
