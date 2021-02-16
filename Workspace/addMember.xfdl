@@ -30,7 +30,7 @@
               <Static id="sta_docNm16" taborder="20" text="상세주소" cssclass="sta_WF_Label_P" left="322" top="108" width="110" height="37" wordWrap="english"/>
               <Static id="sta_docNm18" taborder="21" text="성명" cssclass="sta_WF_Label_P" left="322" top="36" width="110" height="37" wordWrap="english" onclick="Div00_sta_docNm18_onclick"/>
               <Edit id="Edit06" taborder="22" left="437" top="43" width="200" height="23"/>
-              <Radio id="Radio04" taborder="23" index="0" codecolumn="codecolumn" datacolumn="datacolumn" value="0" direction="vertical" left="437" top="151" width="131" height="23" innerdataset="innerdataset">
+              <Radio id="Radio04" taborder="23" index="0" codecolumn="codecolumn" datacolumn="datacolumn" value="0" direction="vertical" left="437" top="151" width="131" height="23" innerdataset="innerdataset" onitemchanged="Div00_Radio04_onitemchanged">
                 <Dataset id="innerdataset">
                   <ColumnInfo>
                     <Column id="codecolumn" size="256"/>
@@ -50,7 +50,7 @@
               </Radio>
               <Edit id="Edit00_00" taborder="24" left="117" top="79" width="200" height="23"/>
               <Static id="sta_docNm00_00" taborder="25" text="성별" cssclass="sta_WF_Label_P" left="322" top="72" width="110" height="37" wordWrap="english"/>
-              <Radio id="Radio02_00" taborder="26" index="0" value="0" direction="vertical" left="437" top="79" width="134" height="23" onitemchanged="Radio00_onitemchanged" innerdataset="innerdataset" datacolumn="datacolumn" codecolumn="codecolumn">
+              <Radio id="Radio02_00" taborder="26" index="0" value="0" direction="vertical" left="437" top="79" width="134" height="23" innerdataset="innerdataset" datacolumn="datacolumn" codecolumn="codecolumn">
                 <Dataset id="innerdataset">
                   <ColumnInfo>
                     <Column id="codecolumn" size="256"/>
@@ -286,7 +286,12 @@ this.vf_profile_onsuccess = function(obj:nexacro.VirtualFile,e:nexacro.VirtualFi
  {
  	this.fut_profile.upload("Server::/nex/insertProfile.nexacro?id="+this.Div00.form.Edit00.value);
  };
-//-------------------------------------------------------------------파일 업로드 완료]]></Script>
+//-------------------------------------------------------------------파일 업로드 완료
+this.Div00_Radio04_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	
+};
+]]></Script>
     <Bind>
       <BindItem id="item13" compid="Div00.form.Edit00" propid="value" datasetid="ds_addMem" columnid="id"/>
       <BindItem id="item14" compid="Div00.form.Edit06" propid="value" datasetid="ds_addMem" columnid="name"/>

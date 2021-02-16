@@ -1,0 +1,1251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[/*
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+		FUNCTION LIST
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	1. gfnAddDate						: 입력된 날짜에 OffSet으로 지정된 만큼의 날짜를 증감한다
+	2. gfnAddMonth						: 입력된 날짜에 OffSet 으로 지정된만큼의 월을 증감한다
+	3. gfnGetDiffDay					: 두 일자 사이의 일 수 계산
+	4. gfnGetDiffMonth					: 두 일자 사이의 월 수 계산.
+										(정확한 달수를 처리하려면 fromDate Day값을 1로 하고 toDate를 마지막일자로 처리하여야 한다.)
+	5. gfnGetLastDayOfMonth				: 해당월의 마지막 날짜를 숫자로 구하기
+	6. gfnGetWeekOfYear					: yyyyMMdd 형태의 날짜를 입력하면 해당연도의 날짜에 해당하는 주차반환
+	7. gfnGetDayOfYear					: 해당연도의 1월 1일부터 날짜까지의 일 수 반환
+	8. gfnStrToDate						: yyyy, yyyyMM, yyyyMMdd, yyyyMMddhh, yyyyMMddhhmm, yyyyMMddhhmmss 형태의 문자열을 Date객체로 반환
+	9. gfnIsLeapYear					: 윤년 여부
+	10. gfnSolarToLunar					: 양력을 음력으로 변환해주는 함수
+	11. gfnLunarToSolar					: 음력을 양력으로 변환
+	12. gfnGetFirstDate					: 전달된 月의 1일 만들기
+	13. gfnGetDiffTime					: 날짜 차이 반환
+	14. gfnGetMaskFormatDateToString	: 주어진 날짜 객체의 Mask Format 처리된 문자열을 반환
+*/
+
+/**
+ * 요일명칭 정의.<br>
+ * gfnGetMaskFormatDateToString 함수에서 masking 할때 사용하는 명칭이다.<br>
+ * 필요에 따라 수정 하여 사용한다.
+ * @example : ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+ * @public
+ * @type array
+ * @memberOf this 
+ */			
+this.weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+//this.weekName = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+/**
+ * 축약 요일명칭 정의.<br>
+ * gfnGetMaskFormatDateToString 함수에서 masking 할때 사용하는 명칭이다.<br>
+ * 필요에 따라 수정 하여 사용한다.
+ * @example
+ * ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+ * @public
+ * @type array
+ * @memberOf this
+ */	
+this.weekShortName = ["일", "월", "화", "수", "목", "금", "토"];
+//this.weekShortName: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+/**
+ * 월명칭 정의.<br>
+ * gfnGetMaskFormatDateToString 함수에서 masking 할때 사용하는 명칭이다.<br>
+ * 필요에 따라 수정 하여 사용한다.
+ * @example
+ * ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+ * @public
+ * @type array
+ * @memberOf this
+ */	
+this.monthName = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+//this.monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+/**
+ * 축약 월명칭 정의.<br>
+ * gfnGetMaskFormatDateToString 함수에서 masking 할때 사용하는 명칭이다.<br>
+ * 필요에 따라 수정 하여 사용한다.
+ * @example
+ * ["Jan ", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+ * @public
+ * @type array
+ * @memberOf this
+ */	
+this.monthShortName = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+//this.monthShortName = ["Jan ", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+/**
+ * 오전/오후.<br>
+ * gfnGetMaskFormatDateToString 함수에서 masking 할때 사용하는 명칭이다.<br>
+ * 필요에 따라 수정 하여 사용한다.
+ * @example
+ * ["AM", "PM"]
+ * @public
+ * @type array
+ * @memberOf this
+ */	
+this.ttName = ["오전", "오후"];
+//this.ttName = ["AM", "PM"];
+
+/**
+ * 음력 데이터 (평달 - 작은달 :1,  큰달:2 )
+ * (윤달이 있는 달 - 평달이 작고 윤달도 작으면 :3 , 평달이 작고 윤달이 크면 : 4)
+ * (윤달이 있는 달 - 평달이 크고 윤달이 작으면 :5,  평달과 윤달이 모두 크면 : 6)	
+ * @private
+ * @type array
+ * @memberOf this
+ */			 
+this.lunarMonthTable = [
+[2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2],
+[1, 2, 1, 1, 2, 1, 2, 5, 2, 2, 1, 2],
+[1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1],   /* 1901 */
+[2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2],
+[1, 2, 1, 2, 3, 2, 1, 1, 2, 2, 1, 2],
+[2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1],
+[2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2],
+[1, 2, 2, 4, 1, 2, 1, 2, 1, 2, 1, 2],
+[1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1],
+[2, 1, 1, 2, 2, 1, 2, 1, 2, 2, 1, 2],
+[1, 5, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2],
+[1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1],
+[2, 1, 2, 1, 1, 5, 1, 2, 2, 1, 2, 2],   /* 1911 */
+[2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2],
+[2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2],
+[2, 2, 1, 2, 5, 1, 2, 1, 2, 1, 1, 2],
+[2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2],
+[1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1],
+[2, 3, 2, 1, 2, 2, 1, 2, 2, 1, 2, 1],
+[2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2],
+[1, 2, 1, 1, 2, 1, 5, 2, 2, 1, 2, 2],
+[1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2],
+[2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2],   /* 1921 */
+[2, 1, 2, 2, 3, 2, 1, 1, 2, 1, 2, 2],
+[1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2],
+[2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1],
+[2, 1, 2, 5, 2, 1, 2, 2, 1, 2, 1, 2],
+[1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1],
+[2, 1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2],
+[1, 5, 1, 2, 1, 1, 2, 2, 1, 2, 2, 2],
+[1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2],
+[1, 2, 2, 1, 1, 5, 1, 2, 1, 2, 2, 1],
+[2, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1],   /* 1931 */
+[2, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2],
+[1, 2, 2, 1, 6, 1, 2, 1, 2, 1, 1, 2],
+[1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2],
+[1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1],
+[2, 1, 4, 1, 2, 1, 2, 1, 2, 2, 2, 1],
+[2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1],
+[2, 2, 1, 1, 2, 1, 4, 1, 2, 2, 1, 2],
+[2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2],
+[2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1],
+[2, 2, 1, 2, 2, 4, 1, 1, 2, 1, 2, 1],   /* 1941 */
+[2, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2],
+[1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2],
+[1, 1, 2, 4, 1, 2, 1, 2, 2, 1, 2, 2],
+[1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2],
+[2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2],
+[2, 5, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2],
+[2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2],
+[2, 2, 1, 2, 1, 2, 3, 2, 1, 2, 1, 2],
+[2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 1],
+[2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2],   /* 1951 */
+[1, 2, 1, 2, 4, 2, 1, 2, 1, 2, 1, 2],
+[1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2],
+[1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2],
+[2, 1, 4, 1, 1, 2, 1, 2, 1, 2, 2, 2],
+[1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2],
+[2, 1, 2, 1, 2, 1, 1, 5, 2, 1, 2, 2],
+[1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2],
+[1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1],
+[2, 1, 2, 1, 2, 5, 2, 1, 2, 1, 2, 1],
+[2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2],   /* 1961 */
+[1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1],
+[2, 1, 2, 3, 2, 1, 2, 1, 2, 2, 2, 1],
+[2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2],
+[1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 2],
+[1, 2, 5, 2, 1, 1, 2, 1, 1, 2, 2, 1],
+[2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2],
+[1, 2, 2, 1, 2, 1, 5, 2, 1, 2, 1, 2],
+[1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1],
+[2, 1, 1, 2, 2, 1, 2, 1, 2, 2, 1, 2],
+[1, 2, 1, 1, 5, 2, 1, 2, 2, 2, 1, 2],   /* 1971 */
+[1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1],
+[2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 2, 1],
+[2, 2, 1, 5, 1, 2, 1, 1, 2, 2, 1, 2],
+[2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2],
+[2, 2, 1, 2, 1, 2, 1, 5, 2, 1, 1, 2],
+[2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1],
+[2, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1],
+[2, 1, 1, 2, 1, 6, 1, 2, 2, 1, 2, 1],
+[2, 1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2],
+[1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2],   /* 1981 */
+[2, 1, 2, 3, 2, 1, 1, 2, 2, 1, 2, 2],
+[2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2],
+[2, 1, 2, 2, 1, 1, 2, 1, 1, 5, 2, 2],
+[1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2],
+[1, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1],
+[2, 1, 2, 2, 1, 5, 2, 2, 1, 2, 1, 2],
+[1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1],
+[2, 1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2],
+[1, 2, 1, 1, 5, 1, 2, 1, 2, 2, 2, 2],
+[1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2],   /* 1991 */
+[1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2],
+[1, 2, 5, 2, 1, 2, 1, 1, 2, 1, 2, 1],
+[2, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2],
+[1, 2, 2, 1, 2, 2, 1, 5, 2, 1, 1, 2],
+[1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 1, 2],
+[1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1],
+[2, 1, 1, 2, 3, 2, 2, 1, 2, 2, 2, 1],
+[2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1],
+[2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1],
+[2, 2, 2, 3, 2, 1, 1, 2, 1, 2, 1, 2],   /* 2001 */
+[2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1],
+[2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2],
+[1, 5, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2],
+[1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1],
+[2, 1, 2, 1, 2, 1, 5, 2, 2, 1, 2, 2],
+[1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2],
+[2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2],
+[2, 2, 1, 1, 5, 1, 2, 1, 2, 1, 2, 2],
+[2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2],
+[2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 1],   /* 2011 */
+[2, 1, 6, 2, 1, 2, 1, 1, 2, 1, 2, 1],
+[2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2],
+[1, 2, 1, 2, 1, 2, 1, 2, 5, 2, 1, 2],
+[1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2, 1],
+[2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2],
+[2, 1, 1, 2, 3, 2, 1, 2, 1, 2, 2, 2],
+[1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2],
+[2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2],
+[2, 1, 2, 5, 2, 1, 1, 2, 1, 2, 1, 2],
+[1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1],   /* 2021 */
+[2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2],
+[1, 5, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2],
+[1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1],
+[2, 1, 2, 1, 1, 5, 2, 1, 2, 2, 2, 1],
+[2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2],
+[1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 2],
+[1, 2, 2, 1, 5, 1, 2, 1, 1, 2, 2, 1],
+[2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2],
+[1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1],
+[2, 1, 5, 2, 1, 2, 2, 1, 2, 1, 2, 1],   /* 2031 */
+[2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2],
+[1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 5, 2],
+[1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1],
+[2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2],
+[2, 2, 1, 2, 1, 4, 1, 1, 2, 2, 1, 2],
+[2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2],
+[2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1],
+[2, 2, 1, 2, 5, 2, 1, 2, 1, 2, 1, 1],
+[2, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1],
+[2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2],   /* 2041 */
+[1, 5, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2],
+[1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2]];
+
+/**
+ * 월별 일자 Offset.
+ * @private
+ * @memberOf this
+ */
+this._dayOfYearOffset = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+
+/**
+ * mask format cache.
+ * @private
+ * @memberOf this
+ */
+this._dateMaskCache = {};
+
+/**
+ * 입력된 날짜에 OffSet으로 지정된 만큼의 날짜를 증감한다.
+ * @param {string|date} value 'yyyyMMdd'형태로 표현된 String 또는 Date.
+ * @param {number} offset 일단위 증가(또는 감소값).
+ * @return {string|date} 'yyyyMMdd'형태로 표현된 String 또는 Date Value.
+ * @example
+ * // 2013/04/29 16:39:04 test함. 
+ * trace(this.gfnAddDate(new Date(), 3)); // output : Thu May 02 2013 16:39:04 GMT+0900
+ * var val = this.gfnGetMaskFormatDateToString(new Date(), "yyyyMMdd");
+ * trace(this.gfnAddDate(val, 3)); // output : 20130502 
+ * @memberOf this
+ */
+this.gfnAddDate  = function(value, offset) 
+{
+	var dt;
+	if ( this.gfnIsDate(value) )
+	{
+		dt = new Date();
+		dt.setFullYear(value.getFullYear(), value.getMonth(), value.getDate() + offset);
+		dt.setHours(value.getHours(), value.getMinutes(), value.getSeconds());
+		dt.setMilliseconds(value.getMilliseconds());
+		
+		return dt;
+	}
+	else
+	{
+		dt = new Date();
+		dt.setFullYear(parseInt(value.substr(0, 4)), parseInt(value.substr(4, 2)-1), parseInt(value.substr(6, 2)) + offset);
+		dt.setHours(0, 0, 0);
+		dt.setMilliseconds(0);
+		return this.gfnGetMaskFormatDateToString(dt, "yyyyMMdd");
+	}
+}
+
+/**
+ * 입력된 날짜에 OffSet 으로 지정된만큼의 월을 증감한다.
+ * @param {string | date} value 'yyyyMMdd' 형태로 표현된 String 또는 Date.
+ * @param {number} offset 월단위 증가(또는 감소값).
+ * @return {string | date} 'yyyyMMdd' 형태로 표현된 String 또는 Date Value.
+ * @example
+ * var dt = this.gfnStrToDate("20130331");
+ * var dt0 = this.gfnAddMonth(dt, 1);
+ * trace(dt0); // output : Tue Apr 30 2013 00:00:00 GMT+0900
+ * var str1 = "20130331";
+ * var str = this.gfnAddMonth(str1, 1);
+ * trace(str); // output : 20130430 
+ * @memberOf this
+ */
+this.gfnAddMonth = function(value, offset) 
+{
+	var pThis = this;
+	var dt;
+	if ( this.gfnIsDate(value) )
+	{
+		var nTmpday = value.getDate();
+		dt = new Date();
+		dt.setFullYear(value.getFullYear(), value.getMonth() + offset, value.getDate());
+		dt.setHours(value.getHours(), value.getMinutes(), value.getSeconds());
+		dt.setMilliseconds(value.getMilliseconds());
+		if ( dt.getDate() != nTmpday )
+		{
+			dt.setMonth(dt.getMonth() - 1);
+			dt.setDate(pThis.gfnGetLastDayOfMonth(dt));
+		}
+		return dt;
+	}
+	else
+	{
+		var nTmpday = parseInt(value.substr(6, 2));
+		dt = new Date();
+		dt.setFullYear(parseInt(value.substr(0, 4)), parseInt(value.substr(4, 2)-1) + offset, nTmpday);
+		dt.setHours(0, 0, 0);
+		dt.setMilliseconds(0);
+		if ( dt.getDate() != nTmpday )
+		{
+			dt.setMonth(dt.getMonth() - 1);
+			dt.setDate(pThis.gfnGetLastDayOfMonth(dt));
+		}
+		return pThis.gfnGetMaskFormatDateToString(dt, "yyyyMMdd");
+	}
+}
+
+/**
+ * 두 일자 사이의 일 수 계산.
+ * @param {date | string} fromDate Date Object 또는 yyyyMMdd형태의 시작일자.
+ * @param {date | string} toDate Date Object 또는 yyyyMMdd형태의 종료일자.
+ * @return {number} 두 일자 사이의 일 수. 단, 종료일자가 시작일자보다 작으면 음수가 return된다.
+ * @example
+ * var fromdt = this.gfnStrToDate("20120331");
+ * var todt = this.gfnStrToDate("20130420");
+ * var day = this.gfnGetDiffDay(fromdt, todt);
+ * trace(day); // output : 385
+ * var fromstr = "20120331";
+ * var tostr = "20130420";
+ * var day = this.gfnGetDiffDay(fromstr, tostr);
+ * trace(day); // output : 385
+ * @memberOf this
+ */
+this.gfnGetDiffDay = function(fromDate, toDate)
+{
+	var pThis = this;
+	
+	if(this.gfnIsString(fromDate) && this.gfnIsString(toDate))
+	{
+		fromDate = new Date(parseInt(fromDate.substring(0,4),  10), parseInt(fromDate.substring(4,6)-1,  10), parseInt(fromDate.substring(6,8), 10));
+		toDate   = new Date(parseInt(toDate.substring(0,4),  10), parseInt(toDate.substring(4,6)-1,  10), parseInt(toDate.substring(6,8), 10));
+	}
+
+	var flag = 1, nDay;
+	if ( fromDate >  toDate )
+	{
+		flag = -1;
+		var tmpDt = toDate;
+		toDate = fromDate;
+		fromDate = tmpDt;
+	}
+
+	if (fromDate.getFullYear() != toDate.getFullYear() )
+	{
+		nDay = (pThis.gfnIsLeapYear(fromDate.getFullYear()) ? 366 : 365) - pThis.gfnGetDayOfYear(fromDate) + pThis.gfnGetDayOfYear(toDate);
+		var nYear = fromDate.getFullYear();
+		while (nYear++ < toDate.getFullYear() - 1)
+		{
+			nDay = nDay + (pThis.gfnIsLeapYear(nYear) ? 366 : 365);
+		}
+	}
+	else
+	{
+		nDay = pThis.gfnGetDayOfYear(toDate) - pThis.gfnGetDayOfYear(fromDate);
+	}
+	return nDay*flag;
+}
+
+/**
+ * 두 일자 사이의 월 수 계산.(정확한 달수를 처리하려면 fromDate Day값을 1로 하고 toDate를 마지막일자로 처리하여야 한다.)<br>
+ * 시작일자의 Day값이 1이 아니면 소수점((마지막일자 - 해당월의 일수)/마지막일자)으로 계산한다.<br>
+ * 종료일자의 Day값이 마지막일자가 아니면 소수점(해당월의 일수/마지막일자)으로 계산한다.
+ * @param {date | string} fromDate Date Object 또는 yyyyMMdd형태의 시작일자.
+ * @param {date | string} toDate Date Object 또는 yyyyMMdd형태의 종료일자.
+ * @return {number} 두 일자 사이의 월 수. 단, 종료일자가 시작일자보다 작으면 음수가 return된다.
+ * @example
+ * var fromdt = this.gfnStrToDate("20130301");
+ * var todt = this.gfnStrToDate("20130501");
+ * var month = Math.ceil(this.gfnGetDiffMonth(fromdt, todt));
+ * trace(month); // output : 3
+ * var fromstr = "20120331";
+ * var tostr = "20130420";
+ * var month = this.gfnGetDiffMonth(fromstr, tostr);
+ * trace(month); // output : 12.69
+ * @memberOf this
+ */
+this.gfnGetDiffMonth = function(fromDate, toDate)
+{
+	var pThis = this;
+	
+	if(this.gfnIsString(fromDate) && this.gfnIsString(toDate))
+	{
+		fromDate = new Date(parseInt(fromDate.substring(0,4),  10), parseInt(fromDate.substring(4,6)-1,  10), parseInt(fromDate.substring(6,8), 10));
+		toDate   = new Date(parseInt(toDate.substring(0,4),  10), parseInt(toDate.substring(4,6)-1,  10), parseInt(toDate.substring(6,8), 10));
+	}
+
+	var flag = 1, nMonth, nDay;
+	if ( fromDate >  toDate )
+	{
+		flag = -1;
+		var tmpDt = toDate;
+		toDate = fromDate;
+		fromDate = tmpDt;
+	}
+
+	if ( fromDate.getDate() == 1 )
+	{
+		nMonth = 1;
+		nDay = 0;
+	}
+	else
+	{
+		nMonth = 0;
+		var lastday = pThis.gfnGetLastDayOfMonth(fromDate);
+		nDay = Math.floor(( lastday - fromDate.getDate() + 1)/lastday, 2);
+	}
+
+	if ( toDate.getDate() == pThis.gfnGetLastDayOfMonth(toDate) )
+	{
+		nMonth += 1;
+	}
+	else
+	{
+		nDay += Math.floor(toDate.getDate()/pThis.gfnGetLastDayOfMonth(toDate), 2);
+	}
+
+	if (fromDate.getFullYear() != toDate.getFullYear() )
+	{
+		nMonth += 12 - (fromDate.getMonth() + 1) + toDate.getMonth();
+		var nYear = fromDate.getFullYear();
+		while (nYear++ < toDate.getFullYear() - 1)
+		{
+			nMonth = nMonth + 12;
+		}
+	}
+	else
+	{
+		nMonth += toDate.getMonth() - (fromDate.getMonth() + 1);
+	}
+	return (nMonth + nDay)*flag;
+}
+
+/**
+ * 해당월의 마지막 날짜를 숫자로 구하기.
+ * @param {number | string} value 'yyyyMMdd' 형태의 날짜.
+ * @return {number} 마지막 날짜 숫자값.
+ * @example
+ * var dt = this.gfnStrToDate("20120302"); // convert Date type from "20120302".
+ * var day = this.gfnGetLastDayOfMonth(dt);
+ * trace(day); // output : 31
+ * var dtstr = "20120302";
+ * var day = this.gfnGetLastDayOfMonth(dtstr);
+ * trace(day); // output : 31
+ * @memberOf this
+ */
+this.gfnGetLastDayOfMonth = function(value) 
+{
+	var nMonth, nLastDate;
+
+	if ( this.gfnIsDate(value) )
+	{
+		nMonth = value.getMonth() + 1;
+	}
+	else
+	{
+		nMonth = parseInt(value.substr(4,2), 10);
+	}
+	if( nMonth == 1 || nMonth == 3 || nMonth == 5 || nMonth == 7  || nMonth == 8 || nMonth == 10 || nMonth == 12 ) 
+	{
+		nLastDate = 31;
+	} 
+	else if( nMonth == 2 ) 
+	{
+		if( this.gfnIsLeapYear(value) == true ) 
+		{
+			nLastDate = 29;
+		} 
+		else 
+		{
+			nLastDate = 28;
+		}
+	} 
+	else 
+	{
+		nLastDate = 30;
+	}
+		
+	return nLastDate;
+},
+
+/**
+ * yyyyMMdd 형태의 날짜를 입력하면 해당연도의 날짜에 해당하는 주차반환.
+ * @param {date|string} date Date Object 또는 날짜형 문자열.
+ * @return {number} 주차에 해당하는 숫자.
+ * @example
+ * var dt = this.gfnStrToDate("20130331"); // convert Date type from "20130331".
+ * var week = this.gfnGetWeekOfYear(dt);
+ * trace(week); // output : 14
+ * var dtstr = "20130331";
+ * var week = this.gfnGetWeekOfYear(dt);
+ * trace(week); // output : 14
+ * @memberOf this
+ */
+this.gfnGetWeekOfYear = function(date)
+{
+	if ( this.gfnIsString(date) )
+	{
+		date = this.gfnStrToDate(date);
+	}
+	if ( !this.gfnIsDate(date) )
+	{
+		return -1;
+	}
+	
+	var onejan = new Date();
+	
+	onejan.setYear(date.getFullYear());
+	onejan.setMonth(0);
+	onejan.setDate(1);	
+							
+	return Math.ceil((((date - onejan) / 86400000) + onejan.getDay()+1)/7);
+},
+
+/**
+ * 해당연도의 1월 1일부터 날짜까지의 일 수 반환.
+ * @param {date|string} date Date Object 또는 날짜형 문자열.
+ * @return {number} 일 수.
+ * @example
+ * var dt = this.gfnStrToDate("20130420"); // convert Date type from "20130420".
+ * var days = this.gfnGetDayOfYear(dt);
+ * trace(days); // output : 110
+ * var dtstr = "20130420";
+ * var days = this.gfnGetDayOfYear(dtstr);
+ * trace(days); // output : 110
+ * @memberOf this
+ */
+this.gfnGetDayOfYear = function(date)
+{
+	var pThis = this;
+	
+	if ( this.gfnIsString(date) )
+	{
+		date = pThis.gfnStrToDate(date);
+	}
+	
+	if ( !this.gfnIsDate(date) )
+	{
+		trace("invalid date");
+	}
+	
+	var nMonth = date.getMonth();
+	var nDay = pThis._dayOfYearOffset[nMonth] + date.getDate();
+	
+	//윤년과 2월이 포함되어 있을 경우에만 +1.
+	if (pThis.gfnIsLeapYear(date.getFullYear()) && nMonth > 1)
+	{
+		nDay = nDay + 1;
+	}
+	return nDay;
+}
+
+
+/**
+ * yyyy, yyyyMM, yyyyMMdd, yyyyMMddhh, yyyyMMddhhmm, yyyyMMddhhmmss 형태의 문자열을 Date객체로 반환.
+ * @param {string} value 날짜 문자열.
+ * @return {date} Date Object.
+ * @example
+ * var dt = this.gfnStrToDate("20120331"); // convert Date type from "20120331".
+ * trace(dt); // output : Sat Mar 31 2012 00:00:00 GMT+0900
+ * var dt = this.gfnStrToDate("20130320123022"); // convert Date type from "20130320123022".
+ * trace(dt); // output : Wed Mar 20 2013 12:30:22 GMT+0900
+ * @memberOf this
+ */
+this.gfnStrToDate = function(value) 
+{
+	var dt = new Date();
+	if ( value.length == 4 ) //yyyy
+	{
+		dt.setFullYear(parseInt(value), 0, 0);
+		dt.setHours(0, 0, 0);
+		dt.setMilliseconds(0);
+	}
+	else if ( value.length == 6 ) //yyyyMM
+	{
+		dt.setFullYear(parseInt(value.substr(0,4)), parseInt(value.substr(4,2))-1, 0);
+		dt.setHours(0, 0, 0);
+		dt.setMilliseconds(0);
+	}
+	else if ( value.length == 8 ) //yyyyMMdd
+	{
+		dt.setFullYear(parseInt(value.substr(0,4)), parseInt(value.substr(4,2))-1, parseInt(value.substr(6,2)));
+		dt.setHours(0, 0, 0);
+		dt.setMilliseconds(0);
+	}
+	else if ( value.length == 10 ) //yyyyMMddhh
+	{
+		dt.setFullYear(parseInt(value.substr(0,4)), parseInt(value.substr(4,2))-1, parseInt(value.substr(6,2)));
+		dt.setHours(parseInt(value.substr(8,2)), 0, 0);
+		dt.setMilliseconds(0);
+	}
+	else if ( value.length == 12 )//yyyyMMddhhmm
+	{
+		dt.setFullYear(parseInt(value.substr(0,4)), parseInt(value.substr(4,2))-1, parseInt(value.substr(6,2)));
+		dt.setHours(parseInt(value.substr(8,2)), parseInt(value.substr(10,2)), 0);
+		dt.setMilliseconds(0);
+	}
+	else if ( value.length == 14 ) //yyyyMMddhhmmss
+	{
+		dt.setFullYear(parseInt(value.substr(0,4)), parseInt(value.substr(4,2))-1, parseInt(value.substr(6,2)));
+		dt.setHours(parseInt(value.substr(8,2)), parseInt(value.substr(10,2)), parseInt(value.substr(12,2)));
+		dt.setMilliseconds(0);
+	}
+	return dt;
+}	
+
+/**
+ * 윤년 여부.
+ * @param {string|number|date|nexacro.Date} value yyyyMMdd 형태의 날짜(문자열).<br>
+ *                                   number 타입일 경우에는 yyyy.<br>
+ *                                   JavaScript Date.<br>
+ *                                   Dataset의 컬럼타입이 DATE인 컬럼값.
+ * @return {boolean} 윤년 여부(입력되지 않은 경우는 false).
+ * @example
+ * var yyyyMMdd = "20120301";
+ * var flag = this.gfnIsLeapYear(yyyyMMdd);
+ * trace(flag); // output : false
+ * var date = new Date();
+ * var flag = this.gfnIsLeapYear(date);
+ * trace(flag); // output : true		 
+ * var flag = this.gfnIsLeapYear(2016);
+ * trace(flag); // output : true
+ * var value = this.Dataset.getColumn(0, "yyyyMMdd"); // yyyyMMdd 컬럼타입은 DATE. 
+ * var flag = this.gfnIsLeapYear(value);
+ * trace(flag); // output : true		 
+ * @memberOf this
+ */
+this.gfnIsLeapYear = function(value)
+{ 
+	var result;
+	var year;
+	
+	if( this.gfnIsEmpty(value) ) {
+		return false;
+		
+	} else if ( this.gfnIsString(value) ) {
+		year = parseInt(value.substring(0,4), 10);
+	
+	} else if ( this.gfnIsNumber(value) ) {
+		year = value;
+	
+	} //dataset의 컬럼타입이 DATE인 경우 처리.
+	else if(value instanceof nexacro.Date) {
+		value = value.toString();
+		
+		if(this.gfnIsEmpty(value)) {
+			return false;
+		}
+		
+		year = parseInt(value.substring(0,4), 10);
+		
+	} else if( this.gfnIsDate(value) ) {
+		
+		year = value.getFullYear();
+	}
+
+	
+	if ((year % 4) == 0) 
+	{
+		if ((year % 100) != 0 || (year % 400) == 0){
+			result = true;
+		} 
+		else 
+		{
+			result = false;
+		}
+	} 
+	else 
+	{
+		result = false;
+	}
+	
+	return result;
+}
+
+/**
+ * 양/음력 변환시 입력값에서 year, month, day값을 추출 후 object로 반환한다.
+ * @param {string | date} value Date object 또는 yyyyMMdd 형태의 음력일자.
+ * @return {object} {"year": year, "month": month, "day": day}.
+ * @private
+ * @memberOf this
+ */		    
+this._getYearMonthDay = function (value) {
+	var year, month, day;
+	if ( this.gfnIsDate(value) ) {
+		year = value.getFullYear();
+		month = value.getMonth() + 1;
+		day = value.getDate();
+		
+	} else if(this.gfnIsString(value)) {
+		year = parseInt(value.substr(0,4), 10);
+		month = parseInt(value.substr(4,2), 10);
+		day = parseInt(value.substr(6,2), 10);
+		
+	} else { 
+		trace("invalid data type.");
+		return; 
+	}
+
+
+	return {"year": year, "month": month, "day": day};
+}
+
+/**
+ * 양력을 음력으로 변환해주는 함수.<br>
+ * [주의사항]<br>
+ *  1. return값이 8자리가 아니고 9자리임에 주의<br>
+ *  2. 처리가능 기간  1900 - 2040년<br>
+ *  ※ 아래 해에는 윤달이 중국과 베트남이 우리와 다름.<br>
+ *     2012년: 대한민국:3, 중국: 4, 베트남: 4
+ *     2017년: 대한민국:5, 중국: 6, 베트남: 6
+ * @param {string | date} value yyyyMMdd 형태의 양력일자.
+ * @return {string | undefined} Flag(평달 = "0", 윤달 = "1") + yyyyMMdd 형태의 음력일자. 실패시 undefined.
+ * @example
+ * var dt = this.gfnStrToDate("20130331");
+ * var str = this.gfnSolarToLunar(dt);
+ * trace(str); // output : 020130220
+ * var str1 = "20130331";
+ * var str = this.gfnSolarToLunar(str1);
+ * trace(str); // output : 020130220
+ * @memberOf this
+ */		
+this.gfnSolarToLunar = function (value) {
+	var year, month, day;
+	var dateInfo = this._getYearMonthDay(value);
+	if(this.gfnIsEmpty(dateInfo)) { return; }
+	
+	year  =  dateInfo.year;
+	month =  dateInfo.month;
+	day   =  dateInfo.day;
+	
+	if ( this.gfnIsDate(value) ) {
+		year = value.getFullYear();
+		month = value.getMonth() + 1;
+		day = value.getDate();
+		
+	} else if(this.gfnIsString(value)) {
+		year = parseInt(value.substr(0,4), 10);
+		month = parseInt(value.substr(4,2), 10);
+		day = parseInt(value.substr(6,2), 10);
+		
+	} else { 
+		trace("invalid data type.");
+		return; 
+	}		
+
+	var date = this._lunarSolarConverter(year, month, day, 1);
+	
+	if(this.gfnIsEmpty(date)) {
+		return;
+	}			
+	
+	var resultStr = "" + date.leapMonth + date.year + String(date.month).padLeft(2, "0") + String(date.day).padLeft(2, "0");
+	
+	return resultStr;
+}
+
+/**
+ * 음력을 양력으로 변환.
+ * @param {string | date} value Date object 또는 yyyyMMdd 형태의 음력일자.
+ * @param {boolean} leapMonth 윤달 여부.
+ * @return {string | undefined} yyyyMMdd 형태의 양력일자. 실패시 undefined.
+ * @example
+ * var dt = this.gfnStrToDate("20120331");
+ * var str = this.gfnLunarToSolar(dt, false);
+ * trace(str); // output : undefined <-- 정상적인 값이 아닐 때는 alert 표시됨.
+ * 
+ * var dt = this.gfnStrToDate("20120201");
+ * var str = this.gfnLunarToSolar(dt, false);
+ * trace(str); // output : 20160309
+ * 
+ * @memberOf this
+ */				 
+this.gfnLunarToSolar = function (value, leapMonth) {
+	var year, month, day;
+	var dateInfo = this._getYearMonthDay(value);
+	if(this.gfnIsEmpty(dateInfo)) { return; }
+	
+	year  =  dateInfo.year;
+	month =  dateInfo.month;
+	day   =  dateInfo.day;	
+
+	leapMonth = (leapMonth)? 1 : 0;
+	var date = this._lunarSolarConverter(year, month, day, 2, leapMonth);
+
+	if(this.gfnIsEmpty(date)) {
+		return;
+	}			
+	
+	var resultStr = "" + date.year + String(date.month).padLeft(2, "0") + String(date.day).padLeft(2, "0");
+	
+	return resultStr;		
+}
+
+/**
+ * 양/음력 변환 private 함수.
+ * @private
+ * @param {number} year yyyy 형태의 연도.
+ * @param {number} month MM 형태의 월.
+ * @param {number} day dd 형태의 일.
+ * @param {number} type 1:음력으로 반환, 2:양력으로 반환.
+ * @param {number} leapmonth 0:평달, 1:윤달
+ * @return {object | undefined} 실패시 undefined.
+ * @memberOf this
+ */		 		
+this._lunarSolarConverter = function (year, month, day, type, leapmonth) {
+
+	var solYear, solMonth, solDay;
+	var lunYear, lunMonth, lunDay;
+	var lunLeapMonth, lunMonthDay;    
+	var i, lunIndex;
+
+	var solMonthDay = [31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+	/* range check */
+	if (year < 1900 || year > 2040)
+	{
+		alert('1900년부터 2040년까지만 지원합니다');
+		return;
+	}
+
+	/* 속도 개선을 위해 기준 일자를 여러개로 한다 */
+	if (year >= 2000)
+	{
+		/* 기준일자 양력 2000년 1월 1일 (음력 1999년 11월 25일) */
+		solYear = 2000;
+		solMonth = 1;
+		solDay = 1;
+		lunYear = 1999;
+		lunMonth = 11;
+		lunDay = 25;
+		lunLeapMonth = 0;
+
+		solMonthDay[1] = 29;    /* 2000 년 2월 28일 */
+		lunMonthDay = 30;    /* 1999년 11월 */
+	}
+	else if (year >= 1970)
+	{
+		/* 기준일자 양력 1970년 1월 1일 (음력 1969년 11월 24일) */
+		solYear = 1970;
+		solMonth = 1;
+		solDay = 1;
+		lunYear = 1969;
+		lunMonth = 11;
+		lunDay = 24;
+		lunLeapMonth = 0;
+
+		solMonthDay[1] = 28;    /* 1970 년 2월 28일 */
+		lunMonthDay = 30;    /* 1969년 11월 */
+	}
+	else if (year >= 1940)
+	{
+		/* 기준일자 양력 1940년 1월 1일 (음력 1939년 11월 22일) */
+		solYear = 1940;
+		solMonth = 1;
+		solDay = 1;
+		lunYear = 1939;
+		lunMonth = 11;
+		lunDay = 22;
+		lunLeapMonth = 0;
+
+		solMonthDay[1] = 29;    /* 1940 년 2월 28일 */
+		lunMonthDay = 29;    /* 1939년 11월 */
+	}
+	else
+	{
+		/* 기준일자 양력 1900년 1월 1일 (음력 1899년 12월 1일) */
+		solYear = 1900;
+		solMonth = 1;
+		solDay = 1;
+		lunYear = 1899;
+		lunMonth = 12;
+		lunDay = 1;
+		lunLeapMonth = 0;
+
+		solMonthDay[1] = 28;    /* 1900 년 2월 28일 */
+		lunMonthDay = 30;    /* 1899년 12월 */
+	}
+
+	lunIndex = lunYear - 1899;
+
+	while (true)
+	{
+		if (type == 1 &&
+			year == solYear &&
+			month == solMonth &&
+			day == solDay)
+		{
+			return {"year": lunYear, "month": lunMonth, "day": lunDay, "leapMonth": lunLeapMonth};
+		}    
+		else if (type == 2 &&
+				year == lunYear &&
+				month == lunMonth &&
+				day == lunDay && 
+				leapmonth == lunLeapMonth)
+		{
+			return {"year": solYear, "month": solMonth, "day": solDay, "leapMonth": 0};
+		}
+
+		/* add a day of solar calendar */
+		if (solMonth == 12 && solDay == 31)
+		{
+			solYear++;
+			solMonth = 1;
+			solDay = 1;
+
+			/* set monthDay of Feb */
+			if (solYear % 400 == 0)
+				solMonthDay[1] = 29;
+			else if (solYear % 100 == 0)
+				solMonthDay[1] = 28;
+			else if (solYear % 4 == 0)
+				solMonthDay[1] = 29;
+			else
+				solMonthDay[1] = 28;
+
+		}
+		else if (solMonthDay[solMonth - 1] == solDay)
+		{
+			solMonth++;
+			solDay = 1;    
+		}
+		else {
+			solDay++;
+		}
+
+
+		/* add a day of lunar calendar */
+		if (lunMonth == 12 &&
+			((this.lunarMonthTable[lunIndex][lunMonth - 1] == 1 && lunDay == 29) ||
+			(this.lunarMonthTable[lunIndex][lunMonth - 1] == 2 && lunDay == 30)))
+		{
+			lunYear++;
+			lunMonth = 1;
+			lunDay = 1;
+
+			lunIndex = lunYear - 1899;
+			
+			if(lunIndex > 144) {
+				alert("날짜 범위를 벗어났습니다.");
+				return;
+			}					
+
+			if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 1)
+				lunMonthDay = 29;
+			else if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 2)
+				lunMonthDay = 30;
+		}
+		else if (lunDay == lunMonthDay)
+		{
+			if (this.lunarMonthTable[lunIndex][lunMonth - 1] >= 3
+				&& lunLeapMonth == 0)
+			{
+				lunDay = 1;
+				lunLeapMonth = 1;
+			}
+			else
+			{
+				lunMonth++;
+				lunDay = 1;
+				lunLeapMonth = 0;
+			}
+
+			if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 1)
+				lunMonthDay = 29;
+			else if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 2)
+				lunMonthDay = 30;
+			else if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 3)
+				lunMonthDay = 29;
+			else if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 4 &&
+					lunLeapMonth == 0)
+				lunMonthDay = 29;
+			else if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 4 &&
+					lunLeapMonth == 1)
+				lunMonthDay = 30;
+			else if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 5 &&
+					lunLeapMonth == 0)
+				lunMonthDay = 30;
+			else if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 5 &&
+					lunLeapMonth == 1)
+					lunMonthDay = 29;
+			else if (this.lunarMonthTable[lunIndex][lunMonth - 1] == 6)
+				lunMonthDay = 30;
+		}
+		else
+			lunDay++;
+	}
+}
+
+/**
+ * 전달된 月의 1일 만들기.
+ * @param {string | date} value Date object 또는 yyyyMMdd 형태의 일자.
+ * @return {string} yyyyMM01.
+ * @example
+ * var dt = this.gfnStrToDate("20120331");
+ * var dt1 = this.gfnGetFirstDate(dt);
+ * trace(dt1); // output : Thu Mar 01 2012 00:00:00 GMT+0900
+ * var str1 = "20120331";
+ * var str = this.gfnGetFirstDate(str1);
+ * trace(str); // output : 20120301
+ * @memberOf this
+ */			 
+this.gfnGetFirstDate = function(value)
+{
+	if ( this.gfnIsDate(value) )
+	{
+		var dt = new Date();
+		dt.setFullYear(value.getFullYear(), value.getMonth(), 1);
+		dt.setHours(value.getHours(), value.getMinutes(), value.getSeconds());
+		dt.setMilliseconds(value.getMilliseconds());
+		return dt;
+	}
+	else
+	{
+		var sRtn = "";
+		var dDate = new Date(parseInt(value.substr(0,4)), parseInt(value.substr(4,2))-1, 1);
+		sRtn =  dDate.getFullYear()
+			 + (dDate.getMonth()+1).toString().padLeft(2, "0")
+			 +  dDate.getDate().toString().padLeft(2, "0");
+
+		return sRtn;
+	}
+}
+
+/**
+ * 날짜 차이 반환.
+ * @param {string} date1 yyyyMMddHHMMSS 형태의 일자.
+ * @param {string} date2 yyyyMMddHHMMSS 형태의 일자.
+ * @return {array} 두 날짜의 기간.[일,시,분,초]
+ * @example
+ * var dt0 = this.gfnStrToDate("20130302113022");
+ * var dt1 = this.gfnStrToDate("20130305145032");
+ * var etime = this.gfnGetDiffTime(dt0, dt1); // return Array Type [일, 시, 분, 초]
+ * trace(etime); // output : 3,3,20,10
+ * var str0 = "20130302113022";
+ * var str1 = "20130305145032";
+ * var etime = this.gfnGetDiffTime(str0, str1); // return Array Type [일, 시, 분, 초]
+ * trace(etime); // output : 3,3,20,10
+ * @memberOf this
+ */		 
+this.gfnGetDiffTime = function(date1, date2)
+{
+	var dFrom, dTo;
+	if ( this.gfnIsDate(date1) && this.gfnIsDate(date2) )
+	{
+		dFrom = date2;
+		dTo = date1;
+	}
+	else
+	{
+		dFrom = new Date(date2.substring(0,4),  date2.substring(4,6)-1, date2.substring(6,8)
+						,date2.substring(8,10), date2.substring(10,12), date2.substring(12,14));
+		dTo   = new Date(date1.substring(0,4),  date1.substring(4,6)-1, date1.substring(6,8)
+						,date1.substring(8,10), date1.substring(10,12), date1.substring(12,14));    
+	}
+	var nGap  = (dFrom.getTime() - dTo.getTime()) / 1000; 
+	var nSec  = nGap % 60; 
+	var nMin  = Math.floor(nGap/(60)) % 60; 
+	var nHour = Math.floor(nGap/(60 * 60)) % 24; 
+	var nDay  = Math.floor(nGap/(60 * 60 * 24)); 
+		
+	var sRtn = nDay + "" + nHour  + "" + nMin + "" + nSec+ ""; 
+	return [nDay, nHour, nMin, nSec];
+}
+
+/**
+ * mask format 변환 정보 반환.
+ * @private
+ * @param {string} strMask mask할 format 문자열.
+ * @return {array} mask format 변환 정보.
+ * @memberOf this
+ */		
+this._parseDateMask = function(strMask)
+{
+	var pThis = this;
+	
+	var res = pThis._dateMaskCache[strMask];
+	if ( res ) return res;
+
+	var arrMask = [], tokenStr, seq = 0,
+		bEscape = false, bQuote = false,
+		maskArr = strMask.split(""),
+		tmpStr;
+
+	for ( var i = 0, len = maskArr.length ; i < len ; )
+	{
+		tokenStr = maskArr[i];
+		//trace(i + "===>" + tokenStr);
+		if( bEscape == false && tokenStr == "'" ) 
+		{ // Mask가 Quotation이 시작될 경우.
+			if( bQuote == false )
+				bQuote = true;
+			else
+				bQuote = false;
+			i++;
+			continue;
+		}
+		if( bEscape == false && tokenStr == "\\" && !bQuote ) 
+		{ // Mask에서 Escape에 진입할 경우.
+			bEscape = true;
+			i++;
+			continue;
+		}
+		else if ( bEscape ) 
+		{ // Mask에서 Escape를 사용할 경우.
+			//trace(i + "(EEE)===>" + tokenStr);
+			arrMask[seq] = i;
+			seq++;
+			bEscape = false;
+		}
+		else if( bQuote == false ) 
+		{// Mask에서 Quotation 밖의 글자에 대해.
+			tmpStr = strMask.substr(i, 4);
+			if ( tmpStr == "yyyy" || tmpStr == "MMMM" || tmpStr == "dddd" ) //yyyy, MMMM, dddd
+			{
+				arrMask[seq] = tmpStr;
+				i += 4;
+				seq++;
+				continue;
+			}
+			tmpStr = strMask.substr(i, 3);
+			if ( tmpStr == "MMM" || tmpStr == "ddd" || tmpStr == "sss" ) //MMM, ddd, sss
+			{
+				arrMask[seq] = tmpStr;
+				i += 3;
+				seq++;
+				continue;
+			}
+			tmpStr = strMask.substr(i, 2);
+			if ( tmpStr == "yy" || tmpStr == "MM" || tmpStr == "dd" ||
+				 tmpStr == "HH" || tmpStr == "mm" || tmpStr == "ss" ||
+				 tmpStr == "hh" || tmpStr == "tt" || tmpStr == "tt" ) // yy, MM, dd, HH, mm , ss, tt, WW
+			{
+				arrMask[seq] = tmpStr;
+				i += 2;
+				seq++;
+				continue;
+			}
+
+			if ( tokenStr == "M" || tokenStr == "d" || tokenStr == "H" ||
+				 tokenStr == "h" || tokenStr == "m" || tokenStr == "s" || tokenStr == "W" ) // M, d, H, h, m, s, W
+			{
+				arrMask[seq] = tokenStr;
+				seq++;
+			}
+			else
+			{
+				arrMask[seq] = i;
+				seq++;
+			}
+		}
+		i++;
+	}
+	
+	pThis._dateMaskCache[strMask] = arrMask;
+	
+	return arrMask;
+}
+
+/**
+ * 주어진 날짜 객체의 Mask Format 처리된 문자열을 반환.<br>
+ * 요일명칭, 월 명칭, 오전/오후 명칭 표시 처리는 this에 정의된 값으로 처리된다.<br><br>
+ * this.weekName : 요일명칭(Array value), <br>
+ * this.weekShortName : 요일축약명칭(Array value),<br>
+ * this.monthName : 월명칭(Array value),<br>
+ * this.monthShortName : 월축약 명칭(Array value),<br>
+ * this.ttName : 오전/오후 명칭(Array value)
+ * @param {date} dt Date 개체.
+ * @param {string} strMask mask할 format 문자열.
+ * @return {string} 변환된 문자열.
+ * @example
+ * var dt = this.gfnStrToDate("20130430123412"); // convert Date type from "20130430123412".
+ * trace(this.gfnGetMaskFormatDateToString(dt, "yyyy년 MM월 dd일 tt hh시 mm분 ss초")); // output : 2013년 04월 30일 오후 12시 34분 12초
+ * trace(this.gfnGetMaskFormatDateToString(dt, "yyyy-MM-dd")); // output : 2013-04-30
+ * trace(this.gfnGetMaskFormatDateToString(dt, "yy MM.dd")); // output : 13 04.30
+ * trace(this.gfnGetMaskFormatDateToString(dt, "yyyy-MM-dd W \\Week")); // output : 2013-04-30 18 Week
+ * trace(this.gfnGetMaskFormatDateToString(dt, "MMMM dddd")); // output : 4월 화요일
+ * @memberOf this
+ */
+this.gfnGetMaskFormatDateToString = function(dt, strMask)
+{
+	var arrMask = this._parseDateMask(strMask),
+		arrDt = [], mask, h;
+	for ( var i = 0, len = arrMask.length; i < len ; i++ )
+	{
+		mask = arrMask[i];
+		if ( mask > -1 )
+		{
+			arrDt[arrDt.length] = strMask.charAt(mask);
+		}
+		else
+		{
+			switch (mask)
+			{
+				case "yyyy": arrDt[arrDt.length] = new String(dt.getFullYear()); break;
+				case "MMMM": arrDt[arrDt.length] = this.monthName[dt.getMonth()]; break;
+				case "dddd": arrDt[arrDt.length] = this.weekName[dt.getDay()]; break;
+				case "MMM": arrDt[arrDt.length] = this.monthShortName[dt.getMonth()]; break;
+				case "ddd": arrDt[arrDt.length] = this.weekShortName[dt.getDay()]; break;
+				case "sss": arrDt[arrDt.length] = new String(dt.getMilliseconds()).padLeft(3,'0'); break;
+				case "yy": arrDt[arrDt.length] = new String(dt.getFullYear() % 1000).padLeft(2,'0'); break;
+				case "MM": arrDt[arrDt.length] = new String(dt.getMonth() + 1).padLeft(2,'0'); break;
+				case "WW": arrDt[arrDt.length] = new String(this.gfnGetWeekOfYear(dt)).padLeft(2,'0'); break;
+				case "dd": arrDt[arrDt.length] = new String(dt.getDate()).padLeft(2,'0'); break;
+				case "HH": arrDt[arrDt.length] = new String(dt.getHours()).padLeft(2,'0'); break;
+				case "hh": arrDt[arrDt.length] = new String(((h = dt.getHours() % 12) ? h : 12)).padLeft(2,'0'); break;
+				case "mm": arrDt[arrDt.length] = new String(dt.getMinutes()).padLeft(2,'0'); break;
+				case "ss": arrDt[arrDt.length] = new String(dt.getSeconds()).padLeft(2,'0'); break;
+				case "tt": arrDt[arrDt.length] = dt.getHours() < 12 ? this.ttName[0] : this.ttName[1]; break;
+				case "M": arrDt[arrDt.length] = new String(dt.getMonth() + 1); break;
+				case "d": arrDt[arrDt.length] = new String(dt.getDate()); break;
+				case "H": arrDt[arrDt.length] = new String(dt.getHours()); break;
+				case "h": arrDt[arrDt.length] = new String(((h = dt.getHours() % 12) ? h : 12)); break;
+				case "m": arrDt[arrDt.length] = new String(dt.getMinutes()); break;
+				case "s": arrDt[arrDt.length] = new String(dt.getSeconds()); break;
+				case "W": arrDt[arrDt.length] = new String(this.gfnGetWeekOfYear(dt)); break;
+			}
+		}
+	}
+	return arrDt.join("");
+}]]></Script>
