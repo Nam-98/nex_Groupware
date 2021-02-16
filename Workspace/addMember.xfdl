@@ -36,7 +36,7 @@
         <Edit id="editZip" taborder="13" left="104" top="286" width="106" height="22" onchanged="Edit00_01_onchanged"/>
         <Static id="Static01_01_02" text="zip_code" left="31" top="286" width="69" height="14" onclick="Static01_onclick"/>
         <Static id="Static01_00_00_00" taborder="15" text="결혼여부" left="326" top="60" width="69" height="28" onclick="Static01_onclick"/>
-        <Radio id="radioMarried" taborder="16" left="399" top="53" width="280" height="35" onitemchanged="Radio00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
+        <Radio id="radioMarried" taborder="16" left="399" top="53" width="280" height="35" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
