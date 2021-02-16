@@ -2,26 +2,36 @@
 <ADL version="2.0">
   <Application id="Application_Desktop" screenid="Desktop_screen" onload="Application_onload">
     <Layout>
-      <MainFrame id="mainframe" showtitlebar="true" width="1280" height="720" titletext="STJ그룹웨어" statustext="STJ그룹웨어" border="1px solid #1c2124" layered="false" statusbarheight="23" showstatusbar="true">
-        <HFrameSet id="HFrameSet00" separatesize="284,*">
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="false" width="1280" height="720" titletext="nexacro platform demo" showcascadetitletext="false" layered="true">
+        <VFrameSet id="VFrameSet" separatesize="*,0,0" showtitlebar="false">
           <Frames>
-            <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" width="160" height="633"/>
-            <VFrameSet id="VFrameSet00" separatesize="30,*,0">
+            <ChildFrame id="Main" formurl="Workspace::mainpage.xfdl" showtitlebar="false" dragmovetype="none"/>
+            <ChildFrame id="Top" showtitlebar="false" showstatusbar="false" dragmovetype="none"/>
+            <HFrameSet id="HFrameSet" separatesize="294,*" showtitlebar="false">
               <Frames>
-                <ChildFrame id="ChildFrame00" formurl="FrameBase::Form_MDI.xfdl" width="862" height="30" showtitlebar="false"/>
-                <ChildFrame id="MainForm" formurl="" showtitlebar="false" background="url('theme://images/img_WF_workLogo.png') no-repeat center center" dragmovetype="none"/>
-                <FrameSet id="FrameSet00"/>
+                <ChildFrame id="Left" formurl="FrameBase::Form_Left.xfdl" showtitlebar="false" dragmovetype="none"/>
+                <VFrameSet id="VFrameSet00" showtitlebar="false" separatesize="34,*">
+                  <Frames>
+                    <ChildFrame id="Tab" formurl="FrameBase::Form_MDI.xfdl" showtitlebar="false" dragmovetype="none"/>
+                    <FrameSet id="Work" background="url('theme://images/img_WF_workLogo.png') no-repeat center center">
+                      <Frames/>
+                    </FrameSet>
+                  </Frames>
+                </VFrameSet>
               </Frames>
-            </VFrameSet>
+            </HFrameSet>
           </Frames>
-        </HFrameSet>
+        </VFrameSet>
       </MainFrame>
     </Layout>
+    <Style url="xcssrc::NxPivot.xcss"/>
+    <Style url="xcssrc::component.xcss"/>
+    <Style url="xcssrc::grid.xcss"/>
   </Application>
   <Script type="xscript5.1"><![CDATA[this.av_fsWork = "";
 this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
 {
-	this.av_fsWork = this.mainframe.HFrameSet00.VFrameSet00.FrameSet00;
+	this.av_fsWork = this.mainframe.VFrameSet.HFrameSet.VFrameSet00.Work;
 	trace(this.av_fsWork);
 };
 ]]></Script>
