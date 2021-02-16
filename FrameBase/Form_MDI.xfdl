@@ -14,7 +14,6 @@
             </Tabpage>
           </Tabpages>
         </Tab>
-        <Button id="btn_cascade" taborder="1" left="tab_mdi:-1" top="0" width="2.67%" bottom="0" background="url('theme://images/btn_MDI_Min.png') no-repeat center center" border="0px none" onclick="btn_cascade_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.fn_addTab = function (pFormId,pMenuNm)

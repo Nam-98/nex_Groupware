@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="approval_category" width="980" height="790" titletext="New Form" onload="Approval_category_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="sta_title_grd" taborder="0" text="전자결재 문서종류" usedecorate="true" cssclass="sta_WF_title01" left="5" top="10" width="270" height="23" wordWrap="english"/>
+        <Static id="sta_wid" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="sta_wid00" taborder="2" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
+        <Static id="sta_higt" taborder="3" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Grid id="grd_appType" taborder="4" left="sta_wid00:0" top="71" width="270" binddataset="ds_approval_type" autofittype="col" oncellclick="grd_appType_oncellclick" bottom="sta_higt:0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="문서명"/>
+                <Cell col="1" text="코드"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:app_type_name" textAlign="center" edittype="none" displaytype="normal"/>
+                <Cell col="1" text="bind:app_type_code"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta_wid00_00" taborder="5" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="grd_appType:0"/>
+        <Static id="sta_title_name" taborder="6" text="문서명" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00_00:0" top="38" width="100" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
+        <Edit id="edt_app_type_name" taborder="7" left="sta_title_name:0" top="38" width="300" height="23" canchange="edt_app_type_name_onchanged"/>
+        <WebBrowser id="wb_summernote" taborder="8" left="sta_wid00_00:0" top="edt_app_type_name:10" right="sta_wid:0" bottom="sta_higt:0" onloadcompleted="wb_summernote_onloadcompleted" url="url"/>
+        <Button id="btn_template_save" taborder="9" top="38" height="23" cssclass="btn_WF_delete" width="80" left="edt_app_type_name:10" text="템플릿 저장" onclick="btn_template_save_onclick"/>
+        <Button id="btn_add" taborder="10" text="문서 추가" top="sta_title_grd:10" height="23" cssclass="btn_WF_add" width="75" onclick="btn_add_onclick" left="sta_wid00:5"/>
+        <Button id="btn_save" taborder="11" text="변경사항 저장" top="sta_title_grd:10" height="23" cssclass="btn_WF_add" width="100" left="btn_add:5" onclick="btn_save_onclick"/>
+        <Button id="btn_del" taborder="12" text="문서 삭제" top="sta_title_grd:10" height="23" cssclass="btn_WF_delete" width="75" left="btn_save:5" onclick="btn_del_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_approval_type">
+        <ColumnInfo>
+          <Column id="app_type_code" type="INT" size="256"/>
+          <Column id="app_type_name" type="STRING" size="256"/>
+          <Column id="app_type_template" type="STRING" size="50000"/>
+          <Column id="nx_status" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="app_type_code">0</Col>
+            <Col id="app_type_name">기안서</Col>
+          </Row>
+          <Row>
+            <Col id="app_type_code">1</Col>
+            <Col id="app_type_name">지출결의서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_approval_type_deleted">
+        <ColumnInfo>
+          <Column id="app_type_code" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.selectedRowInx = '';//grd의 cell 선택시 해당 row의 index값을 저장할 변수
+
+this.Approval_category_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//ds_approval_type에 데이터 넣기
+	this.transaction(
+		"nxAppTypeLoad", //transaction id
+		"/nex/nxAppTypeLoad.nexacro", //url(to controller)
+		"", // in data set
+		"ds_approval_type=ds_out", // out data set
+		"", // variable send
+		"fn_callback" //callback function
+	);
+
+	
+	//웹 브라우저에 url세팅, service(Server::)를 이용하지 않고 세팅한다. 
+	var domain = document.location.href;
+    var arrdomain = domain.split('/');
+    var currentfile = arrdomain.pop();
+    domain = domain.replace(currentfile, "nxToSummernote.nexacro")
+	trace("domain : "+domain);
+    this.wb_summernote.set_url(domain);
+
+};
+
+this.fn_callback  =  function(strSvcID, nErrorCode, strErrorMag)
+{
+	trace("callback된 transaction명 : "+strSvcID);
+	trace("ErrorCode : "+nErrorCode);
+	trace("에러 메세지 : "+strErrorMag);
+};
+
+this.grd_appType_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//변수에 선택된 row의 index값 저장
+	this.selectedRowInx = e.row;
+	//grid에 연결된 column을 눌렀을 때
+	var code = this.ds_approval_type.getColumn(e.row,0);
+	var name = this.ds_approval_type.getColumn(e.row,1);
+	var template = this.ds_approval_type.getColumn(e.row,2);
+
+	trace("code : "+code+" and "+"name : "+name);
+	
+	//summernote에 가져온 template을 넣는다.
+	this.wb_summernote.getProperty('window').callMethod("setContents",template);
+	
+	//edt_title부분에 name값을 bind해준다.
+	this.edt_app_type_name.set_value(name);
+};
+
+//ds에 row추가
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var bindDs = this.ds_approval_type;
+	var rInx = this.ds_approval_type.addRow();
+	var befCode = bindDs.getColumn((rInx-1),0);
+	bindDs.setColumn(rInx,0,befCode+1);//code설정
+	bindDs.setColumn(rInx,1,"새로운 결재문서");//default이름 설정
+	bindDs.setColumn(rInx,3,"insert");//status 설정
+	this.selectedRowInx = bindDs.getRowCount()-1;
+};
+
+//문서명 변경
+this.edt_app_type_name_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	trace("문서명 변경 이벤트에 들어옴");
+	var bindDs = this.ds_approval_type;
+	bindDs.setColumn(this.selectedRowInx, 1, obj.value);
+
+	//insert라면 update라는 표식을 넣지 않는다.
+	if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
+};
+
+//template변경사항 저장
+this.btn_template_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//summernote에 작성한 내용을 가지고 온다
+	var contents = this.wb_summernote.getProperty('window').callMethod("getContents");
+	//ds에 template변경사항을 반영한다.
+	var bindDs = this.ds_approval_type;
+	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+	var result = bindDs.setColumn(this.selectedRowInx, 2, contents);
+	
+	//insert라면 update라는 표식을 넣지 않는다.
+	if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
+	if(result){alert(name+" 문서의 template을 저장하였습니다.");}
+};
+
+//문서 삭제
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//삭제할 column의 code값 들고 옴
+	var code = this.ds_approval_type.getColumn(this.selectedRowInx,0);
+	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+	var ans = this.confirm(name+" 양식을 삭제하시겠습니까?");
+	if(ans){
+		var bindDs = this.ds_approval_type;
+		//delete전용 dataSet에 내용 저장
+		var delInx = this.ds_approval_type_deleted.addRow();
+		this.ds_approval_type_deleted.setColumn(delInx,0,code);//삭제전용 ds에 추가
+		
+		//삭제
+		bindDs.deleteRow(this.selectedRowInx);
+		
+		//삭제된 row에 focus준것을 삭제함
+		this.selectedRowInx = '';
+	}
+
+};
+
+//문서 변경사항 저장
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var ans = confirm("문서 변경사항을 저장하시겠습니까?");
+	if(ans){
+		this.transaction(
+			"nxAppTypeUpdate", //transaction id
+			"/nex/nxAppTypeUpdate.nexacro", //url(to controller)
+			"ds_in=ds_approval_type:U ds_del=ds_approval_type_deleted:A", // in data set
+			"", // out data set
+			"", // variable send
+			"fn_save_callback" //callback function
+		);
+	}
+};
+
+//문서 변경사항 저장 callback
+this.fn_save_callback  =  function(strSvcID, nErrorCode, strErrorMag)
+{
+	trace("callback된 transaction명 : "+strSvcID);
+	trace("ErrorCode : "+nErrorCode);
+	trace("에러 메세지 : "+strErrorMag);
+	if(nErrorCode>-1){
+		alert("정상적으로 저장되었습니다.");
+	}else{
+		alert("저장하지 못하였습니다. 관리자에게 문의 바랍니다. 에러코드 : "+nErrorCode);
+	}
+	this.reload();//화면 재구성
+};
+]]></Script>
+  </Form>
+</FDL>
