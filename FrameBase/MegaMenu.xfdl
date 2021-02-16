@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MegaMenu" width="1280" height="560" titletext="New Form" onload="form_onload">
+    <Layouts>
+      <Layout height="560" width="1280">
+        <Static id="Static02" taborder="0" left="0" top="80" bottom="0" right="0" cssclass="sta_megaMenu_bg"/>
+        <Static id="Static00" taborder="1" left="0" top="0" height="80" cssclass="sta_megaMenu_head" right="0"/>
+        <Static id="staTopMenuSample" taborder="2" text="Grid Component" left="36" top="0" width="194" height="80" visible="false" cssclass="sta_WF_navTitle" onsetfocus="staTopMenuSample_onsetfocus" onmouseenter="staTopMenuSample_onmouseenter" onmouseleave="staTopMenuSample_onmouseleave"/>
+        <Static id="staMenuSample" taborder="3" text="다양한 그리드 기능" left="36" top="105" width="339" height="31" visible="false" cssclass="sta_WF_navText"/>
+        <Static id="Static01" taborder="4" text="Static01" left="0" top="80" height="1" background="#e6e6e6" right="0" visible="false"/>
+        <Button id="btnClosePopup" taborder="5" top="27" width="24" height="24" right="20" cssclass="btn_WF_navClose" onclick="btnClosePopup_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsMenu"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	var objMenuDs = objApp.gds_menuAll;
+	this.dsMenu.copyData(objApp.gds_menuAll,true);
+	objMenuDs.filter("");
+	this.fnDrawMenu();
+};
+
+/**
+ * @description 화면사이즈가 변경될 때 메뉴 크기를 조정해준다.
+*/
+this.MegaMenu_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.fnDrawMenu();
+};
+
+/**
+ * @description 화면사이즈가 변경될 때 메뉴 크기를 조정해준다.
+*/
+this.MegaMenu_onhscroll = function(obj:nexacro.Form,e:nexacro.ScrollEventInfo)
+{
+	this.btnClosePopup.setOffset(this.btnClosePopup.getOffsetLeft() + e.pos);
+};
+
+this.fnDrawMenu = function()
+{
+	if(this.dsMenu.rowcount < 1) return;
+	
+	//1.레벨0이 세로 한줄
+	var columnCnt = this.dsMenu.getCaseCount("MENU_LEVEL=='0'");
+	var dsCnt = this.dsMenu.rowcount;
+	var menuId = "";
+	
+	//동적으로 Static을 구한다.
+	var objStatic;
+	var nLeft = 36;
+	var nTop = 24;
+	var nHeight = 30;
+	var nGap = 15;
+	var nWidth;//동적으로 계산해서 변경해줌
+	
+	//화면 사이즈
+	var nScreenSize = this.getOffsetWidth();
+	
+	if(nScreenSize >  1500)
+	{
+		nScreenSize = 1500;
+	}
+	else if( nScreenSize < 1000)
+	{
+		//nScreenSize = 1000;
+	}
+	
+	//nWidth를 계산한다. pdiv넓이를 구해서 n등분, 화면이 좁아지면,,, 세로로 나열,, 가로줄 넣어줌...
+	nWidth = Math.floor((nScreenSize - 72)/columnCnt) - nGap ;//36*2 = 72가 여백, 10은 버튼간 간격
+		
+	for(var i = 0 ; i < dsCnt ; i++)
+	{
+		objId = "sta" + this.dsMenu.getColumn(i, "MENU_ID");
+		
+		if(this.dsMenu.getColumn(i,"MENU_LEVEL") == '0')//대메뉴
+		{
+			objId = "L_" + objId;
+			nTop = 0;
+			nHeight = 80;
+			if(i !=0 ) nLeft = nLeft + nWidth + nGap ;//10은 버튼 간격
+		}
+		else if(this.dsMenu.getColumn((i-1),"MENU_LEVEL") == '0')//leaf메뉴 첫번째
+		{
+			nTop = 105;
+			nHeight = 30;
+		}
+		else
+		{
+			nTop = nTop + nHeight;
+			nHeight = 30;
+		}
+		
+		objStatic = this.components[objId];
+		
+		//기존에 있으면 위치만 변경
+		if(objStatic)
+		{
+			objStatic.move(nLeft, nTop);
+			objStatic.set_width(nWidth);
+		}
+		else
+		{
+			//버튼생성
+			objStatic = new Static(objId, nLeft, nTop, nWidth, nHeight);  
+			objStatic.set_text(this.dsMenu.getColumn(i, "MENU_NAME"));
+			
+			if(this.dsMenu.getColumn(i,"MENU_LEVEL") == '0')
+			{
+				objStatic.set_cssclass(this.staTopMenuSample.cssclass);
+				objStatic.addEventHandler("onmouseenter",this.staTopMenuSample_onmouseenter, this);
+				objStatic.addEventHandler("onmouseleave",this.staTopMenuSample_onmouseleave, this);		
+			}
+			else
+			{
+				objStatic.set_cssclass(this.staMenuSample.cssclass);
+				objStatic.set_cursor("pointer");
+				objStatic.addEventHandler("onclick",this.btnMenu_onclick, this);
+			}
+			this.addChild(objId, objStatic); 
+			objStatic.show();
+		}
+		
+	}
+	
+	this.btnClosePopup.bringToFront();
+	this.resetScroll();
+}
+
+
+/**
+ * @description 메뉴버튼 클릭 : 해당 메뉴를 Open해준다.
+*/
+ this.btnMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+ {	
+ 	var menuId = String(obj.name).replace("sta","");
+ 	var type = "Mega";
+ 	
+	var sRtn = menuId;
+	nexacro.getApplication().trace(sRtn);
+	
+ 	if(this.close(sRtn))
+ 	{
+ 		this.gfnOpenMenu(menuId, type);
+		this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Work.form.fn_openForm2(e,obj,menuId);
+	}
+};
+
+/**
+ * @description 메가메뉴를 닫아준다.
+*/
+ this.btnClosePopup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+ {
+ 		this.close();
+ };
+
+
+/**
+ * @description 대메뉴에 포커스 없애줌
+*/
+this.staTopMenuSample_onmouseenter = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
+{
+	var staObj;//L_ 가 들어간..L_sta1000
+	
+	for(var objSta in this.components)
+	{
+		staObj = this.components[objSta];
+		if( String(staObj.name).indexOf("L_") == 0)
+		{
+			staObj.set_cssclass("sta_WF_navTitle");
+		}
+	}
+};
+
+/**
+ * @description 마지막 대메뉴 포커스 줌
+*/
+this.staTopMenuSample_onmouseleave = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
+{
+	obj.set_cssclass("sta_WF_navTitle_S");
+};
+]]></Script>
+  </Form>
+</FDL>
