@@ -31,7 +31,7 @@ this.form_Work_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
 {
 	var objApp = nexacro.getApplication();
 	var sID = this.getOwnerFrame().param.FORM_ID;
-	var objTab = objApp.mainframe.HFrameSet00.VFrameSet00.ChildFrame00;
+	var objTab = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Tab;
 	
 	//dataSet에서 삭제
 	var nRow = objApp.gds_openForm.findRow("FORM_ID",sID);
@@ -54,8 +54,8 @@ this.form_Work_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
 this.form_Work_onactivate = function(obj:nexacro.Form,e:nexacro.ActivateEventInfo)
 {
 		var objApp=nexacro.getApplication();
-		var objTab = objApp.mainframe.HFrameSet00.VFrameSet00.ChildFrame00;
-           
+		var objTab = objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Tab;
+
 		var nTabCnt=objTab.form.tab_mdi.getTabpageCount();
 		for(var i=0; i<nTabCnt; i++)
            {  //ACTIVATE된 FORM에 따라서 TAB INDEX 수정

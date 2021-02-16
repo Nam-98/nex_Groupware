@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Left" width="294" height="720" titletext="Form_Left" onload="Form_Left_onload">
+  <Form id="Form_Left" width="300" height="720" titletext="Form_Left" onload="Form_Left_onload">
     <Layouts>
-      <Layout width="294" height="720" screenid="Desktop_screen">
-        <Grid id="grd_left" taborder="0" left="0" top="12" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick" cssclass="grd_LF_TreeGrd" scrollbartype="default default" right="0" bottom="210">
+      <Layout width="300" height="720" screenid="Desktop_screen">
+        <Grid id="grd_left" taborder="0" left="0" top="121" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick" scrollbartype="default default" right="0" bottom="0" cssclass="grd_tree" treeusecheckbox="false">
           <Formats>
             <Format id="default">
               <Columns>
@@ -13,13 +13,16 @@
                 <Row size="24"/>
               </Rows>
               <Band id="body">
-                <Cell text="bind:MENU_NAME" displaytype="treeitemcontrol" edittype="tree" background="#293943" border="0px none,0px none,1px solid #546169,0px none" color="#f44528" font="normal 12px/normal &quot;Malgun Gothic&quot;" treelevel="bind:MENU_LEVEL"/>
+                <Cell text="bind:MENU_NAME" displaytype="treeitemcontrol" edittype="tree" color="#b7d5fe" font="normal 17px/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;" treelevel="bind:MENU_LEVEL" background="#09162B" border="0px"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_left_left" taborder="1" text="Button00" left="0" top="683" width="80" height="30"/>
-        <Button id="Button00" taborder="2" text="전체메뉴" left="80" top="683" width="80" height="30" onclick="Button00_onclick"/>
+        <ImageViewer id="ImageViewer00" taborder="1" left="0" top="0" width="300" height="80" image="url('imagerc::logo-dark.png')" onclick="ImageViewer00_onclick"/>
+        <Button id="btnMenu" taborder="2" left="0" top="81" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="MENU" width="150" height="40"/>
+        <Button id="btnFavorite" taborder="3" top="81" width="150" height="40" tabstop="false" onclick="btn_menu_onclick" cssclass="btn_LF_BookMark_D" text="" left="150"/>
+        <Button id="btnMenu00" taborder="4" width="150" height="40" cssclass="btn_LF_SelectMenu_D" tabstop="false" onclick="Button_onclick" text="MENU" visible="false" right="-170" bottom="680"/>
+        <Button id="btnFavorite00" taborder="5" top="0" width="150" height="40" tabstop="false" onclick="Button_onclick" right="-316" cssclass="btn_LF_BookMark_S" text="" visible="false"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
@@ -33,10 +36,13 @@ this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	nexacro.getApplication().gds_menuAll.filter("");
 };
+
 this.fn_openForm2 = function (e,obj)
 {
 	//home 화면에서 내가 띄울 창 열기 위해 vframe의 separatesize 조절
-	this.objApp.mainframe.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
+	this.objApp.mainframe.VFrameSet.set_separatesize("0,0,*");
+	this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.set_separatesize("30,*");
+	this.objApp.mainframe.VFrameSet.HFrameSet.set_separatesize("300,*");
 	
 	//child frame 생성에 필요한 인자들 준비
 	var ds = obj.getBindDataset();
@@ -85,7 +91,7 @@ this.fn_openForm2 = function (e,obj)
 	this.objApp.gds_openForm.setColumn(nRow,"FORM_URL", sUrl);
 	
 	//tab추가를 위해 다른 form에 있는 function 호출
-	this.objApp.mainframe.HFrameSet00.VFrameSet00.ChildFrame00.form.fn_addTab(sFormId,sMenuNm);
+	this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Tab.form.fn_addTab(sFormId,sMenuNm);
 };
 
 this.Form_Left_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -103,10 +109,27 @@ this.btn_myMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 
 this.btn_menu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.btn_menu.setSelectStatus(true);
-	this.btn_myMenu.setSelectStatus(false);
-	this.grd_left.set_formatid("default"); 
-	this.grd_left.set_binddataset("gds_menu");
+	switch(obj.name)
+	{
+		case "btnMenu":// btn_LF_SelectMenu, btn_LF_Select01
+			this.btnMenu.set_cssclass("btn_LF_SelectMenu_S");
+			this.btnFavorite.set_cssclass("btn_LF_BookMark_D");
+			this.divLeft.set_visible(true);
+			this.divFavorite.set_visible(false);
+			break;
+			
+		case "btnFavorite"://btn_LF_MenuBg,btn_LF_BookMark
+			this.btnMenu.set_cssclass("btn_LF_SelectMenu_D");
+			this.btnFavorite.set_cssclass("btn_LF_BookMark_S");
+			this.divLeft.set_visible(false);
+			this.divFavorite.set_visible(true);
+			break;
+	}
+};
+
+this.ImageViewer00_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.objApp.mainframe.VFrameSet.set_separatesize("*,0,0");
 };
 ]]></Script>
   </Form>
