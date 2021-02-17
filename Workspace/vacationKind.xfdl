@@ -7,6 +7,7 @@
           <Formats>
             <Format id="default">
               <Columns>
+                <Column size="48"/>
                 <Column size="80"/>
                 <Column size="80"/>
                 <Column size="80"/>
@@ -16,14 +17,16 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="연차코드"/>
-                <Cell col="1" text="연차차감일"/>
-                <Cell col="2" text="연차명"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="연차코드"/>
+                <Cell col="2" text="연차차감일(일)"/>
+                <Cell col="3" text="연차명"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:BREAK_CODE"/>
-                <Cell col="1" text="bind:BREAK_DISCOUNT"/>
-                <Cell col="2" text="bind:BREAK_NAME"/>
+                <Cell edittype="checkbox" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="bind:break_code"/>
+                <Cell col="2" text="bind:break_discount"/>
+                <Cell col="3" text="bind:break_name"/>
               </Band>
             </Format>
           </Formats>
@@ -39,14 +42,13 @@
               <Static id="sta_docNm08" taborder="2" text="연차코드" cssclass="sta_WF_Label" left="2" top="36" width="110" height="37" wordWrap="english"/>
               <Edit id="Edit05" taborder="3" left="117" top="43" width="200" height="23" enable="false"/>
               <Static id="Static37_00" taborder="4" cssclass="sta_WF_title01" left="2" top="0" height="37" text="연차 정보" width="178"/>
-              <Button id="Button00" taborder="5" text="저장" top="9" height="23" cssclass="btn_WF_add" width="62" right="70" onclick="tranSave"/>
-              <Button id="Button00_00" taborder="6" text="삭제" top="9" height="23" cssclass="btn_WF_delete" width="62" right="0" onclick="Div00_Button00_00_onclick"/>
-              <Static id="sta_docNm08_00" taborder="7" text="연차차감일" cssclass="sta_WF_Label_P" left="322" top="72" width="110" height="37" wordWrap="english"/>
-              <Static id="sta_docNm08_01" taborder="8" text="연차종류명" cssclass="sta_WF_Label_P" left="2" top="72" width="110" height="37" wordWrap="english"/>
-              <Edit id="Edit05_00" taborder="9" left="117" top="79" width="200" height="23"/>
-              <Static id="Static03_00" taborder="10" cssclass="sta_WF_Labelbg" left="2" top="108" right="0" height="147"/>
-              <Static id="Static00" taborder="11" text="연차차감일은 최대 3일" left="10" top="135" width="230" height="60"/>
-              <Combo id="Combo00" taborder="12" text="Combo00" left="437" top="79" width="150" height="23" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+              <Button id="Button00" taborder="5" text="저장" top="9" height="23" cssclass="btn_WF_add" width="62" right="0" onclick="tranSave"/>
+              <Static id="sta_docNm08_00" taborder="6" text="연차차감일" cssclass="sta_WF_Label_P" left="322" top="72" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm08_01" taborder="7" text="연차종류명" cssclass="sta_WF_Label_P" left="2" top="72" width="110" height="37" wordWrap="english"/>
+              <Edit id="Edit05_00" taborder="8" left="117" top="79" width="200" height="23"/>
+              <Static id="Static03_00" taborder="9" cssclass="sta_WF_Labelbg" left="2" top="108" right="0" height="147"/>
+              <Static id="Static00" taborder="10" text="연차차감일은 최대 3일" left="10" top="135" width="230" height="60"/>
+              <Combo id="Combo00" taborder="11" text="Combo00" left="437" top="79" width="150" height="23" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
                 <Dataset id="innerdataset">
                   <ColumnInfo>
                     <Column id="codecolumn" size="256"/>
@@ -84,7 +86,8 @@
                   </Rows>
                 </Dataset>
               </Combo>
-              <Button id="Button00_01" taborder="13" text="추가" top="9" height="23" cssclass="btn_WF_add" width="62" right="140" onclick="tranSave"/>
+              <Button id="Button00_01" taborder="12" text="추가" top="9" height="23" cssclass="btn_WF_add" width="62" right="70" onclick="Div00_Button00_01_onclick"/>
+              <Button id="Button00_01_00" taborder="13" text="삭제" top="10" height="23" cssclass="btn_WF_add" width="62" right="140" onclick="Div00_Button00_01_00_onclick"/>
             </Layout>
           </Layouts>
           <InitValue/>
@@ -102,23 +105,23 @@
     <Objects>
       <Dataset id="ds_break">
         <ColumnInfo>
-          <Column id="BREAK_CODE" type="INT" size="256"/>
-          <Column id="BREAK_DISCOUNT" type="FLOAT" size="256"/>
-          <Column id="BREAK_NAME" type="STRING" size="256"/>
+          <Column id="break_code" type="INT" size="256"/>
+          <Column id="break_discount" type="FLOAT" size="256"/>
+          <Column id="break_name" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
-            <Col id="BREAK_CODE">0</Col>
-            <Col id="BREAK_NAME">정기휴가계</Col>
-            <Col id="BREAK_DISCOUNT">1</Col>
+            <Col id="break_code">0</Col>
+            <Col id="break_name">정기휴가계</Col>
+            <Col id="break_discount">1</Col>
           </Row>
         </Rows>
       </Dataset>
     </Objects>
     <Bind>
-      <BindItem id="item0" compid="Div00.form.Edit05" propid="value" datasetid="ds_break" columnid="BREAK_CODE"/>
-      <BindItem id="item1" compid="Div00.form.Edit05_00" propid="value" datasetid="ds_break" columnid="BREAK_CODE"/>
-      <BindItem id="item2" compid="Div00.form.Combo00" propid="value" datasetid="ds_break" columnid="BREAK_DISCOUNT"/>
+      <BindItem id="item0" compid="Div00.form.Edit05" propid="value" datasetid="ds_break" columnid="break_code"/>
+      <BindItem id="item1" compid="Div00.form.Edit05_00" propid="value" datasetid="ds_break" columnid="break_name"/>
+      <BindItem id="item2" compid="Div00.form.Combo00" propid="value" datasetid="ds_break" columnid="break_discount"/>
     </Bind>
     <Script type="xscript5.1"><![CDATA[
 this.vacationKind_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -133,6 +136,28 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
-};]]></Script>
+};
+
+//저장 버튼 클릭 시,
+this.tranSave = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.transaction(
+		"str_update","/nex/updateBreakType.nexacro","in_break=ds_break:U","","","fn_callback"
+	);
+};
+
+//추가 버튼 클릭 시, 
+this.Div00_Button00_01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//this.ds_break.addRow();
+	alert("미구현");
+};
+
+//삭제 버튼 클릭 시, 
+this.Div00_Button00_01_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	alert("미구현");
+};
+]]></Script>
   </Form>
 </FDL>
