@@ -104,26 +104,31 @@
           <Col id="MENU_ID">5010</Col>
           <Col id="MENU_NAME">휴가종류설정</Col>
           <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL">Workspace::vacationKind.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">5020</Col>
           <Col id="MENU_NAME">휴무등록/삭제</Col>
           <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL">Workspace::companyHoliday.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">5030</Col>
           <Col id="MENU_NAME">직원별휴가관리</Col>
           <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL"></Col>
         </Row>
         <Row>
           <Col id="MENU_ID">503010</Col>
           <Col id="MENU_NAME">휴가일수설정</Col>
           <Col id="MENU_LEVEL">2</Col>
+          <Col id="FORM_URL">Workspace::personalVacation.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">503020</Col>
           <Col id="MENU_NAME">휴가사용현황</Col>
           <Col id="MENU_LEVEL">2</Col>
+          <Col id="FORM_URL">Workspace::personalVacationUse.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">60</Col>
