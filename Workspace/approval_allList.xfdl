@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="approval_allList" width="1080" height="670" titletext="New Form" onload="approval_allList_onload">
+    <Layouts>
+      <Layout height="670" width="1080" stepcount="2">
+        <Static id="sta_title_grd" taborder="0" text="전자결재 문서관리" usedecorate="true" cssclass="sta_WF_title01" left="5" top="10" width="270" height="23" wordWrap="english"/>
+        <Static id="sta_wid" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="sta_wid00" taborder="2" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
+        <Static id="sta_higt" taborder="3" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Grid id="grd_appType" taborder="4" left="sta_wid00:0" top="71" autofittype="col" bottom="sta_higt:0" right="sta_wid:0" binddataset="ds_approval" onheadclick="grd_appType_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="문서종류"/>
+                <Cell col="1" text="작성자"/>
+                <Cell col="2" text="보존연한(년)"/>
+                <Cell col="3" text="제목"/>
+                <Cell col="4" text="작성일"/>
+                <Cell col="5" text="문서번호"/>
+                <Cell col="6" text="문서 결재상태"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:app_type_code" displaytype="combotext" combodataset="ds_approval_type" combodatacol="app_type_name" combocodecol="app_type_code"/>
+                <Cell col="1" text="bind:app_id"/>
+                <Cell col="2" text="bind:app_archive"/>
+                <Cell col="3" text="bind:app_title"/>
+                <Cell col="4" text="bind:app_reg_date" displaytype="date"/>
+                <Cell col="5" text="bind:app_docs_num"/>
+                <Cell col="6" text="bind:app_status_code" combodataset="ds_approval_status" combodatacol="app_status_name" combocodecol="app_status_code" displaytype="combotext"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="cmb_filter" taborder="5" text="전체" left="12" top="43" width="100" height="23" value="0" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="모아보기" onitemchanged="cmb_filter_onitemchange">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">0</Col>
+                <Col id="datacolumn">전체</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">app_type_code</Col>
+                <Col id="datacolumn">문서종류</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">app_status_code</Col>
+                <Col id="datacolumn">결재상태</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Combo id="cmb_search_type" taborder="6" text="" left="480" top="43" width="100" height="23" value="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="검색">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">app_title</Col>
+                <Col id="datacolumn">제목</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">app_docs_num</Col>
+                <Col id="datacolumn">문서번호</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">app_id</Col>
+                <Col id="datacolumn">작성자</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Edit id="edt_search_keyword" taborder="7" left="597" top="43" width="148" height="23" displaynulltext="검색어를 입력하세요" cssclass="edi_LF_SearchEdit"/>
+        <Button id="btn_search" taborder="8" text="검색" top="43" height="23" cssclass="btn_WF_Search" width="50" left="755" color="#032c6c" onclick="btn_search_onclick"/>
+        <Combo id="cmb_filter_sub" taborder="9" text="전체" left="132" top="43" width="100" height="23" value="0" index="0" visible="false" onitemchanged="cmb_filter_sub_onitemchanged"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_approval">
+        <ColumnInfo>
+          <Column id="app_seq" type="INT" size="256"/>
+          <Column id="app_type_code" type="INT" size="256"/>
+          <Column id="app_id" type="STRING" size="256" sumtext="writer"/>
+          <Column id="app_archive" type="INT" size="256"/>
+          <Column id="app_title" type="STRING" size="256"/>
+          <Column id="app_contents" type="STRING" size="256"/>
+          <Column id="app_reg_date" type="DATE" size="256"/>
+          <Column id="app_docs_num" type="STRING" size="256"/>
+          <Column id="app_status_code" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_approval_type">
+        <ColumnInfo>
+          <Column id="app_type_code" type="STRING" size="256"/>
+          <Column id="app_type_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_approval_status">
+        <ColumnInfo>
+          <Column id="app_status_code" type="STRING" size="256"/>
+          <Column id="app_status_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.fn_callback  =  function(strSvcID, nErrorCode, strErrorMag)
+{
+	trace("callback된 transaction명 : "+strSvcID);
+	trace("ErrorCode : "+nErrorCode);
+	trace("에러 메세지 : "+strErrorMag);
+};
+
+
+//문서명 변경
+this.edt_app_type_name_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	trace("문서명 변경 이벤트에 들어옴");
+	var bindDs = this.ds_approval_type;
+	bindDs.setColumn(this.selectedRowInx, 1, obj.value);
+
+	//insert라면 update라는 표식을 넣지 않는다.
+	if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
+};
+
+//template변경사항 저장
+this.btn_template_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//summernote에 작성한 내용을 가지고 온다
+	var contents = this.wb_summernote.getProperty('window').callMethod("getContents");
+	//ds에 template변경사항을 반영한다.
+	var bindDs = this.ds_approval_type;
+	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+	var result = bindDs.setColumn(this.selectedRowInx, 2, contents);
+	
+	//insert라면 update라는 표식을 넣지 않는다.
+	if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
+	if(result){alert(name+" 문서의 template을 저장하였습니다.");}
+};
+
+//문서 삭제
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//삭제할 column의 code값 들고 옴
+	var code = this.ds_approval_type.getColumn(this.selectedRowInx,0);
+	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+	var ans = this.confirm(name+" 양식을 삭제하시겠습니까?");
+	if(ans){
+		var bindDs = this.ds_approval_type;
+		//delete전용 dataSet에 내용 저장
+		var delInx = this.ds_approval_type_deleted.addRow();
+		this.ds_approval_type_deleted.setColumn(delInx,0,code);//삭제전용 ds에 추가
+		
+		//삭제
+		bindDs.deleteRow(this.selectedRowInx);
+		
+		//삭제된 row에 focus준것을 삭제함
+		this.selectedRowInx = '';
+	}
+
+};
+
+//문서 변경사항 저장
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var ans = confirm("문서 변경사항을 저장하시겠습니까?");
+	if(ans){
+		this.transaction(
+			"nxAppTypeUpdate", //transaction id
+			"/nex/nxAppTypeUpdate.nexacro", //url(to controller)
+			"ds_in=ds_approval_type:U ds_del=ds_approval_type_deleted:A", // in data set
+			"", // out data set
+			"", // variable send
+			"fn_save_callback" //callback function
+		);
+	}
+};
+
+//문서 변경사항 저장 callback
+this.fn_save_callback  =  function(strSvcID, nErrorCode, strErrorMag)
+{
+	trace("callback된 transaction명 : "+strSvcID);
+	trace("ErrorCode : "+nErrorCode);
+	trace("에러 메세지 : "+strErrorMag);
+	if(nErrorCode>-1){
+		alert("정상적으로 저장되었습니다.");
+	}else{
+		alert("저장하지 못하였습니다. 관리자에게 문의 바랍니다. 에러코드 : "+nErrorCode);
+	}
+	this.reload();//화면 재구성
+};
+
+/*******************************************************************************
+ * Grid Sort
+ * parameter : object Grid / GridClickEventInfo e
+ * return None
+ ******************************************************************************/
+this.CONST_NONE_MARK = "";
+this.CONST_ASC_MARK = "↑";
+this.CONST_DESC_MARK = "↓";
+this.CONST_SORT_FLAG = false;
+this.cfn_GridSort = function (obj:Grid, e:GridClickEventInfo)
+{
+	var bindDs = eval(this.lookup(obj.binddataset));
+	var a;
+	var b;
+
+	if (bindDs.rowcount == 0) 
+	{
+		return false;
+	}
+
+	var CONST_SORT_MARK = "";
+	var BodyColId = (obj.getCellProperty("body", e.col, "text")).toString().split(":");
+	for (var i = 0; i < obj.getCellCount("head"); i++) 
+	{
+		
+		if (obj.getCellText(-1, i) == "undefined" || obj.getCellText(-1, i) =="false") 
+		{
+			continue;
+		}
+
+		var strHeadText = obj.getCellText(-1, i);
+
+		if (i == e.cell) 
+		{
+			
+			
+			if (strHeadText.substr(strHeadText.length - 1) == this.CONST_ASC_MARK) 
+			{
+				
+				obj.setCellProperty("head", i, "text", strHeadText.substr(0, strHeadText.length - 1) + this.CONST_DESC_MARK);
+				bindDs.set_keystring("S:-" + BodyColId[1]);
+				
+			}
+			else if (strHeadText.substr(strHeadText.length - 1) == this.CONST_DESC_MARK) 
+			{
+				
+				obj.setCellProperty("head", i, "text", strHeadText.substr(0, strHeadText.length - 1) + this.CONST_ASC_MARK);
+				bindDs.set_keystring("S:+" + BodyColId[1]);
+			}
+			else 
+			{
+				
+				obj.setCellProperty("head", i, "text", strHeadText + this.CONST_ASC_MARK);
+				bindDs.set_keystring("S:+" + BodyColId[1]);
+			}
+		}
+		else 
+		{		
+			if (strHeadText.substr(strHeadText.length - 1) == this.CONST_ASC_MARK || strHeadText.substr(strHeadText.length - 1) == this.CONST_DESC_MARK) 
+			{
+				obj.setCellProperty("head", i, "text", strHeadText.substr(0, strHeadText.length - 1));
+			}
+		}
+	}
+}
+
+this.grd_appType_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//grid sort함
+	this.cfn_GridSort(obj, e);
+};
+
+this.approval_allList_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//ds_approval에 데이터 넣기
+	this.transaction(
+		"nxAppAllList", //transaction id
+		"/nex/nxAppAllList.nexacro", //url(to controller)
+		"", // in data set
+		"ds_approval=list_approval ds_approval_type=list_approval_type ds_approval_status=list_approval_status", // out data set
+		"", // variable send
+		"fn_callback" //callback function
+	);
+};
+
+
+
+
+//필터 combo의 내용을 변경하였을 때 sub combo를 선택 종류에 따라 내용을 세팅함
+this.cmb_filter_onitemchange = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var val = obj.value;
+	if (val=="app_type_code")	{
+		this.cmb_filter_sub.setInnerDataset(this.ds_approval_type);
+		this.cmb_filter_sub.set_codecolumn("app_type_code");
+		this.cmb_filter_sub.set_datacolumn("app_type_name");
+		this.cmb_filter_sub.set_visible(true);
+	}else if(val=="app_status_code"){
+		this.cmb_filter_sub.setInnerDataset(this.ds_approval_status);
+		this.cmb_filter_sub.set_codecolumn("app_status_code");
+		this.cmb_filter_sub.set_datacolumn("app_status_name");
+		this.cmb_filter_sub.set_visible(true);
+	}else
+	{
+		this.cmb_filter_sub.set_visible(false);
+		this.ds_approval.filter('');
+	}
+};
+//sub filter에 선택된 내용에 따라 grid에 보이는 내용물을 필터링함.
+this.cmb_filter_sub_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if(obj.value=="undefined"){this.ds_approval.filter('');return;}
+	trace(this.cmb_filter.value+"=="+this.cmb_filter_sub.value);
+	var sFilter = this.cmb_filter.value+"=="+this.cmb_filter_sub.value;
+	if(this.ds_approval.filterstr){sFilter = sFilter+" && "+this.ds_approval.filterstr;}
+	trace(sFilter);
+	this.ds_approval.filter(sFilter);
+};
+
+//검색기능
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var type = this.cmb_search_type.value;
+	var keyword = this.edt_search_keyword.value;
+	if(keyword == "undefined" || !keyword){
+		this.ds_approval.filter();return;
+	}
+	if(type  == "undefined" || !type){
+		alert("검색할 항목을 선택해 주세요.");return;
+	}
+	var sFilter = type+".indexOf('"+keyword+"',0)>=0";
+	if(this.ds_approval.filterstr){sFilter = sFilter+" && "+this.ds_approval.filterstr;}
+	trace(sFilter);
+	this.ds_approval.filter(sFilter);
+};
+]]></Script>
+  </Form>
+</FDL>
