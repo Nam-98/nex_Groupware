@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="personalVacationUse" width="980" height="790" titletext="New Form">
+    <Layouts>
+      <Layout height="790" width="980">
+        <Static id="Static01" taborder="0" text="." visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static00" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" right="0" background="rgba(251,123,123,0.47843137254901963)" bottom="0"/>
+        <Static id="Static12" taborder="2" text="h 45" visible="false" left="731" top="49" width="40" height="45" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Div id="div_Search" taborder="3" left="0" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
+          <Layouts>
+            <Layout>
+              <Static id="Static34" taborder="3" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Edit id="edt_deptNm00" taborder="0" lengthunit="utf8" left="123" top="12" width="180" height="23"/>
+              <Static id="Button00" taborder="4" text="조회항목" cssclass="sta_WF_SearchLabel" left="16" top="7" width="90" height="33" wordWrap="char"/>
+              <Static id="Static00" taborder="5" text="8" visible="false" left="112" top="3" width="8" height="38" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Static id="Static01" taborder="6" text="15" visible="false" left="303" top="6" width="15" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Edit id="edt_deptNm01" taborder="1" lengthunit="utf8" left="424" top="12" width="180" height="23"/>
+              <Static id="Button01" taborder="7" text="조회항목" cssclass="sta_WF_SearchLabel_P" left="319" top="7" width="90" height="33" wordWrap="char"/>
+              <Static id="Static02" taborder="8" text="8" visible="false" left="416" top="3" width="8" height="38" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Static id="Static03" taborder="9" text="15" visible="false" left="604" top="6" width="15" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Static id="Static05" taborder="10" text="15" visible="false" left="999" top="6" width="15" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Static id="Static09" taborder="11" text="12" visible="false" left="147" top="0" width="120" height="12" background="rgba(251,123,123,0.47843137254901963)" textAlign="center" verticalAlign="middle" font="9pt Gulim"/>
+              <Static id="Static10" taborder="12" text="12" visible="false" left="177" top="35" width="120" height="12" background="rgba(251,123,123,0.47843137254901963)" textAlign="center" verticalAlign="middle" font="9pt Gulim"/>
+              <Button id="Button00_00" taborder="2" cssclass="btn_WF_SubAction, btn_WF_SearchIcon" right="10" width="40" top="9" height="30"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div05" taborder="4" left="0" top="94" right="20" height="109" cssclass="div_WF_DetailBg">
+          <Layouts>
+            <Layout>
+              <Static id="Static37" taborder="7" cssclass="sta_WF_Labelbg" left="0" top="-1" right="0" height="37"/>
+              <Static id="sta_docNm02" taborder="8" text="검색년도" cssclass="sta_WF_Label_P" left="0" top="-1" width="140" height="37" wordWrap="english"/>
+              <Static id="sta_docNm04" taborder="9" text="입사일" cssclass="sta_WF_Label" left="320" top="-1" width="140" height="37" wordWrap="english"/>
+              <Edit id="Edit00" taborder="0" left="145" top="6" width="170" height="23"/>
+              <Edit id="Edit03" taborder="1" left="465" top="6" width="170" height="23"/>
+              <Edit id="Edit05" taborder="2" left="785" top="6" width="170" height="23"/>
+              <Static id="sta_docNm09" taborder="10" text="라벨(항목명)" cssclass="sta_WF_Label" left="640" top="-1" width="140" height="37" wordWrap="english"/>
+              <Static id="Static00" taborder="11" cssclass="sta_WF_Labelbg" left="0" top="35" right="0" height="37"/>
+              <Static id="sta_docNm03" taborder="12" text="휴가지급일수" cssclass="sta_WF_Label_P" left="0" top="35" width="140" height="37" wordWrap="english"/>
+              <Static id="sta_docNm05" taborder="13" text="휴가총사용일" cssclass="sta_WF_Label" left="320" top="35" width="140" height="37" wordWrap="english"/>
+              <Edit id="Edit02" taborder="3" left="145" top="42" width="170" height="23"/>
+              <Edit id="Edit04" taborder="4" left="465" top="42" width="170" height="23"/>
+              <Static id="Static01" taborder="14" cssclass="sta_WF_Labelbg" left="0" top="71" right="0" height="37"/>
+              <Static id="sta_docNm10" taborder="15" text="조퇴누적시간" cssclass="sta_WF_Label_P" left="0" top="71" width="140" height="37" wordWrap="english"/>
+              <Static id="sta_docNm11" taborder="16" text="휴가잔여일" cssclass="sta_WF_Label" left="320" top="71" width="140" height="37" wordWrap="english"/>
+              <Edit id="Edit10" taborder="5" left="145" top="78" width="170" height="23"/>
+              <Edit id="Edit11" taborder="6" left="465" top="78" width="170" height="23"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Static id="Static02" taborder="5" text="상세타이틀명" onclick="Static03_onclick" cssclass="sta_WF_title01" left="0" top="69" width="526" height="23"/>
+        <Button id="Button75" taborder="6" text="블럭버튼" cssclass="btn_WF_Module" top="58" right="99" width="76" height="30" wordWrap="char"/>
+        <Button id="Button74" taborder="7" text="블럭버튼" cssclass="btn_WF_Module" top="58" right="20" width="76" height="30" wordWrap="char"/>
+        <Static id="Static80" taborder="8" text="휴가사용내역" usedecorate="true" cssclass="sta_WF_title01" left="0" top="216" width="400" height="23" wordWrap="english"/>
+        <Grid id="Grid07" taborder="9" autoenter="select" left="0" top="241" right="20" bottom="20" autofittype="col" binddataset="ds_break">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="휴가종류"/>
+                <Cell col="2" text="차감일"/>
+                <Cell col="3" text="시작일"/>
+                <Cell col="4" text="종료일"/>
+                <Cell col="5" text="사유"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:break_seq"/>
+                <Cell col="1" text="bind:break_code"/>
+                <Cell col="2" text="bind:break_discount"/>
+                <Cell col="3" text="bind:break_start_date"/>
+                <Cell col="4" text="bind:break_end_date"/>
+                <Cell col="5" text="bind:break_reason"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button58" taborder="10" text="행추가" cssclass="btn_WF_add" top="208" right="85" width="62" height="30" wordWrap="char"/>
+        <Button id="Button82" taborder="11" text="행삭제" cssclass="btn_WF_delete" top="208" right="20" width="62" height="30" wordWrap="char"/>
+        <Static id="Static07" taborder="12" text="h 38" visible="false" left="683" top="203" width="40" height="38" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Button id="Button73" taborder="13" text="다운로드" cssclass="btn_WF_download" top="208" right="150" width="78" height="30" wordWrap="char"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_break">
+        <ColumnInfo>
+          <Column id="break_seq" type="INT" size="256"/>
+          <Column id="break_id" type="STRING" size="256"/>
+          <Column id="break_code" type="INT" size="256"/>
+          <Column id="break_discount" type="FLOAT" size="256"/>
+          <Column id="break_start_date" type="DATE" size="256"/>
+          <Column id="break_end_date" type="DATE" size="256"/>
+          <Column id="break_reason" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>
