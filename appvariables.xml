@@ -144,28 +144,9 @@
         </Row>
         <Row>
           <Col id="MENU_ID">6020</Col>
-          <Col id="MENU_NAME">결재양식관리</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">6030</Col>
-          <Col id="MENU_NAME">결재알림설정</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">6040</Col>
-          <Col id="MENU_NAME">결재문서함</Col>
-          <Col id="MENU_LEVEL">1</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">604010</Col>
           <Col id="MENU_NAME">전체문서함</Col>
-          <Col id="MENU_LEVEL">2</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">604020</Col>
-          <Col id="MENU_NAME">폐기결재문서함</Col>
-          <Col id="MENU_LEVEL">2</Col>
+          <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL">Workspace::approval_allList.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">70</Col>

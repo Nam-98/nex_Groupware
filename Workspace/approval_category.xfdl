@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="approval_category" width="980" height="790" titletext="New Form" onload="Approval_category_onload">
+  <Form id="approval_category" width="1080" height="670" titletext="New Form" onload="Approval_category_onload">
     <Layouts>
-      <Layout height="720" width="1280">
+      <Layout height="670" width="1080">
         <Static id="sta_title_grd" taborder="0" text="전자결재 문서종류" usedecorate="true" cssclass="sta_WF_title01" left="5" top="10" width="270" height="23" wordWrap="english"/>
         <Static id="sta_wid" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="sta_wid00" taborder="2" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
@@ -33,10 +33,9 @@
         <Static id="sta_title_name" taborder="6" text="문서명" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00_00:0" top="38" width="100" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
         <Edit id="edt_app_type_name" taborder="7" left="sta_title_name:0" top="38" width="300" height="23" canchange="edt_app_type_name_onchanged"/>
         <WebBrowser id="wb_summernote" taborder="8" left="sta_wid00_00:0" top="edt_app_type_name:10" right="sta_wid:0" bottom="sta_higt:0" onloadcompleted="wb_summernote_onloadcompleted" url="url"/>
-        <Button id="btn_template_save" taborder="9" top="38" height="23" cssclass="btn_WF_delete" width="80" left="edt_app_type_name:10" text="템플릿 저장" onclick="btn_template_save_onclick"/>
-        <Button id="btn_add" taborder="10" text="문서 추가" top="sta_title_grd:10" height="23" cssclass="btn_WF_add" width="75" onclick="btn_add_onclick" left="sta_wid00:5"/>
-        <Button id="btn_save" taborder="11" text="변경사항 저장" top="sta_title_grd:10" height="23" cssclass="btn_WF_add" width="100" left="btn_add:5" onclick="btn_save_onclick"/>
-        <Button id="btn_del" taborder="12" text="문서 삭제" top="sta_title_grd:10" height="23" cssclass="btn_WF_delete" width="75" left="btn_save:5" onclick="btn_del_onclick"/>
+        <Button id="btn_add" taborder="9" text="문서 추가" top="sta_title_grd:10" height="23" cssclass="btn_WF_add" width="75" onclick="btn_add_onclick" left="sta_wid00:5"/>
+        <Button id="btn_del" taborder="10" text="문서 삭제" top="sta_title_grd:10" height="23" cssclass="btn_WF_delete" width="75" left="95" onclick="btn_del_onclick"/>
+        <Button id="btn_save" taborder="11" text="변경사항 저장" top="38" height="23" cssclass="btn_WF_add" width="100" left="edt_app_type_name:10" onclick="btn_save_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -137,40 +136,38 @@ this.edt_app_type_name_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEve
 	if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
 };
 
-//template변경사항 저장
-this.btn_template_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	//summernote에 작성한 내용을 가지고 온다
-	var contents = this.wb_summernote.getProperty('window').callMethod("getContents");
-	//ds에 template변경사항을 반영한다.
-	var bindDs = this.ds_approval_type;
-	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
-	var result = bindDs.setColumn(this.selectedRowInx, 2, contents);
-	
-	//insert라면 update라는 표식을 넣지 않는다.
-	if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
-	if(result){alert(name+" 문서의 template을 저장하였습니다.");}
-};
-
 //문서 삭제
 this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	//삭제할 column의 code값 들고 옴
+// 	//삭제할 column의 code값 들고 옴
+// 	var code = this.ds_approval_type.getColumn(this.selectedRowInx,0);
+// 	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+// 	var ans = this.confirm(name+" 양식을 삭제하시겠습니까?");
+// 	if(ans){
+// 		var bindDs = this.ds_approval_type;
+// 		//delete전용 dataSet에 내용 저장
+// 		var delInx = this.ds_approval_type_deleted.addRow();
+// 		this.ds_approval_type_deleted.setColumn(delInx,0,code);//삭제전용 ds에 추가
+// 		
+// 		//삭제
+// 		bindDs.deleteRow(this.selectedRowInx);
+// 		
+// 		//삭제된 row에 focus준것을 삭제함
+// 		this.selectedRowInx = '';
+// 	}
+
 	var code = this.ds_approval_type.getColumn(this.selectedRowInx,0);
-	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
-	var ans = this.confirm(name+" 양식을 삭제하시겠습니까?");
-	if(ans){
-		var bindDs = this.ds_approval_type;
-		//delete전용 dataSet에 내용 저장
-		var delInx = this.ds_approval_type_deleted.addRow();
-		this.ds_approval_type_deleted.setColumn(delInx,0,code);//삭제전용 ds에 추가
-		
-		//삭제
-		bindDs.deleteRow(this.selectedRowInx);
-		
-		//삭제된 row에 focus준것을 삭제함
-		this.selectedRowInx = '';
-	}
+ 	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+	var ans = confirm(name+"문서를 삭제하시겠습니까?");
+	if(!ans){return;}
+	this.transaction(
+			"nxAppTypeDelete", //transaction id
+			"/nex/nxAppTypeDelete.nexacro", //url(to controller)
+			"", // in data set
+			"", // out data set
+			"app_seq="+code, // variable send
+			"fn_cud_callback" //callback function
+		);
 
 };
 
@@ -179,27 +176,40 @@ this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {	
 	var ans = confirm("문서 변경사항을 저장하시겠습니까?");
 	if(ans){
+		//summernote에 작성한 내용을 가지고 온다
+		var contents = this.wb_summernote.getProperty('window').callMethod("getContents");
+		//ds에 template변경사항을 반영한다.
+		var bindDs = this.ds_approval_type;
+		var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
+		var result = bindDs.setColumn(this.selectedRowInx, 2, contents);
+		
+		//insert라면 update라는 표식을 넣지 않는다.
+		if(bindDs.getColumn(this.selectedRowInx,3)!="insert"){bindDs.setColumn(this.selectedRowInx, 3, "update");}
+	
 		this.transaction(
 			"nxAppTypeUpdate", //transaction id
 			"/nex/nxAppTypeUpdate.nexacro", //url(to controller)
-			"ds_in=ds_approval_type:U ds_del=ds_approval_type_deleted:A", // in data set
+			"ds_in=ds_approval_type:U", // in data set
 			"", // out data set
 			"", // variable send
-			"fn_save_callback" //callback function
+			"fn_cud_callback" //callback function
 		);
 	}
 };
 
 //문서 변경사항 저장 callback
-this.fn_save_callback  =  function(strSvcID, nErrorCode, strErrorMag)
+this.fn_cud_callback  =  function(strSvcID, nErrorCode, strErrorMag)
 {
 	trace("callback된 transaction명 : "+strSvcID);
 	trace("ErrorCode : "+nErrorCode);
 	trace("에러 메세지 : "+strErrorMag);
 	if(nErrorCode>-1){
-		alert("정상적으로 저장되었습니다.");
+		var sAlt = "정상적으로 저장되었습니다.";
+		if(strSvcID=="nxAppTypeDelete"){sAlt="정상적으로 삭제되었습니다.";}
+		trace(sAlt);
+		alert(sAlt);
 	}else{
-		alert("저장하지 못하였습니다. 관리자에게 문의 바랍니다. 에러코드 : "+nErrorCode);
+		alert("작업을 완료하지 못하였습니다. 관리자에게 문의 바랍니다. 에러코드 : "+nErrorCode+"_"+strSvcID);
 	}
 	this.reload();//화면 재구성
 };
