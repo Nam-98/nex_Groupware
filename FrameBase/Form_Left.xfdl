@@ -76,7 +76,7 @@ this.fn_openForm2 = function (e,obj)
 	objChildFrame.set_resizable(true);
 	var oParam = {FORM_ID : sFormId, MENU_ID : sMenuId, MENU_NM : sMenuNm, FORM_URL : sUrl, TREE_PATH : sTreePath2}//json형태로 인자값 묶음
 	trace("on left : "+oParam);
-			trace("on left : "+oParam.FORM_URL);
+	trace("on left : "+oParam.FORM_URL);
 	objChildFrame.param = oParam;
 		//objChildFrame객체에 param이라는 이름의 변수를 생성하여 oParam을 할당해준다.
 		//이 frame에서 원하는 값을 꺼내올 땐, param.key값 으로 꺼내오면 된다. 

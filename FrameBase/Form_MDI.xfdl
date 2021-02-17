@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-
   <Form id="Form_Work" width="862" height="30" titletext="Form_Work" onload="Form_Work_onload">
     <Layouts>
       <Layout height="30" mobileorientation="landscape" width="862" screenid="Desktop_screen">
@@ -91,16 +90,16 @@ this.btn_closeAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo
 	objApp.gds_openForm.clearData();//dataSet의 모든 data를 삭제(삭제한 정보를 가지고 있음가 아닌 초기화 하는 method
 };
 
-// this.fn_setFrameSize = function(pType){
-// 	var objApp = nexacro.getApplication();
-// 	if(pType=="home"){
-// 		//home화면 띄우기 -> 화면에서 home창 열기 위해 vframe의 separatesize 조절
-// 		objApp.mainframe.HFrameSet00.VFrameSet00.set_separatesize("30,*,0");
-// 	}else{
-// 		objApp.mainframe.HFrameSet00.VFrameSet00.set_separatesize("30,0,*");
-// 	}
-// 
-// }
+ this.fn_setFrameSize = function(pType){
+ 	var objApp = nexacro.getApplication();
+ 	if(pType=="home"){
+ 		//home화면 띄우기 -> 화면에서 home창 열기 위해 vframe의 separatesize 조절
+ 		objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.set_separatesize("30,*,0");
+ 	}else{
+ 		objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.set_separatesize("30,0,*");
+ 	}
+
+ }
 
 
 this.tab_mdi_onlbuttondown = function(obj:nexacro.Tab,e:nexacro.MouseEventInfo)
@@ -109,6 +108,5 @@ this.tab_mdi_onlbuttondown = function(obj:nexacro.Tab,e:nexacro.MouseEventInfo)
 		this.fn_setFrameSize("Form");
 	}
 };]]></Script>
-
   </Form>
 </FDL>
