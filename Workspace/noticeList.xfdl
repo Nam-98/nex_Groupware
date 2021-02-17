@@ -12,19 +12,19 @@
                 <Column size="80"/>
                 <Column size="80"/>
                 <Column size="80"/>
-                <Column size="80"/>
+                <Column size="85"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="write_code"/>
-                <Cell col="1" text="write_seq"/>
-                <Cell col="2" text="write_title"/>
-                <Cell col="3" text="write_contents"/>
-                <Cell col="4" text="write_id"/>
-                <Cell col="5" text="write_reg_date" edittype="none" displaytype="date"/>
+                <Cell text="코드"/>
+                <Cell col="1" text="글 번호"/>
+                <Cell col="2" text="글 제목"/>
+                <Cell col="3" text="글 내용"/>
+                <Cell col="4" text="작성자"/>
+                <Cell col="5" text="작성일" edittype="none" displaytype="text"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:write_code"/>
@@ -92,11 +92,11 @@
                 <Col id="datacolumn">전체</Col>
               </Row>
               <Row>
-                <Col id="codecolumn">TITLE</Col>
+                <Col id="codecolumn">write_title</Col>
                 <Col id="datacolumn">제목</Col>
               </Row>
               <Row>
-                <Col id="codecolumn">CONTENTS</Col>
+                <Col id="codecolumn">write_contents</Col>
                 <Col id="datacolumn">내용</Col>
               </Row>
             </Rows>
