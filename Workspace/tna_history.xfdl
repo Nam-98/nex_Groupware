@@ -3,52 +3,50 @@
   <Form id="tna_history" width="970" height="600" titletext="New Form" onload="tna_history_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="970">
-        <Grid id="grd_tnaHistory" taborder="0" left="0" top="100" right="0" bottom="0" binddataset="ds_tnaHistory" autofittype="col" oncellclick="grd_tnaHistory_oncellclick">
+        <Grid id="grd_tnaHistory" taborder="0" left="0" top="100" right="0" bottom="0" autofittype="col" binddataset="gds_tnaHistory" oncelldblclick="grd_tnaHistory_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="34"/>
-                <Column size="36"/>
-                <Column size="254"/>
-                <Column size="81"/>
-                <Column size="81"/>
-                <Column size="81"/>
-                <Column size="81"/>
-                <Column size="94"/>
-                <Column size="81"/>
+                <Column size="49"/>
+                <Column size="267"/>
+                <Column size="80"/>
+                <Column size="98"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="111"/>
+                <Column size="91"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="CHK" displaytype="checkboxcontrol"/>
-                <Cell col="1" text="NO"/>
-                <Cell col="2" text="내용"/>
-                <Cell col="3" text="신청인"/>
-                <Cell col="4" text="신청일"/>
-                <Cell col="5" text="부서"/>
-                <Cell col="6" text="직급"/>
-                <Cell col="7" text="변경요청상태"/>
-                <Cell col="8" text="상태"/>
+                <Cell text="NO"/>
+                <Cell col="1" text="내용"/>
+                <Cell col="2" text="신청인"/>
+                <Cell col="3" text="신청일"/>
+                <Cell col="4" text="부서"/>
+                <Cell col="5" text="직급"/>
+                <Cell col="6" text="변경요청상태"/>
+                <Cell col="7" text="상태"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
-                <Cell col="1" text="bind:TNA_OBJ_SEQ"/>
-                <Cell col="2" text="bind:TNA_OBJ_REASON"/>
-                <Cell col="3" text="bind:TNA_OBJ_ID"/>
-                <Cell col="4" text="bind:TNA_OBJ_REG_DATE"/>
-                <Cell col="5" text="bind:DEPT_NAME"/>
-                <Cell col="6" text="bind:POSITION_NAME"/>
-                <Cell col="7" text="bind:TNA_STATUS_NAME"/>
-                <Cell col="8" text="bind:TNA_OBJ_PROC_STATUS_NAME"/>
+                <Cell text="bind:TNA_OBJ_SEQ"/>
+                <Cell col="1" text="bind:TNA_OBJ_REASON"/>
+                <Cell col="2" text="bind:NAME"/>
+                <Cell col="3" text="bind:TNA_OBJ_REG_DATE"/>
+                <Cell col="4" text="bind:DEPT_NAME"/>
+                <Cell col="5" text="bind:POSITION_NAME"/>
+                <Cell col="6" text="bind:TNA_STATUS_NAME"/>
+                <Cell col="7" text="bind:TNA_OBJ_PROC_STATUS_NAME"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
         <Static id="Static80" taborder="1" text="근태 조정 신청 관리" usedecorate="true" cssclass="sta_WF_title01" left="0" top="70" width="400" height="23" wordWrap="english" onclick="Static80_onclick"/>
-        <Button id="btnSearch" taborder="2" top="56" height="39" cssclass="btn_WF_search01" right="20" width="50" onclick="btnSearch_onclick"/>
-        <Combo id="Combo00" taborder="3" text="Combo00" top="56" width="120" height="39" right="80" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE"/>
+        <Button id="btnSearch" taborder="2" top="56" height="39" cssclass="btn_WF_search01" width="50" onclick="btnSearch_onclick" left="grd_tnaHistory:-150"/>
+        <Combo id="Combo00" taborder="3" text="상태선택" top="56" width="120" right="160" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE" bottom="grd_tnaHistory:5" value="0" index="0"/>
+        <Button id="btnRe" taborder="4" width="80" height="39" onclick="btnRe_onclick" right="10" top="57" text="전체 보기"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -56,12 +54,12 @@
 //근태조정 list 불러옴.
 this.tna_history_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	alert("onload");
+	/*alert("onload");*/
 	this.transaction(
 				"tnaHistory" //1.strSvcID(스트링형으로)
 				,"/nex/tnaHistory.nexacro"//2.strURL : 넥사크로와 이클립스 연동
 				,""//3.strInDatasets Sds = Fds :U, :A, :N
-				,"ds_tnaHistory=ds_out"	//4.strOutDatasets - select Fds=Sds
+				,"gds_tnaHistory=ds_out"	//4.strOutDatasets - select Fds=Sds
 				,""//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
 				,"fn_callback" //6.strCallbackFunc
 		);
@@ -75,63 +73,117 @@ this.fn_callback = function(id, ErrorCode, ErrorMsg){
 
 
 
-
+//상태로 구분짓기 위한 버튼 클릭(미완...)
 this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	let sel = this.Combo00.value;
-	trace(sel);
-	this.transaction(
-				"tnaHistorySearch" //1.strSvcID(스트링형으로)
-				,"/nex/tnaHistorySearch.nexacro"//2.strURL : 넥사크로와 이클립스 연동
-				,""//3.strInDatasets Sds = Fds :U, :A, :N
-				,"ds_tnaHistory=ds_out"	//4.strOutDatasets - select Fds=Sds
-				,"sel='sel'"//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
-				,"fn_callback" //6.strCallbackFunc
-		);
+	trace("select값:"+sel);
+	nexacro.getApplication().gds_tnaHistory.filter("TNA_OBJ_PROC_STATUS_CODE=="+sel);
+	
+//  	this.transaction(
+//  				"tnaHistorySearch" //1.strSvcID(스트링형으로)
+//  				,"/nex/tnaHistorySearch.nexacro"//2.strURL : 넥사크로와 이클립스 연동
+//  				,""//3.strInDatasets Sds = Fds :U, :A, :N
+//  				,"gds_tnaHistory=ds_out"	//4.strOutDatasets - select Fds=Sds
+//  				,"sel="+sel//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
+//  				,"fn_callback" //6.strCallbackFunc
+//  		);
+};
+
+
+
+
+//팝업창(상세내용)
+this.grd_tnaHistory_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{	
+	var seq = obj.getCellValue(e.row,"1");
+	
+
+	var objCF = new ChildFrame();
+	objCF.init("popTnA","350px","300px",650,450);
+	objCF.set_formurl("Workspace::tna_history_popUp.xfdl");
+	objCF.showModal(
+		this.getOwnerFrame(),
+		{oSeq:seq},//넘겨주는 변수 값 설정
+		this,
+		"fn_callback_pop"
+	);
+};
+
+this.fn_callback_pop=function(id,sReturn){
+	trace("==넘오왔니?=="+id+"/"+sReturn);
+	
+	var arrRtn = sReturn.split("|");
+	trace(arrRtn);
+	
+	if(arrRtn.length == 5){
+		//승인
+		var statusCode = arrRtn[0];
+		var objSeq = arrRtn[1];
+		var finalChange = arrRtn[2];
+		var tnaSeq = arrRtn[3];
+		var objStatus = arrRtn[4];
+		
+		trace("===승인일때===");
+		trace("==status=="+statusCode);
+		trace("objSeq : "+objSeq);
+		trace("====finalChange====="+finalChange);
+		trace("tnaSeq : "+tnaSeq);
+		trace("objStatus : "+objStatus);
+		
+		this.transaction(
+					"tnaHistoryApproval" //1.strSvcID(스트링형으로)
+					,"/nex/tnaHistoryApproval.nexacro"//2.strURL : 넥사크로와 이클립스 연동
+					,""//3.strInDatasets Sds = Fds :U, :A, :N
+					,""	//4.strOutDatasets - select Fds=Sds
+					,"statusCode="+statusCode + " objSeq="+objSeq + " finalChange="+finalChange + " tnaSeq="+tnaSeq + " objStatus="+objStatus//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
+					,"fn_reCallback" //6.strCallbackFunc
+			);
+		
+	}else{
+		//반려
+		var statusCode = arrRtn[0];
+		var objSeq = arrRtn[1];
+		trace("===사이즈2개일때===");
+		trace("==statusCode=="+ statusCode);
+		trace("==objSeq=="+ objSeq);
+ 		this.transaction(
+ 					"tnaHistoryReturn" //1.strSvcID(스트링형으로)
+ 					,"/nex/tnaHistoryReturn.nexacro"//2.strURL : 넥사크로와 이클립스 연동
+ 					,""//3.strInDatasets Sds = Fds :U, :A, :N
+ 					,""	//4.strOutDatasets - select Fds=Sds
+ 					,"statusCode="+statusCode + " objSeq="+objSeq//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
+ 					,"fn_reCallback" //6.strCallbackFunc
+ 			);
+	};
+	
+};
+
+//정정상태용 콜백
+this.fn_reCallback = function(id, ErrorCode, ErrorMsg){
+	 this.reload();
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};
+
+//전체보기
+this.btnRe_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().gds_tnaHistory.filter("");
 };
 ]]></Script>
     <Objects>
-      <Dataset id="ds_tnaHistory">
-        <ColumnInfo>
-          <Column id="TNA_OBJ_SEQ" type="INT" size="256"/>
-          <Column id="TNA_OBJ_REASON" type="STRING" size="256"/>
-          <Column id="TNA_OBJ_ID" type="STRING" size="256"/>
-          <Column id="TNA_OBJ_REG_DATE" type="DATE" size="256"/>
-          <Column id="TNA_OBJ_CHANGED_CODE" type="INT" size="256"/>
-          <Column id="TNA_STATUS_NAME" type="STRING" size="256"/>
-          <Column id="TNA_SEQ" type="INT" size="256"/>
-          <Column id="TNA_OBJ_STATUS" type="STRING" size="256"/>
-          <Column id="TNA_OBJ_ORI_STATUS_CODE" type="INT" size="256"/>
-          <Column id="TNA_ORI_STATUS_NAME" type="STRING" size="256"/>
-          <Column id="TNA_OBJ_TIME" type="DATE" size="256"/>
-          <Column id="TNA_OBJ_PROC_STATUS_CODE" type="INT" size="256"/>
-          <Column id="TNA_OBJ_PROC_STATUS_NAME" type="STRING" size="256"/>
-          <Column id="DEPT_CODE" type="INT" size="256"/>
-          <Column id="POSITION_CODE" type="INT" size="256"/>
-          <Column id="DEPT_NAME" type="STRING" size="256"/>
-          <Column id="POSITION_NAME" type="STRING" size="256"/>
-          <Column id="RN" type="STRING" size="256"/>
-          <Column id="CHK" type="STRING" size="256"/>
-        </ColumnInfo>
-        <Rows>
-          <Row>
-            <Col id="TNA_OBJ_SEQ">1</Col>
-            <Col id="TNA_OBJ_PROC_STATUS_CODE">1</Col>
-            <Col id="TNA_OBJ_PROC_STATUS_NAME">조정중</Col>
-          </Row>
-          <Row>
-            <Col id="TNA_OBJ_SEQ">2</Col>
-            <Col id="TNA_OBJ_PROC_STATUS_CODE">1</Col>
-            <Col id="TNA_OBJ_PROC_STATUS_NAME">조정중</Col>
-          </Row>
-        </Rows>
-      </Dataset>
       <Dataset id="ds_status">
         <ColumnInfo>
-          <Column id="TNA_OBJ_PROC_STATUS_CODE" type="STRING" size="256"/>
+          <Column id="TNA_OBJ_PROC_STATUS_CODE" type="INT" size="256"/>
           <Column id="TNA_OBJ_PROC_STATUS_NAME" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
+          <Row>
+            <Col id="TNA_OBJ_PROC_STATUS_CODE">0</Col>
+            <Col id="TNA_OBJ_PROC_STATUS_NAME">상태선택</Col>
+          </Row>
           <Row>
             <Col id="TNA_OBJ_PROC_STATUS_CODE">1</Col>
             <Col id="TNA_OBJ_PROC_STATUS_NAME">조정중</Col>
@@ -147,8 +199,5 @@ this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
         </Rows>
       </Dataset>
     </Objects>
-    <Bind>
-      <BindItem id="item0" compid="Combo00" propid="value" datasetid="ds_tnaHistory" columnid="TNA_OBJ_ORI_STATUS_CODE"/>
-    </Bind>
   </Form>
 </FDL>
