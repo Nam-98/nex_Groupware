@@ -30,6 +30,7 @@
           <Col id="MENU_ID">1030</Col>
           <Col id="MENU_NAME">부서/직급설정</Col>
           <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL">Workspace::dept_position_cud.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">20</Col>
@@ -250,7 +251,16 @@
         <Column id="dept_name" type="STRING" size="256"/>
         <Column id="dept_dir_id" type="INT" size="256"/>
         <Column id="dept_level" type="INT" size="256"/>
+        <Column id="dept_code_parent" type="STRING" size="256"/>
       </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="dept_code">0</Col>
+          <Col id="dept_name">개발1팀</Col>
+          <Col id="dept_dir_id">1</Col>
+          <Col id="dept_level">0</Col>
+        </Row>
+      </Rows>
     </Dataset>
   </Datasets>
   <Variables/>

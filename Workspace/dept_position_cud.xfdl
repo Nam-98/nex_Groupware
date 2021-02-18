@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="dept_position_cud" width="1080" height="670" titletext="New Form" onload="dept_position_cud_onload">
+    <Layouts>
+      <Layout height="670" width="1080">
+        <Static id="sta_wid00" taborder="0" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
+        <Static id="sta_wid" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="sta_higt" taborder="2" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="sta_title" taborder="3" text="부서관리" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00:0" top="10" width="270" height="23" wordWrap="english"/>
+        <Button id="btn_add" taborder="4" text="부서추가" left="23" top="sta_title:10" width="75" height="28" onclick="btn_add_onclick"/>
+        <Static id="sta_wid01" taborder="5" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" background="rgba(251,123,123,0.47843137254901963)" left="250"/>
+        <Grid id="grd_dept00" taborder="6" left="sta_wid01:0" top="81" right="sta_wid:0" bottom="sta_higt:0" binddataset="ds_selected_member" autofittype="col" onheadclick="grd_dept00_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="아이디"/>
+                <Cell col="1" text="이름"/>
+                <Cell col="2" text="성별"/>
+                <Cell col="3" text="연락처"/>
+                <Cell col="4" text="부서" displaytype="normal"/>
+                <Cell col="5" text="직급"/>
+                <Cell col="6" text="입사일"/>
+                <Cell col="7" text="접근권한"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:id"/>
+                <Cell col="1" text="bind:name"/>
+                <Cell col="2" text="bind:gender"/>
+                <Cell col="3" text="bind:contact"/>
+                <Cell col="4" text="bind:dept_code" combodataset="gds_stDepartment" combodatacol="dept_name" combocodecol="dept_code" displaytype="combotext"/>
+                <Cell col="5" text="bind:position_code" displaytype="combotext" combodataset="gds_stPosition" combodatacol="position_name" combocodecol="position_code"/>
+                <Cell col="6" text="bind:reg_date" displaytype="date"/>
+                <Cell col="7" text="bind:access_level_code"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta_title00" taborder="7" text="직원 리스트" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid01:0" top="10" width="270" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
+        <Grid id="tree_dept" taborder="8" left="sta_wid00:0" top="btn_add:10" autofittype="col" binddataset="gds_stDepartment" formatid="default" treeinitstatus="expand,all" scrollbartype="default default" right="sta_wid01:0" bottom="sta_higt:0" treeusecheckbox="false" oncellclick="tree_dept_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:dept_name" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:dept_level" treestartlevel="1"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";
+
+this.objApp = nexacro.getApplication();
+this.gds_stDepartment = nexacro.getApplication().gds_stDepartment;
+this.gds_stPosition = nexacro.getApplication().gds_stPosition;
+
+this.dept_position_cud_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//department table 받기
+	this.transaction(
+		"loadDept","/nex/loadDeptList.nexacro","","gds_stDepartment=ds_out","","fn_callback");
+	//position table 받기
+	this.transaction(
+		"loadPo","/nex/loadPoList.nexacro","","gds_stPosition=ds_out","","fn_callback");
+	//member table 받기
+	this.transaction(
+		"loading","/nex/loadMemList.nexacro","","ds_selected_member=ds_out","","fn_callback");
+};
+
+this.fn_callback  =  function(strSvcID, nErrorCode, strErrorMag)
+{
+	trace("callback된 transaction명 : "+strSvcID);
+	trace("ErrorCode : "+nErrorCode);
+	trace("에러 메세지 : "+strErrorMag);
+	trace(this.gds_stDepartment.name);
+};
+
+//부서를 선택하였을 때 왼쪽의 memberList에 data를 보여준다.
+this.tree_dept_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var ds = obj.getBindDataset();
+	var sDept_code = ds.getColumn(e.row, "dept_code");
+	var sFilter = "dept_code=="+sDept_code;
+	this.ds_selected_member.filter(sFilter);
+};
+
+this.grd_dept00_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//grid sort함
+	this.cfn_GridSort(obj, e);
+};
+
+//부서추가
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objCF = new ChildFrame();
+	objCF.init("popDeptAdd",0,0,300,400);
+	objCF.set_formurl("Workspace::form_pop_deptAdd.xfdl");
+	
+	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback_pop" );
+};
+this.fn_callback_pop = function(id, sRtn){
+	var arrRtn = sRtn.split("|");
+	var sName = arrRtn[0];
+	var sParentCode = arrRtn[1];
+	var sLevel = arrRtn[2];
+	nexacro.getApplication().trace(sName);
+	
+	this.Div00.form.ed_mtrlCd00.set_value(sCode);
+}
+]]></Script>
+    <Objects>
+      <Dataset id="ds_selected_member" filterstr="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="birth" type="DATE" size="256"/>
+          <Column id="gender" type="STRING" size="256"/>
+          <Column id="contact" type="STRING" size="256"/>
+          <Column id="address1" type="STRING" size="256"/>
+          <Column id="address2" type="STRING" size="256"/>
+          <Column id="zip_code" type="STRING" size="256"/>
+          <Column id="is_married" type="STRING" size="256"/>
+          <Column id="dept_code" type="INT" size="256"/>
+          <Column id="position_code" type="INT" size="256"/>
+          <Column id="reg_date" type="DATE" size="256"/>
+          <Column id="retire_date" type="DATE" size="256"/>
+          <Column id="access_level_code" type="INT" size="256"/>
+          <Column id="break_total_count" type="FLOAT" size="256"/>
+          <Column id="break_use_count" type="FLOAT" size="256"/>
+          <Column id="dept_name" type="STRING" size="256"/>
+          <Column id="position_name" type="STRING" size="256"/>
+          <Column id="dept_level" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">test7</Col>
+            <Col id="password">1234</Col>
+            <Col id="name">테스터7</Col>
+            <Col id="birth">21/01/21</Col>
+            <Col id="gender">M</Col>
+            <Col id="contact">01012341234</Col>
+            <Col id="address1">addre1</Col>
+            <Col id="address2">addre2</Col>
+            <Col id="zip_code">zipcode</Col>
+            <Col id="is_married">Y</Col>
+            <Col id="dept_code">5</Col>
+            <Col id="position_code">0</Col>
+            <Col id="reg_date">21/01/21</Col>
+            <Col id="access_level_code">2</Col>
+            <Col id="break_total_count">12</Col>
+            <Col id="break_use_count">0</Col>
+          </Row>
+          <Row>
+            <Col id="id">hoihoi914</Col>
+            <Col id="password">hoihoi914</Col>
+            <Col id="name">양혜림</Col>
+            <Col id="birth">94/09/14</Col>
+            <Col id="gender">F</Col>
+            <Col id="contact">01076686995</Col>
+            <Col id="address1">서울시 구로구</Col>
+            <Col id="address2">새말로93</Col>
+            <Col id="zip_code">08288</Col>
+            <Col id="is_married">N</Col>
+            <Col id="dept_code">5</Col>
+            <Col id="position_code">2</Col>
+            <Col id="reg_date">20/08/01</Col>
+            <Col id="access_level_code">0</Col>
+            <Col id="break_total_count">1</Col>
+            <Col id="break_use_count">0</Col>
+          </Row>
+          <Row>
+            <Col id="id">1111</Col>
+            <Col id="password">1111</Col>
+            <Col id="name">테스터</Col>
+            <Col id="birth">21/01/18</Col>
+            <Col id="gender">M</Col>
+            <Col id="contact">01012345678</Col>
+            <Col id="address1">주소1111</Col>
+            <Col id="address2">주소2222</Col>
+            <Col id="zip_code">12345</Col>
+            <Col id="is_married">N</Col>
+            <Col id="dept_code">3</Col>
+            <Col id="position_code">3</Col>
+            <Col id="reg_date">21/01/18</Col>
+            <Col id="access_level_code">2</Col>
+            <Col id="break_total_count">50</Col>
+            <Col id="break_use_count">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

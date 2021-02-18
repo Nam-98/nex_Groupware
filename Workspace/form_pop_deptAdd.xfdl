@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form_pop_po" width="300" height="400" titletext="New Form" onload="form_pop_po_onload">
+    <Layouts>
+      <Layout height="400" width="300">
+        <Button id="btnAdd" taborder="0" text="OK" left="80" width="65" height="29" onclick="fnAdd" bottom="10"/>
+        <Button id="btnDel" taborder="1" text="Cancel" left="155" width="65" height="29" onclick="fnDel" bottom="10"/>
+        <Static id="Static01" taborder="2" text="." visible="false" left="-1" right="0" height="10" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static01_00" taborder="3" text="." visible="false" left="0" right="0" height="10" background="rgba(251,123,123,0.47843137254901963)" top="0"/>
+        <Static id="Static04" taborder="4" cssclass="sta_WF_Labelbg" left="2" top="36" right="0" height="37" text=""/>
+        <Static id="sta_dept_name" taborder="5" text="부서명" cssclass="sta_WF_Label_P" left="0" top="36" width="70" height="37" wordWrap="english"/>
+        <Edit id="edt_dept_name" taborder="6" left="80" top="43" height="23" right="10"/>
+        <Static id="Static37_00" taborder="7" cssclass="sta_WF_title01" left="2" top="0" height="37" text="부서 정보 입력" width="110"/>
+        <Static id="Static04_00" taborder="8" cssclass="sta_WF_Labelbg" left="0" top="72" right="0" height="37" text=""/>
+        <Static id="sta_dept_name00" taborder="9" text="상위부서" cssclass="sta_WF_Label_P" left="0" top="72" width="70" height="37" wordWrap="english"/>
+        <CheckBox id="chb_isTop" taborder="10" text="상위부서 없음" left="sta_dept_name00:10" top="Static04:10" height="17" right="23" onchanged="chb_isTop_onchanged"/>
+        <Static id="Static37_00_00" taborder="11" cssclass="sta_WF_title01" left="0" top="Static04_00:0" height="37" text="상위부서 선택" width="110"/>
+        <Grid id="grd_tree" taborder="12" left="0" top="Static37_00_00:0" binddataset="gds_stDepartment" autofittype="col" bottom="btnAdd:5" right="0" enable="false" treeusecheckbox="false" oncellclick="grd_tree_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:dept_name" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:dept_level" treestartlevel="1"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[this.gds_stDepartment = nexacro.getApplication().gds_stDepartment;
+this.selectedRowInx = '';
+
+this.fnAdd = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var sRtn = '';
+	var sName = this.edt_dept_name.value;
+
+	//상위부서가 없다면 이름 + null return 
+	if(this.chb_isTop){
+		sRtn = sName+"|null|null";
+	}else{
+		//상위부서가 있다면 해당 부서의 code와 level+1한 값을 넘겨줌. 
+		var sParentCode = this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_code");
+		var sLevel = (this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_level")+1);//부모 level의 +1
+		sRtn = sName+"|"+sParentCode+"|"+sLevel;
+	}
+	
+	//server로 보냄.
+	this.transaction(
+		"nxDeptAdd", //transaction id
+		"/nex/nxDeptAdd.nexacro", //url(to controller)
+		"", // in data set
+		"", // out data set
+		"sRtn="+sRtn, // variable send
+		"fn_add_callback" //callback function
+	);
+
+};
+
+
+this.fn_add_callback  =  function(strSvcID, nErrorCode, strErrorMag)
+{
+	trace("callback된 transaction명 : "+strSvcID);
+	trace("ErrorCode : "+nErrorCode);
+	trace("에러 메세지 : "+strErrorMag);
+	if(nErrorCode>-1){this.close();}else{alert("부서를 추가하지 못하였습니다.");}
+};
+
+this.fnDel = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//position table 받기
+	this.transaction(
+		"loadPo","/nex/loadPoList.nexacro","","ds_position=ds_out","","fn_callback"
+	);
+};
+
+this.fn_callback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};
+
+//상위부서 없음을 클릭했을 때
+this.chb_isTop_onchanged = function(obj:nexacro.CheckBox,e:nexacro.CheckBoxChangedEventInfo)
+{
+	if(obj.value){
+		//상위부서가 없다.
+		this.grd_tree.set_enable(false);
+	}else{
+		//상위부서가 있다.
+		this.grd_tree.set_enable(true);
+	}
+};
+
+this.grd_tree_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//변수에 선택된 row의 index값 저장
+	this.selectedRowInx = e.row;
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="edt_dept_name" propid="value" datasetid="gds_stMember" columnid="id"/>
+    </Bind>
+  </Form>
+</FDL>
