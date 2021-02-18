@@ -73,7 +73,7 @@ this.fn_callback = function(id, ErrorCode, ErrorMsg){
 
 
 
-//상태로 구분짓기 위한 버튼 클릭(미완...)
+//상태로 구분짓기 위한 버튼 클릭
 this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	let sel = this.Combo00.value;
@@ -96,8 +96,8 @@ this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 //팝업창(상세내용)
 this.grd_tnaHistory_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {	
-	var seq = obj.getCellValue(e.row,"1");
-	
+	var seq = obj.getCellValue(e.row,"0");
+	trace("===="+seq);
 
 	var objCF = new ChildFrame();
 	objCF.init("popTnA","350px","300px",650,450);

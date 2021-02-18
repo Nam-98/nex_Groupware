@@ -45,11 +45,13 @@ this.tna_history_popUp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInf
 	var seq = this.parent.oSeq;
 	//seq값을 토대로 gds_tnaHistory에서 lookup함수를 통해 값을 뽑아냄.
 	var name = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"NAME");
-	var regDate = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_OBJ_REG_DATE").toLocaleDateString("ko_KR");
+	var regDate = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_OBJ_REG_DATE");
 	var current = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_ORI_STATUS_NAME");
 	var change = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_STATUS_NAME");
 	var reason = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_OBJ_REASON");
-	
+	if (regDate != null){
+		regDate.toLocaleDateString("ko_KR");
+	};
 	trace("childframe : "+seq);
 	trace("name : "+regDate);
 	
