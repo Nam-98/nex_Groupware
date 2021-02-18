@@ -7,7 +7,7 @@
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" text="공지사항" left="12" top="5" width="177" height="41" onclick="Div00_Static00_onclick"/>
-              <Radio id="Radio00" taborder="1" left="490" top="12" width="254" height="27" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
+              <Radio id="Radio00" taborder="1" left="464" top="11" width="292" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
                 <Dataset id="innerdataset">
                   <ColumnInfo>
                     <Column id="codecolumn" size="256"/>
@@ -16,7 +16,7 @@
                   <Rows>
                     <Row>
                       <Col id="codecolumn">0</Col>
-                      <Col id="datacolumn">공지사항</Col>
+                      <Col id="datacolumn">공지 사항</Col>
                     </Row>
                     <Row>
                       <Col id="codecolumn">1</Col>
@@ -32,8 +32,8 @@
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" text="제목 : " left="24" top="14" width="65" height="35"/>
-              <Edit id="Edit00" taborder="1" left="70" top="14" width="648" height="38"/>
-              <TextArea id="TextArea00" taborder="2" left="47" top="79" width="671" height="331"/>
+              <TextArea id="txt_contents" taborder="1" left="47" top="79" width="671" height="331"/>
+              <Edit id="edt_title" taborder="2" left="79" top="9" width="639" height="44"/>
             </Layout>
           </Layouts>
         </Div>
@@ -43,14 +43,6 @@
     <Script type="xscript5.1"><![CDATA[
 this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-// 	let title = this.edt_title.value;
-// 	let contents = this.txt_contents.value;
-// 	
-// 	if(title==null || contents==null){
-// 		alert("필수항목을 입력해주세요");
-// 		return;
-// 	};
-
 	 this.transaction(
   		"insertWrite", //transaction id
   		"/nex/insertWrite.nexacro", //url(to controller)
@@ -69,19 +61,27 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 };
 ]]></Script>
     <Objects>
-      <Dataset id="ds_write">
+      <Dataset id="ds_write" onload="ds_write_onload">
         <ColumnInfo>
           <Column id="write_seq" type="INT" size="256"/>
           <Column id="write_code" type="STRING" size="256"/>
           <Column id="write_title" type="STRING" size="256"/>
           <Column id="write_contents" type="STRING" size="256"/>
           <Column id="write_id" type="STRING" size="256"/>
-          <Column id="write_reg_date" type="STRING" size="256"/>
-          <Column id="write_del_date" type="STRING" size="256"/>
-          <Column id="write_open" type="STRING" size="256"/>
-          <Column id="write_readCount" type="STRING" size="256"/>
+          <Column id="write_reg_date" type="DATE" size="256"/>
+          <Column id="write_del_date" type="DATE" size="256"/>
+          <Column id="wrtie_open" type="STRING" size="256"/>
+          <Column id="write_read_count" type="INT" size="256"/>
         </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
       </Dataset>
     </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.Radio00" propid="value" datasetid="ds_write" columnid="write_code"/>
+      <BindItem id="item1" compid="Div00_00.form.edt_title" propid="value" datasetid="ds_write" columnid="write_title"/>
+      <BindItem id="item2" compid="Div00_00.form.txt_contents" propid="value" datasetid="ds_write" columnid="write_contents"/>
+    </Bind>
   </Form>
 </FDL>

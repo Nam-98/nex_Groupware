@@ -6,7 +6,7 @@
         <Div id="div_work" taborder="1" text="Div00" left="0.00%" top="0" right="0.00%" bottom="0" border="1px solid pink">
           <Layouts>
             <Layout>
-              <Static id="sta_title" taborder="1" text="Static00" left="275" top="395" width="141" height="93"/>
+              <Static id="Static00" taborder="0" text="사용자 페이지 바로가기" left="236" top="143" width="228" height="176"/>
             </Layout>
           </Layouts>
         </Div>
