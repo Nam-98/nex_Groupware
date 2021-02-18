@@ -25,7 +25,7 @@
             <Layout name="Layout1"/>
           </Layouts>
         </Div>
-        <Div id="Div02" taborder="2" text="Div02" left="0" width="100.00%" cssclass="div_WF_mainFooter" height="80" top="690">
+        <Div id="Div02" taborder="2" text="Div02" left="0" width="100.00%" cssclass="div_WF_mainFooter" height="80" bottom="0">
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" left="40" top="18" width="160" height="43" cssclass="sta_WF_footerLogo01"/>

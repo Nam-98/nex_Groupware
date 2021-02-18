@@ -7,7 +7,6 @@
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="48"/>
                 <Column size="80"/>
                 <Column size="80"/>
                 <Column size="80"/>
@@ -17,16 +16,14 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
-                <Cell col="1" text="연차코드"/>
-                <Cell col="2" text="연차차감일(일)"/>
-                <Cell col="3" text="연차명"/>
+                <Cell text="연차코드"/>
+                <Cell col="1" text="연차차감일(일)"/>
+                <Cell col="2" text="연차명"/>
               </Band>
               <Band id="body">
-                <Cell edittype="checkbox" displaytype="checkboxcontrol"/>
-                <Cell col="1" text="bind:break_code"/>
-                <Cell col="2" text="bind:break_discount"/>
-                <Cell col="3" text="bind:break_name"/>
+                <Cell text="bind:break_code"/>
+                <Cell col="1" text="bind:break_discount"/>
+                <Cell col="2" text="bind:break_name"/>
               </Band>
             </Format>
           </Formats>
@@ -127,8 +124,15 @@
 this.vacationKind_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.transaction(
-		"loadBreak","/nex/loadBreakType.nexacro","","ds_break=ds_out","","fn_callback"
+		"loadBreak","/nex/loadBreakType.nexacro","","ds_break=ds_out","","fn_callback1"
 	);
+};
+
+this.fn_callback1 = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
 };
 
 this.fn_callback = function (id, ErrorCode, ErrorMsg)
@@ -136,6 +140,7 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
+	this.reload();
 };
 
 //저장 버튼 클릭 시,
@@ -149,14 +154,15 @@ this.tranSave = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 //추가 버튼 클릭 시, 
 this.Div00_Button00_01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	//this.ds_break.addRow();
-	alert("미구현");
+	this.ds_break.addRow();
+	//alert("미구현");
 };
 
 //삭제 버튼 클릭 시, 
 this.Div00_Button00_01_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	alert("미구현");
+	this.ds_break.deleteRow(this.ds_break.rowposition);
+	this.tranSave();
 };
 ]]></Script>
   </Form>
