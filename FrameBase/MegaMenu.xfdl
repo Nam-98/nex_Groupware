@@ -143,8 +143,11 @@ this.fnDrawMenu = function()
 	
  	if(this.close(sRtn))
  	{
- 		this.gfnOpenMenu(menuId, type);
-		this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Work.form.fn_openForm2(e,obj,menuId);
+ 		//this.gfnOpenMenu(menuId, type);
+		if(menuId!=""){
+		this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Work.form.fn_openForm2(e,obj,menuId);}
+		else{
+		}
 	}
 };
 
