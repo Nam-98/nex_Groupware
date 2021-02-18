@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MainStep" width="1280" height="450" titletext="New Form">
+    <Layouts>
+      <Layout height="450" width="1280" stepcount="3">
+        <Div id="divMainImg01" taborder="0" left="0" top="0" cssclass="div_WF_mainImg01" bottom="0" right="0">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="2" top="14.89%" stretch="fixaspectratio" image="url('imagerc::mainPic.png')" border="0px none" background="transparent" width="45.16%" bottom="61" right="6.88%"/>
+              <Static id="Static01" taborder="1" text="편리한 반응형웹 개발을 지원합니다" left="15.47%" top="147" height="60" cssclass="sta_WF_mainTextS" width="552" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <Static id="Static00" taborder="0" text="STJWARE를 시작하세요!" left="11.72%" top="216" height="80" cssclass="sta_WF_mainTextB" right="41.41%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+            </Layout>
+            <Layout name="Layout0">
+              <ImageViewer id="ImageViewer00" left="63.18%" top="32.67%" width="32.12%" height="58.22%"/>
+              <Static id="Static00" left="15.18%" top="156" width="544" height="12.89%"/>
+              <ImageViewer id="ImageViewer01" top="50.89%" width="15.53%" right="Static00:-63.0%" height="31%"/>
+              <Static id="Static01" left="15.18%" top="87" width="544" height="60"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Static id="Static01" left="20" top="50" height="64" right="20" visible="true" font="22px/26px &quot;Malgun Gothic&quot;,&quot;Arial&quot;,&quot;Helvetica&quot;" textAlign="center"/>
+              <Static id="Static00" left="29" top="110" height="50" font="normal 700 36px/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;,&quot;Helvetica&quot;" text="모바일로 경험하세요!" textAlign="center" right="28"/>
+              <ImageViewer id="ImageViewer00" left="54.67%" top="35.71%" width="37.56%" height="57.86%"/>
+              <ImageViewer id="ImageViewer01" top="80" width="24.89%" right="69" bottom="200" visible="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divMainImg02" taborder="1" left="0" top="0" cssclass="div_WF_mainImg02" visible="true" bottom="0" right="0" positionstep="1">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="2" left="50.00%" top="14.89%" stretch="fixaspectratio" image="url('theme://images/img_WF_mainVisual0002.png')" right="6.80%" bottom="13.56%" border="0px none" background="transparent"/>
+              <Static id="Static01" taborder="1" text="데이터를 빠르게 조회하고 효과적으로 검색하는" left="13.13%" top="147" height="60" cssclass="sta_WF_mainTextS" width="691" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <Static id="Static00" taborder="0" text="그리드 컴포넌트" left="13.13%" top="216" height="80" cssclass="sta_WF_mainTextB" right="32.89%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+            </Layout>
+            <Layout name="Layout0">
+              <Static id="Static00" left="11.65%" top="156" width="671" height="12.89%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <ImageViewer id="ImageViewer00" left="56.47%" top="22.22%" height="74.89%" width="39.76%"/>
+              <Static id="Static01" left="11.65%" top="87" width="671" height="60" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Static id="Static01" left="20" top="35" height="64" right="20" visible="true" font="22px/26px &quot;Malgun Gothic&quot;,&quot;Arial&quot;,&quot;Helvetica&quot;" textAlign="center" text="데이터를 빠르게 조회하고&#13;&#10;효과적으로 검색하는"/>
+              <Static id="Static00" left="20" top="100" height="50" font="normal 700 36px/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;,&quot;Helvetica&quot;" textAlign="center" right="20"/>
+              <ImageViewer id="ImageViewer00" left="57.78%" top="42.86%" right="2.00%" bottom="2.86%" text=""/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divMainImg03" taborder="2" left="0" top="0" cssclass="div_WF_mainImg03" right="0" visible="true" positionstep="2" bottom="0">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="2" left="46.88%" top="14.89%" stretch="fixaspectratio" image="url('theme://images/img_WF_mainVisual0003.png')" right="6.80%" bottom="13.56%" border="0px none" background="transparent"/>
+              <Static id="Static01" taborder="1" text="간단하고 쉬운 데이터 시각화 컴포넌트" left="13.13%" top="147" height="60" cssclass="sta_WF_mainTextS" width="582" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <Static id="Static00" taborder="0" text="넥사크로 차트" left="13.13%" top="216" height="80" cssclass="sta_WF_mainTextB" right="41.41%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+            </Layout>
+            <Layout name="Layout0">
+              <Static id="Static01" left="11.65%" top="87" width="601" height="60" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <Static id="Static00" left="11.65%" top="156" height="13.11%" width="601" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <ImageViewer id="ImageViewer00" left="52.94%" top="22.00%" width="42.35%" height="72.89%"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Static id="Static01" left="20" top="35" height="64" right="20" visible="true" font="22px/26px &quot;Malgun Gothic&quot;,&quot;Arial&quot;,&quot;Helvetica&quot;" textAlign="center" text="간단하고 쉬운&#13;&#10;데이터 시각화 컴포넌트"/>
+              <Static id="Static00" left="20" top="100" height="50" font="normal 700 36px/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;,&quot;Helvetica&quot;" textAlign="center" right="20"/>
+              <ImageViewer id="ImageViewer00" left="55.56%" top="44.29%" right="2.89%" bottom="5.36%"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>
