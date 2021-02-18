@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="tna_history_popUp" width="660" height="440" titletext="New Form" onload="tna_history_popUp_onload">
+    <Layouts>
+      <Layout height="440" mobileorientation="landscape" width="660">
+        <Div id="Div00" taborder="0" text="Div00" left="10" top="8" width="646" height="422">
+          <Layouts>
+            <Layout>
+              <Static id="Static37_00" taborder="0" cssclass="sta_WF_title01" left="-5" top="0" height="37" text="근태 조정 상세페이지" width="168"/>
+              <Button id="btnAdd" taborder="1" text="승인" left="150" width="75" height="39" bottom="30" onclick="Div00_btnAdd_onclick"/>
+              <Button id="btnCancel" taborder="2" text="취소" left="345" width="75" height="40" bottom="30" onclick="Div00_btnCancel_onclick"/>
+              <Static id="sta_docNm11" taborder="3" text="신청인" cssclass="sta_WF_Label" left="18" top="82" width="125" height="37" wordWrap="english"/>
+              <Static id="sta_docNm11_00" taborder="4" text="현재 상태" cssclass="sta_WF_Label" left="17" top="119" width="125" height="48" wordWrap="english"/>
+              <Static id="sta_docNm11_02" taborder="5" text="사유" cssclass="sta_WF_Label" left="18" top="211" width="125" height="65" wordWrap="english"/>
+              <Static id="Static03" taborder="6" cssclass="sta_WF_Labelbg" left="143" top="82" right="9" height="37"/>
+              <Static id="Static03_00" taborder="7" cssclass="sta_WF_Labelbg" left="142" top="119" right="9" height="48"/>
+              <Static id="Static03_01" taborder="8" cssclass="sta_WF_Labelbg" left="143" top="211" right="9" height="65" text="" onclick="Static03_01_onclick"/>
+              <Edit id="edt_name" taborder="9" left="153" top="89" width="457" height="23" readonly="true"/>
+              <Edit id="edt_current" taborder="10" left="152" top="126" width="457" height="31" readonly="true"/>
+              <TextArea id="txt_reason" taborder="11" left="153" top="218" width="456" height="50" readonly="true"/>
+              <Static id="sta_docNm11_00_00" taborder="12" text="변경 요청 상태" cssclass="sta_WF_Label" left="17" top="167" width="125" height="44" wordWrap="english"/>
+              <Static id="Static03_00_00" taborder="13" cssclass="sta_WF_Labelbg" left="142" top="167" right="9" height="44"/>
+              <Edit id="edt_change" taborder="14" left="152" top="174" width="457" height="27" readonly="true"/>
+              <Static id="Static03_02" taborder="15" cssclass="sta_WF_Labelbg" left="142" top="276" right="9" height="50"/>
+              <Static id="sta_docNm11_01" taborder="16" text="최종 변경" cssclass="sta_WF_Label" left="18" top="276" width="125" height="50" wordWrap="english"/>
+              <Combo id="com_final" taborder="17" text="선택" left="153" top="283" width="164" height="33" innerdataset="ds_tnaStatus" datacolumn="tna_status_name" codecolumn="tna_status_code" index="0" value="0"/>
+              <Static id="sta_docNm11_03" taborder="18" text="신청 날짜" cssclass="sta_WF_Label" left="18" top="45" width="125" height="37" wordWrap="english"/>
+              <Static id="Static03_03" taborder="19" cssclass="sta_WF_Labelbg" left="143" top="45" right="9" height="37"/>
+              <Edit id="edt_regDate" taborder="20" left="153" top="52" width="457" height="23" readonly="true"/>
+              <Button id="btnRe" taborder="21" text="반려" left="250" width="75" height="39" bottom="30" onclick="Div00_btnRe_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Static03_01_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.tna_history_popUp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//parent에서 seq값을 불러옴
+	var seq = this.parent.oSeq;
+	//seq값을 토대로 gds_tnaHistory에서 lookup함수를 통해 값을 뽑아냄.
+	var name = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"NAME");
+	var regDate = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_OBJ_REG_DATE");
+	var current = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_ORI_STATUS_NAME");
+	var change = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_STATUS_NAME");
+	var reason = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",seq,"TNA_OBJ_REASON");
+	if (regDate != null){
+		regDate.toLocaleDateString("ko_KR");
+	};
+	trace("childframe : "+seq);
+	trace("name : "+regDate);
+	
+	
+	//this.Div00.form.edt_code.set_value(sCode);
+	//값 넣기
+	this.Div00.form.edt_regDate.set_value(regDate);
+	this.Div00.form.edt_name.set_value(name);
+	this.Div00.form.edt_current.set_value(current);
+	this.Div00.form.edt_change.set_value(change);
+	this.Div00.form.txt_reason.set_value(reason);
+	
+};
+
+
+//승인 버튼 클릭시
+this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	let finalChange = this.Div00.form.com_final.value; //최종 변경값	
+	let statusCode = 3; // 처리상태 코드	
+	var objSeq = this.parent.oSeq; //parent(정정신청테이블 tna_objection_seq)  
+	var tnaSeq = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",objSeq,"TNA_SEQ");//tna_seq
+	var objStatus = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",objSeq,"TNA_OBJ_STATUS");//tna_objection_status
+	
+	
+	trace("==status=="+statusCode);
+	trace("objSeq : "+objSeq);
+	trace("====finalChange====="+finalChange);
+	trace("tnaSeq : "+tnaSeq);
+	trace("objStatus : "+objStatus);
+	
+	var sRtn = statusCode + "|" + objSeq + "|" + finalChange + "|" + tnaSeq + "|" + objStatus;
+	
+	this.close(sRtn);
+	
+};
+
+this.Div00_btnRe_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	let statusCode = 2;//처리상태 코드
+	trace("==status=="+statusCode);
+	var seq = this.parent.oSeq;
+	trace("childframeSeq : "+seq);
+	var sRtn = statusCode + "|" + seq;
+	
+	this.close(sRtn);
+};
+
+
+
+this.Div00_btnCancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item1" compid="Edit00_00" propid="value" datasetid="gds_stMember" columnid="id"/>
+      <BindItem id="item2" compid="Edit00_00_00" propid="value" datasetid="gds_stMember" columnid="id"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_tnaStatus">
+        <ColumnInfo>
+          <Column id="tna_status_code" type="INT" size="256"/>
+          <Column id="tna_status_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="tna_status_code">0</Col>
+            <Col id="tna_status_name">선택</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">1</Col>
+            <Col id="tna_status_name">외근출근</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">2</Col>
+            <Col id="tna_status_name">정상출근</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">3</Col>
+            <Col id="tna_status_name">지각</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">4</Col>
+            <Col id="tna_status_name">교육훈련</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">5</Col>
+            <Col id="tna_status_name">결근</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">6</Col>
+            <Col id="tna_status_name">출장</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">7</Col>
+            <Col id="tna_status_name">휴가</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">8</Col>
+            <Col id="tna_status_name">조퇴</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">9</Col>
+            <Col id="tna_status_name">정상퇴근</Col>
+          </Row>
+          <Row>
+            <Col id="tna_status_code">10</Col>
+            <Col id="tna_status_name">야근</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>
