@@ -8,11 +8,11 @@
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" text="Quick Menu" left="0" top="0" width="20.23%" height="120" cssclass="sta_WF_mainQmenu"/>
-              <Button id="btn_201020" taborder="1" text="공지사항 작성" left="Static00:0" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn01" onclick="QuickMenu_onclick"/>
-              <Button id="btn_3020" taborder="2" text="직원 등록" left="btn_201020:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn02" onclick="QuickMenu_onclick"/>
+              <Button id="btn_2010" taborder="1" text="공지사항관리" left="Static00:0" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn01" onclick="QuickMenu_onclick"/>
+              <Button id="btn_3020" taborder="2" text="직원 등록" left="btn_2010:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn02" onclick="QuickMenu_onclick"/>
               <Button id="btn_4030" taborder="3" text="근태조정신청관리" left="btn_3020:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn03" onclick="QuickMenu_onclick"/>
-              <Button id="btn_6040" taborder="4" text="전자결재관리" left="btn_4030:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn04" onclick="QuickMenu_onclick"/>
-              <Button id="btn_5030" taborder="5" text="직원별연차관리" left="btn_6040:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn05" onclick="QuickMenu_onclick"/>
+              <Button id="btn_6010" taborder="4" text="전자결재설정" left="btn_4030:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn04" onclick="QuickMenu_onclick"/>
+              <Button id="btn_5030" taborder="5" text="직원별연차관리" left="btn_6010:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn05" onclick="QuickMenu_onclick"/>
               <Static id="Static00_00" taborder="6" text="Click! 사용자 바로가기" top="0" width="19.84%" height="120" cssclass="sta_WF_mainQmenu" right="0" onclick="Div01_Static00_00_onclick"/>
             </Layout>
             <Layout name="Layout0"/>
