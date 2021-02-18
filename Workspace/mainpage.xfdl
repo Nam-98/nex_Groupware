@@ -1,16 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="mainpage" width="1280" height="770" titletext="New Form">
+  <Form id="mainpage" width="1280" height="900" titletext="New Form" ontimer="mainpage_ontimer" border="0px none">
     <Layouts>
-      <Layout height="770" width="1280">
-        <Div id="divMainVisual" taborder="0" left="0" top="0" height="450" right="0" cssclass="div_WF_mainVisual" formscrolltype="none" formscrollbartype="autoindicator none" text="">
-          <Layouts>
-            <Layout>
-              <ImageViewer id="ImageViewer00" taborder="0" top="20" width="160" height="146" background="url('imagerc::logo-dark.png') no-repeat" color="transparent" border="0px none" right="0"/>
-            </Layout>
-          </Layouts>
-        </Div>
-        <Div id="Div01" taborder="1" text="Div01" left="0" top="340" width="100.00%" height="120" cssclass="div_WF_mainQuick">
+      <Layout height="900" width="1280">
+        <Div id="divMainVisual" taborder="0" left="0" right="0" cssclass="div_WF_mainVisual" formscrolltype="none" formscrollbartype="autoindicator none" text="" top="0" bottom="380" url="FrameBase::MainStep.xfdl"/>
+        <Div id="Div01" taborder="1" text="Div01" left="0" width="100.00%" height="120" cssclass="div_WF_mainQuick" bottom="260">
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" text="Quick Menu" left="0" top="0" width="20.23%" height="120" cssclass="sta_WF_mainQmenu"/>
@@ -18,14 +12,14 @@
               <Button id="btn_3020" taborder="2" text="직원 등록" left="btn_201020:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn02" onclick="QuickMenu_onclick"/>
               <Button id="btn_4030" taborder="3" text="근태조정신청관리" left="btn_3020:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn03" onclick="QuickMenu_onclick"/>
               <Button id="btn_6040" taborder="4" text="전자결재관리" left="btn_4030:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn04" onclick="QuickMenu_onclick"/>
-              <Button id="btn_2040" taborder="5" text="A" left="btn_6040:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn05" onclick="QuickMenu_onclick"/>
-              <Button id="btn_1060" taborder="6" text="B" left="btn_2040:0" top="0" height="120" cssclass="btn_WF_mainQbtn06" right="7%" onclick="QuickMenu_onclick"/>
+              <Button id="btn_5030" taborder="5" text="직원별연차관리" left="btn_6040:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn05" onclick="QuickMenu_onclick"/>
+              <Static id="Static00_00" taborder="6" text="Click! 사용자 바로가기" top="0" width="19.84%" height="120" cssclass="sta_WF_mainQmenu" right="0" onclick="Div01_Static00_00_onclick"/>
             </Layout>
             <Layout name="Layout0"/>
             <Layout name="Layout1"/>
           </Layouts>
         </Div>
-        <Div id="Div02" taborder="2" text="Div02" left="0" width="100.00%" cssclass="div_WF_mainFooter" height="80" top="690">
+        <Div id="Div02" taborder="2" text="Div02" left="0" width="100.00%" cssclass="div_WF_mainFooter" height="80" bottom="0">
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" left="40" top="18" width="160" height="43" cssclass="sta_WF_footerLogo01"/>
@@ -44,7 +38,7 @@
             </Layout>
           </Layouts>
         </Div>
-        <Div id="Div03" taborder="3" text="Div03" left="0" width="100.00%" height="180" top="460" cssclass="div_WF_mainSite" onhscroll="Div03_onhscroll">
+        <Div id="Div03" taborder="3" text="Div03" left="0" width="100.00%" height="180" cssclass="div_WF_mainSite" onhscroll="Div03_onhscroll" bottom="80">
           <Layouts>
             <Layout>
               <Button id="btnSupport" taborder="0" left="40" top="40" width="30.47%" height="100" cssclass="btn_WF_mainSite01" onclick="fnGoSite"/>
@@ -73,9 +67,12 @@
           </Layouts>
         </Div>
         <Button id="btn_menu" taborder="4" left="20" top="20" width="80" height="80" cssclass="btn_WF_mainFloat" onclick="divMainVisual_btn_menu_onclick" text=""/>
+        <ImageViewer id="ImageViewer00" taborder="5" top="35" width="181" height="70" background="url('imagerc::logo-dark.png') no-repeat center center" right="50" border="0px" onclick="ImageViewer00_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
+this.setTimer(6666,3000);
+
 /**
  * @description 퀵베뉴 선택시 해당 화면으로 이동한다.
 */
@@ -188,7 +185,35 @@ this.fn_callback_pop = function(id, sRtn){
 	nexacro.getApplication().trace(menuId);
 
 	this.fn_openForm2(menuId);
-}]]></Script>
+}
+this.mainpage_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var nNum = 0;
+	
+	if(e.timerid == 6666)
+	{
+		var stepIndex = this.divMainVisual.form.getStepIndex();
+		stepIndex = nexacro.toNumber(stepIndex) + 1;
+		
+		if(stepIndex > 2)
+		{
+			stepIndex = 0;
+		}
+		this.divMainVisual.form.setStepIndex(stepIndex);
+	}
+};
+
+
+this.Div01_Static00_00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	var domain = document.location.href;
+    var arrdomain = domain.split('/');
+    var currentfile = arrdomain.pop();
+    domain = domain.replace(currentfile, "returnHome.nexacro")
+   //trace("domain : "+domain);
+	system.execBrowser(domain);
+};
+]]></Script>
     <Objects>
       <Dataset id="dsMenu"/>
     </Objects>

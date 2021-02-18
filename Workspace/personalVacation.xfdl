@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="personalVacation" width="980" height="790" titletext="New Form">
+  <Form id="personalVacation" width="980" height="790" titletext="New Form" onload="personalVacation_onload">
     <Layouts>
       <Layout height="790" width="980">
-        <Grid id="grdList" taborder="0" useinputpanel="false" left="0" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="670" oncellclick="Div01_ImageViewer00_onload">
+        <Grid id="grdList" taborder="0" useinputpanel="false" left="0" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="20" oncellclick="Button75_onclick">
           <Formats>
             <Format id="default">
               <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
                 <Column size="80"/>
                 <Column size="80"/>
                 <Column size="80"/>
@@ -18,11 +20,13 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="아이디" expandimage="url('imagerc::grd_sort.png')" expandshow="show" background="#f3f7f7"/>
-                <Cell col="1" text="성명" background="#f3f7f7" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
-                <Cell col="2" text="연락처" expandimage="url('imagerc::grd_sort.png')" expandshow="show" background="#f3f7f7"/>
-                <Cell col="3" text="부서" expandimage="url('imagerc::grd_sort.png')" expandshow="show" background="#f3f7f7"/>
-                <Cell col="4" text="직급" expandimage="url('imagerc::grd_sort.png')" expandshow="show" background="#f3f7f7"/>
+                <Cell text="아이디"/>
+                <Cell col="1" text="성명"/>
+                <Cell col="2" text="연락처"/>
+                <Cell col="3" text="부서코드"/>
+                <Cell col="4" text="직급코드"/>
+                <Cell col="5" text="총연차(일)"/>
+                <Cell col="6" text="사용연차(일)"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:id"/>
@@ -30,6 +34,8 @@
                 <Cell col="2" text="bind:contact"/>
                 <Cell col="3" text="bind:dept_code"/>
                 <Cell col="4" text="bind:position_code"/>
+                <Cell col="5" text="bind:break_total_count"/>
+                <Cell col="6" text="bind:break_use_count"/>
               </Band>
             </Format>
           </Formats>
@@ -45,65 +51,9 @@
           </Layouts>
         </Div>
         <Static id="Static80" taborder="4" text="임/직원 리스트" usedecorate="true" cssclass="sta_WF_title01" left="0" top="69" width="400" height="23" wordWrap="english"/>
-        <Div id="Div00" taborder="5" top="94" right="20" width="640" height="334" cssclass="div_WF_DetailBg" text="">
-          <Layouts>
-            <Layout width="912" height="393">
-              <Static id="Static02" taborder="0" cssclass="sta_WF_Labelbg" left="2" top="108" right="0" height="37"/>
-              <Static id="Static03" taborder="1" cssclass="sta_WF_Labelbg" left="2" top="72" right="0" height="37"/>
-              <Static id="Static04" taborder="2" cssclass="sta_WF_Labelbg" left="2" top="36" right="0" height="37" text=""/>
-              <Static id="sta_docNm08" taborder="3" text="사용휴가일수" cssclass="sta_WF_Label" left="2" top="36" width="110" height="37" wordWrap="english"/>
-              <Edit id="Edit05" taborder="4" left="117" top="43" width="40" height="25"/>
-              <Edit id="Edit05_00" taborder="5" left="225" top="43" width="40" height="25"/>
-              <Static id="Static08" taborder="6" text="일 (전체 :          일)" left="150" top="36" width="201" height="35" cssclass="sta_WF_SearchLabel"/>
-              <Static id="Static37_00" taborder="7" cssclass="sta_WF_title01" left="2" top="0" height="37" text="개인별 휴가정보" width="135"/>
-              <Button id="Button00" taborder="8" text="저장" top="9" height="23" cssclass="btn_WF_add" width="62" right="70" onclick="tranSave"/>
-              <Button id="Button00_00" taborder="9" text="삭제" top="9" height="23" cssclass="btn_WF_delete" width="62" right="0" onclick="Div00_Button00_00_onclick"/>
-            </Layout>
-          </Layouts>
-          <InitValue/>
-        </Div>
-        <Static id="Static06" taborder="6" text="h 5" visible="false" left="1670" top="488" width="78" height="5" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Div id="Div01" taborder="7" text="Div01" top="428" width="640" height="334" right="20">
-          <Layouts>
-            <Layout>
-              <Static id="Static00" taborder="0" text="프로필정보" left="2" top="0" width="110" height="37" cssclass="sta_WF_title01"/>
-              <Static id="Static01" taborder="1" left="2" top="36" cssclass="sta_WF_Labelbg" height="147" width="638" text=""/>
-              <Static id="Static02" taborder="2" text="사진 등록" left="2" top="36" width="110" height="147" cssclass="sta_WF_Label_P"/>
-              <Static id="Static02_00" taborder="3" text="미리보기" left="322" top="36" width="110" height="147" cssclass="sta_WF_Label"/>
-              <ImageViewer id="ImageViewer00" taborder="4" text="ImageViewer00" left="475" top="37" width="131" height="145" onload="Div01_ImageViewer00_onload"/>
-              <Grid id="grd_file00" taborder="5" left="120" top="43" width="193" height="69" ondragenter="div_input_grd_file_ondragenter" ondragleave="div_input_grd_file_ondragleave" autofittype="col" binddataset="ds_profile" ondrop="div_input_grd_file_ondrop">
-                <Formats>
-                  <Format id="default">
-                    <Columns>
-                      <Column size="80"/>
-                      <Column size="80"/>
-                      <Column size="80"/>
-                    </Columns>
-                    <Rows>
-                      <Row band="head" size="24"/>
-                      <Row size="24"/>
-                    </Rows>
-                    <Band id="head">
-                      <Cell text="FileName"/>
-                      <Cell col="1" text="Size"/>
-                      <Cell col="2" text="ID"/>
-                    </Band>
-                    <Band id="body">
-                      <Cell text="bind:FileName"/>
-                      <Cell col="1" text="bind:Size"/>
-                      <Cell col="2" text="bind:ID"/>
-                    </Band>
-                  </Format>
-                </Formats>
-              </Grid>
-              <Button id="Button00" taborder="6" text="저장" top="9" width="62" height="23" cssclass="btn_WF_add" onclick="btn_save00_onclick" right="0"/>
-              <Static id="Static03" taborder="7" text="파일을 끌어다 올려놓으세요" left="120" top="43" width="193" height="69" border="3px dotted crimson" color="crimson" textAlign="center"/>
-              <Static id="Static04" taborder="8" text="png 형식 파일 첨부" left="120" top="109" width="192" height="60"/>
-            </Layout>
-          </Layouts>
-        </Div>
-        <Static id="Static01_00" taborder="8" text="검색조건" left="16" top="15" width="64" height="23" cssclass="sta_WF_SeaFieldLabel"/>
-        <Combo id="cboCondition" taborder="9" text="전체" left="86" top="12" width="67" height="23" value="" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+        <Static id="Static06" taborder="5" text="h 5" visible="false" left="1670" top="488" width="78" height="5" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static01_00" taborder="6" text="검색조건" left="16" top="15" width="64" height="23" cssclass="sta_WF_SeaFieldLabel"/>
+        <Combo id="cboCondition" taborder="7" text="전체" left="86" top="12" width="67" height="23" value="" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -115,23 +65,58 @@
                 <Col id="datacolumn">전체</Col>
               </Row>
               <Row>
-                <Col id="codecolumn">TITLE</Col>
-                <Col id="datacolumn">제목</Col>
+                <Col id="codecolumn">id</Col>
+                <Col id="datacolumn">아이디</Col>
               </Row>
               <Row>
-                <Col id="codecolumn">CONTENTS</Col>
-                <Col id="datacolumn">내용</Col>
+                <Col id="codecolumn">name</Col>
+                <Col id="datacolumn">성명</Col>
               </Row>
             </Rows>
           </Dataset>
         </Combo>
-        <Edit id="edtKeyword" taborder="10" left="155" top="12" width="150" height="23"/>
-        <Button id="btnSearch" taborder="11" top="7" height="30" onclick="fnSearch" cssclass="btn_WF_search01" width="30" left="365"/>
+        <Edit id="edtKeyword" taborder="8" left="155" top="12" width="150" height="23" value="검색미구현" text="검색미구현"/>
+        <Button id="btnSearch" taborder="9" top="7" height="30" onclick="fnSearch" cssclass="btn_WF_search01" width="30" left="365"/>
+        <Button id="Button75" taborder="10" text="사용현황" cssclass="btn_WF_Module" top="58" right="20" width="76" height="30" wordWrap="char" onclick="Button75_onclick"/>
+        <Edit id="Edit00" taborder="11" top="64" width="140" height="20" right="105" readonly="true"/>
       </Layout>
     </Layouts>
+    <Objects/>
     <Bind>
-      <BindItem id="item11" compid="Div00.form.Edit05" propid="value" datasetid="gds_stMember" columnid="break_use_count"/>
-      <BindItem id="item12" compid="Div00.form.Edit05_00" propid="value" datasetid="gds_stMember" columnid="break_total_count"/>
+      <BindItem id="item0" compid="Edit00" propid="value" datasetid="gds_stMember" columnid="id"/>
     </Bind>
+    <Script type="xscript5.1"><![CDATA[
+this.Button75_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var id = this.Edit00.value;
+	console.log(id);
+	var objCF = new ChildFrame();
+	objCF.init("휴가사용현황",0,0,1280,560);
+	objCF.set_formurl("Workspace::personalVacationUse.xfdl");
+	objCF.showModal( this.getOwnerFrame(), {a:id}, this, "fn_callback_pop" );
+	objCF.set_showtitlebar(true);
+	objCF.set_resizable(true);
+};
+
+this.personalVacation_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.transaction(
+		"loading",
+		"/nex/loadMemList.nexacro",
+		"",
+		"gds_stMember=ds_out",
+		"",
+		"fn_callback"
+	);
+	
+	
+};
+
+this.fn_callback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};]]></Script>
   </Form>
 </FDL>

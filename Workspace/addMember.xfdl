@@ -157,12 +157,12 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	 this.transaction(
-  		"insertMem", //transaction id
-  		"/nex/insertMem.nexacro", //url(to controller)
-  		"ds_in=ds_addMem:U", // in data set
-  		"", // out data set
- 		"", // variable send
-  		"fn_callback" //callback function
+  		"insertMem", 
+  		"/nex/insertMem.nexacro", 
+  		"ds_in=ds_addMem:U",
+  		"",
+ 		"",
+  		"fn_callback"
   	);
 };
 

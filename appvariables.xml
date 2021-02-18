@@ -90,15 +90,16 @@
           <Col id="MENU_ID">4030</Col>
           <Col id="MENU_NAME">근태조정신청관리</Col>
           <Col id="MENU_LEVEL">1</Col>
+          <Col id="FORM_URL">Workspace::tna_history.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">50</Col>
-          <Col id="MENU_NAME">휴가관리</Col>
+          <Col id="MENU_NAME">연차관리</Col>
           <Col id="MENU_LEVEL">0</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">5010</Col>
-          <Col id="MENU_NAME">휴가종류설정</Col>
+          <Col id="MENU_NAME">연차종류설정</Col>
           <Col id="MENU_LEVEL">1</Col>
           <Col id="FORM_URL">Workspace::vacationKind.xfdl</Col>
         </Row>
@@ -110,7 +111,7 @@
         </Row>
         <Row>
           <Col id="MENU_ID">5030</Col>
-          <Col id="MENU_NAME">직원별휴가관리</Col>
+          <Col id="MENU_NAME">직원별연차관리</Col>
           <Col id="MENU_LEVEL">1</Col>
           <Col id="FORM_URL"/>
         </Row>
@@ -118,13 +119,8 @@
           <Col id="MENU_ID">503010</Col>
           <Col id="MENU_NAME">휴가일수설정</Col>
           <Col id="MENU_LEVEL">2</Col>
+
           <Col id="FORM_URL">Workspace::personalVacation.xfdl</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">503020</Col>
-          <Col id="MENU_NAME">휴가사용현황</Col>
-          <Col id="MENU_LEVEL">2</Col>
-          <Col id="FORM_URL">Workspace::personalVacationUse.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">60</Col>
@@ -252,6 +248,74 @@
         <Column id="dept_dir_id" type="INT" size="256"/>
         <Column id="dept_level" type="INT" size="256"/>
       </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_tnaHistory">
+      <ColumnInfo>
+        <Column id="TNA_OBJ_SEQ" type="INT" size="256"/>
+        <Column id="TNA_OBJ_REASON" type="STRING" size="256"/>
+        <Column id="TNA_OBJ_ID" type="STRING" size="256"/>
+        <Column id="TNA_OBJ_REG_DATE" type="DATE" size="256"/>
+        <Column id="TNA_OBJ_CHANGED_CODE" type="INT" size="256"/>
+        <Column id="TNA_STATUS_NAME" type="STRING" size="256"/>
+        <Column id="TNA_SEQ" type="INT" size="256"/>
+        <Column id="TNA_OBJ_STATUS" type="STRING" size="256"/>
+        <Column id="TNA_OBJ_ORI_STATUS_CODE" type="INT" size="256"/>
+        <Column id="TNA_ORI_STATUS_NAME" type="STRING" size="256"/>
+        <Column id="TNA_OBJ_TIME" type="DATE" size="256"/>
+        <Column id="TNA_OBJ_PROC_STATUS_CODE" type="INT" size="256"/>
+        <Column id="TNA_OBJ_PROC_STATUS_NAME" type="STRING" size="256"/>
+        <Column id="DEPT_CODE" type="INT" size="256"/>
+        <Column id="POSITION_CODE" type="INT" size="256"/>
+        <Column id="DEPT_NAME" type="STRING" size="256"/>
+        <Column id="POSITION_NAME" type="STRING" size="256"/>
+        <Column id="RN" type="STRING" size="256"/>
+        <Column id="NAME" type="STRING" size="256"/>
+        <Column id="CHK" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="TNA_OBJ_SEQ">1</Col>
+          <Col id="TNA_OBJ_PROC_STATUS_CODE">1</Col>
+          <Col id="TNA_OBJ_PROC_STATUS_NAME">조정중</Col>
+          <Col id="TNA_OBJ_REASON">병원</Col>
+          <Col id="TNA_OBJ_ID">test1</Col>
+          <Col id="TNA_OBJ_REG_DATE">20200208000000</Col>
+          <Col id="TNA_OBJ_CHANGED_CODE">4</Col>
+          <Col id="TNA_STATUS_NAME">교육훈련</Col>
+          <Col id="TNA_SEQ">8</Col>
+          <Col id="TNA_OBJ_STATUS">start</Col>
+          <Col id="TNA_OBJ_ORI_STATUS_CODE">2</Col>
+          <Col id="TNA_ORI_STATUS_NAME">정상출근</Col>
+          <Col id="TNA_OBJ_TIME">210202</Col>
+          <Col id="DEPT_CODE">3</Col>
+          <Col id="POSITION_CODE">3</Col>
+          <Col id="DEPT_NAME">개발2팀</Col>
+          <Col id="POSITION_NAME">소장</Col>
+          <Col id="RN">1</Col>
+          <Col id="NAME">테스터</Col>
+        </Row>
+        <Row>
+          <Col id="TNA_OBJ_SEQ">2</Col>
+          <Col id="TNA_OBJ_PROC_STATUS_CODE">2</Col>
+          <Col id="TNA_OBJ_PROC_STATUS_NAME">반려</Col>
+          <Col id="TNA_OBJ_REASON">이사</Col>
+          <Col id="TNA_OBJ_ID">1111</Col>
+          <Col id="TNA_OBJ_REG_DATE">20/02/16</Col>
+          <Col id="TNA_OBJ_CHANGED_CODE">1</Col>
+          <Col id="TNA_STATUS_NAME">외근출근</Col>
+          <Col id="TNA_SEQ">2</Col>
+          <Col id="TNA_OBJ_STATUS">end</Col>
+          <Col id="TNA_OBJ_ORI_STATUS_CODE">8</Col>
+          <Col id="TNA_ORI_STATUS_NAME">조퇴</Col>
+          <Col id="TNA_OBJ_TIME">210203</Col>
+          <Col id="DEPT_CODE">2</Col>
+          <Col id="POSITION_CODE">3</Col>
+          <Col id="DEPT_NAME">개발1팀</Col>
+          <Col id="POSITION_NAME">소장</Col>
+          <Col id="RN">2</Col>
+          <Col id="NAME">김근수</Col>
+        </Row>
+      </Rows>
     </Dataset>
   </Datasets>
   <Variables/>
