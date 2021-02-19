@@ -7,7 +7,7 @@
         <Static id="sta_wid" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="sta_higt" taborder="2" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="sta_title" taborder="3" text="부서관리" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00:0" top="10" width="270" height="23" wordWrap="english"/>
-        <Button id="btn_add" taborder="4" text="부서추가" left="23" top="sta_title:10" width="75" height="28" onclick="btn_add_onclick"/>
+        <Button id="btn_add" taborder="4" text="부서추가" left="13" top="sta_title:10" width="75" height="28" onclick="btn_add_onclick"/>
         <Static id="sta_wid01" taborder="5" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" background="rgba(251,123,123,0.47843137254901963)" left="250"/>
         <Grid id="grd_dept00" taborder="6" left="sta_wid01:0" top="81" right="sta_wid:0" bottom="sta_higt:0" binddataset="ds_selected_member" autofittype="col" onheadclick="grd_dept00_onheadclick">
           <Formats>
@@ -50,17 +50,19 @@
           </Formats>
         </Grid>
         <Static id="sta_title00" taborder="7" text="직원 리스트" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid01:0" top="10" width="270" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
-        <Grid id="tree_dept" taborder="8" left="sta_wid00:0" top="btn_add:10" autofittype="col" binddataset="gds_stDepartment" formatid="default" treeinitstatus="expand,all" scrollbartype="default default" right="sta_wid01:0" bottom="sta_higt:0" treeusecheckbox="false" oncellclick="tree_dept_oncellclick">
+        <Grid id="tree_dept" taborder="8" left="sta_wid00:0" top="btn_add:10" autofittype="col" binddataset="gds_stDepartment" formatid="default" treeinitstatus="expand,all" scrollbartype="default default" right="sta_wid01:0" bottom="sta_higt:0" treeusecheckbox="false" oncellclick="tree_dept_oncellclick" oncelldblclick="tree_dept_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
+                <Column size="48"/>
                 <Column size="80"/>
               </Columns>
               <Rows>
                 <Row size="24"/>
               </Rows>
               <Band id="body">
-                <Cell text="bind:dept_name" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:dept_level" treestartlevel="1"/>
+                <Cell text="bind:dept_code"/>
+                <Cell col="1" text="bind:dept_name" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:dept_level" treestartlevel="1"/>
               </Band>
             </Format>
           </Formats>
@@ -92,6 +94,7 @@ this.fn_callback  =  function(strSvcID, nErrorCode, strErrorMag)
 	trace("ErrorCode : "+nErrorCode);
 	trace("에러 메세지 : "+strErrorMag);
 	trace(this.gds_stDepartment.name);
+	
 };
 
 //부서를 선택하였을 때 왼쪽의 memberList에 data를 보여준다.
@@ -113,20 +116,31 @@ this.grd_dept00_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEvent
 this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	var objCF = new ChildFrame();
-	objCF.init("popDeptAdd",0,0,300,400);
+	objCF.init("popDeptAdd",200,200,300,400);
 	objCF.set_formurl("Workspace::form_pop_deptAdd.xfdl");
 	
-	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback_pop" );
+	objCF.showModal( this.getOwnerFrame(), {dept_selected:this.tree_dept.getCellPos()}, this, "fn_callback_pop" );
 };
 this.fn_callback_pop = function(id, sRtn){
-	var arrRtn = sRtn.split("|");
-	var sName = arrRtn[0];
-	var sParentCode = arrRtn[1];
-	var sLevel = arrRtn[2];
-	nexacro.getApplication().trace(sName);
-	
-	this.Div00.form.ed_mtrlCd00.set_value(sCode);
+	trace(id+" pop up창 닫힘");
+	this.gds_stDepartment.filter('');
+	this.reload();//화면 재구성
 }
+
+this.tree_dept_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var objCF = new ChildFrame();
+	objCF.init("popDeptUdt",200,200,300,400);
+	objCF.set_formurl("Workspace::form_pop_deptUdt.xfdl");
+	
+	var pDept_code = this.gds_stDepartment.getColumn(e.row,"dept_code");
+	var pDept_name = this.gds_stDepartment.getColumn(e.row,"dept_name");
+	var pDept_level = this.gds_stDepartment.getColumn(e.row,"dept_level");
+	var pDept_code_parent = this.gds_stDepartment.getColumn(e.row,"dept_code_parent");
+	var pDept_tree_code = this.gds_stDepartment.getColumn(e.row,"dept_tree_code");
+	
+	objCF.showModal( this.getOwnerFrame(), {dept_code:pDept_code, dept_name:pDept_name, dept_level:pDept_level, dept_code_parent:pDept_code_parent, dept_tree_code:pDept_tree_code}, this, "fn_callback_pop" );
+};
 ]]></Script>
     <Objects>
       <Dataset id="ds_selected_member" filterstr="false">

@@ -139,22 +139,6 @@ this.edt_app_type_name_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEve
 //문서 삭제
 this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-// 	//삭제할 column의 code값 들고 옴
-// 	var code = this.ds_approval_type.getColumn(this.selectedRowInx,0);
-// 	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);
-// 	var ans = this.confirm(name+" 양식을 삭제하시겠습니까?");
-// 	if(ans){
-// 		var bindDs = this.ds_approval_type;
-// 		//delete전용 dataSet에 내용 저장
-// 		var delInx = this.ds_approval_type_deleted.addRow();
-// 		this.ds_approval_type_deleted.setColumn(delInx,0,code);//삭제전용 ds에 추가
-// 		
-// 		//삭제
-// 		bindDs.deleteRow(this.selectedRowInx);
-// 		
-// 		//삭제된 row에 focus준것을 삭제함
-// 		this.selectedRowInx = '';
-// 	}
 
 	var code = this.ds_approval_type.getColumn(this.selectedRowInx,0);
  	var name = this.ds_approval_type.getColumn(this.selectedRowInx,1);

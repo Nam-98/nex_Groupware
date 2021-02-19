@@ -4,7 +4,7 @@
     <Layouts>
       <Layout height="400" width="300">
         <Button id="btnAdd" taborder="0" text="OK" left="80" width="65" height="29" onclick="fnAdd" bottom="10"/>
-        <Button id="btnDel" taborder="1" text="Cancel" left="155" width="65" height="29" onclick="fnDel" bottom="10"/>
+        <Button id="btnClose" taborder="1" text="Cancel" left="155" width="65" height="29" bottom="10" onclick="btnClose_onclick"/>
         <Static id="Static01" taborder="2" text="." visible="false" left="-1" right="0" height="10" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="Static01_00" taborder="3" text="." visible="false" left="0" right="0" height="10" background="rgba(251,123,123,0.47843137254901963)" top="0"/>
         <Static id="Static04" taborder="4" cssclass="sta_WF_Labelbg" left="2" top="36" right="0" height="37" text=""/>
@@ -15,7 +15,7 @@
         <Static id="sta_dept_name00" taborder="9" text="상위부서" cssclass="sta_WF_Label_P" left="0" top="72" width="70" height="37" wordWrap="english"/>
         <CheckBox id="chb_isTop" taborder="10" text="상위부서 없음" left="sta_dept_name00:10" top="Static04:10" height="17" right="23" onchanged="chb_isTop_onchanged"/>
         <Static id="Static37_00_00" taborder="11" cssclass="sta_WF_title01" left="0" top="Static04_00:0" height="37" text="상위부서 선택" width="110"/>
-        <Grid id="grd_tree" taborder="12" left="0" top="Static37_00_00:0" binddataset="gds_stDepartment" autofittype="col" bottom="btnAdd:5" right="0" enable="false" treeusecheckbox="false" oncellclick="grd_tree_oncellclick">
+        <Grid id="grd_tree" taborder="12" left="0" top="Static37_00_00:0" binddataset="gds_stDepartment" autofittype="col" bottom="btnAdd:5" right="0" treeusecheckbox="false" oncellclick="grd_tree_oncellclick" treeinitstatus="expand,all">
           <Formats>
             <Format id="default">
               <Columns>
@@ -32,32 +32,63 @@
         </Grid>
       </Layout>
     </Layouts>
-    <Objects/>
+    <Objects>
+      <Dataset id="ds_dept_add">
+        <ColumnInfo>
+          <Column id="dept_code" type="INT" size="256"/>
+          <Column id="dept_name" type="STRING" size="256"/>
+          <Column id="dept_dir_id" type="INT" size="256"/>
+          <Column id="dept_level" type="INT" size="256"/>
+          <Column id="dept_code_parent" type="STRING" size="256"/>
+          <Column id="dept_tree_code" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
     <Script type="xscript5.1"><![CDATA[this.gds_stDepartment = nexacro.getApplication().gds_stDepartment;
 this.selectedRowInx = '';
 
 this.fnAdd = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {	
-	var sRtn = '';
 	var sName = this.edt_dept_name.value;
-
-	//상위부서가 없다면 이름 + null return 
-	if(this.chb_isTop){
-		sRtn = sName+"|null|null";
-	}else{
-		//상위부서가 있다면 해당 부서의 code와 level+1한 값을 넘겨줌. 
-		var sParentCode = this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_code");
-		var sLevel = (this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_level")+1);//부모 level의 +1
-		sRtn = sName+"|"+sParentCode+"|"+sLevel;
+	var sLevel = 1;//top일경우 level은 1로 설정된다. 
+	var sTreeCode = 'none';
+	var sInfo = sName+"부서를 추가하시겠습니까?";
+	
+	//상위부서가 있다면 
+	if(!this.chb_isTop.value){
+		//level : 해당 부서의 code와 level+1한 값을 넘겨줌. 
+		sParentCode = this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_code");
+		trace("부모의 level : "+this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_level"));
+		sLevel = (this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_level")+1);//부모 level의 +1
+		
+		//부모코드 설정
+		this.ds_dept_add.setColumn(0,"dept_code_parent",sParentCode);
+		
+		//tree_code설정 nexa에선 부모의 tree만 넘겨주고 자신의 seq는 server에서 추가함
+		sTreeCode = this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_tree_code");
+		trace("부모의 트리 코드 : "+sTreeCode)
+//		sIsTop = false
+		
+		//confirm에서 사용할 text설정
+		sInfo = this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_name")+"의 하위부서 "+sName+"부서를 추가하시겠습니까?";
 	}
 	
+	this.ds_dept_add.setColumn(0,"dept_name",sName);
+	this.ds_dept_add.setColumn(0,"dept_level",sLevel);
+	this.ds_dept_add.setColumn(0,"dept_tree_code",sTreeCode);
+	
+	var ans = confirm(sInfo);
+	if(!ans){return;}
 	//server로 보냄.
 	this.transaction(
 		"nxDeptAdd", //transaction id
 		"/nex/nxDeptAdd.nexacro", //url(to controller)
-		"", // in data set
+		"ds_in=ds_dept_add:A", // in data set
 		"", // out data set
-		"sRtn="+sRtn, // variable send
+		"", // variable send
 		"fn_add_callback" //callback function
 	);
 
@@ -69,21 +100,11 @@ this.fn_add_callback  =  function(strSvcID, nErrorCode, strErrorMag)
 	trace("callback된 transaction명 : "+strSvcID);
 	trace("ErrorCode : "+nErrorCode);
 	trace("에러 메세지 : "+strErrorMag);
-	if(nErrorCode>-1){this.close();}else{alert("부서를 추가하지 못하였습니다.");}
-};
-
-this.fnDel = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+	if(nErrorCode>-1){this.close();}else{alert("부서를 추가하지 못하였습니다.");return;}
+	alert("부서를 추가하였습니다.");
 	this.close();
 };
 
-this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
-{
-	//position table 받기
-	this.transaction(
-		"loadPo","/nex/loadPoList.nexacro","","ds_position=ds_out","","fn_callback"
-	);
-};
 
 this.fn_callback = function (id, ErrorCode, ErrorMsg)
 {
@@ -108,10 +129,20 @@ this.grd_tree_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventIn
 {
 	//변수에 선택된 row의 index값 저장
 	this.selectedRowInx = e.row;
+	trace("cellclick 발생, "+this.selectedRowInx)
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//grid의 focus가 부모창에서 선택된 dept를 물려받지 않게 defualt로 0번을 select해준다. 
+	this.grd_tree.selectRow(0);
 };
 ]]></Script>
-    <Bind>
-      <BindItem id="item0" compid="edt_dept_name" propid="value" datasetid="gds_stMember" columnid="id"/>
-    </Bind>
   </Form>
 </FDL>
