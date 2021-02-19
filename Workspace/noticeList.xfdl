@@ -152,6 +152,10 @@ this.noticeList_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 // 저장하기
 this.tranSave = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	var answer = confirm( "수정 하시겠습니까?" );
+	if(!answer){
+		return;
+	}
 	this.transaction(
 		"updateWrite", 
 		"/nex/updateWrList.nexacro",
@@ -166,6 +170,10 @@ this.tranSave = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 // 삭제하기
 this.Div00_Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+ 	var answer = confirm( "삭제 하시겠습니까?" );
+	if(!answer){
+		return;
+	}
 		this.ds_write.deleteRow(this.ds_write.rowposition);
 		this.transaction(
 			"deleteWrite", 
@@ -179,13 +187,12 @@ this.Div00_Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
 
 this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.ds_write.addRow();
 	var objCF = new ChildFrame();
 	objCF.init("addnotice_popup",0,0,600,400,"Workspace::addnotice_popup.xfdl");
 	objCF.set_formurl("Workspace::addnotice_popup.xfdl");
 	objCF.set_openalign("center middle");
 	
-	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback" );
+	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback1" );
 };
 
 this.fn_callback = function (id, ErrorCode, ErrorMsg)
@@ -193,6 +200,15 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
+};
+
+this.fn_callback1 = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+	
+	this.reload();
 };
 ]]></Script>
     <Objects>
