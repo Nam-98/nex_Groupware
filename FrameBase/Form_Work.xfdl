@@ -3,11 +3,9 @@
   <Form id="Form_Work" width="1080" height="670" titletext="Form_Work" onload="form_Work_onload" onclose="form_Work_onclose" onactivate="form_Work_onactivate">
     <Layouts>
       <Layout width="1080" height="670" screenid="Desktop_screen">
-        <Div id="div_work" taborder="1" text="Div00" left="0.00%" top="0" right="0.00%" bottom="0" border="1px solid pink">
+        <Div id="div_work" taborder="1" left="0.00%" top="0" right="0.00%" bottom="0" formscrollbarsize="20">
           <Layouts>
-            <Layout>
-              <Static id="Static00" taborder="0" text="사용자 페이지 바로가기" left="236" top="143" width="228" height="176"/>
-            </Layout>
+            <Layout/>
           </Layouts>
         </Div>
       </Layout>
@@ -17,7 +15,7 @@ this.form_Work_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {	
 	var objCF = this.getOwnerFrame();//화면을 담고있는 frame -> form_Left에서 생성한 childFrame을 의미.
 	this.div_work.set_url(objCF.param.FORM_URL);
-	this.div_work.form.resetScroll();//내부 화면에 맞게 form의 크기 조절하는 method
+	//this.div_work.form.resetScroll();//내부 화면에 맞게 form의 크기 조절하는 method
 	//this.sta_title.set_text(objCF.param.TREE_PATH);
 	var objApp = nexacro.getApplication();
 	var nRow = objApp.gds_menuAll.findRow("MENU_ID",this.param.MENU_ID);

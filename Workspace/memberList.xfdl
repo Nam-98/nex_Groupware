@@ -177,7 +177,7 @@ this.memberList_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 //삭제버튼 click
 this.Div00_Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.gds_stMember.deleteRow(this.gds_stMember.rowposition)
+	nexacro.getApplication().gds_stMember.deleteRow(this.gds_stMember.rowposition)
 };
 
 //저장버튼 click
@@ -197,6 +197,9 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
+	if(ErrorCode < 0){
+		alert("에러 발생");
+	};
 };
 
 //부서 팝업 띄우기

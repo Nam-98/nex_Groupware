@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Left" width="300" height="720" titletext="Form_Left" onload="Form_Left_onload">
+  <Form id="Form_Left" width="300" height="530" titletext="Form_Left" onload="Form_Left_onload" background="#09162B">
     <Layouts>
-      <Layout width="300" height="720" screenid="Desktop_screen">
-        <Grid id="grd_left" taborder="0" left="0" top="121" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" oncelldblclick="grd_left_oncelldblclick" scrollbartype="default default" right="0" bottom="0" cssclass="grd_tree" treeusecheckbox="false">
+      <Layout width="300" height="530" screenid="Desktop_screen">
+        <Grid id="grd_left" taborder="0" left="0" top="121" autofittype="col" binddataset="gds_menuAll" formatid="default" treeinitstatus="expand,all" scrollbartype="default default" right="0" cssclass="grd_tree" treeusecheckbox="false" oncellclick="grd_left_oncelldblclick" height="530" border="0px solid black" background="#09162b">
           <Formats>
             <Format id="default">
               <Columns>
@@ -13,16 +13,16 @@
                 <Row size="24"/>
               </Rows>
               <Band id="body">
-                <Cell text="bind:MENU_NAME" displaytype="treeitemcontrol" edittype="tree" color="#b7d5fe" font="normal 17px/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;" treelevel="bind:MENU_LEVEL" background="#09162B" border="0px"/>
+                <Cell text="bind:MENU_NAME" displaytype="treeitemcontrol" edittype="tree" color="#b7d5fe" font="normal 12px/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;" treelevel="bind:MENU_LEVEL" background="#09162B" border="0px" padding="3px 2px 3px 0px" textAlign="left"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
         <ImageViewer id="ImageViewer00" taborder="1" left="0" top="0" width="300" height="80" image="url('imagerc::logo-dark.png')" onclick="ImageViewer00_onclick"/>
-        <Button id="btnMenu" taborder="2" left="0" top="81" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="MENU" width="150" height="40"/>
-        <Button id="btnFavorite" taborder="3" top="81" width="150" height="40" tabstop="false" onclick="btn_menu_onclick" cssclass="btn_LF_BookMark_D" text="" left="150"/>
+        <Button id="btnMenu" taborder="2" left="0" top="81" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="MENU" width="150" height="40" background="transparent"/>
+        <Button id="btnFavorite" taborder="3" top="81" width="150" height="40" tabstop="false" onclick="btn_menu_onclick" cssclass="btn_LF_BookMark_D" text="" left="150" background="transparent"/>
         <Button id="btnMenu00" taborder="4" width="150" height="40" cssclass="btn_LF_SelectMenu_D" tabstop="false" onclick="Button_onclick" text="MENU" visible="false" right="-170" bottom="680"/>
-        <Button id="btnFavorite00" taborder="5" top="0" width="150" height="40" tabstop="false" onclick="Button_onclick" right="-316" cssclass="btn_LF_BookMark_S" text="" visible="false"/>
+        <Button id="btnFavorite00" taborder="5" top="140" width="150" height="40" tabstop="false" onclick="Button_onclick" right="-320" cssclass="btn_LF_BookMark_S" text="" visible="false" background="transparent"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
@@ -70,10 +70,11 @@ this.fn_openForm2 = function (e,obj)
 	
 	//childFrame 생성
 	var objChildFrame = new ChildFrame();
-	objChildFrame.init(sFormId,0,0,nWidth,nHeight);
+	objChildFrame.init(sFormId,0,0,"100%","100%");
 	this.objApp.av_fsWork.addChild(sFormId, objChildFrame);
 	objChildFrame.set_showtitlebar(false);
-	objChildFrame.set_resizable(true);
+	objChildFrame.set_dragmovetype("none");
+	
 	var oParam = {FORM_ID : sFormId, MENU_ID : sMenuId, MENU_NM : sMenuNm, FORM_URL : sUrl, TREE_PATH : sTreePath2}//json형태로 인자값 묶음
 	trace("on left : "+oParam);
 	trace("on left : "+oParam.FORM_URL);

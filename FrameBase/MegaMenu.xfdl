@@ -3,7 +3,7 @@
   <Form id="MegaMenu" width="1280" height="560" titletext="New Form" onload="form_onload">
     <Layouts>
       <Layout height="560" width="1280">
-        <Static id="Static02" taborder="0" left="0" top="80" bottom="0" right="0" cssclass="sta_megaMenu_bg"/>
+        <Static id="Static02" taborder="0" left="0" top="80" cssclass="sta_megaMenu_bg" height="0" width="100%"/>
         <Static id="Static00" taborder="1" left="0" top="0" height="80" cssclass="sta_megaMenu_head" right="0"/>
         <Static id="staTopMenuSample" taborder="2" text="Grid Component" left="36" top="0" width="194" height="80" visible="false" cssclass="sta_WF_navTitle" onsetfocus="staTopMenuSample_onsetfocus" onmouseenter="staTopMenuSample_onmouseenter" onmouseleave="staTopMenuSample_onmouseleave"/>
         <Static id="staMenuSample" taborder="3" text="다양한 그리드 기능" left="36" top="105" width="339" height="31" visible="false" cssclass="sta_WF_navText"/>
@@ -21,22 +21,6 @@
 	this.dsMenu.copyData(objApp.gds_menuAll,true);
 	objMenuDs.filter("");
 	this.fnDrawMenu();
-};
-
-/**
- * @description 화면사이즈가 변경될 때 메뉴 크기를 조정해준다.
-*/
-this.MegaMenu_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
-{
-	this.fnDrawMenu();
-};
-
-/**
- * @description 화면사이즈가 변경될 때 메뉴 크기를 조정해준다.
-*/
-this.MegaMenu_onhscroll = function(obj:nexacro.Form,e:nexacro.ScrollEventInfo)
-{
-	this.btnClosePopup.setOffset(this.btnClosePopup.getOffsetLeft() + e.pos);
 };
 
 this.fnDrawMenu = function()
@@ -143,8 +127,12 @@ this.fnDrawMenu = function()
 	
  	if(this.close(sRtn))
  	{
- 		this.gfnOpenMenu(menuId, type);
-		this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Work.form.fn_openForm2(e,obj,menuId);
+ 		//this.gfnOpenMenu(menuId, type);
+		if(menuId!=null){
+		this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Work.form.fn_openForm2(e,obj,menuId);}
+		else{
+		this.btnClosePopup_onclick();
+		}
 	}
 };
 
@@ -152,7 +140,7 @@ this.fnDrawMenu = function()
  * @description 메가메뉴를 닫아준다.
 */
  this.btnClosePopup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
- {
+ {		
  		this.close();
  };
 
