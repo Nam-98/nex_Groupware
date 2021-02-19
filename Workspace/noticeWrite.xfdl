@@ -51,6 +51,7 @@ this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
  		"", // variable send
   		"fn_callback" //callback function
   	);
+	//alert
 };
 
 this.fn_callback = function (id, ErrorCode, ErrorMsg)

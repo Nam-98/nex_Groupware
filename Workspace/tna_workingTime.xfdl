@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="tna_workingTime" width="980" height="790" titletext="New Form" onload="tna_workingTime_onload">
+    <Layouts>
+      <Layout height="790" mobileorientation="landscape" width="980">
+        <Div id="Div00" taborder="0" top="105" width="640" height="334" cssclass="div_WF_DetailBg" text="" left="154">
+          <Layouts>
+            <Layout width="912" height="393">
+              <Static id="Static06" taborder="0" cssclass="sta_WF_Labelbg" left="2" top="252" right="0" height="37"/>
+              <Static id="Static07" taborder="1" cssclass="sta_WF_Labelbg" left="2" top="288" right="0" height="37"/>
+              <Static id="Static37" taborder="2" cssclass="sta_WF_title01" left="2" top="180" right="0" height="37" text="변경 출/퇴근 시간"/>
+              <Static id="Static00" taborder="3" cssclass="sta_WF_Labelbg" left="2" top="216" right="0" height="37"/>
+              <Static id="Static02" taborder="4" cssclass="sta_WF_Labelbg" left="2" top="108" right="0" height="37"/>
+              <Static id="Static03" taborder="5" cssclass="sta_WF_Labelbg" left="2" top="72" right="0" height="37"/>
+              <Static id="Static04" taborder="6" cssclass="sta_WF_Labelbg" left="2" top="36" right="0" height="37" text=""/>
+              <Static id="sta_docNm02" taborder="7" text="출근 시간" cssclass="sta_WF_Label" left="2" top="36" width="110" height="37" wordWrap="english"/>
+              <Edit id="edt_Ori_Att" taborder="8" left="134" top="43" width="264" height="23" readonly="true"/>
+              <Static id="sta_docNm00" taborder="9" text="퇴근 시간" left="2" top="72" width="110" height="37" wordWrap="english" cssclass="sta_WF_Label"/>
+              <Static id="sta_docNm03" taborder="10" text="야근 시간" cssclass="sta_WF_Label" left="2" top="108" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm06" taborder="11" text="출근 시간" cssclass="sta_WF_Label" left="2" top="216" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm07" taborder="12" text="퇴근 시간" cssclass="sta_WF_Label" left="2" top="252" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm08" taborder="13" text="야근 시간" cssclass="sta_WF_Label" left="2" top="288" width="110" height="37" wordWrap="english"/>
+              <Edit id="edt_Ori_Leave" taborder="14" left="134" top="79" width="264" height="23" readonly="true"/>
+              <Edit id="edt_Ori_Night" taborder="15" left="134" top="115" width="264" height="23" readonly="true" onchanged="Div00_edt_Ori_Night_onchanged"/>
+              <Static id="Static37_00" taborder="16" cssclass="sta_WF_title01" left="2" top="0" height="37" text="현재 출/퇴근 시간" width="168"/>
+              <Button id="btn_change" taborder="17" text="변경" top="190" height="23" cssclass="btn_WF_add" width="62" right="0" onclick="Div00_btnOK_onclick"/>
+              <Combo id="com_New_Att_hour" taborder="18" text="시간 선택" left="134" top="223" width="104" height="23" innerdataset="ds_hour" datacolumn="name" codecolumn="code" value="-1" onitemchanged="Div00_com_New_Att_hour_onitemchanged" index="0"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Div id="div_Search00" taborder="1" left="0" top="0" right="0" height="49" cssclass="div_WF_SearchBg">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="1" text="출퇴근 시간설정" left="16" top="0" width="120" height="47" cssclass="sta_WF_condition01"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="2" text="시" left="397" top="322" width="38" height="33" font="bold 12px/20px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+        <Combo id="com_New_Att_min" taborder="3" text="분 선택" left="435" top="328" width="104" height="23" innerdataset="ds_min" datacolumn="name" codecolumn="code" index="0" value="-1"/>
+        <Static id="Static00_00" taborder="4" text="분" left="544" top="322" width="38" height="33" font="bold 12px/20px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+        <Combo id="com_New_Leave_hour" taborder="5" text="시간 선택" left="288" top="365" width="104" height="23" innerdataset="ds_hour" datacolumn="name" codecolumn="code" index="0" value="-1"/>
+        <Static id="Static00_01" taborder="6" text="시" left="398" top="359" width="38" height="33" font="bold 12px/20px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+        <Combo id="com_New_Leave_min" taborder="7" text="분 선택" left="436" top="365" width="104" height="23" innerdataset="ds_min" datacolumn="name" codecolumn="code" index="0" value="-1"/>
+        <Static id="Static00_00_00" taborder="8" text="분" left="545" top="359" width="38" height="33" font="bold 12px/20px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+        <Combo id="com_New_Night_hour" taborder="9" text="시간 선택" left="288" top="400" width="104" height="23" innerdataset="ds_hour" datacolumn="name" codecolumn="code" index="0" value="-1"/>
+        <Static id="Static00_01_00" taborder="10" text="시" left="398" top="394" width="38" height="33" font="bold 12px/20px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+        <Combo id="com_New_Night_min" taborder="11" text="분 선택" left="436" top="400" width="104" height="23" innerdataset="ds_min" datacolumn="name" codecolumn="code" index="0" value="-1"/>
+        <Static id="Static00_00_00_00" taborder="12" text="분" left="545" top="394" width="38" height="33" font="bold 12px/20px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+        <Static id="Static00_02" taborder="13" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static01" taborder="14" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_hour">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">-1</Col>
+            <Col id="name">시간 선택</Col>
+          </Row>
+          <Row>
+            <Col id="code">00</Col>
+            <Col id="name">00</Col>
+          </Row>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">01</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">02</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">03</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">04</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="name">05</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="name">06</Col>
+          </Row>
+          <Row>
+            <Col id="code">07</Col>
+            <Col id="name">07</Col>
+          </Row>
+          <Row>
+            <Col id="code">08</Col>
+            <Col id="name">08</Col>
+          </Row>
+          <Row>
+            <Col id="code">09</Col>
+            <Col id="name">09</Col>
+          </Row>
+          <Row>
+            <Col id="code">10</Col>
+            <Col id="name">10</Col>
+          </Row>
+          <Row>
+            <Col id="code">11</Col>
+            <Col id="name">11</Col>
+          </Row>
+          <Row>
+            <Col id="code">12</Col>
+            <Col id="name">12</Col>
+          </Row>
+          <Row>
+            <Col id="code">13</Col>
+            <Col id="name">13</Col>
+          </Row>
+          <Row>
+            <Col id="code">14</Col>
+            <Col id="name">14</Col>
+          </Row>
+          <Row>
+            <Col id="code">15</Col>
+            <Col id="name">15</Col>
+          </Row>
+          <Row>
+            <Col id="code">16</Col>
+            <Col id="name">16</Col>
+          </Row>
+          <Row>
+            <Col id="code">17</Col>
+            <Col id="name">17</Col>
+          </Row>
+          <Row>
+            <Col id="code">18</Col>
+            <Col id="name">18</Col>
+          </Row>
+          <Row>
+            <Col id="code">19</Col>
+            <Col id="name">19</Col>
+          </Row>
+          <Row>
+            <Col id="code">20</Col>
+            <Col id="name">20</Col>
+          </Row>
+          <Row>
+            <Col id="code">21</Col>
+            <Col id="name">21</Col>
+          </Row>
+          <Row>
+            <Col id="code">22</Col>
+            <Col id="name">22</Col>
+          </Row>
+          <Row>
+            <Col id="code">23</Col>
+            <Col id="name">23</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_min">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">-1</Col>
+            <Col id="name">분 선택</Col>
+          </Row>
+          <Row>
+            <Col id="code">00</Col>
+            <Col id="name">00</Col>
+          </Row>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">01</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">02</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">03</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">04</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="name">05</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="name">06</Col>
+          </Row>
+          <Row>
+            <Col id="code">07</Col>
+            <Col id="name">07</Col>
+          </Row>
+          <Row>
+            <Col id="code">08</Col>
+            <Col id="name">08</Col>
+          </Row>
+          <Row>
+            <Col id="code">09</Col>
+            <Col id="name">09</Col>
+          </Row>
+          <Row>
+            <Col id="code">10</Col>
+            <Col id="name">10</Col>
+          </Row>
+          <Row>
+            <Col id="code">11</Col>
+            <Col id="name">11</Col>
+          </Row>
+          <Row>
+            <Col id="code">12</Col>
+            <Col id="name">12</Col>
+          </Row>
+          <Row>
+            <Col id="code">13</Col>
+            <Col id="name">13</Col>
+          </Row>
+          <Row>
+            <Col id="code">14</Col>
+            <Col id="name">14</Col>
+          </Row>
+          <Row>
+            <Col id="code">15</Col>
+            <Col id="name">15</Col>
+          </Row>
+          <Row>
+            <Col id="code">16</Col>
+            <Col id="name">16</Col>
+          </Row>
+          <Row>
+            <Col id="code">17</Col>
+            <Col id="name">17</Col>
+          </Row>
+          <Row>
+            <Col id="code">18</Col>
+            <Col id="name">18</Col>
+          </Row>
+          <Row>
+            <Col id="code">19</Col>
+            <Col id="name">19</Col>
+          </Row>
+          <Row>
+            <Col id="code">20</Col>
+            <Col id="name">20</Col>
+          </Row>
+          <Row>
+            <Col id="code">21</Col>
+            <Col id="name">21</Col>
+          </Row>
+          <Row>
+            <Col id="code">22</Col>
+            <Col id="name">22</Col>
+          </Row>
+          <Row>
+            <Col id="code">23</Col>
+            <Col id="name">23</Col>
+          </Row>
+          <Row>
+            <Col id="code">24</Col>
+            <Col id="name">24</Col>
+          </Row>
+          <Row>
+            <Col id="code">25</Col>
+            <Col id="name">25</Col>
+          </Row>
+          <Row>
+            <Col id="code">26</Col>
+            <Col id="name">26</Col>
+          </Row>
+          <Row>
+            <Col id="code">27</Col>
+            <Col id="name">27</Col>
+          </Row>
+          <Row>
+            <Col id="code">28</Col>
+            <Col id="name">28</Col>
+          </Row>
+          <Row>
+            <Col id="code">29</Col>
+            <Col id="name">29</Col>
+          </Row>
+          <Row>
+            <Col id="code">30</Col>
+            <Col id="name">30</Col>
+          </Row>
+          <Row>
+            <Col id="code">31</Col>
+            <Col id="name">31</Col>
+          </Row>
+          <Row>
+            <Col id="code">32</Col>
+            <Col id="name">32</Col>
+          </Row>
+          <Row>
+            <Col id="code">33</Col>
+            <Col id="name">33</Col>
+          </Row>
+          <Row>
+            <Col id="code">34</Col>
+            <Col id="name">34</Col>
+          </Row>
+          <Row>
+            <Col id="code">35</Col>
+            <Col id="name">35</Col>
+          </Row>
+          <Row>
+            <Col id="code">36</Col>
+            <Col id="name">36</Col>
+          </Row>
+          <Row>
+            <Col id="code">37</Col>
+            <Col id="name">37</Col>
+          </Row>
+          <Row>
+            <Col id="code">38</Col>
+            <Col id="name">38</Col>
+          </Row>
+          <Row>
+            <Col id="code">39</Col>
+            <Col id="name">39</Col>
+          </Row>
+          <Row>
+            <Col id="code">40</Col>
+            <Col id="name">40</Col>
+          </Row>
+          <Row>
+            <Col id="code">41</Col>
+            <Col id="name">41</Col>
+          </Row>
+          <Row>
+            <Col id="code">42</Col>
+            <Col id="name">42</Col>
+          </Row>
+          <Row>
+            <Col id="code">43</Col>
+            <Col id="name">43</Col>
+          </Row>
+          <Row>
+            <Col id="code">44</Col>
+            <Col id="name">44</Col>
+          </Row>
+          <Row>
+            <Col id="code">45</Col>
+            <Col id="name">45</Col>
+          </Row>
+          <Row>
+            <Col id="code">46</Col>
+            <Col id="name">46</Col>
+          </Row>
+          <Row>
+            <Col id="code">47</Col>
+            <Col id="name">47</Col>
+          </Row>
+          <Row>
+            <Col id="code">48</Col>
+            <Col id="name">48</Col>
+          </Row>
+          <Row>
+            <Col id="code">49</Col>
+            <Col id="name">49</Col>
+          </Row>
+          <Row>
+            <Col id="code">50</Col>
+            <Col id="name">50</Col>
+          </Row>
+          <Row>
+            <Col id="code">51</Col>
+            <Col id="name">51</Col>
+          </Row>
+          <Row>
+            <Col id="code">52</Col>
+            <Col id="name">52</Col>
+          </Row>
+          <Row>
+            <Col id="code">53</Col>
+            <Col id="name">53</Col>
+          </Row>
+          <Row>
+            <Col id="code">54</Col>
+            <Col id="name">54</Col>
+          </Row>
+          <Row>
+            <Col id="code">55</Col>
+            <Col id="name">55</Col>
+          </Row>
+          <Row>
+            <Col id="code">56</Col>
+            <Col id="name">56</Col>
+          </Row>
+          <Row>
+            <Col id="code">57</Col>
+            <Col id="name">57</Col>
+          </Row>
+          <Row>
+            <Col id="code">58</Col>
+            <Col id="name">58</Col>
+          </Row>
+          <Row>
+            <Col id="code">59</Col>
+            <Col id="name">59</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_time">
+        <ColumnInfo>
+          <Column id="standard_time_attendance" type="STRING" size="256"/>
+          <Column id="standard_time_leave" type="STRING" size="256"/>
+          <Column id="standard_time_night" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[//시간 변경
+this.Div00_btnOK_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//출근 시간 값
+	var Att_hour = this.Div00.form.com_New_Att_hour.value;
+	var Att_min = this.com_New_Att_min.value;
+	
+	//퇴근 시간 값
+	var Leave_hour = this.com_New_Leave_hour.value;
+	var Leave_min = this.com_New_Leave_min.value;
+	
+	//야근 시간
+	var Night_hour = this.com_New_Night_hour.value;
+	var Night_min = this.com_New_Night_min.value;
+	
+	trace("========="+Att_hour+"/"+Att_min+"/"+Leave_hour+"/"+Leave_min+"/"+Night_hour+"/"+Night_min);
+	
+
+  	if(Att_hour == -1 || Att_min == -1 || Leave_hour == -1 || Leave_min == -1 || Night_hour == -1 || Night_min == -1){
+  		alert("모든 시간을 지정해주십시오.");
+  	}else{
+		var att_time = Att_hour + Att_min + '59';
+		var lea_time = Leave_hour + Leave_min + '00';
+		var nig_time = Night_hour + Night_min +'00';
+		this.transaction(
+					"tnaUpdateTime" //1.strSvcID(스트링형으로)
+					,"/nex/tnaUpdateTime.nexacro"//2.strURL : 넥사크로와 이클립스 연동
+					,""//3.strInDatasets Sds = Fds :U, :A, :N
+					,""	//4.strOutDatasets - select Fds=Sds
+					,"att_time="+att_time+" lea_time="+lea_time+" nig_time="+nig_time//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
+					,"fn_updateCallback" //6.strCallbackFunc
+			);
+	};
+};
+
+this.fn_updateCallback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+	if(ErrorCode < 0){
+		alert("에러 발생");
+	}else{
+		this.reload();
+		console.log("성공");
+	};
+};
+
+
+  this.tna_workingTime_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+  {
+  	this.transaction(
+  				"tnaStandardTime" //1.strSvcID(스트링형으로)
+  				,"/nex/tnaStandardTime.nexacro"//2.strURL : 넥사크로와 이클립스 연동
+  				,""//3.strInDatasets Sds = Fds :U, :A, :N
+  				,"ds_time=ds_out"	//4.strOutDatasets - select Fds=Sds
+  				,""//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
+  			    ,"fn_listCallback" //6.strCallbackFunc
+  		);
+
+  };
+
+this.fn_listCallback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+	if(ErrorCode < 0){
+		alert("에러 발생");
+	}else{
+			
+ 		var bAtt_Time = this.ds_time.getColumn(0,"standard_time_attendance");
+		var bLea_Time = this.ds_time.getColumn(0,"standard_time_leave");
+		var bNig_Time = this.ds_time.getColumn(0,"standard_time_night");
+		
+		//출근시간
+		var att_hour = bAtt_Time.substring(0,2); 
+		var att_min = bAtt_Time.substring(2,4); 
+		var att_time = att_hour + "시 " + att_min + "분 ";
+		this.Div00.form.edt_Ori_Att.set_value(att_time); 
+		
+		//퇴근시간
+		var lea_hour = bLea_Time.substring(0,2); 
+		var lea_min = bLea_Time.substring(2,4); 
+		var lea_time = lea_hour + "시 " + lea_min + "분 ";
+		this.Div00.form.edt_Ori_Leave.set_value(lea_time); 
+		
+		//야근시간
+		var nig_hour = bNig_Time.substring(0,2); 
+		var nig_min = bNig_Time.substring(2,4); 
+		var nig_time = nig_hour + "시 " + nig_min + "분 ";
+		this.Div00.form.edt_Ori_Night.set_value(nig_time); 
+	};
+	
+};
+
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item11" compid="Div00.form.com_New_Att_hour" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
+      <BindItem id="item1" compid="com_New_Att_min" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
+      <BindItem id="item4" compid="com_New_Leave_hour" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
+      <BindItem id="item5" compid="com_New_Leave_min" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
+      <BindItem id="item6" compid="com_New_Night_hour" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
+      <BindItem id="item7" compid="com_New_Night_min" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
+    </Bind>
+  </Form>
+</FDL>
