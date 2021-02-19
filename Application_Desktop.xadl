@@ -5,7 +5,7 @@
       <MainFrame id="mainframe" showtitlebar="true" showstatusbar="false" width="1280" height="720" titletext="nexacro platform demo" showcascadetitletext="false" layered="true">
         <VFrameSet id="VFrameSet" separatesize="*,0,0" showtitlebar="false">
           <Frames>
-            <ChildFrame id="Main" formurl="Workspace::mainpage.xfdl" showtitlebar="false" dragmovetype="none"/>
+            <ChildFrame id="Main" formurl="FrameBase::Mainmenu.xfdl" showtitlebar="false" dragmovetype="none"/>
             <ChildFrame id="Top" showtitlebar="false" showstatusbar="false" dragmovetype="none"/>
             <HFrameSet id="HFrameSet" separatesize="294,*" showtitlebar="false">
               <Frames>
