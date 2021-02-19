@@ -197,6 +197,9 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
+	if(ErrorCode < 0){
+		alert("에러 발생");
+	};
 };
 
 //부서 팝업 띄우기

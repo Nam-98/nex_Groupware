@@ -34,10 +34,6 @@
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
-this.Static03_01_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
-{
-	
-};
 
 this.tna_history_popUp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
@@ -52,8 +48,6 @@ this.tna_history_popUp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInf
 	if (regDate != null){
 		regDate.toLocaleDateString("ko_KR");
 	};
-	trace("childframe : "+seq);
-	trace("name : "+regDate);
 	
 	
 	//this.Div00.form.edt_code.set_value(sCode);
@@ -77,11 +71,7 @@ this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo
 	var objStatus = nexacro.getApplication().gds_tnaHistory.lookup("TNA_OBJ_SEQ",objSeq,"TNA_OBJ_STATUS");//tna_objection_status
 	
 	
-	trace("==status=="+statusCode);
-	trace("objSeq : "+objSeq);
-	trace("====finalChange====="+finalChange);
-	trace("tnaSeq : "+tnaSeq);
-	trace("objStatus : "+objStatus);
+
 	
 	var sRtn = statusCode + "|" + objSeq + "|" + finalChange + "|" + tnaSeq + "|" + objStatus;
 	
@@ -92,9 +82,7 @@ this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo
 this.Div00_btnRe_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	let statusCode = 2;//처리상태 코드
-	trace("==status=="+statusCode);
 	var seq = this.parent.oSeq;
-	trace("childframeSeq : "+seq);
 	var sRtn = statusCode + "|" + seq;
 	
 	this.close(sRtn);

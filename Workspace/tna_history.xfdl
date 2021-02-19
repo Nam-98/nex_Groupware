@@ -3,7 +3,7 @@
   <Form id="tna_history" width="970" height="600" titletext="New Form" onload="tna_history_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="970">
-        <Grid id="grd_tnaHistory" taborder="0" left="0" top="100" right="0" bottom="0" autofittype="col" binddataset="gds_tnaHistory" oncelldblclick="grd_tnaHistory_oncelldblclick">
+        <Grid id="grd_tnaHistory" taborder="0" left="0" top="120" right="0" bottom="0" autofittype="col" binddataset="gds_tnaHistory" oncellclick="grd_tnaHistory_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -43,10 +43,17 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static80" taborder="1" text="근태 조정 신청 관리" usedecorate="true" cssclass="sta_WF_title01" left="0" top="70" width="400" height="23" wordWrap="english" onclick="Static80_onclick"/>
-        <Button id="btnSearch" taborder="2" top="56" height="39" cssclass="btn_WF_search01" width="50" onclick="btnSearch_onclick" left="grd_tnaHistory:-150"/>
-        <Combo id="Combo00" taborder="3" text="상태선택" top="56" width="120" right="160" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE" bottom="grd_tnaHistory:5" value="0" index="0"/>
-        <Button id="btnRe" taborder="4" width="80" height="39" onclick="btnRe_onclick" right="10" top="57" text="전체 보기"/>
+        <Static id="Static80" taborder="1" text="근태 조정 신청 관리" usedecorate="true" cssclass="sta_WF_title01" left="0" top="93" width="400" height="23" wordWrap="english" onclick="Static80_onclick"/>
+        <Button id="btnSearch" taborder="2" top="74" height="39" cssclass="btn_WF_search01" width="50" onclick="btnSearch_onclick" left="grd_tnaHistory:-150"/>
+        <Combo id="Combo00" taborder="3" text="상태선택" top="76" width="120" right="160" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE" bottom="grd_tnaHistory:5" value="0" index="0"/>
+        <Button id="btnRe" taborder="4" width="80" height="39" onclick="btnRe_onclick" right="10" top="74" text="전체 보기"/>
+        <Div id="div_Search00" taborder="5" left="0" top="0" right="0" height="49" cssclass="div_WF_SearchBg" text="근태 조정 신청 관리">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="1" text="근태 조정 신청 관리" left="16" top="0" width="143" height="47" cssclass="sta_WF_condition01" onclick="div_Search00_Static00_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -77,17 +84,8 @@ this.fn_callback = function(id, ErrorCode, ErrorMsg){
 this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	let sel = this.Combo00.value;
-	trace("select값:"+sel);
 	nexacro.getApplication().gds_tnaHistory.filter("TNA_OBJ_PROC_STATUS_CODE=="+sel);
 	
-//  	this.transaction(
-//  				"tnaHistorySearch" //1.strSvcID(스트링형으로)
-//  				,"/nex/tnaHistorySearch.nexacro"//2.strURL : 넥사크로와 이클립스 연동
-//  				,""//3.strInDatasets Sds = Fds :U, :A, :N
-//  				,"gds_tnaHistory=ds_out"	//4.strOutDatasets - select Fds=Sds
-//  				,"sel="+sel//5.strArgument (wrapQuote:보통 구분자로 사용하는 space를 문자로 사용하겠단 의미)
-//  				,"fn_callback" //6.strCallbackFunc
-//  		);
 };
 
 
@@ -97,7 +95,6 @@ this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.grd_tnaHistory_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {	
 	var seq = obj.getCellValue(e.row,"0");
-	trace("===="+seq);
 
 	var objCF = new ChildFrame();
 	objCF.init("popTnA","350px","300px",650,450);
@@ -111,7 +108,7 @@ this.grd_tnaHistory_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridCli
 };
 
 this.fn_callback_pop=function(id,sReturn){
-	trace("==넘오왔니?=="+id+"/"+sReturn);
+	
 	
 	var arrRtn = sReturn.split("|");
 	trace(arrRtn);
@@ -123,13 +120,6 @@ this.fn_callback_pop=function(id,sReturn){
 		var finalChange = arrRtn[2];
 		var tnaSeq = arrRtn[3];
 		var objStatus = arrRtn[4];
-		
-		trace("===승인일때===");
-		trace("==status=="+statusCode);
-		trace("objSeq : "+objSeq);
-		trace("====finalChange====="+finalChange);
-		trace("tnaSeq : "+tnaSeq);
-		trace("objStatus : "+objStatus);
 		
 		this.transaction(
 					"tnaHistoryApproval" //1.strSvcID(스트링형으로)
@@ -144,9 +134,6 @@ this.fn_callback_pop=function(id,sReturn){
 		//반려
 		var statusCode = arrRtn[0];
 		var objSeq = arrRtn[1];
-		trace("===사이즈2개일때===");
-		trace("==statusCode=="+ statusCode);
-		trace("==objSeq=="+ objSeq);
  		this.transaction(
  					"tnaHistoryReturn" //1.strSvcID(스트링형으로)
  					,"/nex/tnaHistoryReturn.nexacro"//2.strURL : 넥사크로와 이클립스 연동
@@ -172,6 +159,10 @@ this.btnRe_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	nexacro.getApplication().gds_tnaHistory.filter("");
 };
+
+
+
+
 ]]></Script>
     <Objects>
       <Dataset id="ds_status">
