@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Mainmenu" width="1280" height="900" titletext="New Form">
+    <Layouts>
+      <Layout height="900" width="1280">
+        <Div id="divMainVisual" taborder="0" left="0" right="0" cssclass="div_WF_mainVisual" formscrolltype="none" formscrollbartype="autoindicator none" text="" top="0" bottom="380" url="FrameBase::MainStep.xfdl"/>
+        <Div id="Div01" taborder="1" text="Div01" left="0" width="100.00%" height="120" cssclass="div_WF_mainQuick" bottom="260">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="Quick Menu" left="0" top="0" width="20.23%" height="120" cssclass="sta_WF_mainQmenu"/>
+              <Button id="btn_2010" taborder="1" text="공지사항관리" left="Static00:0" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn01" onclick="QuickMenu_onclick"/>
+              <Button id="btn_3020" taborder="2" text="직원 등록" left="btn_2010:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn02" onclick="QuickMenu_onclick"/>
+              <Button id="btn_4030" taborder="3" text="근태조정신청관리" left="btn_3020:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn03" onclick="QuickMenu_onclick"/>
+              <Button id="btn_6010" taborder="4" text="전자결재설정" left="btn_4030:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn04" onclick="QuickMenu_onclick"/>
+              <Button id="btn_5030" taborder="5" text="직원별연차관리" left="btn_6010:1" top="0" width="11.72%" height="120" cssclass="btn_WF_mainQbtn05" onclick="QuickMenu_onclick"/>
+              <Static id="Static00_00" taborder="6" text="Click! 사용자 바로가기" top="0" width="19.84%" height="120" cssclass="sta_WF_mainQmenu" right="0" onclick="Div01_Static00_00_onclick"/>
+            </Layout>
+            <Layout name="Layout0"/>
+            <Layout name="Layout1"/>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="2" text="Div02" left="0" width="100.00%" cssclass="div_WF_mainFooter" height="80" bottom="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="40" top="18" width="160" height="43" cssclass="sta_WF_footerLogo01"/>
+              <Static id="Static01" taborder="1" top="17" width="160" height="43" right="40" cssclass="sta_WF_footerLogo02"/>
+              <Static id="Static02" taborder="2" left="20.23%" top="18" height="43" cssclass="sta_WF_footerAddress" right="20.23%" onclick="Div02_Static02_onclick" text="Geunsoo.K | Narin.K | Hyelim.Y | Sanghyung.L | Jaejun.C"/>
+            </Layout>
+            <Layout name="Layout0">
+              <Static id="Static00" width="18.82%"/>
+              <Static id="Static01" width="18.82%"/>
+              <Static id="Static02" text="서울시 강남구 봉은사로 617 | 대표번호: 02-2140-7700&#13;&#10;COPYRIGHT(C) BY 2018 TOBESOFT.CO.LTD. ALL RIGHTS RESERVED" left="20.23%" top="18" height="43" right="20.23%"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Static id="Static00" width="0" left="40" top="18" height="0" visible="false"/>
+              <Static id="Static01" width="0" top="17" height="0" right="40" visible="false"/>
+              <Static id="Static02" left="30" top="14" height="62" right="30" text="서울시 강남구 봉은사로 617 | 대표번호: 02-2140-7700&#13;&#10;COPYRIGHT(C) BY 2018 TOBESOFT.CO.LTD. ALL RIGHTS RESERVED"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div03" taborder="3" text="Div03" left="0" width="100.00%" height="180" cssclass="div_WF_mainSite" onhscroll="Div03_onhscroll" bottom="80">
+          <Layouts>
+            <Layout>
+              <Button id="btnSupport" taborder="0" left="40" top="40" width="30.47%" height="100" cssclass="btn_WF_mainSite01" onclick="fnGoSite"/>
+              <Button id="btnPlaynexa" taborder="1" left="btnSupport:15" top="40" width="30.47%" height="100" cssclass="btn_WF_mainSite02" onclick="fnGoSite"/>
+              <Button id="btnTobeTong" taborder="2" top="40" height="100" left="btnPlaynexa:15" right="40" cssclass="btn_WF_mainSite03" onclick="fnGoSite" text=""/>
+              <Static id="Static00" taborder="3" left="btnSupport:-47" top="78" height="25" cssclass="sta_WF_mainSiteimg" text="" width="15"/>
+              <Static id="Static01" taborder="4" left="btnPlaynexa:-47" top="78" height="25" cssclass="sta_WF_mainSiteimg" text="" width="15"/>
+              <Static id="Static02" taborder="5" left="btnTobeTong:-47" top="78" height="25" cssclass="sta_WF_mainSiteimg" text="" width="15"/>
+            </Layout>
+            <Layout name="Layout0">
+              <Static id="Static00" left="btnSupport:-32" top="78" width="15" height="25"/>
+              <Button id="btnPlaynexa" left="btnSupport:10" top="40" width="30.3%" height="100"/>
+              <Button id="btnTobeTong" left="btnPlaynexa:10" top="40" height="100" width="30.3%"/>
+              <Button id="btnSupport" width="30.3%" left="30" top="40" height="100"/>
+              <Static id="Static01" left="btnPlaynexa:-32" top="78" width="15" height="25"/>
+              <Static id="Static02" left="btnTobeTong:-32" top="78" width="15" height="25"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Static id="Static00" left="btnSupport:-46" top="48" width="15" height="25"/>
+              <Button id="btnTobeTong" left="20" top="200" height="80" right="20"/>
+              <Static id="Static01" left="btnPlaynexa:-46" top="138" width="15" height="25"/>
+              <Static id="Static02" left="btnTobeTong:-47" top="228" width="15" height="25"/>
+              <Button id="btnPlaynexa" left="20" top="110" height="80" right="20"/>
+              <Button id="btnSupport" height="80" left="20" top="20" right="20"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_menu" taborder="4" left="20" top="20" width="80" height="80" cssclass="btn_WF_mainFloat" onclick="divMainVisual_btn_menu_onclick" text=""/>
+        <ImageViewer id="ImageViewer00" taborder="5" top="35" width="181" height="70" background="url('imagerc::logo-dark.png') no-repeat center center" right="50" border="0px" onclick="ImageViewer00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
+this.setTimer(6666,3000);
+
+/**
+ * @description 퀵베뉴 선택시 해당 화면으로 이동한다.
+*/
+this.QuickMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+ 	var menuId = String(obj.name).replace("btn_","");
+// 	var type = "Quick";
+// 	
+// 	this.gfnOpenMenu(menuId, type);
+	this.fn_openForm2(menuId);
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().gds_menuAll.filter("");
+};
+this.fn_openForm2 = function (menuId)
+{
+	//home 화면에서 내가 띄울 창 열기 위해 vframe의 separatesize 조절
+	this.objApp.mainframe.VFrameSet.set_separatesize("0,0,*");
+	this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.set_separatesize("30,*");
+	this.objApp.mainframe.VFrameSet.HFrameSet.set_separatesize("300,*");
+	//child frame 생성에 필요한 인자들 준비
+	var objMenuDs = this.objApp.gds_menuAll;
+	this.dsMenu.copyData(objMenuDs, true);
+	var sUrl = this.dsMenu.lookup("MENU_ID",menuId,"FORM_URL");
+	var sMenuNm = this.dsMenu.lookup("MENU_ID",menuId,"MENU_NAME");
+	//var sTreePath2 = nexacro.replaceAll(this.grd_left.getTreePath(e.row),".",">"); 	//전자결재.결재양식.임시보관문서 를 replace로 전자결재 > 결재양식 > 임시보관문서 와 같이 수정함
+	var sFormId = "FORM_"+menuId;
+	var nWidth = this.objApp.av_fsWork.getOffsetWidth();
+	var nHeight = this.objApp.av_fsWork.getOffsetHeight();
+	//클릭한것의 url이 존재하는가?
+	if (sUrl.length<=0){return}
+	
+	//현재 해당 frameSet에 띄워져 있는 childFrame정보 모두 가져옴
+	var arrObj = this.objApp.av_fsWork.all;
+	
+	//띄우고자 하는 frame이 이미 띄워져 있는 frame이라면 해당 frame을 맨 앞으로 보이게끔 설정한다. 
+	for(var i=0; i<arrObj.length; i++){
+		if(arrObj[i].name == sFormId){
+			arrObj[i].setFocus();
+			return;
+		}
+	}
+	
+	//childFrame 생성
+	var objChildFrame = new ChildFrame();
+	objChildFrame.init(sFormId,0,0,900,790);
+	this.objApp.av_fsWork.addChild(sFormId, objChildFrame);
+	objChildFrame.set_showtitlebar(false);
+	objChildFrame.set_dragmovetype("none");
+
+	var oParam = {FORM_ID : sFormId, MENU_ID : menuId, MENU_NM : sMenuNm, FORM_URL : sUrl}//json형태로 인자값 묶음
+	trace("on left : "+oParam);
+			trace("on left : "+oParam.FORM_URL);
+	objChildFrame.param = oParam;
+		//objChildFrame객체에 param이라는 이름의 변수를 생성하여 oParam을 할당해준다.
+		//이 frame에서 원하는 값을 꺼내올 땐, param.key값 으로 꺼내오면 된다. 
+	objChildFrame.set_formurl("FrameBase::Form_Work.xfdl");
+	objChildFrame.set_titletext(sMenuNm);
+	objChildFrame.show();
+	
+	var nRow = this.objApp.gds_openForm.addRow();
+	this.objApp.gds_openForm.setColumn(nRow,"FORM_ID", sFormId);
+	this.objApp.gds_openForm.setColumn(nRow,"MENU_NAME", sMenuNm);
+	this.objApp.gds_openForm.setColumn(nRow,"FORM_URL", sUrl);
+	
+	//tab추가를 위해 다른 form에 있는 function 호출
+	this.objApp.mainframe.VFrameSet.HFrameSet.VFrameSet00.Tab.form.fn_addTab(sFormId,sMenuNm);
+};
+
+/**
+ * @description 퀵베뉴 선택시 해당 화면으로 이동한다.
+*/
+this.fnGoSite = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//nexacro 브라우저에서 메소드 실행 시 시스템에 설정된 기본 브라우저가 아닌 인터넷 익스플로러가 실행됩니다
+	switch(obj.name)
+	{
+		case "btnSupport":
+			system.execBrowser("http://support.tobesoft.co.kr/Support/index.html");
+			break;
+			
+		case "btnPlaynexa":
+			system.execBrowser("https://www.playnexacro.com");
+			break;
+			
+		case "btnTobeTong":
+			system.execBrowser("http://tobetong.com/");
+			break;
+	}
+};
+
+/**
+ * @description 팝업메뉴를 띄어준다.
+*/
+this.divMainVisual_btn_menu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var nwidth = this.getOffsetWidth();
+	var objCF = new ChildFrame();
+	objCF.init("MegaMenu",0,0,nwidth,300,"FrameBase::MegaMenu.xfdl");
+	objCF.set_formurl("FrameBase::MegaMenu.xfdl");
+	objCF.set_autosize(false);
+	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback_pop" );
+	objCF.set_showtitlebar(false);
+	objCF.set_resizable(false);
+	
+};
+
+this.fn_callback_pop = function(id, sRtn){
+	var menuId = sRtn;
+	nexacro.getApplication().trace(menuId);
+	if(menuId!=null){
+		this.fn_openForm2(menuId);
+	}
+	else{}
+
+}
+this.mainpage_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var nNum = 0;
+	
+	if(e.timerid == 6666)
+	{
+		var stepIndex = this.divMainVisual.form.getStepIndex();
+		stepIndex = nexacro.toNumber(stepIndex) + 1;
+		
+		if(stepIndex > 2)
+		{
+			stepIndex = 0;
+		}
+		this.divMainVisual.form.setStepIndex(stepIndex);
+	}
+};
+
+
+this.Div01_Static00_00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	var domain = document.location.href;
+    var arrdomain = domain.split('/');
+    var currentfile = arrdomain.pop();
+    domain = domain.replace(currentfile, "returnHome.nexacro")
+   //trace("domain : "+domain);
+	system.execBrowser(domain);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsMenu"/>
+    </Objects>
+  </Form>
+</FDL>
