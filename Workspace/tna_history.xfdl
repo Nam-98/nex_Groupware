@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="tna_history" width="970" height="600" titletext="New Form" onload="tna_history_onload">
+  <Form id="tna_history" width="980" height="790" titletext="New Form" onload="tna_history_onload">
     <Layouts>
-      <Layout height="600" mobileorientation="landscape" width="970">
-        <Grid id="grd_tnaHistory" taborder="0" left="0" top="120" right="0" bottom="0" autofittype="col" binddataset="gds_tnaHistory" oncellclick="grd_tnaHistory_oncelldblclick">
+      <Layout height="790" mobileorientation="landscape" width="980">
+        <Grid id="grd_tnaHistory" taborder="0" left="0" top="120" right="20" bottom="30" autofittype="col" binddataset="gds_tnaHistory" oncellclick="grd_tnaHistory_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -44,9 +44,9 @@
           </Formats>
         </Grid>
         <Static id="Static80" taborder="1" text="근태 조정 신청 관리" usedecorate="true" cssclass="sta_WF_title01" left="0" top="93" width="400" height="23" wordWrap="english" onclick="Static80_onclick"/>
-        <Button id="btnSearch" taborder="2" top="74" height="39" cssclass="btn_WF_search01" width="50" onclick="btnSearch_onclick" left="grd_tnaHistory:-150"/>
-        <Combo id="Combo00" taborder="3" text="상태선택" top="76" width="120" right="160" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE" bottom="grd_tnaHistory:5" value="0" index="0"/>
-        <Button id="btnRe" taborder="4" width="80" height="39" onclick="btnRe_onclick" right="10" top="74" text="전체 보기"/>
+        <Button id="btnSearch" taborder="2" height="39" cssclass="btn_WF_search01" width="50" onclick="btnSearch_onclick" right="110" bottom="grd_tnaHistory:4"/>
+        <Combo id="Combo00" taborder="3" text="상태선택" width="120" right="160" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE" bottom="grd_tnaHistory:4" value="0" index="0" height="39"/>
+        <Button id="btnRe" taborder="4" width="80" height="39" onclick="btnRe_onclick" right="20" text="전체 보기" bottom="grd_tnaHistory:4"/>
         <Div id="div_Search00" taborder="5" left="0" top="0" right="0" height="49" cssclass="div_WF_SearchBg" text="근태 조정 신청 관리">
           <Layouts>
             <Layout>
@@ -54,6 +54,8 @@
             </Layout>
           </Layouts>
         </Div>
+        <Static id="Static00" taborder="6" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static01" taborder="7" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -76,6 +78,8 @@ this.fn_callback = function(id, ErrorCode, ErrorMsg){
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
+	if(ErrorCode < 0){
+		alert("에러 발생")};
 };
 
 
@@ -97,7 +101,8 @@ this.grd_tnaHistory_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridCli
 	var seq = obj.getCellValue(e.row,"0");
 
 	var objCF = new ChildFrame();
-	objCF.init("popTnA","350px","300px",650,450);
+	objCF.init("popTnA",0,0,650,450);
+	objCF.set_openalign("center middle");
 	objCF.set_formurl("Workspace::tna_history_popUp.xfdl");
 	objCF.showModal(
 		this.getOwnerFrame(),
@@ -152,6 +157,11 @@ this.fn_reCallback = function(id, ErrorCode, ErrorMsg){
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
+	if(ErrorCode < 0){
+		alert("에러 발생")
+	}else{
+	this.reload();
+	};
 };
 
 //전체보기
