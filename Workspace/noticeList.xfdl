@@ -46,7 +46,7 @@
             </Layout>
           </Layouts>
         </Div>
-        <Static id="Static80" taborder="4" text="공지사항/시스템 공지사항 list" usedecorate="true" cssclass="sta_WF_title01" left="1" top="51" width="400" height="23" wordWrap="english"/>
+        <Static id="Static80" taborder="4" text="공지사항/시스템 공지사항 list" usedecorate="true" cssclass="sta_WF_title01" left="1" top="51" width="239" height="23" wordWrap="english"/>
         <Div id="Div00" taborder="5" top="83" right="26" width="640" height="334" cssclass="div_WF_DetailBg" text="">
           <Layouts>
             <Layout width="912" height="393">
@@ -61,7 +61,7 @@
               <Edit id="Edit00_00_00" taborder="8" left="117" top="115" width="508" height="23"/>
               <Edit id="Edit00_00_00_00" taborder="9" left="415" top="80" width="210" height="23" readonly="true"/>
               <Static id="Static37_00" taborder="10" cssclass="sta_WF_title01" left="2" top="0" height="37" text="게시글 정보" width="110"/>
-              <Button id="Button00" taborder="11" text="저장" top="7" height="23" cssclass="btn_WF_save" width="62" right="14" onclick="tranSave"/>
+              <Button id="Button00" taborder="11" text="수정" top="7" height="23" cssclass="btn_WF_save" width="62" right="14" onclick="tranSave"/>
               <Button id="Button00_00" taborder="12" text="삭제" top="7" height="23" cssclass="btn_WF_delete" width="62" right="88" onclick="Div00_Button00_00_onclick"/>
               <Static id="sta_docNm02" taborder="13" text="No" cssclass="sta_WF_Label_P" left="2" top="36" width="110" height="37" wordWrap="english"/>
               <Edit id="Edit00" taborder="14" left="117" top="43" width="173" height="23" readonly="true"/>
@@ -160,27 +160,32 @@ this.tranSave = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		"",
 		"fn_callback"
 	);
+	//alert
 };
 
 // 삭제하기
 this.Div00_Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.ds_write.deleteRow(this.ds_write.rowposition);
-	this.tranSave();
-	
-// 	this.transaction(
-// 		"deleteWrite", 
-// 		"/nex/deleteWrList.nexacro",
-// 		"in_WrDelete=ds_write:U",
-// 		"",
-// 		"",
-// 		"fn_callback"
-// 	);
+		this.ds_write.deleteRow(this.ds_write.rowposition);
+		this.transaction(
+			"deleteWrite", 
+			"/nex/deleteWrList.nexacro",
+			"in_WrDelete=ds_write:U",
+			"",
+			"",
+			"fn_callback"
+		);
 };
 
 this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.ds_write.addRow();
+	var objCF = new ChildFrame();
+	objCF.init("addnotice_popup",0,0,600,400,"Workspace::addnotice_popup.xfdl");
+	objCF.set_formurl("Workspace::addnotice_popup.xfdl");
+	objCF.set_openalign("center middle");
+	
+	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback" );
 };
 
 this.fn_callback = function (id, ErrorCode, ErrorMsg)
@@ -189,7 +194,6 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(ErrorCode);
 	trace(ErrorMsg);
 };
-
 ]]></Script>
     <Objects>
       <Dataset id="ds_write" onload="ds_write_onload">
