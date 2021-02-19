@@ -67,6 +67,10 @@
     <Script type="xscript5.1"><![CDATA[
 this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	var answer = confirm( "등록 하시겠습니까?" );
+	if(!answer){
+		return;
+	}
 
 	this.transaction(
   		"insertWrite", //transaction id
@@ -76,14 +80,14 @@ this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo
  		"", // variable send
   		"fn_callback" //callback function
   	);
-// 	var objFrame = this.getOwnerFrame();
-// 	objFrame.confirm( "등록하시겠습니까?" );
-// 	if(confirm = true){
-// 	
-// 	}else{
-// 		
-// 	}
 };
-]]></Script>
+this.fn_callback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+	
+	this.close();
+};]]></Script>
   </Form>
 </FDL>
