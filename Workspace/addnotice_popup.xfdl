@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="addnotice_popup" width="600" height="400" titletext="New Form">
+    <Layouts>
+      <Layout height="400" mobileorientation="landscape" width="600">
+        <Div id="Div00" taborder="0" top="40" right="0" width="601" height="108" cssclass="div_WF_DetailBg" text="">
+          <Layouts>
+            <Layout width="912" height="393">
+              <Static id="Static04" taborder="0" cssclass="sta_WF_Labelbg" left="1" top="35" right="0" height="37" text=""/>
+              <Static id="Static05" taborder="1" cssclass="sta_WF_Labelbg" left="1" top="0" right="0" height="37" text=""/>
+              <Static id="sta_docNm00" taborder="2" text="글 제목" cssclass="sta_WF_Label" left="2" top="35" width="100" height="37" wordWrap="english"/>
+              <Static id="sta_docNm18" taborder="3" text="글 종류" cssclass="sta_WF_Label" left="2" top="0" width="100" height="37" wordWrap="english"/>
+              <Radio id="Radio00" taborder="4" left="112" top="7" width="469" height="21" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" fittocontents="width">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">0</Col>
+                      <Col id="datacolumn">공지사항</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">1</Col>
+                      <Col id="datacolumn">시스템 공지사항</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <Edit id="Edit00_00_00" taborder="5" left="107" top="-59" width="484" height="24"/>
+              <Edit id="Edit00" taborder="6" left="101" top="37" width="500" height="35"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Static id="Static80" taborder="1" text="공지사항 / 시스템  공지사항 작성" usedecorate="true" cssclass="sta_WF_title01" left="1" top="10" width="239" height="23" wordWrap="english"/>
+        <Static id="Static03" taborder="2" cssclass="sta_WF_Labelbg" left="0" top="122" right="0" height="208" text=""/>
+        <Static id="sta_docNm02" taborder="3" text="글 내용" cssclass="sta_WF_Label" left="0" top="122" width="100" height="208" wordWrap="english"/>
+        <TextArea id="TextArea00" taborder="4" left="101" top="122" width="499" height="208"/>
+        <Button id="btnAdd" taborder="5" text="등록" top="336" height="23" cssclass="btn_WF_add" width="62" right="12" onclick="Div00_btnAdd_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.Radio00" propid="value" datasetid="ds_write" columnid="write_code"/>
+      <BindItem id="item4" compid="TextArea00" propid="value" datasetid="ds_write" columnid="write_contents"/>
+      <BindItem id="item1" compid="Div00.form.Edit00" propid="value" datasetid="ds_write" columnid="write_title"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_write" onload="ds_write_onload">
+        <ColumnInfo>
+          <Column id="write_seq" type="INT" size="256"/>
+          <Column id="write_code" type="STRING" size="256"/>
+          <Column id="write_title" type="STRING" size="256"/>
+          <Column id="write_contents" type="STRING" size="256"/>
+          <Column id="write_id" type="STRING" size="256"/>
+          <Column id="write_reg_date" type="DATE" size="256"/>
+          <Column id="write_del_date" type="DATE" size="256"/>
+          <Column id="wrtie_open" type="STRING" size="256"/>
+          <Column id="write_read_count" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+	this.transaction(
+  		"insertWrite", //transaction id
+  		"/nex/insertWrite.nexacro", //url(to controller)
+  		"ds_in=ds_write:U", // in data set
+  		"", // out data set
+ 		"", // variable send
+  		"fn_callback" //callback function
+  	);
+// 	var objFrame = this.getOwnerFrame();
+// 	objFrame.confirm( "등록하시겠습니까?" );
+// 	if(confirm = true){
+// 	
+// 	}else{
+// 		
+// 	}
+};
+]]></Script>
+  </Form>
+</FDL>
