@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="company_information" width="980" height="790" titletext="New Form" onload="company_information_onload">
+  <Form id="company_information" width="1080" height="670" titletext="New Form" onload="company_information_onload">
     <Layouts>
-      <Layout height="720" width="1280">
+      <Layout height="670" width="1080">
         <Static id="sta_wid" taborder="0" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="sta_wid00" taborder="1" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
         <Static id="sta_higt" taborder="2" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>

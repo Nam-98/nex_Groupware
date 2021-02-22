@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.1">
-  <Form id="logo_edit" width="980" height="790" titletext="New Form">
-    <Layouts>
-      <Layout height="790" width="980"/>
-    </Layouts>
-  </Form>
-</FDL>

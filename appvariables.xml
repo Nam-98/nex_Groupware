@@ -48,7 +48,7 @@
           <Col id="MENU_ID">3030</Col>
           <Col id="MENU_NAME">부서/직급설정</Col>
           <Col id="MENU_LEVEL">1</Col>
-          <Col id="FORM_URL"/>
+          <Col id="FORM_URL">Workspace::dept_position_cud.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">40</Col>
@@ -155,7 +155,7 @@
           <Col id="address2">addre2</Col>
           <Col id="zip_code">zipcode</Col>
           <Col id="is_married">Y</Col>
-          <Col id="dept_code">5</Col>
+          <Col id="dept_code">0</Col>
           <Col id="position_code">0</Col>
           <Col id="reg_date">21/01/21</Col>
           <Col id="access_level_code">2</Col>
@@ -173,7 +173,7 @@
           <Col id="address2">새말로93</Col>
           <Col id="zip_code">08288</Col>
           <Col id="is_married">N</Col>
-          <Col id="dept_code">5</Col>
+          <Col id="dept_code">1</Col>
           <Col id="position_code">2</Col>
           <Col id="reg_date">20/08/01</Col>
           <Col id="access_level_code">0</Col>
@@ -191,7 +191,7 @@
           <Col id="address2">주소2222</Col>
           <Col id="zip_code">12345</Col>
           <Col id="is_married">N</Col>
-          <Col id="dept_code">3</Col>
+          <Col id="dept_code">0</Col>
           <Col id="position_code">3</Col>
           <Col id="reg_date">21/01/18</Col>
           <Col id="access_level_code">2</Col>
@@ -212,7 +212,33 @@
         <Column id="dept_name" type="STRING" size="256"/>
         <Column id="dept_dir_id" type="INT" size="256"/>
         <Column id="dept_level" type="INT" size="256"/>
+        <Column id="dept_code_parent" type="STRING" size="256"/>
+        <Column id="dept_tree_code" type="STRING" size="256"/>
+        <Column id="dept_mem_count" type="STRING" size="256"/>
       </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="dept_code">0</Col>
+          <Col id="dept_name">개발1팀</Col>
+          <Col id="dept_dir_id">0</Col>
+          <Col id="dept_level">1</Col>
+          <Col id="dept_tree_code">0</Col>
+        </Row>
+        <Row>
+          <Col id="dept_code">1</Col>
+          <Col id="dept_name">개발2팀</Col>
+          <Col id="dept_dir_id">1</Col>
+          <Col id="dept_level">1</Col>
+          <Col id="dept_tree_code">1</Col>
+        </Row>
+        <Row>
+          <Col id="dept_code">2</Col>
+          <Col id="dept_name">개발3팀</Col>
+          <Col id="dept_dir_id">2</Col>
+          <Col id="dept_level">1</Col>
+          <Col id="dept_tree_code">0_2</Col>
+        </Row>
+      </Rows>
     </Dataset>
     <Dataset id="gds_tnaHistory">
       <ColumnInfo>
