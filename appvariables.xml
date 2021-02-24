@@ -102,7 +102,6 @@
           <Col id="MENU_ID">503010</Col>
           <Col id="MENU_NAME">휴가일수설정</Col>
           <Col id="MENU_LEVEL">2</Col>
-
           <Col id="FORM_URL">Workspace::personalVacation.xfdl</Col>
         </Row>
         <Row>
@@ -276,6 +275,11 @@
         <Column id="NAME" type="STRING" size="256"/>
         <Column id="CHK" type="STRING" size="256"/>
       </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="TNA_OBJ_SEQ">1</Col>
+        </Row>
+      </Rows>
     </Dataset>
   </Datasets>
   <Variables/>
