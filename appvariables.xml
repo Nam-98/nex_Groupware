@@ -22,15 +22,9 @@
         </Row>
         <Row>
           <Col id="MENU_ID">2020</Col>
-          <Col id="MENU_NAME">공지사항작성</Col>
-          <Col id="MENU_LEVEL">1</Col>
-          <Col id="FORM_URL">Workspace::noticeWrite.xfdl</Col>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">2030</Col>
           <Col id="MENU_NAME">사내 게시판관리</Col>
           <Col id="MENU_LEVEL">1</Col>
-          <Col id="FORM_URL"/>
+          <Col id="FORM_URL"></Col>
         </Row>
         <Row>
           <Col id="MENU_ID">30</Col>
@@ -76,7 +70,7 @@
         </Row>
         <Row>
           <Col id="MENU_ID">50</Col>
-          <Col id="MENU_NAME">연차관리</Col>
+          <Col id="MENU_NAME">휴무관리</Col>
           <Col id="MENU_LEVEL">0</Col>
           <Col id="FORM_URL"/>
         </Row>
@@ -88,21 +82,15 @@
         </Row>
         <Row>
           <Col id="MENU_ID">5020</Col>
-          <Col id="MENU_NAME">휴무등록/삭제</Col>
+          <Col id="MENU_NAME">직원별연차관리</Col>
           <Col id="MENU_LEVEL">1</Col>
-          <Col id="FORM_URL">Workspace::companyHoliday.xfdl</Col>
+          <Col id="FORM_URL">Workspace::personalVacation.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">5030</Col>
-          <Col id="MENU_NAME">직원별연차관리</Col>
+          <Col id="MENU_NAME">휴무등록/삭제</Col>
           <Col id="MENU_LEVEL">1</Col>
-          <Col id="FORM_URL"/>
-        </Row>
-        <Row>
-          <Col id="MENU_ID">503010</Col>
-          <Col id="MENU_NAME">휴가일수설정</Col>
-          <Col id="MENU_LEVEL">2</Col>
-          <Col id="FORM_URL">Workspace::personalVacation.xfdl</Col>
+          <Col id="FORM_URL">Workspace::companyHoliday.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_ID">60</Col>

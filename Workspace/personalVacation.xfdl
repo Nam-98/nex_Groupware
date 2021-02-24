@@ -3,7 +3,7 @@
   <Form id="personalVacation" width="980" height="790" titletext="New Form" onload="personalVacation_onload">
     <Layouts>
       <Layout height="790" width="980">
-        <Grid id="grdList" taborder="0" useinputpanel="false" left="0" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="20" oncellclick="Button75_onclick">
+        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="20" oncellclick="Button75_onclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -23,8 +23,8 @@
                 <Cell text="아이디"/>
                 <Cell col="1" text="성명"/>
                 <Cell col="2" text="연락처"/>
-                <Cell col="3" text="부서코드"/>
-                <Cell col="4" text="직급코드"/>
+                <Cell col="3" text="부서"/>
+                <Cell col="4" text="직급"/>
                 <Cell col="5" text="총연차(일)"/>
                 <Cell col="6" text="사용연차(일)"/>
               </Band>
@@ -32,8 +32,8 @@
                 <Cell text="bind:id"/>
                 <Cell col="1" text="bind:name"/>
                 <Cell col="2" text="bind:contact"/>
-                <Cell col="3" text="bind:dept_code"/>
-                <Cell col="4" text="bind:position_code"/>
+                <Cell col="3" text="bind:dept_name"/>
+                <Cell col="4" text="bind:position_name"/>
                 <Cell col="5" text="bind:break_total_count"/>
                 <Cell col="6" text="bind:break_use_count"/>
               </Band>
@@ -46,39 +46,15 @@
           <Layouts>
             <Layout>
               <Static id="Static34" taborder="0" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
-              <Button id="Button00" taborder="1" text="초기화" left="310" top="7" width="50" height="30"/>
             </Layout>
           </Layouts>
         </Div>
-        <Static id="Static80" taborder="4" text="임/직원 리스트" usedecorate="true" cssclass="sta_WF_title01" left="0" top="69" width="400" height="23" wordWrap="english"/>
+        <Static id="Static80" taborder="4" text="임/직원 리스트" usedecorate="true" cssclass="sta_WF_title01" left="10" top="69" width="400" height="23" wordWrap="english"/>
         <Static id="Static06" taborder="5" text="h 5" visible="false" left="1670" top="488" width="78" height="5" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Static id="Static01_00" taborder="6" text="검색조건" left="16" top="15" width="64" height="23" cssclass="sta_WF_SeaFieldLabel"/>
-        <Combo id="cboCondition" taborder="7" text="전체" left="86" top="12" width="67" height="23" value="" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
-          <Dataset id="innerdataset">
-            <ColumnInfo>
-              <Column id="codecolumn" size="256"/>
-              <Column id="datacolumn" size="256"/>
-            </ColumnInfo>
-            <Rows>
-              <Row>
-                <Col id="codecolumn"/>
-                <Col id="datacolumn">전체</Col>
-              </Row>
-              <Row>
-                <Col id="codecolumn">id</Col>
-                <Col id="datacolumn">아이디</Col>
-              </Row>
-              <Row>
-                <Col id="codecolumn">name</Col>
-                <Col id="datacolumn">성명</Col>
-              </Row>
-            </Rows>
-          </Dataset>
-        </Combo>
-        <Edit id="edtKeyword" taborder="8" left="155" top="12" width="150" height="23" value="검색미구현" text="검색미구현"/>
-        <Button id="btnSearch" taborder="9" top="7" height="30" onclick="fnSearch" cssclass="btn_WF_search01" width="30" left="365"/>
-        <Button id="Button75" taborder="10" text="사용현황" cssclass="btn_WF_Module" top="58" right="20" width="76" height="30" wordWrap="char" onclick="Button75_onclick"/>
-        <Edit id="Edit00" taborder="11" top="64" width="140" height="20" right="105" readonly="true"/>
+        <Button id="Button75" taborder="6" text="사용현황" cssclass="btn_WF_Module" top="58" right="20" width="76" height="30" wordWrap="char" onclick="Button75_onclick"/>
+        <Edit id="Edit00" taborder="7" top="64" width="140" height="20" right="105" readonly="true"/>
+        <Static id="Static00_00" taborder="8" text="w&#13;&#10;10" visible="false" top="0" width="10" height="790" background="rgba(251,123,123,0.47843137254901963)" onclick="Static00_00_onclick" left="0"/>
+        <Static id="Static00_01" taborder="9" text="임/직원별 연차관리" left="16" top="0" width="163" height="47" cssclass="sta_WF_condition01"/>
       </Layout>
     </Layouts>
     <Objects/>
@@ -91,7 +67,7 @@ this.Button75_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	var id = this.Edit00.value;
 	console.log(id);
 	var objCF = new ChildFrame();
-	objCF.init("휴가사용현황",0,0,1280,560);
+	objCF.init("휴가사용현황",0,0,1280,460);
 	objCF.set_formurl("Workspace::personalVacationUse.xfdl");
 	objCF.showModal( this.getOwnerFrame(), {a:id}, this, "fn_callback_pop" );
 	objCF.set_showtitlebar(true);
