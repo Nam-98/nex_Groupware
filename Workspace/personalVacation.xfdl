@@ -67,7 +67,7 @@ this.Button75_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	var id = this.Edit00.value;
 	console.log(id);
 	var objCF = new ChildFrame();
-	objCF.init("휴가사용현황",0,0,1280,460);
+	objCF.init("휴가사용현황",400,0,1280,460);
 	objCF.set_formurl("Workspace::personalVacationUse.xfdl");
 	objCF.showModal( this.getOwnerFrame(), {a:id}, this, "fn_callback_pop" );
 	objCF.set_showtitlebar(true);
