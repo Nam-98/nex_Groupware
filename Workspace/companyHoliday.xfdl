@@ -5,7 +5,7 @@
       <Layout height="790" width="980">
         <Static id="Static01" taborder="0" text="." visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="Static00" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" right="0" background="rgba(251,123,123,0.47843137254901963)" bottom="0"/>
-        <Div id="div_Search" taborder="2" left="0" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
+        <Div id="div_Search" taborder="2" left="16" top="-109" right="4" height="49" cssclass="div_WF_SearchBg" text="">
           <Layouts>
             <Layout>
               <Static id="Static34" taborder="0" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
@@ -18,7 +18,6 @@
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="40"/>
                 <Column size="60"/>
                 <Column size="100"/>
                 <Column size="100"/>
@@ -28,16 +27,14 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="chk" displaytype="checkboxcontrol" edittype="checkbox"/>
-                <Cell col="1" text="휴무일코드"/>
-                <Cell col="2" text="휴무일명"/>
-                <Cell col="3" text="휴무일자"/>
+                <Cell text="휴무일코드"/>
+                <Cell col="1" text="휴무일명"/>
+                <Cell col="2" text="휴무일자"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:chk" displaytype="checkboxcontrol" edittype="checkbox"/>
-                <Cell col="1" text="bind:comp_hd_seq"/>
-                <Cell col="2" text="bind:comp_hd_name" displaytype="editcontrol" edittype="none"/>
-                <Cell col="3" text="bind:comp_hd_date" displaytype="calendarcontrol" edittype="none"/>
+                <Cell text="bind:comp_hd_seq"/>
+                <Cell col="1" text="bind:comp_hd_name" displaytype="editcontrol" edittype="none"/>
+                <Cell col="2" text="bind:comp_hd_date_str" displaytype="calendarcontrol" edittype="date"/>
               </Band>
             </Format>
           </Formats>
@@ -60,7 +57,7 @@
               <Button id="Button00_01_00" taborder="10" text="삭제" top="10" height="23" cssclass="btn_WF_add" width="62" right="140" onclick="Button00_onclick"/>
               <Static id="sta_alert" taborder="11" left="0" top="176" width="370" text="*설정 시 캘린더 자동반영" font="bold 12px/normal &quot;Gulim&quot;" color="#a80000" bottom="136"/>
               <Edit id="Edit00" taborder="12" left="117" top="79" width="200" height="23"/>
-              <Calendar id="Calendar00" taborder="13" left="437" top="79" width="200" height="23" onchanged="Div00_Calendar00_onchanged"/>
+              <Calendar id="Calendar00" taborder="13" left="437" top="79" width="200" height="23"/>
             </Layout>
           </Layouts>
           <InitValue/>
@@ -68,19 +65,18 @@
       </Layout>
     </Layouts>
     <Objects>
-      <Dataset id="ds_holiday">
+      <Dataset id="ds_holiday" onvaluechanged="ds_holiday_onvaluechanged">
         <ColumnInfo>
-          <Column id="chk" type="STRING" size="256"/>
           <Column id="comp_hd_seq" type="INT" size="256"/>
           <Column id="comp_hd_name" type="STRING" size="256"/>
           <Column id="comp_hd_date" type="DATE" size="256"/>
+          <Column id="comp_hd_date_str" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
             <Col id="comp_hd_seq">0</Col>
-            <Col id="chk"/>
             <Col id="comp_hd_name">대표님생신</Col>
-            <Col id="comp_hd_date"></Col>
+            <Col id="comp_hd_date">1994-09-14</Col>
           </Row>
         </Rows>
       </Dataset>
@@ -98,12 +94,11 @@ this.companyHoliday_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	);
 };
 
-//저장
+//추가
 this.Div05_Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.ds_holiday.addRow();
 	alert("값 입력 후, 저장 버튼을 눌러주세요.");
-	alert("오류왜날까");
 };
 
 //저장
@@ -134,17 +129,11 @@ this.fn_callback1 = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
-};
-
-this.Div00_Calendar00_onchanged = function(obj:nexacro.Calendar,e:nexacro.ChangeEventInfo)
-{
-	alert(this.Div00.form.Calendar00.value);
-};
-]]></Script>
+};]]></Script>
     <Bind>
       <BindItem id="item2" compid="Div00.form.Edit05" propid="value" datasetid="ds_holiday" columnid="comp_hd_seq"/>
       <BindItem id="item3" compid="Div00.form.Edit00" propid="value" datasetid="ds_holiday" columnid="comp_hd_name"/>
-      <BindItem id="item4" compid="Div00.form.Calendar00" propid="value" datasetid="ds_holiday" columnid="comp_hd_date"/>
+      <BindItem id="item4" compid="Div00.form.Calendar00" propid="value" datasetid="ds_holiday" columnid="comp_hd_date_str"/>
     </Bind>
   </Form>
 </FDL>
