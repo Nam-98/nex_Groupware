@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="noticeList" width="980" height="790" titletext="New Form" onload="noticeList_onload">
+  <Form id="boardList" width="980" height="790" titletext="New Form" onload="boardList_onload">
     <Layouts>
       <Layout height="790" width="980">
-        <Grid id="grdWrList" taborder="0" useinputpanel="false" left="1" top="80" cellmovingtype="col" cellsizingtype="col" binddataset="ds_write" bottom="194" showselection="true" selecttype="row" autofittype="col" right="669" oncellclick="Div01_ImageViewer00_onload">
+        <Grid id="grdWrList" taborder="0" useinputpanel="false" left="1" top="80" cellmovingtype="col" cellsizingtype="col" bottom="194" showselection="true" selecttype="row" autofittype="col" right="669" oncellclick="Div01_ImageViewer00_onload" binddataset="ds_write">
           <Formats>
             <Format id="default">
               <Columns>
@@ -46,7 +46,7 @@
             </Layout>
           </Layouts>
         </Div>
-        <Static id="Static80" taborder="4" text="공지사항/시스템 공지사항 list" usedecorate="true" cssclass="sta_WF_title01" left="1" top="51" width="239" height="23" wordWrap="english"/>
+        <Static id="Static80" taborder="4" text="사내 게시판 list" usedecorate="true" cssclass="sta_WF_title01" left="1" top="51" width="239" height="23" wordWrap="english"/>
         <Div id="Div00" taborder="5" top="83" right="26" width="640" height="334" cssclass="div_WF_DetailBg" text="">
           <Layouts>
             <Layout width="912" height="393">
@@ -68,7 +68,7 @@
               <Static id="Static04_00" taborder="15" cssclass="sta_WF_Labelbg" left="299" top="36" right="5" height="37" text=""/>
               <Static id="sta_docNm02_00" taborder="16" text="글 종류" cssclass="sta_WF_Label_P" left="299" top="36" width="110" height="37" wordWrap="english"/>
               <Button id="btnAdd" taborder="17" text="추가" top="7" height="23" cssclass="btn_WF_add" width="62" right="162" onclick="Div00_btnAdd_onclick"/>
-              <Radio id="Radio00" taborder="18" left="418" top="44" width="277" height="21" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" fittocontents="width">
+              <Radio id="Radio00" taborder="18" left="414" top="44" width="221" height="20" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
                 <Dataset id="innerdataset">
                   <ColumnInfo>
                     <Column id="codecolumn" size="256"/>
@@ -76,12 +76,12 @@
                   </ColumnInfo>
                   <Rows>
                     <Row>
-                      <Col id="codecolumn">0</Col>
-                      <Col id="datacolumn">공지사항</Col>
+                      <Col id="codecolumn">2</Col>
+                      <Col id="datacolumn">회사 게시판</Col>
                     </Row>
                     <Row>
-                      <Col id="codecolumn">1</Col>
-                      <Col id="datacolumn">시스템 공지사항</Col>
+                      <Col id="codecolumn">3</Col>
+                      <Col id="datacolumn">갤러리 게시판</Col>
                     </Row>
                   </Rows>
                 </Dataset>
@@ -135,81 +135,6 @@
       <BindItem id="item1" compid="Div01.form.TextArea00" propid="value" datasetid="ds_write" columnid="write_contents"/>
       <BindItem id="item4" compid="Div00.form.Radio00" propid="value" datasetid="ds_write" columnid="write_code"/>
     </Bind>
-    <Script type="xscript5.1"><![CDATA[
-this.noticeList_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
-{
-	//본 화면이 로딩될 때 DB에 있는 공지사항, 시스템 공지사항 LIST를 불러 옴
-	this.transaction(
-		"loading",
-		"/nex/loadWrList.nexacro",
-		"",
-		"ds_write=ds_out",
-		"",
-		"fn_callback"
-	);
-};
-
-// 수정하기
-this.tranSave = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	var answer = confirm( "수정 하시겠습니까?" );
-	if(!answer){
-		return;
-	}
-	this.transaction(
-		"updateWrite", 
-		"/nex/updateWrList.nexacro",
-		"in_WrList=ds_write:U",
-		"",
-		"",
-		"fn_callback"
-	);
-};
-
-// 삭제하기
-this.Div00_Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
- 	var answer = confirm( "삭제 하시겠습니까?" );
-	if(!answer){
-		return;
-	}
-		this.ds_write.deleteRow(this.ds_write.rowposition);
-		this.transaction(
-			"deleteWrite", 
-			"/nex/deleteWrList.nexacro",
-			"in_WrDelete=ds_write:U",
-			"",
-			"",
-			"fn_callback"
-		);
-};
-
-this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	var objCF = new ChildFrame();
-	objCF.init("addnotice_popup",0,0,600,400,"Workspace::addnotice_popup.xfdl");
-	objCF.set_formurl("Workspace::addnotice_popup.xfdl");
-	objCF.set_openalign("center middle");
-	
-	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback1" );
-};
-
-this.fn_callback = function (id, ErrorCode, ErrorMsg)
-{
-	trace(id);
-	trace(ErrorCode);
-	trace(ErrorMsg);
-};
-
-this.fn_callback1 = function (id, ErrorCode, ErrorMsg)
-{
-	trace(id);
-	trace(ErrorCode);
-	trace(ErrorMsg);
-	
-	this.reload();
-};
-]]></Script>
     <Objects>
       <Dataset id="ds_write" onload="ds_write_onload">
         <ColumnInfo>
@@ -228,5 +153,80 @@ this.fn_callback1 = function (id, ErrorCode, ErrorMsg)
         </Rows>
       </Dataset>
     </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.boardList_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//본 화면이 로딩될 때 DB에 있는 회사 게시판, 갤러리 게시판 LIST를 불러 옴
+	this.transaction(
+		"loading",
+		"/nex/loadBrList.nexacro",
+		"",
+		"ds_write=ds_out",
+		"",
+		"fn_callback"
+	);
+};
+
+this.Div00_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objCF = new ChildFrame();
+	objCF.init("addboard_popup",0,0,600,400,"Workspace::addboard_popup.xfdl");
+	objCF.set_formurl("Workspace::addboard_popup.xfdl");
+	objCF.set_openalign("center middle");
+	
+	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback1" );
+};
+
+this.Div00_Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var answer = confirm( "삭제 하시겠습니까?" );
+	if(!answer){
+		return;
+	}
+		this.ds_write.deleteRow(this.ds_write.rowposition);
+		this.transaction(
+			"deleteWrite", 
+			"/nex/deleteWrList.nexacro",
+			"in_WrDelete=ds_write:U",
+			"",
+			"",
+			"fn_callback"
+		);
+};
+
+this.tranSave = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var answer = confirm( "수정 하시겠습니까?" );
+	if(!answer){
+		return;
+	}
+	this.transaction(
+		"updateWrite", 
+		"/nex/updateWrList.nexacro",
+		"in_WrList=ds_write:U",
+		"",
+		"",
+		"fn_callback"
+	);
+};
+
+this.fn_callback = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+};
+
+this.fn_callback1 = function (id, ErrorCode, ErrorMsg)
+{
+	trace(id);
+	trace(ErrorCode);
+	trace(ErrorMsg);
+	
+	this.reload();
+};
+
+
+]]></Script>
   </Form>
 </FDL>
