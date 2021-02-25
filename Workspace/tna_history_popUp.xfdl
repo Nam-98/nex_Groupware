@@ -22,7 +22,7 @@
               <Static id="Static03_00_00" taborder="13" cssclass="sta_WF_Labelbg" left="142" top="167" right="9" height="44"/>
               <Edit id="edt_change" taborder="14" left="152" top="174" width="457" height="27" readonly="true"/>
               <Static id="Static03_02" taborder="15" cssclass="sta_WF_Labelbg" left="142" top="276" right="9" height="50"/>
-              <Static id="sta_docNm11_01" taborder="16" text="최종 변경" cssclass="sta_WF_Label" left="18" top="276" width="125" height="50" wordWrap="english"/>
+              <Static id="sta_docNm11_01" taborder="16" text="최종 상태" cssclass="sta_WF_Label" left="18" top="276" width="125" height="50" wordWrap="english"/>
               <Combo id="com_final" taborder="17" text="선택" left="153" top="283" width="164" height="33" innerdataset="ds_tnaStatus" datacolumn="tna_status_name" codecolumn="tna_status_code" index="0" value="0"/>
               <Static id="sta_docNm11_03" taborder="18" text="신청 날짜" cssclass="sta_WF_Label" left="18" top="45" width="125" height="37" wordWrap="english"/>
               <Static id="Static03_03" taborder="19" cssclass="sta_WF_Labelbg" left="143" top="45" right="9" height="37"/>
