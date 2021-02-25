@@ -142,6 +142,7 @@
         <Column id="dept_name" type="STRING" size="256"/>
         <Column id="position_name" type="STRING" size="256"/>
         <Column id="dept_level" type="INT" size="256"/>
+        <Column id="retire_date_str" type="DATE" size="256"/>
       </ColumnInfo>
       <Rows>
         <Row>
@@ -263,6 +264,26 @@
         <Column id="NAME" type="STRING" size="256"/>
         <Column id="CHK" type="STRING" size="256"/>
       </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_stAccess">
+      <ColumnInfo>
+        <Column id="ACCESS_LEVEL_CODE" type="INT" size="256"/>
+        <Column id="ACCESS_LEVEL_NAME" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="ACCESS_LEVEL_CODE">0</Col>
+          <Col id="ACCESS_LEVEL_NAME">일반사원(어드민접근불가)</Col>
+        </Row>
+        <Row>
+          <Col id="ACCESS_LEVEL_CODE">1</Col>
+          <Col id="ACCESS_LEVEL_NAME">중간관리자</Col>
+        </Row>
+        <Row>
+          <Col id="ACCESS_LEVEL_CODE">2</Col>
+          <Col id="ACCESS_LEVEL_NAME">최고관리자</Col>
+        </Row>
+      </Rows>
     </Dataset>
   </Datasets>
   <Variables/>
