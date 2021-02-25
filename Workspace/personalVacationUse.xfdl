@@ -109,6 +109,11 @@ this.personalVacationUse_onload = function(obj:nexacro.Form,e:nexacro.LoadEventI
 	this.Div05.form.Edit02.set_value(break_total_count);
 	this.Div05.form.Edit04.set_value(break_use_count);
 	
+	var total = this.Div05.form.Edit02.value;
+	var use = this.Div05.form.Edit04.value;
+	
+	this.Div05.form.Edit11.set_value(total-use);
+	
 	this.transaction(
 		"loadHolidayList","/nex/loadHolidayList.nexacro","","ds_break=ds_out","argu0="+id,"fn_callback");
 };

@@ -79,6 +79,8 @@
               <Combo id="Combo00" taborder="9" text="Combo00" left="117" top="223" width="200" height="23" innerdataset="gds_stDepartment" datacolumn="dept_name" codecolumn="dept_code"/>
               <Combo id="Combo01" taborder="10" text="Combo01" left="437" top="223" width="200" height="23" innerdataset="gds_stPosition" datacolumn="position_name" codecolumn="position_code"/>
               <Static id="Static08" taborder="37" text="일 " left="150" top="289" width="201" height="35" cssclass="sta_WF_SearchLabel"/>
+              <Static id="sta_docNm07_00" taborder="38" text="접근 권한" cssclass="sta_WF_Label_P" left="322" top="288" width="110" height="37" wordWrap="english"/>
+              <Combo id="Combo01_00" taborder="39" text="Combo01" left="437" top="295" width="200" height="23" innerdataset="gds_stAccess" datacolumn="ACCESS_LEVEL_NAME" codecolumn="ACCESS_LEVEL_CODE"/>
             </Layout>
           </Layouts>
           <InitValue/>
@@ -309,6 +311,7 @@ this.Div00_Radio04_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChan
       <BindItem id="item10" compid="Div00.form.Radio02_00" propid="value" datasetid="ds_addMem" columnid="gender"/>
       <BindItem id="item0" compid="Div00.form.Combo00" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
       <BindItem id="item1" compid="Div00.form.Combo01" propid="value" datasetid="ds_addMem" columnid="position_code"/>
+      <BindItem id="item2" compid="Div00.form.Combo01_00" propid="value" datasetid="ds_addMem" columnid="access_level_code"/>
     </Bind>
     <Objects>
       <Dataset id="ds_addMem">
@@ -326,6 +329,7 @@ this.Div00_Radio04_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChan
           <Column id="break_total_count" type="FLOAT" size="256"/>
           <Column id="birth" type="DATE" size="256"/>
           <Column id="reg_date" type="DATE" size="256"/>
+          <Column id="access_level_code" type="INT" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
