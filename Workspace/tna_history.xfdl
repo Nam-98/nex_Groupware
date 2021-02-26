@@ -153,7 +153,6 @@ this.fn_callback_pop=function(id,sReturn){
 
 //정정상태용 콜백
 this.fn_reCallback = function(id, ErrorCode, ErrorMsg){
-	 this.reload();
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);

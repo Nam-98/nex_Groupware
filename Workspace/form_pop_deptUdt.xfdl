@@ -100,7 +100,6 @@ this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	nexacro.getApplication().gds_stDepartment.filter("");
 	var nRowCnt = this.ds_stDepartment.assign(nexacro.getApplication().gds_stDepartment );
 	
-	trace("상위부서 존재? : "+(this.parent.dept_level==1));
 	if(this.parent.dept_level==1){
 		//최상위 부서라면 '상위부서 없음'에 클릭시켜놓는다.
 		this.chb_isTop.set_value(true);
@@ -125,8 +124,8 @@ this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	this.ds_dept_udt.setColumn(0,"dept_code_parent",this.parent.dept_code_parent);
 
 	//하위부서 선택 창에 현재 수정중인 부서는 안보이게 한다. 
-	this.ds_stDepartment.filter('dept_code!='+this.parent.dept_code);
-	
+	//하위부서 선택 창에 level이 2인 부서는 보이지 않게 한다. 
+	this.ds_stDepartment.filter('dept_level<=1 && dept_code!='+this.parent.dept_code);
 };
 
 
@@ -136,20 +135,16 @@ this.fn_udt = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	var sLevel = 1;//top일경우 level은 1로 설정된다. 
 	var sTreeCode = this.parent.dept_tree_code;
 	
-	trace("상위부서 없음 체크여부 : "+this.chb_isTop.value);
 	if(this.chb_isTop.value=='false'){
 		sParentCode = this.ds_stDepartment.getColumn(this.selectedRowInx, "dept_code");
 		//상위부서가 있다면 해당 부서의 code와 level+1한 값을 넘겨줌. 
 		sLevel = (this.ds_stDepartment.getColumn(this.selectedRowInx, "dept_level")+1);//부모 level의 +1
-		trace("설정한 level : "+sLevel);
 		//부모코드 설정
 		this.ds_dept_udt.setColumn(0,"dept_code_parent",sParentCode);
 		
 		//tree_code설정
 		var pTree = this.ds_stDepartment.getColumn(this.selectedRowInx, "dept_tree_code");
 		sTreeCode = pTree+"_"+this.parent.dept_code;
-		trace("변경된 tree_code : "+sTreeCode);
-		trace("pTree : "+pTree+", selectedRowInx : "+this.selectedRowInx);
 	}
 
 	this.ds_dept_udt.setColumn(0,"dept_name",sName);
@@ -205,7 +200,7 @@ this.grd_tree_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventIn
 {
 	//변수에 선택된 row의 index값 저장
 	this.selectedRowInx = e.row;
-	trace("cellclick 발생, "+this.selectedRowInx)
+	
 
 };
 
@@ -217,9 +212,7 @@ this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {	
 	var totalMem = 0;
-	trace("member total : "+this.ds_stMember.getCount());
 	var colInx = this.ds_stMember.addColumn("dept_tree_code","string");
-	trace("column추가 여부 : "+colInx);
 	//member테이블에 dept_tree_code넣기
 	for(var i=0; i<this.ds_stMember.rowcount;i++){
 			var dept = this.ds_stMember.getColumn(i,"dept_code");
@@ -231,8 +224,6 @@ this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 			
 			var tree = this.ds_stDepartment.lookup("dept_code",dept,"dept_tree_code");
 			var res = this.ds_stMember.setColumn(i,"dept_tree_code",tree);
-			trace("dept, tree : "+dept+"_"+tree);
-			trace("dept_tree_code 입력 결과 : "+res);
 	}
 	for(var i=0; i<this.ds_stMember.rowcount;i++){
 		var text = this.ds_stMember.getColumn(i,"dept_tree_code");
@@ -240,10 +231,8 @@ this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		if(inx!=-1){
 			totalMem++;
 		}
-		trace("inx : "+inx)
 	}
 	
-	console.log("totalMem : "+totalMem);
 	if(totalMem!=0){alert("해당 부서 및 하위부서에 사원이 존재하여 해당 부서를 삭제할 수 없습니다."); return;}
 	
 	var ans = confirm(this.parent.dept_name+"부서를 정말로 삭제하시겠습니까?");

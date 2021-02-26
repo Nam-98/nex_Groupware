@@ -61,7 +61,6 @@ this.fnAdd = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	if(!this.chb_isTop.value){
 		//level : 해당 부서의 code와 level+1한 값을 넘겨줌. 
 		sParentCode = this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_code");
-		trace("부모의 level : "+this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_level"));
 		sLevel = (this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_level")+1);//부모 level의 +1
 		
 		//부모코드 설정
@@ -69,7 +68,6 @@ this.fnAdd = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		
 		//tree_code설정 nexa에선 부모의 tree만 넘겨주고 자신의 seq는 server에서 추가함
 		sTreeCode = this.gds_stDepartment.getColumn(this.selectedRowInx, "dept_tree_code");
-		trace("부모의 트리 코드 : "+sTreeCode)
 //		sIsTop = false
 		
 		//confirm에서 사용할 text설정
@@ -129,7 +127,6 @@ this.grd_tree_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventIn
 {
 	//변수에 선택된 row의 index값 저장
 	this.selectedRowInx = e.row;
-	trace("cellclick 발생, "+this.selectedRowInx)
 };
 
 this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -142,6 +139,9 @@ this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	//grid의 focus가 부모창에서 선택된 dept를 물려받지 않게 defualt로 0번을 select해준다. 
 	this.grd_tree.selectRow(0);
+	
+	//상위부서 선택 시 최상위 부서만 선택할 수 있도록 하위부서들은 filter한다. 
+	nexacro.getApplication().gds_stDepartment.filter("dept_level<=1");
 };
 ]]></Script>
   </Form>
