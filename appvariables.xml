@@ -270,6 +270,11 @@
         <Column id="NAME" type="STRING" size="256"/>
         <Column id="CHK" type="STRING" size="256"/>
       </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="TNA_OBJ_SEQ">1</Col>
+        </Row>
+      </Rows>
     </Dataset>
     <Dataset id="gds_stAccess">
       <ColumnInfo>
