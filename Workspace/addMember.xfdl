@@ -85,7 +85,7 @@
           </Layouts>
           <InitValue/>
         </Div>
-        <Div id="Div01" taborder="2" text="Div01" top="428" width="640" height="334" left="10">
+        <Div id="Div01" taborder="2" text="Div01" top="398" width="640" height="334" left="10">
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" text="프로필 등록" left="0" top="0" width="110" height="37" cssclass="sta_WF_title01"/>
@@ -120,7 +120,7 @@
                   </Format>
                 </Formats>
               </Grid>
-              <Static id="sta_alert" taborder="8" left="122" top="127" width="370" text="* png 형식의 파일 첨부" font="bold 12px/normal &quot;Gulim&quot;" color="#a80000" bottom="162"/>
+              <Static id="sta_alert" taborder="8" left="122" top="120" width="370" text="* png 형식의 파일 첨부&#13;&#10;   &#13;&#10;* 120 x 150 파일크기 사용" font="bold 12px/normal &quot;Gulim&quot;" color="#a80000" bottom="162" onclick="Div01_sta_alert_onclick"/>
             </Layout>
           </Layouts>
         </Div>
@@ -296,6 +296,7 @@ this.Div00_Radio04_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChan
 {
 	
 };
+
 ]]></Script>
     <Bind>
       <BindItem id="item13" compid="Div00.form.Edit00" propid="value" datasetid="ds_addMem" columnid="id"/>

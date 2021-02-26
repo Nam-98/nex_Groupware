@@ -19,7 +19,7 @@
           </Formats>
         </Grid>
         <ImageViewer id="ImageViewer00" taborder="1" left="0" top="0" width="300" height="80" image="url('imagerc::logo-dark.png')" onclick="ImageViewer00_onclick"/>
-        <Button id="MenuBar" taborder="2" left="0" top="81" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="MENU" width="300" height="40" background="transparent"/>
+        <Button id="MenuBar" taborder="2" left="0" top="81" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="MENU" width="300" height="40" background="transparent" enable="false"/>
         <Button id="btnMenu00" taborder="3" width="150" height="40" cssclass="btn_LF_SelectMenu_D" tabstop="false" onclick="Button_onclick" text="로그아웃" visible="false" right="-170" bottom="680"/>
         <Button id="btnMenu" taborder="4" left="0" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="로그아웃" width="300" height="40" background="transparent" bottom="0"/>
       </Layout>
