@@ -64,11 +64,11 @@
               <Button id="btn_ptnr00" taborder="25" onclick="div_condition1_btn_ptnr_onclick" cssclass="btn_WF_SearchSmall" left="294" top="273" width="23" height="23"/>
               <Edit id="ed_mtrlCd00" taborder="26" left="222" top="273" width="65" height="23" readonly="true"/>
               <Static id="sta_docNm07" taborder="27" text="입사일" cssclass="sta_WF_Label_P" left="2" top="302" width="110" height="37" wordWrap="english"/>
-              <Static id="sta_docNm08" taborder="28" text="사용휴가일수" cssclass="sta_WF_Label" left="2" top="338" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm08" taborder="28" text="사용휴가일수" cssclass="sta_WF_Label_P" left="2" top="338" width="110" height="37" wordWrap="english"/>
               <Edit id="Edit05" taborder="9" left="117" top="345" width="40" height="25" onchanged="Div00_Edit05_onchanged" onkillfocus="Div00_Edit05_onchanged" inputtype="number"/>
-              <Static id="sta_docNm11" taborder="29" text="접근 권한" cssclass="sta_WF_Label" left="322" top="302" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm11" taborder="29" text="접근 권한" cssclass="sta_WF_Label_P" left="322" top="302" width="110" height="37" wordWrap="english"/>
               <Static id="sta_docNm12" taborder="30" text="직위" cssclass="sta_WF_Label_P" left="322" top="266" width="110" height="37" wordWrap="english"/>
-              <Static id="sta_docNm15" taborder="31" text="결혼유무" cssclass="sta_WF_Label" left="322" top="144" width="110" height="37" wordWrap="english"/>
+              <Static id="sta_docNm15" taborder="31" text="결혼유무" cssclass="sta_WF_Label_P" left="322" top="144" width="110" height="37" wordWrap="english"/>
               <Static id="sta_docNm16" taborder="32" text="상세주소" cssclass="sta_WF_Label_P" left="322" top="108" width="110" height="37" wordWrap="english"/>
               <Static id="sta_docNm18" taborder="33" text="성명" cssclass="sta_WF_Label_P" left="322" top="36" width="110" height="37" wordWrap="english" onclick="Div00_sta_docNm18_onclick"/>
               <Edit id="Edit06" taborder="1" left="437" top="43" width="200" height="23"/>
@@ -79,10 +79,9 @@
               <Static id="sta_docNm00_00" taborder="36" text="성별" cssclass="sta_WF_Label_P" left="322" top="72" width="110" height="37" wordWrap="english"/>
               <Radio id="Radio02_00" taborder="3" index="0" value="0" direction="vertical" left="437" top="79" width="134" height="23" onitemchanged="Div00_Radio02_00_onitemchanged" innerdataset="ds_gender" datacolumn="name" codecolumn="code"/>
               <Edit id="Edit00_00_00" taborder="4" left="117" top="115" width="200" height="23"/>
-              <Calendar id="Calendar00" taborder="37" left="117" top="309" width="200" height="23" readonly="true"/>
+              <Calendar id="Calendar00" taborder="37" left="117" top="309" width="200" height="23"/>
               <Edit id="Edit00_00_00_00" taborder="6" left="117" top="151" width="200" height="23"/>
               <Edit id="Edit00_00_00_01" taborder="5" left="437" top="115" width="200" height="23" onchanged="Div00_Edit00_00_00_01_onchanged"/>
-              <Edit id="Edit05_00" taborder="38" left="225" top="345" width="40" height="25" inputtype="number"/>
               <Static id="Static08" taborder="10" text="일 (전체 :          일)" left="150" top="339" width="201" height="35" cssclass="sta_WF_SearchLabel"/>
               <Static id="Static37_00" taborder="39" cssclass="sta_WF_title01" left="2" top="0" height="37" text="개인정보" width="110"/>
               <Button id="Button00" taborder="11" text="저장" top="9" height="23" cssclass="btn_WF_add" width="62" right="70" onclick="tranSave"/>
@@ -93,6 +92,8 @@
               <Calendar id="Calendar01" taborder="8" left="117" top="187" width="200" height="23"/>
               <Edit id="ed_mtrlCd00_00" taborder="44" left="117" top="273" width="100" height="23" readonly="true"/>
               <Edit id="ed_mtrlCd02_00" taborder="45" left="542" top="273" width="65" height="23" readonly="true"/>
+              <Button id="Button00_01" taborder="46" text="추가" top="10" height="23" cssclass="btn_WF_add" width="62" right="180" onclick="Div00_Button00_01_onclick"/>
+              <Edit id="Edit05_00" taborder="38" left="225" top="345" width="40" height="25" inputtype="number"/>
             </Layout>
           </Layouts>
           <InitValue/>
@@ -200,6 +201,7 @@ this.div_condition1_btn_ptnr_onclick = function(obj:nexacro.Button,e:nexacro.Cli
 {
 	var objCF = new ChildFrame();
 	objCF.init("popDept",0,0,600,400);
+	objCF.set_openalign("center middle");
 	objCF.set_formurl("Workspace::form_pop_dept.xfdl");
 	
 	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback_pop" );
@@ -220,6 +222,7 @@ this.Div00_btn_ptnr02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
 {
 	var objCF = new ChildFrame();
 	objCF.init("popDept",0,0,600,400);
+	objCF.set_openalign("center middle");
 	objCF.set_formurl("Workspace::form_pop_po.xfdl");
 	
 	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback_popPo" );
@@ -368,13 +371,35 @@ this.Div00_Edit05_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInf
 	};
 };
 
-]]></Script>
+//추가버튼 누르면, 아이디 넣을 수 있도록 팝업창 구현
+this.Div00_Button00_01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gds_stMember.addRow();
+	var objCF = new ChildFrame();
+	objCF.init("popDept",0,0,600,400);
+	objCF.set_openalign("center middle");
+	objCF.set_formurl("Workspace::form_pop_id.xfdl");
+	
+	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback_popId" );
+};
+
+this.fn_callback_popId = function(id, sRtn){
+	var result = sRtn;
+	if (sRtn==null)
+	{
+		nexacro.getApplication().gds_stMember.deleteRow(this.gds_stMember.rowposition);
+	}
+	else
+	{
+		this.Div00.form.Edit00.set_value(sRtn);
+	}
+}]]></Script>
     <Bind>
       <BindItem id="item0" compid="Div00.form.Edit00" propid="value" datasetid="gds_stMember" columnid="id"/>
       <BindItem id="item1" compid="Div00.form.Edit06" propid="value" datasetid="gds_stMember" columnid="name"/>
       <BindItem id="item2" compid="Div00.form.Edit00_00" propid="value" datasetid="gds_stMember" columnid="contact"/>
       <BindItem id="item6" compid="Div00.form.Edit00_00_00" propid="value" datasetid="gds_stMember" columnid="address1"/>
-      <BindItem id="item7" compid="Div00.form.Calendar00" propid="value" datasetid="gds_stMember" columnid="reg_date"/>
+      <BindItem id="item7" compid="Div00.form.Calendar00" propid="value" datasetid="gds_stMember" columnid="reg_date_str"/>
       <BindItem id="item12" compid="Div00.form.Edit00_00_00_00" propid="value" datasetid="gds_stMember" columnid="zip_code"/>
       <BindItem id="item13" compid="Div00.form.Edit00_00_00_01" propid="value" datasetid="gds_stMember" columnid="address2"/>
       <BindItem id="item14" compid="Div00.form.ed_mtrlCd00" propid="value" datasetid="gds_stMember" columnid="dept_code"/>

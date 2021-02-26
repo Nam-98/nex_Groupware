@@ -3,7 +3,7 @@
   <Form id="vacationKind" width="980" height="790" titletext="New Form" onload="vacationKind_onload">
     <Layouts>
       <Layout height="790" width="980">
-        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="ds_break" bottom="20" showselection="true" selecttype="row" autofittype="col" right="670" oncellclick="Div01_ImageViewer00_onload">
+        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="ds_break" bottom="20" showselection="true" selecttype="row" autofittype="col" right="670" onheadclick="grdList_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -121,7 +121,7 @@
       <BindItem id="item1" compid="Div00.form.Edit05_00" propid="value" datasetid="ds_break" columnid="break_name"/>
       <BindItem id="item2" compid="Div00.form.Combo00" propid="value" datasetid="ds_break" columnid="break_discount"/>
     </Bind>
-    <Script type="xscript5.1"><![CDATA[
+    <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";
 this.vacationKind_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.transaction(
@@ -165,6 +165,12 @@ this.Div00_Button00_01_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickE
 {
 	this.ds_break.deleteRow(this.ds_break.rowposition);
 	this.tranSave();
+};
+
+this.grdList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//grid sort함
+	this.cfn_GridSort(obj, e);
 };
 ]]></Script>
   </Form>

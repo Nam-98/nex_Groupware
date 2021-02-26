@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form_pop_id" width="500" height="250" titletext="New Form">
+    <Layouts>
+      <Layout height="250" width="500">
+        <Div id="divSearch" taborder="0" text="" left="0" top="0" height="49" right="0" cssclass="div_WF_SearchBg">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Static id="Static01" taborder="1" text="." visible="false" left="0" right="1" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static54" taborder="2" text="h10" visible="false" left="89" top="49" width="102" height="10" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Button id="btnAdd" taborder="3" text="아이디 사용" left="175" width="75" height="29" bottom="20" onclick="fnAdd"/>
+        <Button id="btnDel" taborder="4" text="취소" left="255" width="65" height="29" bottom="20" onclick="fnDel"/>
+        <Static id="Static00" taborder="5" text="아이디 중복확인" left="16" top="0" width="120" height="47" cssclass="sta_WF_condition01"/>
+        <Static id="Static34" taborder="6" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static01_00" taborder="7" cssclass="sta_WF_Labelbg" left="2" top="59" right="0" bottom="59"/>
+        <Static id="Static54_00" taborder="8" text="h10" visible="false" left="0" background="rgba(251,123,123,0.47843137254901963)" height="10" bottom="49" right="0"/>
+        <Static id="sta_alert" taborder="9" left="10" top="70" width="458" text="* 아이디는 영문(소문자), 숫자로 4~10자 이내로 입력해 주세요.&#13;&#10;   &#13;&#10;* 공백 또는 특수문자가 포함된 아이디는 사용할 수 없습니다. &#13;&#10;" font="bold 12px/normal &quot;Gulim&quot;" color="#a80000" onclick="Div01_sta_alert_onclick" height="70"/>
+        <Edit id="ed_idid" taborder="10" left="10" top="140" width="175" height="23"/>
+        <Button id="btn_ptnr00" taborder="11" onclick="div_condition1_btn_ptnr_onclick" left="190" top="140" width="65" height="23" text="중복검사"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item1" compid="Div00.form.ed_mtrlCd00_00" propid="value" datasetid="gds_stMember" columnid="dept_name"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[//중복검사버튼
+var idCheckVar = "N";
+this.div_condition1_btn_ptnr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var id = this.ed_idid.value;
+	var idCheck =  nexacro.getApplication().gds_stMember.lookup( "id", id, "name");
+	if(idCheck!=null){
+		alert("이미 존재하는 id입니다.");
+		this.ed_idid.set_value("");
+	}else{
+		alert("사용 가능한 id입니다.");
+		idCheckVar="Y";
+		this.ed_idid.set_readonly(true);
+	}
+};
+
+//취소버튼
+this.fnDel = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sRtn = "";
+	this.close(sRtn);
+};
+
+//아이디사용버튼
+this.fnAdd = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var id = this.ed_idid.value;
+	if(id=="" || id==null){
+		alert("사용하실 아이디를 입력해주세요.");
+	}else if(idCheckVar=="Y"){
+		alert("부가정보를 입력한 뒤, 저장해주세요.");
+		var sRtn = id;
+		this.close(sRtn);
+	}else{
+		alert("중복확인을 수행해주세요.");
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

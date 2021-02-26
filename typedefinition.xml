@@ -50,6 +50,7 @@
     <Service prefixid="Workspace" type="form" url="./Workspace/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="lib_tna_setWorkingDays" type="js" url="./lib_tna_setWorkingDays/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="lib_comm" type="js" url="./lib_comm/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="lib_fileimageview" type="js" url="./lib_fileimageview/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
   </Services>
   <Protocols/>
   <DeviceAdaptors/>

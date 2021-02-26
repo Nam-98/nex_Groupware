@@ -292,10 +292,6 @@ this.vf_profile_onsuccess = function(obj:nexacro.VirtualFile,e:nexacro.VirtualFi
 	alert("저장을 완료했습니다.");
  };
 //-------------------------------------------------------------------파일 업로드 완료
-this.Div00_Radio04_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
-{
-	
-};
 
 ]]></Script>
     <Bind>
@@ -303,8 +299,8 @@ this.Div00_Radio04_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChan
       <BindItem id="item14" compid="Div00.form.Edit06" propid="value" datasetid="ds_addMem" columnid="name"/>
       <BindItem id="item15" compid="Div00.form.Edit00_00" propid="value" datasetid="ds_addMem" columnid="contact"/>
       <BindItem id="item16" compid="Div00.form.Edit00_00_00" propid="value" datasetid="ds_addMem" columnid="address1"/>
-      <BindItem id="item17" compid="Div00.form.Calendar00" propid="value" datasetid="ds_addMem" columnid="reg_date"/>
-      <BindItem id="item18" compid="Div00.form.Calendar00_00" propid="value" datasetid="ds_addMem" columnid="birth"/>
+      <BindItem id="item17" compid="Div00.form.Calendar00" propid="value" datasetid="ds_addMem" columnid="reg_date_str"/>
+      <BindItem id="item18" compid="Div00.form.Calendar00_00" propid="value" datasetid="ds_addMem" columnid="birth_str"/>
       <BindItem id="item19" compid="Div00.form.Edit00_00_00_00" propid="value" datasetid="ds_addMem" columnid="zip_code"/>
       <BindItem id="item20" compid="Div00.form.Edit00_00_00_01" propid="value" datasetid="ds_addMem" columnid="address2"/>
       <BindItem id="item23" compid="Div00.form.Radio04" propid="value" datasetid="ds_addMem" columnid="is_married"/>
@@ -320,6 +316,8 @@ this.Div00_Radio04_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChan
           <Column id="id" type="STRING" size="256"/>
           <Column id="name" type="STRING" size="256"/>
           <Column id="gender" type="STRING" size="256"/>
+          <Column id="birth" type="DATE" size="256"/>
+          <Column id="gender" type="STRING" size="256"/>
           <Column id="contact" type="STRING" size="256"/>
           <Column id="address1" type="STRING" size="256"/>
           <Column id="address2" type="STRING" size="256"/>
@@ -327,10 +325,17 @@ this.Div00_Radio04_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChan
           <Column id="is_married" type="STRING" size="256"/>
           <Column id="dept_code" type="INT" size="256"/>
           <Column id="position_code" type="INT" size="256"/>
-          <Column id="break_total_count" type="FLOAT" size="256"/>
-          <Column id="birth" type="DATE" size="256"/>
           <Column id="reg_date" type="DATE" size="256"/>
+          <Column id="retire_date" type="DATE" size="256"/>
           <Column id="access_level_code" type="INT" size="256"/>
+          <Column id="break_total_count" type="FLOAT" size="256"/>
+          <Column id="break_use_count" type="FLOAT" size="256"/>
+          <Column id="dept_name" type="STRING" size="256"/>
+          <Column id="position_name" type="STRING" size="256"/>
+          <Column id="dept_level" type="INT" size="256"/>
+          <Column id="retire_date_str" type="DATE" size="256"/>
+          <Column id="birth_str" type="STRING" size="256"/>
+          <Column id="reg_date_str" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
