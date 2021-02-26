@@ -39,12 +39,6 @@
           <Col id="FORM_URL">Workspace::memberList.xfdl</Col>
         </Row>
         <Row>
-          <Col id="MENU_ID">3020</Col>
-          <Col id="MENU_NAME">직원등록</Col>
-          <Col id="MENU_LEVEL">1</Col>
-          <Col id="FORM_URL">Workspace::addMember.xfdl</Col>
-        </Row>
-        <Row>
           <Col id="MENU_ID">3030</Col>
           <Col id="MENU_NAME">부서/직급설정</Col>
           <Col id="MENU_LEVEL">1</Col>
@@ -144,6 +138,7 @@
         <Column id="dept_level" type="INT" size="256"/>
         <Column id="retire_date_str" type="DATE" size="256"/>
         <Column id="birth_str" type="STRING" size="256"/>
+        <Column id="reg_date_str" type="STRING" size="256"/>
       </ColumnInfo>
       <Rows>
         <Row>

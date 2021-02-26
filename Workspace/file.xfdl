@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="fileimageview" width="1250" height="530" titletext="New Form" onload="fileimageview_onload">
+    <Layouts>
+      <Layout height="530" mobileorientation="landscape" width="1250">
+        <Button id="btnAdd" taborder="0" text="추가" left="131" top="35" width="100" height="31" onclick="btnAdd_onclick"/>
+        <Grid id="grdList" taborder="1" top="71" height="399" binddataset="dsList" autofittype="col" nodatatext="파일을 드래그하여 첨부 할 수 있습니다." left="25" width="475" ondrop="grdList_ondrop" oncellclick="grdList_oncellclick" oncelldblclick="grdList_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="152"/>
+                <Column size="320"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="FILE_NAME"/>
+                <Cell col="1" text="FILE_URL"/>
+                <Cell col="2" text="SIZE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:FILE_NAME" displaytype="normal" edittype="none" treelevel="bind:DEPTH" tooltiptext="bind:FILE_NAME"/>
+                <Cell col="1" text="bind:FILE_URL" tooltiptext="bind:FILE_URL"/>
+                <Cell col="2" text="bind:FILE_SIZE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnSearch" taborder="2" text="리스트 불러오기" left="25" top="35" width="100" height="31" onclick="btnSearch_onclick"/>
+        <ImageViewer id="ImgView" taborder="3" left="503" top="71" height="399" right="392" stretch="fixaspectratio" text=""/>
+        <Button id="btnDonwload" taborder="4" text="저장" top="35" width="100" height="31" onclick="btnDonwload_onclick" left="397"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_URL" type="STRING" size="256"/>
+          <Column id="FILE_ID" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+          <Column id="FILE_PATH" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileDownTransfer id="fileDownTrans"/>
+      <FileUpTransfer id="fileUpTrans"/>
+      <FileDialog id="fileDialog"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  @MenuPath    techtip > fileimageview
+*  techtip 		이미지 파일을 추가하면 화면에서 바로 확인 할 수 있다.
+*  @FileName	fileimageview.xfdl 
+*******************************************************************************
+*  2020.07.20		nana			최초 생성
+*******************************************************************************
+*/
+/**************************************************************************
+* include 영역 
+**************************************************************************/
+include "lib_fileimageview::lib_fileimageview.xjs";
+
+/**************************************************************************
+* FORM 변수 선언 영역
+**************************************************************************/
+//service url : 사용경로 지정
+this.saveUrl = "http://localhost:8080/playnexacro_nana/service/fileupdown2/";
+
+//file directory
+this.folderName = "imageFiles";	
+
+/**************************************************************************
+* FORM EVENT 영역(onload)
+**************************************************************************/
+this.fileimageview_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    var objConfig  = {
+                        objUpTrans	: this.fileUpTrans,
+                        objDownTrans: this.fileDownTrans,
+                        objDialog 	: this.fileDialog,
+                        dsListId	: "dsList",						
+                        sFolerName	: this.folderName,
+                        sSaveUrl	: this.saveUrl,
+                        sUploadUrl	: "fileUpload.jsp?fileFolder=",
+                        sDownloadSingleUrl	: "fileDownload.jsp",
+                        sDownloadMultiUrl	: "fileDownloadAll.jsp"
+                    }
+
+    //form init function
+    this.gfnFileImageViewFormLoad(obj, objConfig);
+};
+
+/**************************************************************************
+* CALLBACK 콜백 처리부분(Transaction)
+**************************************************************************/
+/**
+* @description Transaction CallBack function
+*/
+this.fnCallback = function(svcId, errCode, errMsg)
+{
+    if(svcId == "list")
+    {
+        var nRowCount = this.dsList.getRowCount();
+        if(nRowCount < 1)
+        {
+            this.grdList.set_nodatatext("저장된 파일이 없습니다. 파일을 첨부하세요.");
+        }
+        else
+        {
+            this.dsList.set_enableevent(false);
+            for(var i=0; i<nRowCount; i++)
+            {
+                this.dsList.setColumn(i,"FiLE_SIZE",this.gfnCutFileSize(this.dsList.getColumn(i,"FiLE_SIZE")));
+            }
+            this.dsList.set_enableevent(true);
+        }		
+    }
+};
+/**************************************************************************
+* CRUD 및 TRANSACTION 서비스 호출 처리
+**************************************************************************/
+/**
+* @description search file list
+*FILE_ID , FILE_PATH 조회 되지 않음.
+*/
+this.fnSearchFileList = function()
+{
+    //search attach file list
+    this.transaction("list",
+                    this.saveUrl + "fileList.jsp", 
+                    "",
+                    "dsList=dsList", 
+                    "fileFolder="+this.folderName, 
+                    "fnCallback", 
+                    "false",
+                    "0");
+}
+
+/**************************************************************************
+* 사용자 FUNCTION 영역
+**************************************************************************/
+
+/**************************************************************************
+* 각 COMPONENT 별 EVENT 영역
+**************************************************************************/
+//파일 다이얼로그를 열어 업로드할 파일을 선택합니다.
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    //file dialog open
+    this.fileDialog.open('nexacro17', FileDialog.MULTILOAD);
+};
+
+//서버에 업로드 된 파일 조회를 위해 JSP를 호출합니다.
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    //call file list (transaction)
+    this.fnSearchFileList();
+};
+
+//업로드 된 파일리스트 전체를 압축파일 형태로 다운로드 합니다.
+this.btnDonwload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    //all file list download (.zip)
+    this.gfnMultiDownloadFiles(this.grdList.parent);
+};
+
+//파일을 선택하여 그리드에 드랍합니다.
+this.grdList_ondrop = function(obj:nexacro.Grid,e:nexacro.GridDragEventInfo)
+{
+    if(e.datatype == "file")
+    {
+        //ondrop grid--> add file list
+        this.gfnAddFileList(e.filelist, obj.parent);
+    }
+};
+
+/*추가된 이벤트 및 로직*/
+//그리드의 셀을 클릭합니다.
+this.grdList_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    var objDataset = this.objects[obj.binddataset];
+    //imageviewer connect image file
+    this.gfnImageViewChange(this.ImgView, objDataset, e.row);
+};
+
+//그리드의 셀을 더블 클릭합니다.
+this.grdList_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    //Grid oncelldbclick --> download file 
+    this.gfnSingleDownloadFile(e.row, obj.parent);
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -43,7 +43,7 @@
         </Div>
         <Static id="Static02" taborder="5" text="상세정보" onclick="Static03_onclick" cssclass="sta_WF_title01" left="10" top="69" width="526" height="23"/>
         <Static id="Static80" taborder="6" text="휴가사용내역" usedecorate="true" cssclass="sta_WF_title01" left="10" top="216" width="400" height="23" wordWrap="english"/>
-        <Grid id="Grid07" taborder="7" autoenter="select" left="10" top="241" right="20" bottom="20" autofittype="col" binddataset="ds_break">
+        <Grid id="Grid07" taborder="7" autoenter="select" left="10" top="241" right="20" bottom="20" autofittype="col" binddataset="ds_break" onheadclick="Grid07_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -94,7 +94,8 @@
         </ColumnInfo>
       </Dataset>
     </Objects>
-    <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
+    <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";
+this.objApp = nexacro.getApplication();
 //전달받은 id
 	var id = this.parent.a;
 	var name = this.objApp.gds_stMember.lookup("id",id,"name");
@@ -117,6 +118,11 @@ this.personalVacationUse_onload = function(obj:nexacro.Form,e:nexacro.LoadEventI
 	
 	this.transaction(
 		"loadHolidayList","/nex/loadHolidayList.nexacro","","ds_break=ds_out","argu0="+id,"fn_callback");
+};
+
+this.Grid07_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.cfn_GridSort(obj, e);
 };
 ]]></Script>
   </Form>

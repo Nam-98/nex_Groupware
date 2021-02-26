@@ -3,7 +3,7 @@
   <Form id="personalVacation" width="980" height="790" titletext="New Form" onload="personalVacation_onload">
     <Layouts>
       <Layout height="790" width="980">
-        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="20" oncellclick="Button75_onclick">
+        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="20" oncellclick="Button75_onclick" onheadclick="grdList_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -61,7 +61,7 @@
     <Bind>
       <BindItem id="item0" compid="Edit00" propid="value" datasetid="gds_stMember" columnid="id"/>
     </Bind>
-    <Script type="xscript5.1"><![CDATA[
+    <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";
 this.Button75_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	var id = this.Edit00.value;
@@ -94,6 +94,12 @@ this.fn_callback = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
+};
+
+this.grdList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//grid sort함
+	this.cfn_GridSort(obj, e);
 };]]></Script>
   </Form>
 </FDL>

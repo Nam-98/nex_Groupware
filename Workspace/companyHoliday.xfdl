@@ -14,7 +14,7 @@
           </Layouts>
         </Div>
         <Static id="Static80" taborder="3" text="휴무일관리" usedecorate="true" cssclass="sta_WF_title01" left="10" top="69" width="400" height="23" wordWrap="english"/>
-        <Grid id="Grid07" taborder="4" autoenter="select" left="10" top="94" right="670" bottom="20" autofittype="col" binddataset="ds_holiday">
+        <Grid id="Grid07" taborder="4" autoenter="select" left="10" top="94" right="670" bottom="20" autofittype="col" binddataset="ds_holiday" onheadclick="Grid07_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -81,7 +81,8 @@
         </Rows>
       </Dataset>
     </Objects>
-    <Script type="xscript5.1"><![CDATA[//로드
+    <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";
+//로드
 this.companyHoliday_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.transaction(
@@ -129,7 +130,13 @@ this.fn_callback1 = function (id, ErrorCode, ErrorMsg)
 	trace(id);
 	trace(ErrorCode);
 	trace(ErrorMsg);
-};]]></Script>
+};
+this.Grid07_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//grid sort함
+	this.cfn_GridSort(obj, e);
+};
+]]></Script>
     <Bind>
       <BindItem id="item2" compid="Div00.form.Edit05" propid="value" datasetid="ds_holiday" columnid="comp_hd_seq"/>
       <BindItem id="item3" compid="Div00.form.Edit00" propid="value" datasetid="ds_holiday" columnid="comp_hd_name"/>

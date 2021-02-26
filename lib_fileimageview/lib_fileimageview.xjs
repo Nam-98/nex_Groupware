@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[/**
+*  techtip image file view sample library (file transfer up/download update ver.)
+*  @MenuPath   	lib_techtip>  lib_fileimageview.xjs
+*  @FileName	lib_fileimageview.xjs 
+*  @Desction	file multi upload download & image file view
+*******************************************************************************
+*  2020.07.20       nana            최초 생성
+*******************************************************************************
+*/
+
+/**************************************************************************
+ * 사용자 FUNCTION 영역
+ **************************************************************************/
+/**
+* @description form onload --> define config object
+* @param objForm : objForm,
+*		 objConfig : {	
+						objUpTrans	: this.fileUpTrans,
+						objDownTrans: this.fileDownTrans,
+						objDialog 	: this.fileDialog,
+						dsListId	: "dsList",						
+						sFolerName	: this.folderName,
+						sSaveUrl	: this.saveUrl,
+						sUploadUrl	: "fileUpload_postdatatest.jsp?filefolder=",
+						sDownloadSingleUrl	: "fileDownload_postdatatest.jsp",
+						sDownloadMultiUrl	: "fileDownload_postdatatestAll.jsp"
+					  }
+* @return
+*/ 
+this.gfnFileImageViewFormLoad = function (objForm,objConfig)
+{
+	//add event handler
+	objConfig.objUpTrans.addEventHandler("onsuccess", this.fileUpTrans_onsuccess, this);
+	objConfig.objUpTrans.addEventHandler("onerror", this.fileUpTrans_onerror, this);
+	objConfig.objUpTrans.addEventHandler("onprogress", this.fileUpTrans_onprogress, this);
+	
+	objConfig.objDownTrans.addEventHandler("onsuccess", this.fileDownTrans_onsuccess, this);
+	objConfig.objDownTrans.addEventHandler("onerror", this.fileDownTrans_onerror, this);
+	
+	objConfig.objDialog.addEventHandler("onclose", this.fileDialog_onclose, this);
+	
+	//object connected
+	objForm.config = objConfig;
+};
+
+/**
+* @description file size calculate
+* https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications#Example_Showing_file(s)_size
+* @param nFileSize
+* @return
+*/ 
+this.gfnCutFileSize = function(nFileSize)
+{
+	var sOutput = nFileSize + " bytes";
+	var arrMultiples = ["KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+	var nApprox = nFileSize / 1024;
+	
+	for (var nMultiple = 0; nApprox > 1; nApprox /= 1024, nMultiple++) 
+	{
+		sOutput = nApprox.toFixed(3) + " " + arrMultiples[nMultiple];
+	}
+	
+	return sOutput;
+};
+
+/**
+* @description close file dialog and grip ondrop --> add row file list (dataset)
+* @param filelists : add file list(virtualFile),
+         objForm : form
+* @return
+*/ 
+this.gfnAddFileList = function(filelists, objForm)
+{
+	var objFileUpTrans = objForm.config.objUpTrans;
+	var sDatasetId 	   = objForm.config.dsListId;
+	//array type virtualfile List
+	var vFile;
+	var len = filelists.length;
+	for (var i = 0; i < len; i++)
+	{	
+		vFile = filelists[i];
+		objFileUpTrans.addFile(vFile.name,vFile);	
+		vFile.addEventHandler("onsuccess", this.fileList_onsuccess, this);
+		vFile.addEventHandler("onerror", this.fileList_onerror, this);		
+		vFile.datasetId = sDatasetId;
+		vFile.open(null, VirtualFile.openRead);
+		//return file size --> fileList_onsuccess : reason 9
+		vFile.getFileSize();	
+		vFile.close();
+	}
+	
+	//file upload excute
+	//filetransferup/download *contents update
+	this.gfnUploadfile(objForm);
+}
+
+/**
+* @description add dataset virtualFile list
+* @param objvirtualFile : virtualFile
+*        e : EventInfo
+* 1.this.gfnAddFileList -> 2.vFile.getFileSize() 
+   -> 3. fileList_onsuccess : reason 9 -> 4. this.gfnAddUploadRow
+* @return
+*/ 
+this.gfnAddUploadRow = function (objvirtualFile,e)
+{
+	var objDs = this.objects[objvirtualFile.datasetId];
+	var nRowIdx = objDs.addRow();
+	objDs.setColumn(nRowIdx, "FILE_NAME", objvirtualFile.filename);
+	objDs.setColumn(nRowIdx, "FILE_SIZE", this.gfnCutFileSize(e.filesize));
+	//file local path --> only nexacro runtime environment 
+	//objDs.setColumn(nRowIdx, "FILE_PATH", objvirtualFile.fullpath);
+	objDs.setColumn(nRowIdx, "FILE_ID",	  objvirtualFile.id);
+};
+
+/**
+* @description save file on server
+* @param objForm
+* @return
+*/ 
+this.gfnUploadfile = function(objForm)
+{
+	var objFileUpTrans = objForm.config.objUpTrans;
+	var sFolderName = objForm.config.sFolerName;
+	var sUrl = objForm.config.sSaveUrl;
+	var sUploadUrl = objForm.config.sUploadUrl;
+	
+	//file upload excute
+	objFileUpTrans.upload(sUrl + sUploadUrl + sFolderName);
+}
+
+/**
+* @description single download
+* @param nRow : clicked row
+*        objForm
+* @return
+*/
+this.gfnSingleDownloadFile = function (nRow, objForm)
+{
+	var objFileDownTrans = objForm.config.objDownTrans;
+	
+	var objDs = objForm.objects[objForm.config.dsListId];
+	objFileDownTrans.clearPostDataList();
+	
+	var sFolderName = objForm.config.sFolerName;
+	
+	//only nexacro runtime environment property 
+	objFileDownTrans.set_downloadfilename(objDs.getColumn(nRow, "FILE_NAME"));	
+	
+	//set filedownload option
+	objFileDownTrans.setPostData(
+		"fileName",
+		objDs.getColumn(nRow, "FILE_NAME")
+	);
+	objFileDownTrans.setPostData(
+		"fileFolder",
+		sFolderName
+	);	
+	
+	var sUrl = objForm.config.sSaveUrl;
+	var sSingleUrl = objForm.config.sDownloadSingleUrl;
+	
+	//download excute
+	objFileDownTrans.download(sUrl+sSingleUrl);
+}
+
+/**
+* @description multi download --> zip file
+* @param objForm
+* @return
+*/
+this.gfnMultiDownloadFiles = function(objForm)
+{
+	var objFileDownTrans = objForm.config.objDownTrans;
+	objFileDownTrans.clearPostDataList();
+	
+	var objDs = objForm.objects[objForm.config.dsListId];
+	var arrNameList = new Array();
+	
+	//request.getParameter("fileFolder"); 
+	var sFolderName = objForm.config.sFolerName;
+	
+	for(var i=0; i<objDs.getRowCount(); i++)
+	{
+		//String object (server) --> request.getParameter("fileList");
+		arrNameList[i] = objDs.getColumn(i, "FILE_NAME");
+	}
+	
+	//only nexacro runtime environment property 
+	objFileDownTrans.set_downloadfilename(sFolderName+".zip");
+	
+	objFileDownTrans.setPostData(
+		"fileFolder",
+		sFolderName
+	);
+	objFileDownTrans.setPostData(
+		"fileList",
+		arrNameList
+	);	
+	
+	var sUrl = objForm.config.sSaveUrl;
+	var sMultiUrl = objForm.config.sDownloadMultiUrl;
+	
+	//download excute
+	objFileDownTrans.download(sUrl+sMultiUrl);
+}
+
+/**************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ **************************************************************************/
+/**
+ * @description FileDialog onclose event --> fileDialog_onclose
+*/
+this.fileDialog_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	var objParent = obj.parent;
+	var objFileupTransFer = objParent.config.objUpTrans;
+	if(this.gfnIsNull(e.virtualfiles))
+	{
+		return;
+	}
+	
+	//add row file list
+	this.gfnAddFileList(e.virtualfiles, objParent);
+};
+
+/**
+ * @description VirtualFile onsuccess event --> fileList_onsuccess
+*/
+this.fileList_onsuccess = function(obj:nexacro.VirtualFile, e:nexacro.VirtualFileEventInfo)
+{
+	//getFileSize() call --> reason : 9
+	if (e.reason == 9)
+	{
+		//add dataset virtualFile list
+		this.gfnAddUploadRow(obj,e);
+	}
+};
+
+/**
+ * @description VirtualFile onerror event --> fileList_onerror
+*/
+this.fileList_onerror = function(obj:nexacro.VirtualFile, e:nexacro.VirtualFileErrorEventInfo)
+{
+	trace("errortype: "+e.errortype);
+	trace("errormsg: "+e.errormsg);
+	trace("statuscode: "+e.statuscode);
+};
+
+/**
+ * @description FileUpTransfer onprogress event --> fileUpTrans_onprogress
+*/
+this.fileUpTrans_onprogress = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferProgressEventInfo)
+{
+	//get percentage
+};
+
+/**
+ * @description FileUpTransfer onsuccess event --> fileUpTrans_onsuccess
+*/
+this.fileUpTrans_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferEventinfo)
+{	
+	//objCallDs == upload file list bind dataset
+	var objCallDs = e.datasets[0];
+	
+	//objDs == grid bind dataset	
+	var objForm = obj.parent;
+	var objDs = this.objects[objForm.config.dsListId];
+	
+	var sFileId = "";
+	var sFilename = "";
+	var sOrgFilename = "";
+	
+	
+	var nCallDsRow = 0;	
+
+	for(var i=0; i<objDs.getRowCount(); i++)
+	{		
+		if(this.gfnIsNull(objDs.getColumn(i,"FILE_URL")))
+		{
+			//virtualFile id
+			sFileId = objDs.getColumn(i,"FILE_ID");
+			
+			//local file name
+			sOrgFilename = objDs.getColumn(i,"FILE_NAME");
+			nCallDsRow = objCallDs.findRow("FILE_NAME",sOrgFilename);			
+			
+			objDs.setColumn(i,"FILE_PATH",objCallDs.getColumn(nCallDsRow,"SAVE_PATH"));
+			objDs.setColumn(i,"FILE_URL",objCallDs.getColumn(nCallDsRow,"SAVE_URL"));
+			objDs.setColumn(i,"FILE_TYPE",objCallDs.getColumn(nCallDsRow,"SAVE_TYPE"));
+			
+			//virtualFile (upload list) remove
+			obj.removeFile(sFileId);
+		}		
+	};
+};
+
+/**
+ * @description FileUpTransfer onerror event --> fileUpTrans_onerror
+*/
+this.fileUpTrans_onerror = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferErrorEventInfo)
+{
+	trace(e.errormsg);
+};
+
+/**
+ * @description FileDownTransfer onsuccess event --> fileDownTrans_onsuccess
+*/
+this.fileDownTrans_onsuccess = function(obj:nexacro.FileDownTransfer,e:nexacro.FileDownTransferEventInfo)
+{
+	trace(e.targetfullpath);
+};
+
+/**
+ * @description FileDownTransfer onerror event --> fileDownTrans_onerror
+*/
+this.fileDownTrans_onerror = function(obj:nexacro.FileDownTransfer,e:nexacro.FileDownTransferErrorEventInfo)
+{
+	trace("error : " + e.errormsg);
+};
+
+/**************************************************************************
+*  공통 함수 처리 영역
+   해당 함수의 경우 프로젝트 사용 시 프로젝트 공통함수로 전환을 권장 드립니다.
+**************************************************************************/
+/**
+* @description 파리미터 값이 Null 인지 체크하는 함수
+* @param {All} val – 체크할 문자열
+* @return {boolean} Val이 undefined, null, NaN, "", Array.length=0 인 경우 = true 
+															  이 외의 경우 = false
+*/
+this.gfnIsNull = function (Val)
+{
+	if (new String(Val).valueOf() == "undefined") return true;
+	if (Val == null) return true;
+	if (("x" + Val == "xNaN") && (new String(Val.length).valueOf() == "undefined")) return true;
+	if (Val.length == 0) return true;
+
+	return false;
+}
+
+/**************************************************************************
+*  추가된 이벤트 및 로직
+   filetransferup/download 게시물에서 추가된 함수입니다. -> *contents update
+**************************************************************************/
+/**
+* @description Image url connect
+* @param objImg : ImageViewer component, objDs : Dataset, nRow : selected Row
+* @return
+*/
+this.gfnImageViewChange = function (objImg, objDs, nRow)
+{
+	//이미지 타입과 전체 경로를 문자열 형태로 조회
+	var sImageType = objDs.getColumn(nRow,"FILE_TYPE");
+	var sImageUrl = objDs.getColumn(nRow,"FILE_URL");
+	
+	//이미지 타입여부 리턴
+	var bIsImageType = this.gfnIsImageMimeType(sImageType,sImageUrl);
+	if(bIsImageType)
+	{
+		objImg.set_image(sImageUrl);
+		objImg.set_text("");
+	}
+	else
+	{
+		objImg.set_image("");
+		objImg.set_text("이미지 형식의 파일이 아닙니다. \n 미리보기 할 수 없습니다.");
+	}
+};
+
+/**
+* @description Image url connect
+* @param sFileType : file mime type
+* @return boolean
+*/
+this.gfnIsImageMimeType = function (sFileType,sFileUrl)
+{
+	var arrType = sFileType.split("/");
+	var bIsImage = false;
+	
+	var arrFileName = sFileUrl.split(".");
+	var sFileContents = arrFileName[arrFileName.length-1];
+	if(arrType[0] == "image")
+	{
+		bIsImage = true;
+	}
+	else if(arrType[0] == "application")
+	{
+		//이미지 타입이 아닌 다운로드 타입일 때는
+		if(arrType[1]=="octet-stream")
+		{
+			//직접 파일의 확장자로 찾음
+			if(sFileContents == "png" || sFileContents == "jpg")
+			{
+				bIsImage = true;
+			}
+		}
+	}
+	
+	return bIsImage;
+};]]></Script>
