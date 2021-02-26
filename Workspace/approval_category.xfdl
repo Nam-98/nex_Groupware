@@ -3,16 +3,15 @@
   <Form id="approval_category" width="1080" height="670" titletext="New Form" onload="Approval_category_onload">
     <Layouts>
       <Layout height="670" width="1080">
-        <Static id="sta_title_grd" taborder="0" text="전자결재 문서종류" usedecorate="true" cssclass="sta_WF_title01" left="5" top="10" width="270" height="23" wordWrap="english"/>
+        <Static id="sta_title_grd" taborder="0" text="양식종류" usedecorate="true" cssclass="sta_WF_title01" left="5" top="69" width="270" height="23" wordWrap="english"/>
         <Static id="sta_wid" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Static id="sta_wid00" taborder="2" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
+        <Static id="sta_wid00" taborder="2" text="w&#13;&#10;5" visible="false" top="0" width="10" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
         <Static id="sta_higt" taborder="3" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Grid id="grd_appType" taborder="4" left="sta_wid00:0" top="71" width="270" binddataset="ds_approval_type" autofittype="col" oncellclick="grd_appType_oncellclick" bottom="sta_higt:0">
+        <Grid id="grd_appType" taborder="4" left="sta_wid00:0" top="sta_title_grd:38" width="270" binddataset="ds_approval_type" autofittype="col" bottom="sta_higt:0" onselectchanged="grd_appType_onselectchanged">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="80"/>
-                <Column size="48"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -20,22 +19,29 @@
               </Rows>
               <Band id="head">
                 <Cell text="문서명"/>
-                <Cell col="1" text="코드"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:app_type_name" textAlign="center" edittype="none" displaytype="normal"/>
-                <Cell col="1" text="bind:app_type_code"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
         <Static id="sta_wid00_00" taborder="5" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="grd_appType:0"/>
-        <Static id="sta_title_name" taborder="6" text="문서명" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00_00:0" top="38" width="100" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
-        <Edit id="edt_app_type_name" taborder="7" left="sta_title_name:0" top="38" width="300" height="23" canchange="edt_app_type_name_onchanged"/>
-        <WebBrowser id="wb_summernote" taborder="8" left="sta_wid00_00:0" top="edt_app_type_name:10" right="sta_wid:0" bottom="sta_higt:0" onloadcompleted="wb_summernote_onloadcompleted" url="url"/>
+        <Static id="sta_title_name" taborder="6" text="양식 편집" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00_00:0" top="69" width="100" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
+        <Edit id="edt_app_type_name" taborder="7" left="sta_wid00_00:0" top="sta_title_name:5" width="300" height="23" canchange="edt_app_type_name_onchanged"/>
+        <WebBrowser id="wb_summernote" taborder="8" left="sta_wid00_00:0" top="sta_title_name:38" right="sta_wid:0" bottom="sta_higt:0" onloadcompleted="wb_summernote_onloadcompleted" url="url"/>
         <Button id="btn_add" taborder="9" text="문서 추가" top="sta_title_grd:10" height="23" cssclass="btn_WF_add" width="75" onclick="btn_add_onclick" left="sta_wid00:5"/>
         <Button id="btn_del" taborder="10" text="문서 삭제" top="sta_title_grd:10" height="23" cssclass="btn_WF_delete" width="75" left="95" onclick="btn_del_onclick"/>
-        <Button id="btn_save" taborder="11" text="변경사항 저장" top="38" height="23" cssclass="btn_WF_add" width="100" left="edt_app_type_name:10" onclick="btn_save_onclick"/>
+        <Button id="btn_save" taborder="11" text="변경사항 저장" top="sta_title_name:5" height="23" cssclass="btn_WF_add" width="100" left="edt_app_type_name:10" onclick="btn_save_onclick"/>
+        <Div id="div_Search" taborder="12" left="10" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
+          <Layouts>
+            <Layout>
+              <Static id="Static34" taborder="0" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Static id="Static05" taborder="1" text="15" visible="false" left="999" top="6" width="15" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+              <Static id="Static00_00" taborder="2" text="전자결재 양식관리" left="16" top="0" width="174" height="47" cssclass="sta_WF_condition01"/>
+            </Layout>
+          </Layouts>
+        </Div>
       </Layout>
     </Layouts>
     <Objects>
@@ -77,7 +83,6 @@ this.Approval_category_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInf
 		"fn_callback" //callback function
 	);
 
-	
 	//웹 브라우저에 url세팅, service(Server::)를 이용하지 않고 세팅한다. 
 	var domain = document.location.href;
     var arrdomain = domain.split('/');
@@ -86,6 +91,10 @@ this.Approval_category_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInf
 	trace("domain : "+domain);
     this.wb_summernote.set_url(domain);
 
+	//grid의 첫번째 cell은 default로 선택해 둔다. 
+	this.grd_appType.selectRow(0,false);
+	var result = this.grd_appType.selectRow(0,true);
+
 };
 
 this.fn_callback  =  function(strSvcID, nErrorCode, strErrorMag)
@@ -93,24 +102,6 @@ this.fn_callback  =  function(strSvcID, nErrorCode, strErrorMag)
 	trace("callback된 transaction명 : "+strSvcID);
 	trace("ErrorCode : "+nErrorCode);
 	trace("에러 메세지 : "+strErrorMag);
-};
-
-this.grd_appType_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
-{
-	//변수에 선택된 row의 index값 저장
-	this.selectedRowInx = e.row;
-	//grid에 연결된 column을 눌렀을 때
-	var code = this.ds_approval_type.getColumn(e.row,0);
-	var name = this.ds_approval_type.getColumn(e.row,1);
-	var template = this.ds_approval_type.getColumn(e.row,2);
-
-	trace("code : "+code+" and "+"name : "+name);
-	
-	//summernote에 가져온 template을 넣는다.
-	this.wb_summernote.getProperty('window').callMethod("setContents",template);
-	
-	//edt_title부분에 name값을 bind해준다.
-	this.edt_app_type_name.set_value(name);
 };
 
 //ds에 row추가
@@ -196,6 +187,24 @@ this.fn_cud_callback  =  function(strSvcID, nErrorCode, strErrorMag)
 		alert("작업을 완료하지 못하였습니다. 관리자에게 문의 바랍니다. 에러코드 : "+nErrorCode+"_"+strSvcID);
 	}
 	this.reload();//화면 재구성
+};
+
+this.grd_appType_onselectchanged = function(obj:nexacro.Grid,e:nexacro.GridSelectEventInfo)
+{
+	//변수에 선택된 row의 index값 저장
+	this.selectedRowInx = e.row;
+	//grid에 연결된 column을 눌렀을 때
+	var code = this.ds_approval_type.getColumn(e.row,0);
+	var name = this.ds_approval_type.getColumn(e.row,1);
+	var template = this.ds_approval_type.getColumn(e.row,2);
+
+	trace("code : "+code+" and "+"name : "+name);
+	
+	//summernote에 가져온 template을 넣는다.
+	this.wb_summernote.getProperty('window').callMethod("setContents",template);
+	
+	//edt_title부분에 name값을 bind해준다.
+	this.edt_app_type_name.set_value(name);
 };
 ]]></Script>
   </Form>

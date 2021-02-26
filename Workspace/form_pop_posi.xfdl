@@ -3,19 +3,16 @@
   <Form id="form_pop_po" width="300" height="400" titletext="New Form" onload="form_pop_po_onload">
     <Layouts>
       <Layout height="400" width="300">
-        <Button id="btnAdd" taborder="0" text="OK" left="80" width="65" height="29" onclick="fnAdd" bottom="10"/>
-        <Button id="btnClose" taborder="1" text="Cancel" left="155" width="65" height="29" bottom="10" onclick="btnClose_onclick"/>
+        <Button id="btnAdd" taborder="0" text="저장" left="80" width="65" height="29" onclick="fnAdd" bottom="10"/>
+        <Button id="btnClose" taborder="1" text="취소" left="155" width="65" height="29" bottom="10" onclick="btnClose_onclick"/>
         <Static id="Static01" taborder="2" text="." visible="false" left="-1" right="0" height="10" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="Static01_00" taborder="3" text="." visible="false" left="0" right="0" height="10" background="rgba(251,123,123,0.47843137254901963)" top="0"/>
         <Static id="Static04" taborder="4" cssclass="sta_WF_Labelbg" left="2" top="36" right="0" height="37" text=""/>
-        <Static id="sta_dept_name" taborder="5" text="부서명" cssclass="sta_WF_Label_P" left="0" top="36" width="70" height="37" wordWrap="english"/>
+        <Static id="sta_dept_name" taborder="5" text="직급명" cssclass="sta_WF_Label_P" left="0" top="36" width="70" height="37" wordWrap="english"/>
         <Edit id="edt_dept_name" taborder="6" left="80" top="43" height="23" right="10"/>
-        <Static id="Static37_00" taborder="7" cssclass="sta_WF_title01" left="2" top="0" height="37" text="부서 정보 입력" width="110"/>
-        <Static id="Static04_00" taborder="8" cssclass="sta_WF_Labelbg" left="0" top="72" right="0" height="37" text=""/>
-        <Static id="sta_dept_name00" taborder="9" text="상위부서" cssclass="sta_WF_Label_P" left="0" top="72" width="70" height="37" wordWrap="english"/>
-        <CheckBox id="chb_isTop" taborder="10" text="상위부서 없음" left="sta_dept_name00:10" top="Static04:10" height="17" right="23" onchanged="chb_isTop_onchanged"/>
-        <Static id="Static37_00_00" taborder="11" cssclass="sta_WF_title01" left="0" top="Static04_00:0" height="37" text="상위부서 선택" width="110"/>
-        <Grid id="grd_tree" taborder="12" left="0" top="Static37_00_00:0" binddataset="gds_stDepartment" autofittype="col" bottom="btnAdd:5" right="0" treeusecheckbox="false" oncellclick="grd_tree_oncellclick" treeinitstatus="expand,all">
+        <Static id="Static37_00" taborder="7" cssclass="sta_WF_title01" left="2" top="0" height="37" text="직급 관리" width="110"/>
+        <Static id="Static37_00_00" taborder="8" cssclass="sta_WF_title01" left="0" top="Static04:0" height="37" text="직급 선택" width="110"/>
+        <Grid id="grd_tree" taborder="9" left="0" top="Static37_00_00:0" binddataset="gds_stPosition" autofittype="col" bottom="btnAdd:5" right="0" treeusecheckbox="false" oncellclick="grd_tree_oncellclick" treeinitstatus="expand,all">
           <Formats>
             <Format id="default">
               <Columns>
@@ -25,7 +22,7 @@
                 <Row size="24"/>
               </Rows>
               <Band id="body">
-                <Cell text="bind:dept_name" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:dept_level" treestartlevel="1"/>
+                <Cell text="bind:position_name"/>
               </Band>
             </Format>
           </Formats>
@@ -125,8 +122,7 @@ this.chb_isTop_onchanged = function(obj:nexacro.CheckBox,e:nexacro.CheckBoxChang
 
 this.grd_tree_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
-	//변수에 선택된 row의 index값 저장
-	this.selectedRowInx = e.row;
+	
 };
 
 this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

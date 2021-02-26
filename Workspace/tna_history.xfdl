@@ -169,10 +169,6 @@ this.btnRe_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	nexacro.getApplication().gds_tnaHistory.filter("");
 };
 
-
-
-
-
 this.grd_tnaHistory_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
 	//grid sort함
