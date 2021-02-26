@@ -143,6 +143,7 @@
         <Column id="position_name" type="STRING" size="256"/>
         <Column id="dept_level" type="INT" size="256"/>
         <Column id="retire_date_str" type="DATE" size="256"/>
+        <Column id="birth_str" type="STRING" size="256"/>
       </ColumnInfo>
       <Rows>
         <Row>
@@ -206,6 +207,11 @@
         <Column id="position_code" type="INT" size="256"/>
         <Column id="position_name" type="STRING" size="256"/>
       </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="position_code"/>
+        </Row>
+      </Rows>
     </Dataset>
     <Dataset id="gds_stDepartment">
       <ColumnInfo>

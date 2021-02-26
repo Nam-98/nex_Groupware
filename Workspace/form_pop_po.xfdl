@@ -38,7 +38,7 @@
         <Button id="btnDel" taborder="2" text="Cancel" left="305" width="65" height="29" bottom="20" onclick="fnDel"/>
         <Static id="Static01" taborder="3" text="." visible="false" left="-1" right="1" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="Static54" taborder="4" text="h10" visible="false" left="89" top="49" width="102" height="10" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Grid id="Grid00" taborder="5" left="0" top="60" right="0" bottom="68" binddataset="gds_stPosition" autofittype="col">
+        <Grid id="Grid00" taborder="5" left="0" top="60" right="0" bottom="68" binddataset="ds_position" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
@@ -51,7 +51,7 @@
               </Rows>
               <Band id="head">
                 <Cell text="직급코드"/>
-                <Cell col="1" text="직급"/>
+                <Cell col="1" text="직급명"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:position_code"/>
@@ -63,14 +63,25 @@
       </Layout>
     </Layouts>
     <Objects>
-      <Dataset id="ds_position"/>
+      <Dataset id="ds_position">
+        <ColumnInfo>
+          <Column id="position_code" type="INT" size="256"/>
+          <Column id="position_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="position_code">0</Col>
+            <Col id="position_name">사원</Col>
+          </Row>
+        </Rows>
+      </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[this.gds_stPosition = nexacro.getApplication().gds_stPosition;
 
 this.fnAdd = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var sCode = this.gds_stPosition.getColumn(this.gds_stPosition.rowposition, "position_code");
-	var sName = this.gds_stPosition.getColumn(this.gds_stPosition.rowposition, "position_name");
+	var sCode = this.ds_position.getColumn(this.ds_position.rowposition, "position_code");
+	var sName = this.ds_position.getColumn(this.ds_position.rowposition, "position_name");
 	
 	var sRtn = sCode+"|"+sName;
 	nexacro.getApplication().trace(sRtn);

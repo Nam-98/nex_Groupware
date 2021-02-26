@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="personalVacationUse" width="980" height="790" titletext="New Form" onload="personalVacationUse_onload">
+  <Form id="personalVacationUse" width="980" height="500" titletext="New Form" onload="personalVacationUse_onload">
     <Layouts>
-      <Layout height="790" width="980">
+      <Layout height="500" width="980">
         <Static id="Static01" taborder="0" text="." visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="Static00" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" right="0" background="rgba(251,123,123,0.47843137254901963)" bottom="0"/>
         <Static id="Static12" taborder="2" text="h 45" visible="false" left="731" top="49" width="40" height="45" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Div id="div_Search" taborder="3" left="0" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
+        <Div id="div_Search" taborder="3" left="10" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
           <Layouts>
             <Layout>
               <Static id="Static34" taborder="2" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
@@ -24,12 +24,12 @@
             </Layout>
           </Layouts>
         </Div>
-        <Div id="Div05" taborder="4" left="0" top="94" right="20" height="76" cssclass="div_WF_DetailBg">
+        <Div id="Div05" taborder="4" left="0" top="94" height="76" cssclass="div_WF_DetailBg" right="20">
           <Layouts>
             <Layout>
-              <Static id="Static37" taborder="3" cssclass="sta_WF_Labelbg" left="0" top="-1" right="0" height="37"/>
+              <Static id="Static37" taborder="3" cssclass="sta_WF_Labelbg" left="10" top="-1" right="0" height="37"/>
               <Static id="sta_docNm02" taborder="4" text="입사일" cssclass="sta_WF_Label_P" left="0" top="-1" width="140" height="37" wordWrap="english"/>
-              <Static id="Static00" taborder="5" cssclass="sta_WF_Labelbg" left="0" top="35" right="0" height="37"/>
+              <Static id="Static00" taborder="5" cssclass="sta_WF_Labelbg" left="10" top="35" right="0" height="37"/>
               <Static id="sta_docNm03" taborder="6" text="휴가지급일수" cssclass="sta_WF_Label_P" left="0" top="35" width="140" height="37" wordWrap="english"/>
               <Static id="sta_docNm05" taborder="7" text="휴가총사용일" cssclass="sta_WF_Label" left="320" top="35" width="140" height="37" wordWrap="english"/>
               <Edit id="Edit02" taborder="0" left="145" top="42" width="170" height="23" enable="false"/>
@@ -41,9 +41,9 @@
           </Layouts>
           <InitValue/>
         </Div>
-        <Static id="Static02" taborder="5" text="상세정보" onclick="Static03_onclick" cssclass="sta_WF_title01" left="0" top="69" width="526" height="23"/>
-        <Static id="Static80" taborder="6" text="휴가사용내역" usedecorate="true" cssclass="sta_WF_title01" left="0" top="216" width="400" height="23" wordWrap="english"/>
-        <Grid id="Grid07" taborder="7" autoenter="select" left="0" top="241" right="20" bottom="20" autofittype="col" binddataset="ds_break">
+        <Static id="Static02" taborder="5" text="상세정보" onclick="Static03_onclick" cssclass="sta_WF_title01" left="10" top="69" width="526" height="23"/>
+        <Static id="Static80" taborder="6" text="휴가사용내역" usedecorate="true" cssclass="sta_WF_title01" left="10" top="216" width="400" height="23" wordWrap="english"/>
+        <Grid id="Grid07" taborder="7" autoenter="select" left="10" top="241" right="20" bottom="20" autofittype="col" binddataset="ds_break">
           <Formats>
             <Format id="default">
               <Columns>
@@ -78,6 +78,7 @@
           </Formats>
         </Grid>
         <Static id="Static07" taborder="8" text="h 38" visible="false" left="683" top="203" width="40" height="38" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="Static00_00" taborder="9" text="w&#13;&#10;10" visible="false" top="0" width="10" height="790" background="rgba(251,123,123,0.47843137254901963)" onclick="Static00_00_onclick" left="0"/>
       </Layout>
     </Layouts>
     <Objects>

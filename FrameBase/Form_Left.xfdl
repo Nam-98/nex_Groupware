@@ -19,10 +19,9 @@
           </Formats>
         </Grid>
         <ImageViewer id="ImageViewer00" taborder="1" left="0" top="0" width="300" height="80" image="url('imagerc::logo-dark.png')" onclick="ImageViewer00_onclick"/>
-        <Button id="btnMenu" taborder="2" left="0" top="81" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="MENU" width="150" height="40" background="transparent"/>
-        <Button id="btnFavorite" taborder="3" top="81" width="150" height="40" tabstop="false" onclick="btn_menu_onclick" cssclass="btn_LF_BookMark_D" text="" left="150" background="transparent"/>
-        <Button id="btnMenu00" taborder="4" width="150" height="40" cssclass="btn_LF_SelectMenu_D" tabstop="false" onclick="Button_onclick" text="MENU" visible="false" right="-170" bottom="680"/>
-        <Button id="btnFavorite00" taborder="5" top="140" width="150" height="40" tabstop="false" onclick="Button_onclick" right="-320" cssclass="btn_LF_BookMark_S" text="" visible="false" background="transparent"/>
+        <Button id="MenuBar" taborder="2" left="0" top="81" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="MENU" width="300" height="40" background="transparent" enable="false"/>
+        <Button id="btnMenu00" taborder="3" width="150" height="40" cssclass="btn_LF_SelectMenu_D" tabstop="false" onclick="Button_onclick" text="로그아웃" visible="false" right="-170" bottom="680"/>
+        <Button id="btnMenu" taborder="4" left="0" cssclass="btn_LF_SelectMenu_S" tabstop="false" onclick="btn_menu_onclick" text="로그아웃" width="300" height="40" background="transparent" bottom="0"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
@@ -114,17 +113,13 @@ this.btn_menu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	{
 		case "btnMenu":// btn_LF_SelectMenu, btn_LF_Select01
 			this.btnMenu.set_cssclass("btn_LF_SelectMenu_S");
-			this.btnFavorite.set_cssclass("btn_LF_BookMark_D");
-			this.divLeft.set_visible(true);
-			this.divFavorite.set_visible(false);
-			break;
-			
-		case "btnFavorite"://btn_LF_MenuBg,btn_LF_BookMark
-			this.btnMenu.set_cssclass("btn_LF_SelectMenu_D");
-			this.btnFavorite.set_cssclass("btn_LF_BookMark_S");
-			this.divLeft.set_visible(false);
-			this.divFavorite.set_visible(true);
-			break;
+			var domain = document.location.href;
+			var arrdomain = domain.split('/');
+			var currentfile = arrdomain.pop();
+			domain = domain.replace(currentfile, "logout.nexacro")
+			//trace("domain : "+domain);
+			window.close();
+			system.execBrowser(domain);
 	}
 };
 
