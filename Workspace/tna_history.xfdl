@@ -3,7 +3,7 @@
   <Form id="tna_history" width="980" height="790" titletext="New Form" onload="tna_history_onload">
     <Layouts>
       <Layout height="790" mobileorientation="landscape" width="980">
-        <Grid id="grd_tnaHistory" taborder="0" left="0" top="120" right="20" bottom="30" autofittype="col" binddataset="gds_tnaHistory" oncellclick="grd_tnaHistory_oncelldblclick">
+        <Grid id="grd_tnaHistory" taborder="0" left="0" top="120" right="20" bottom="30" autofittype="col" binddataset="gds_tnaHistory" oncellclick="grd_tnaHistory_oncelldblclick" onheadclick="grd_tnaHistory_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -58,7 +58,7 @@
         <Static id="Static01" taborder="7" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[
+    <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";
 
 //근태조정 list 불러옴.
 this.tna_history_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -169,9 +169,11 @@ this.btnRe_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	nexacro.getApplication().gds_tnaHistory.filter("");
 };
 
-
-
-
+this.grd_tnaHistory_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//grid sort함
+	this.cfn_GridSort(obj, e);
+};
 ]]></Script>
     <Objects>
       <Dataset id="ds_status">
