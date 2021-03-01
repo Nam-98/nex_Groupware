@@ -53,7 +53,7 @@
               <Static id="sta_docNm08_01" taborder="7" text="휴무명" cssclass="sta_WF_Label_P" left="2" top="72" width="110" height="37" wordWrap="english"/>
               <Static id="Static03_00" taborder="8" cssclass="sta_WF_Labelbg" left="2" top="108" right="0" height="147" text="" onclick="Div00_Static03_00_onclick"/>
               <Button id="Button00_01" taborder="9" text="추가" top="9" height="23" cssclass="btn_WF_add" width="62" right="70" onclick="Div05_Button00_onclick"/>
-              <Button id="Button00_01_00" taborder="10" text="삭제" top="10" height="23" cssclass="btn_WF_add" width="62" right="140" onclick="Button00_onclick"/>
+              <Button id="Button00_01_00" taborder="10" text="삭제" top="9" height="23" cssclass="btn_WF_add" width="62" right="140" onclick="Button00_onclick"/>
               <Static id="sta_alert" taborder="11" left="0" top="176" width="370" text="*설정 시 캘린더 자동반영" font="bold 12px/normal &quot;Gulim&quot;" color="#a80000" bottom="136"/>
               <Edit id="Edit00" taborder="12" left="117" top="79" width="200" height="23"/>
               <Calendar id="Calendar00" taborder="13" left="437" top="79" width="200" height="23"/>

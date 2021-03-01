@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Mainmenu" width="1280" height="900" titletext="New Form">
+  <Form id="Mainmenu" width="1280" height="900" titletext="New Form" ontimer="mainpage_ontimer">
     <Layouts>
       <Layout height="900" width="1280">
         <Div id="divMainVisual" taborder="0" left="0" right="0" cssclass="div_WF_mainVisual" formscrolltype="none" formscrollbartype="autoindicator none" text="" top="0" bottom="380" url="FrameBase::MainStep.xfdl"/>
@@ -198,6 +198,7 @@ this.mainpage_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
 	if(e.timerid == 6666)
 	{
 		var stepIndex = this.divMainVisual.form.getStepIndex();
+		console.log(stepIndex);
 		stepIndex = nexacro.toNumber(stepIndex) + 1;
 		
 		if(stepIndex > 2)

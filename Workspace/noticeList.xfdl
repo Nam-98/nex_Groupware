@@ -7,11 +7,11 @@
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="76"/>
+                <Column size="30"/>
+                <Column size="30"/>
                 <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
+                <Column size="200"/>
+                <Column size="50"/>
                 <Column size="85"/>
               </Columns>
               <Rows>
@@ -27,11 +27,11 @@
                 <Cell col="5" text="작성일" edittype="none" displaytype="text" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:write_code"/>
-                <Cell col="1" text="bind:write_seq"/>
+                <Cell text="bind:write_code" textAlign="center"/>
+                <Cell col="1" text="bind:write_seq" textAlign="center"/>
                 <Cell col="2" text="bind:write_title"/>
                 <Cell col="3" text="bind:write_contents"/>
-                <Cell col="4" text="bind:write_id"/>
+                <Cell col="4" text="bind:write_id" textAlign="center"/>
                 <Cell col="5" text="bind:write_reg_date" displaytype="date"/>
               </Band>
             </Format>
@@ -58,15 +58,14 @@
               <Static id="sta_docNm03" taborder="6" text="제목" cssclass="sta_WF_Label_P" left="2" top="108" width="110" height="37" wordWrap="english"/>
               <Edit id="edt_writer" taborder="7" left="117" top="79" width="173" height="23" readonly="true"/>
               <Edit id="Edit00_00_00" taborder="8" left="117" top="115" height="23" right="25"/>
-              <Edit id="Edit00_00_00_00" taborder="9" left="415" top="80" height="23" readonly="true" right="25"/>
-              <Button id="Button00" taborder="10" text="수정" top="7" height="23" cssclass="btn_WF_save" width="62" right="0" onclick="tranSave"/>
-              <Button id="Button00_00" taborder="11" text="삭제" top="7" height="23" cssclass="btn_WF_delete" width="62" right="70" onclick="Div00_Button00_00_onclick"/>
-              <Static id="sta_docNm02" taborder="12" text="No" cssclass="sta_WF_Label_P" left="2" top="36" width="110" height="37" wordWrap="english"/>
-              <Edit id="Edit00" taborder="13" left="117" top="43" width="173" height="23" readonly="true"/>
-              <Static id="Static04_00" taborder="14" cssclass="sta_WF_Labelbg" left="299" top="36" right="0" height="37" text=""/>
-              <Static id="sta_docNm02_00" taborder="15" text="글 종류" cssclass="sta_WF_Label_P" left="299" top="36" width="110" height="37" wordWrap="english"/>
-              <Button id="btnAdd" taborder="16" text="추가" top="7" height="23" cssclass="btn_WF_add" width="62" right="140" onclick="Div00_btnAdd_onclick"/>
-              <Radio id="Radio00" taborder="17" left="418" top="44" width="210" height="21" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" fittocontents="width">
+              <Button id="Button00" taborder="9" text="수정" top="7" height="23" cssclass="btn_WF_save" width="62" right="0" onclick="tranSave"/>
+              <Button id="Button00_00" taborder="10" text="삭제" top="7" height="23" cssclass="btn_WF_delete" width="62" right="70" onclick="Div00_Button00_00_onclick"/>
+              <Static id="sta_docNm02" taborder="11" text="No" cssclass="sta_WF_Label_P" left="2" top="36" width="110" height="37" wordWrap="english"/>
+              <Edit id="Edit00" taborder="12" left="117" top="43" width="173" height="23" readonly="true"/>
+              <Static id="Static04_00" taborder="13" cssclass="sta_WF_Labelbg" left="299" top="36" right="0" height="37" text=""/>
+              <Static id="sta_docNm02_00" taborder="14" text="글 종류" cssclass="sta_WF_Label_P" left="299" top="36" width="110" height="37" wordWrap="english"/>
+              <Button id="btnAdd" taborder="15" text="추가" top="7" height="23" cssclass="btn_WF_add" width="62" right="140" onclick="Div00_btnAdd_onclick"/>
+              <Radio id="Radio00" taborder="16" left="418" top="44" width="210" height="21" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" fittocontents="width">
                 <Dataset id="innerdataset">
                   <ColumnInfo>
                     <Column id="codecolumn" size="256"/>
@@ -84,10 +83,11 @@
                   </Rows>
                 </Dataset>
               </Radio>
-              <Static id="Static37_00" taborder="18" cssclass="sta_WF_title01" left="2" top="0" height="37" text="게시글정보" width="110"/>
-              <Static id="Static02_00" taborder="19" cssclass="sta_WF_Labelbg" left="2" top="144" right="0" bottom="0"/>
-              <Static id="Static02_01" taborder="20" text="글 내용" left="2" top="144" width="110" cssclass="sta_WF_Label_P" bottom="0"/>
-              <TextArea id="TextArea00" taborder="21" left="117" top="151" right="25" bottom="0"/>
+              <Static id="Static37_00" taborder="17" cssclass="sta_WF_title01" left="2" top="0" height="37" text="게시글정보" width="110"/>
+              <Static id="Static02_00" taborder="18" cssclass="sta_WF_Labelbg" left="2" top="144" right="0" bottom="0"/>
+              <Static id="Static02_01" taborder="19" text="글 내용" left="2" top="144" width="110" cssclass="sta_WF_Label_P" bottom="0"/>
+              <TextArea id="TextArea00" taborder="20" left="117" top="151" right="25" bottom="0"/>
+              <Calendar id="Calendar00" taborder="21" left="415" top="80" width="200" height="23" readonly="true"/>
             </Layout>
           </Layouts>
           <InitValue/>
@@ -102,9 +102,9 @@
       <BindItem id="item0" compid="Div00.form.Edit00" propid="value" datasetid="ds_write" columnid="write_seq"/>
       <BindItem id="item2" compid="Div00.form.edt_writer" propid="value" datasetid="ds_write" columnid="write_id"/>
       <BindItem id="item3" compid="Div00.form.Edit00_00_00" propid="value" datasetid="ds_write" columnid="write_title"/>
-      <BindItem id="item6" compid="Div00.form.Edit00_00_00_00" propid="value" datasetid="ds_write" columnid="write_reg_date"/>
       <BindItem id="item4" compid="Div00.form.Radio00" propid="value" datasetid="ds_write" columnid="write_code"/>
       <BindItem id="item5" compid="Div00.form.TextArea00" propid="value" datasetid="ds_write" columnid="write_contents"/>
+      <BindItem id="item1" compid="Div00.form.Calendar00" propid="value" datasetid="ds_write" columnid="write_reg_date"/>
     </Bind>
     <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";
 
@@ -203,7 +203,13 @@ this.fn_callback1 = function (id, ErrorCode, ErrorMsg)
           <Column id="write_read_count" type="INT" size="256"/>
         </ColumnInfo>
         <Rows>
-          <Row/>
+          <Row>
+            <Col id="write_seq">1</Col>
+            <Col id="write_code">1</Col>
+            <Col id="write_title">ssdfgsdfg</Col>
+            <Col id="write_contents">sdfgfgsdfgsdgfdgsg</Col>
+            <Col id="write_id">1111</Col>
+          </Row>
         </Rows>
       </Dataset>
     </Objects>

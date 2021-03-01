@@ -7,8 +7,8 @@
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="40"/>
-                <Column size="60"/>
+                <Column size="30"/>
+                <Column size="30"/>
                 <Column size="140"/>
               </Columns>
               <Rows>

@@ -44,7 +44,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmb_filter" taborder="5" text="전체" left="10" top="sta_title_grd:10" width="100" height="23" value="0" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="모아보기" onitemchanged="cmb_filter_onitemchange">
+        <Combo id="cmb_filter" taborder="5" text="전체" left="10" top="sta_title_grd:5" width="100" height="23" value="0" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="모아보기" onitemchanged="cmb_filter_onitemchange">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -66,7 +66,7 @@
             </Rows>
           </Dataset>
         </Combo>
-        <Combo id="cmb_search_type" taborder="6" text="" left="480" top="sta_title_grd:10" width="100" height="23" value="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="검색">
+        <Combo id="cmb_search_type" taborder="6" text="" top="sta_title_grd:5" width="100" height="23" value="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="검색" right="270">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -88,9 +88,9 @@
             </Rows>
           </Dataset>
         </Combo>
-        <Edit id="edt_search_keyword" taborder="7" left="597" top="sta_title_grd:10" width="148" height="23" displaynulltext="검색어를 입력하세요" cssclass="edi_LF_SearchEdit"/>
-        <Button id="btn_search" taborder="8" text="검색" top="sta_title_grd:10" height="23" cssclass="btn_WF_Search" width="50" left="755" color="#032c6c" onclick="btn_search_onclick"/>
-        <Combo id="cmb_filter_sub" taborder="9" text="전체" left="132" top="sta_title_grd:10" width="100" height="23" value="0" index="0" visible="false" onitemchanged="cmb_filter_sub_onitemchanged"/>
+        <Edit id="edt_search_keyword" taborder="7" top="sta_title_grd:5" height="30" displaynulltext="검색어를 입력하세요" cssclass="edi_LF_SearchEdit" width="200" right="55"/>
+        <Button id="btn_search" taborder="8" top="sta_title_grd:5" height="30" cssclass="btn_WF_search01" color="#032c6c" onclick="btn_search_onclick" width="30" right="20"/>
+        <Combo id="cmb_filter_sub" taborder="9" text="전체" left="132" top="sta_title_grd:5" width="100" height="23" value="0" index="0" visible="false" onitemchanged="cmb_filter_sub_onitemchanged"/>
         <Div id="div_Search" taborder="10" left="0" top="0" right="sta_wid:0" height="49" cssclass="div_WF_SearchBg" text="">
           <Layouts>
             <Layout>

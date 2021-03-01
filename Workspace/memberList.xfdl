@@ -3,7 +3,7 @@
   <Form id="memberList" width="980" height="790" titletext="New Form" onload="memberList_onload" onclick="memberList_onclick">
     <Layouts>
       <Layout height="790" width="980" stepcount="0">
-        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="350" showselection="true" selecttype="row" autofittype="col" right="670" oncellclick="Div01_ImageViewer00_onload" onheadclick="grdList_onheadclick">
+        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="194" showselection="true" selecttype="row" autofittype="col" right="670" oncellclick="Div01_ImageViewer00_onload" onheadclick="grdList_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -99,7 +99,7 @@
           <InitValue/>
         </Div>
         <Static id="Static06" taborder="6" text="h 5" visible="false" left="1670" top="488" width="78" height="5" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Div id="Div01" taborder="7" text="Div01" top="478" width="640" right="20" height="200">
+        <Div id="Div01" taborder="7" text="Div01" top="478" width="640" right="20" bottom="194">
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" text="프로필정보" left="2" top="0" width="110" height="37" cssclass="sta_WF_title01"/>
