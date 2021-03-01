@@ -3,11 +3,11 @@
   <Form id="approval_allList" width="1080" height="670" titletext="New Form" onload="approval_allList_onload">
     <Layouts>
       <Layout height="670" width="1080" stepcount="0">
-        <Static id="sta_title_grd" taborder="0" text="문서대장" usedecorate="true" cssclass="sta_WF_title01" left="5" top="69" width="270" height="23" wordWrap="english"/>
+        <Static id="sta_title_grd" taborder="0" text="전자결재문서 리스트" usedecorate="true" cssclass="sta_WF_title01" left="10" top="69" width="270" height="23" wordWrap="english"/>
         <Static id="sta_wid" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="sta_wid00" taborder="2" text="w&#13;&#10;5" visible="false" top="0" width="10" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
         <Static id="sta_higt" taborder="3" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Grid id="grd_appType" taborder="4" left="sta_wid00:0" top="sta_title_grd:38" autofittype="col" bottom="sta_higt:0" right="sta_wid:0" binddataset="ds_approval" onheadclick="grd_appType_onheadclick">
+        <Grid id="grd_appType" taborder="4" left="10" top="sta_title_grd:38" autofittype="col" bottom="sta_higt:0" right="sta_wid:0" binddataset="ds_approval" onheadclick="grd_appType_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -24,13 +24,13 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="문서종류"/>
-                <Cell col="1" text="작성자"/>
-                <Cell col="2" text="보존연한(년)"/>
-                <Cell col="3" text="제목"/>
-                <Cell col="4" text="작성일"/>
-                <Cell col="5" text="문서번호"/>
-                <Cell col="6" text="문서 결재상태"/>
+                <Cell text="문서종류" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="1" text="작성자" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="2" text="보존연한(년)" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="3" text="제목" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="4" text="작성일" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="5" text="문서번호" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="6" text="문서 결재상태" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:app_type_code" displaytype="combotext" combodataset="ds_approval_type" combodatacol="app_type_name" combocodecol="app_type_code"/>
@@ -44,7 +44,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmb_filter" taborder="5" text="전체" left="12" top="sta_title_grd:10" width="100" height="23" value="0" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="모아보기" onitemchanged="cmb_filter_onitemchange">
+        <Combo id="cmb_filter" taborder="5" text="전체" left="10" top="sta_title_grd:5" width="100" height="23" value="0" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="모아보기" onitemchanged="cmb_filter_onitemchange">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -66,7 +66,7 @@
             </Rows>
           </Dataset>
         </Combo>
-        <Combo id="cmb_search_type" taborder="6" text="" left="480" top="sta_title_grd:10" width="100" height="23" value="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="검색">
+        <Combo id="cmb_search_type" taborder="6" text="" top="sta_title_grd:5" width="100" height="23" value="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" displaynulltext="검색" right="270">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -88,10 +88,10 @@
             </Rows>
           </Dataset>
         </Combo>
-        <Edit id="edt_search_keyword" taborder="7" left="597" top="sta_title_grd:10" width="148" height="23" displaynulltext="검색어를 입력하세요" cssclass="edi_LF_SearchEdit"/>
-        <Button id="btn_search" taborder="8" text="검색" top="sta_title_grd:10" height="23" cssclass="btn_WF_Search" width="50" left="755" color="#032c6c" onclick="btn_search_onclick"/>
-        <Combo id="cmb_filter_sub" taborder="9" text="전체" left="132" top="sta_title_grd:10" width="100" height="23" value="0" index="0" visible="false" onitemchanged="cmb_filter_sub_onitemchanged"/>
-        <Div id="div_Search" taborder="10" left="sta_wid00:0" top="0" right="sta_wid:0" height="49" cssclass="div_WF_SearchBg" text="">
+        <Edit id="edt_search_keyword" taborder="7" top="sta_title_grd:5" height="30" displaynulltext="검색어를 입력하세요" cssclass="edi_LF_SearchEdit" width="200" right="55"/>
+        <Button id="btn_search" taborder="8" top="sta_title_grd:5" height="30" cssclass="btn_WF_search01" color="#032c6c" onclick="btn_search_onclick" width="30" right="20"/>
+        <Combo id="cmb_filter_sub" taborder="9" text="전체" left="132" top="sta_title_grd:5" width="100" height="23" value="0" index="0" visible="false" onitemchanged="cmb_filter_sub_onitemchanged"/>
+        <Div id="div_Search" taborder="10" left="0" top="0" right="sta_wid:0" height="49" cssclass="div_WF_SearchBg" text="">
           <Layouts>
             <Layout>
               <Static id="Static34" taborder="0" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>

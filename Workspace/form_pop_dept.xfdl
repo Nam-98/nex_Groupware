@@ -69,19 +69,99 @@
           <Column id="dept_name" type="STRING" size="256"/>
           <Column id="dept_dir_id" type="INT" size="256"/>
           <Column id="dept_level" type="INT" size="256"/>
+          <Column id="dept_code_parent" type="STRING" size="256"/>
+          <Column id="dept_tree_code" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
-            <Col id="dept_code">0</Col>
-            <Col id="dept_name">왜안돼</Col>
-            <Col id="dept_dir_id">1</Col>
+            <Col id="dept_code">24</Col>
+            <Col id="dept_name">이사</Col>
+            <Col id="dept_dir_id">32</Col>
+            <Col id="dept_level">2</Col>
+            <Col id="dept_code_parent">5</Col>
+            <Col id="dept_tree_code">5_24</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">25</Col>
+            <Col id="dept_name">비서실</Col>
+            <Col id="dept_dir_id">33</Col>
+            <Col id="dept_level">2</Col>
+            <Col id="dept_code_parent">1</Col>
+            <Col id="dept_tree_code">1_25</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">28</Col>
+            <Col id="dept_name">영업2팀</Col>
+            <Col id="dept_dir_id">45</Col>
+            <Col id="dept_level">2</Col>
+            <Col id="dept_code_parent">0</Col>
+            <Col id="dept_tree_code">0_28</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">26</Col>
+            <Col id="dept_name">개발팀</Col>
+            <Col id="dept_dir_id">34</Col>
             <Col id="dept_level">1</Col>
+            <Col id="dept_tree_code">26</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">30</Col>
+            <Col id="dept_name">마케팅팀</Col>
+            <Col id="dept_dir_id">72</Col>
+            <Col id="dept_level">1</Col>
+            <Col id="dept_tree_code">0_30</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">0</Col>
+            <Col id="dept_name">영업</Col>
+            <Col id="dept_dir_id">3</Col>
+            <Col id="dept_level">1</Col>
+            <Col id="dept_tree_code">0</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">1</Col>
+            <Col id="dept_name">경영지원실</Col>
+            <Col id="dept_dir_id">4</Col>
+            <Col id="dept_level">1</Col>
+            <Col id="dept_tree_code">1</Col>
           </Row>
           <Row>
             <Col id="dept_code">2</Col>
-            <Col id="dept_name">외않되</Col>
-            <Col id="dept_dir_id">2</Col>
-            <Col id="dept_level">3</Col>
+            <Col id="dept_name">개발1팀</Col>
+            <Col id="dept_dir_id">5</Col>
+            <Col id="dept_level">2</Col>
+            <Col id="dept_code_parent">26</Col>
+            <Col id="dept_tree_code">26_2</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">3</Col>
+            <Col id="dept_name">개발2팀</Col>
+            <Col id="dept_dir_id">6</Col>
+            <Col id="dept_level">2</Col>
+            <Col id="dept_code_parent">26</Col>
+            <Col id="dept_tree_code">26_3</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">4</Col>
+            <Col id="dept_name">임원</Col>
+            <Col id="dept_dir_id">7</Col>
+            <Col id="dept_level">1</Col>
+            <Col id="dept_tree_code">4</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">5</Col>
+            <Col id="dept_name">대표이사</Col>
+            <Col id="dept_dir_id">8</Col>
+            <Col id="dept_level">1</Col>
+            <Col id="dept_tree_code">5</Col>
+          </Row>
+          <Row>
+            <Col id="dept_code">27</Col>
+            <Col id="dept_name">영업1팀</Col>
+            <Col id="dept_dir_id">38</Col>
+            <Col id="dept_level">2</Col>
+            <Col id="dept_code_parent">0</Col>
+            <Col id="dept_tree_code">0_27</Col>
           </Row>
         </Rows>
       </Dataset>

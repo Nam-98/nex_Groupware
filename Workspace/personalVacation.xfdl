@@ -3,7 +3,7 @@
   <Form id="personalVacation" width="980" height="790" titletext="New Form" onload="personalVacation_onload">
     <Layouts>
       <Layout height="790" width="980">
-        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="20" oncellclick="Button75_onclick" onheadclick="grdList_onheadclick">
+        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="20" onheadclick="grdList_onheadclick" oncelldblclick="Button75_onclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -20,13 +20,13 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="아이디"/>
-                <Cell col="1" text="성명"/>
-                <Cell col="2" text="연락처"/>
-                <Cell col="3" text="부서"/>
-                <Cell col="4" text="직급"/>
-                <Cell col="5" text="총연차(일)"/>
-                <Cell col="6" text="사용연차(일)"/>
+                <Cell text="아이디" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="1" text="성명" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="2" text="연락처" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="3" text="부서" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="4" text="직급" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="5" text="총연차(일)" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="6" text="사용연차(일)" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:id"/>

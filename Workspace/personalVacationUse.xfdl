@@ -59,12 +59,12 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="No"/>
-                <Cell col="1" text="휴가종류"/>
-                <Cell col="2" text="차감일"/>
-                <Cell col="3" text="시작일"/>
-                <Cell col="4" text="종료일"/>
-                <Cell col="5" text="사유"/>
+                <Cell text="No" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="1" text="휴가종류" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="2" text="차감일" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="3" text="시작일" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="4" text="종료일" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="5" text="사유" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:break_seq"/>

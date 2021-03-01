@@ -28,12 +28,12 @@
         </Grid>
         <Static id="sta_wid00_00" taborder="5" text="w&#13;&#10;5" visible="false" top="0" width="5" height="790" background="rgba(251,123,123,0.47843137254901963)" left="grd_appType:0"/>
         <Static id="sta_title_name" taborder="6" text="양식 편집" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00_00:0" top="69" width="100" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
-        <Edit id="edt_app_type_name" taborder="7" left="sta_wid00_00:0" top="sta_title_name:5" width="300" height="23" canchange="edt_app_type_name_onchanged"/>
+        <Edit id="edt_app_type_name" taborder="7" left="sta_wid00_00:0" top="sta_title_name:5" width="200" height="23" canchange="edt_app_type_name_onchanged"/>
         <WebBrowser id="wb_summernote" taborder="8" left="sta_wid00_00:0" top="sta_title_name:38" right="sta_wid:0" bottom="sta_higt:0" onloadcompleted="wb_summernote_onloadcompleted" url="url"/>
-        <Button id="btn_add" taborder="9" text="문서 추가" top="sta_title_grd:10" height="23" cssclass="btn_WF_add" width="75" onclick="btn_add_onclick" left="sta_wid00:5"/>
-        <Button id="btn_del" taborder="10" text="문서 삭제" top="sta_title_grd:10" height="23" cssclass="btn_WF_delete" width="75" left="95" onclick="btn_del_onclick"/>
+        <Button id="btn_add" taborder="9" text="문서 추가" top="sta_title_grd:10" height="28" cssclass="btn_WF_add" width="120" onclick="btn_add_onclick" left="sta_wid00:0"/>
+        <Button id="btn_del" taborder="10" text="문서 삭제" top="sta_title_grd:10" height="28" cssclass="btn_WF_delete" left="130" onclick="btn_del_onclick" background="#dee8f3" border="1px solid #b4cbe3" color="black" right="sta_wid00_00:0"/>
         <Button id="btn_save" taborder="11" text="변경사항 저장" top="sta_title_name:5" height="23" cssclass="btn_WF_add" width="100" left="edt_app_type_name:10" onclick="btn_save_onclick"/>
-        <Div id="div_Search" taborder="12" left="10" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
+        <Div id="div_Search" taborder="12" left="0" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
           <Layouts>
             <Layout>
               <Static id="Static34" taborder="0" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
