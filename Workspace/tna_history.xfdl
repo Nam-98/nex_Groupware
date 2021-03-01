@@ -3,7 +3,7 @@
   <Form id="tna_history" width="980" height="790" titletext="New Form" onload="tna_history_onload">
     <Layouts>
       <Layout height="790" mobileorientation="landscape" width="980">
-        <Grid id="grd_tnaHistory" taborder="0" left="0" top="120" right="20" bottom="30" autofittype="col" binddataset="gds_tnaHistory" oncellclick="grd_tnaHistory_oncelldblclick" onheadclick="grd_tnaHistory_onheadclick">
+        <Grid id="grd_tnaHistory" taborder="0" left="10" top="94" right="20" bottom="20" autofittype="col" binddataset="gds_tnaHistory" oncellclick="grd_tnaHistory_oncelldblclick" onheadclick="grd_tnaHistory_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -21,14 +21,14 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="NO"/>
-                <Cell col="1" text="내용"/>
-                <Cell col="2" text="신청인"/>
-                <Cell col="3" text="신청일"/>
-                <Cell col="4" text="부서"/>
-                <Cell col="5" text="직급"/>
-                <Cell col="6" text="변경요청상태"/>
-                <Cell col="7" text="상태"/>
+                <Cell text="NO" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="1" text="내용" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="2" text="신청인" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="3" text="신청일" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="4" text="부서" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="5" text="직급" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="6" text="변경요청상태" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="7" text="상태" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:TNA_OBJ_SEQ"/>
@@ -43,11 +43,11 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static80" taborder="1" text="근태 조정 신청 관리" usedecorate="true" cssclass="sta_WF_title01" left="0" top="93" width="400" height="23" wordWrap="english" onclick="Static80_onclick"/>
-        <Button id="btnSearch" taborder="2" height="39" cssclass="btn_WF_search01" width="50" onclick="btnSearch_onclick" right="110" bottom="grd_tnaHistory:4"/>
-        <Combo id="Combo00" taborder="3" text="상태선택" width="120" right="160" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE" bottom="grd_tnaHistory:4" value="0" index="0" height="39"/>
-        <Button id="btnRe" taborder="4" width="80" height="39" onclick="btnRe_onclick" right="20" text="전체 보기" bottom="grd_tnaHistory:4"/>
-        <Div id="div_Search00" taborder="5" left="0" top="0" right="0" height="49" cssclass="div_WF_SearchBg" text="근태 조정 신청 관리">
+        <Static id="Static80" taborder="1" text="조정신청 리스트" usedecorate="true" cssclass="sta_WF_title01" left="10" top="69" width="400" height="23" wordWrap="english" onclick="Static80_onclick"/>
+        <Button id="btnSearch" taborder="2" height="30" cssclass="btn_WF_search01" width="30" onclick="btnSearch_onclick" right="90" bottom="grd_tnaHistory:4"/>
+        <Combo id="Combo00" taborder="3" text="상태선택" width="120" right="120" innerdataset="ds_status" datacolumn="TNA_OBJ_PROC_STATUS_NAME" codecolumn="TNA_OBJ_PROC_STATUS_CODE" bottom="grd_tnaHistory:4" value="0" index="0" height="30" onitemchanged="Combo00_onitemchanged"/>
+        <Button id="btnRe" taborder="4" width="62" height="30" onclick="btnRe_onclick" right="20" text="초기화" bottom="grd_tnaHistory:4"/>
+        <Div id="div_Search00" taborder="5" left="0" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="근태 조정 신청 관리">
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="1" text="근태 조정 신청 관리" left="16" top="0" width="143" height="47" cssclass="sta_WF_condition01" onclick="div_Search00_Static00_onclick"/>
@@ -56,6 +56,7 @@
         </Div>
         <Static id="Static00" taborder="6" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="Static01" taborder="7" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
+        <Static id="sta_wid00" taborder="8" text="w&#13;&#10;5" visible="false" top="0" width="10" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";

@@ -3,7 +3,7 @@
   <Form id="memberList" width="980" height="790" titletext="New Form" onload="memberList_onload" onclick="memberList_onclick">
     <Layouts>
       <Layout height="790" width="980" stepcount="0">
-        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="20" showselection="true" selecttype="row" autofittype="col" right="670" oncellclick="Div01_ImageViewer00_onload" onheadclick="grdList_onheadclick">
+        <Grid id="grdList" taborder="0" useinputpanel="false" left="10" top="94" cellmovingtype="col" cellsizingtype="col" binddataset="gds_stMember" bottom="350" showselection="true" selecttype="row" autofittype="col" right="670" oncellclick="Div01_ImageViewer00_onload" onheadclick="grdList_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -99,14 +99,14 @@
           <InitValue/>
         </Div>
         <Static id="Static06" taborder="6" text="h 5" visible="false" left="1670" top="488" width="78" height="5" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Div id="Div01" taborder="7" text="Div01" top="478" width="640" right="20" height="222">
+        <Div id="Div01" taborder="7" text="Div01" top="478" width="640" right="20" height="200">
           <Layouts>
             <Layout>
               <Static id="Static00" taborder="0" text="프로필정보" left="2" top="0" width="110" height="37" cssclass="sta_WF_title01"/>
-              <Static id="Static01" taborder="1" left="2" top="36" cssclass="sta_WF_Labelbg" height="147" width="638" text=""/>
-              <Static id="Static02" taborder="2" text="사진 등록" left="2" top="36" width="110" height="147" cssclass="sta_WF_Label_P"/>
-              <Static id="Static02_00" taborder="3" text="미리보기" left="322" top="36" width="110" height="147" cssclass="sta_WF_Label"/>
-              <ImageViewer id="ImageViewer00" taborder="4" text="미구현" left="475" top="37" width="131" height="145" onload="Div01_ImageViewer00_onload"/>
+              <Static id="Static01" taborder="1" left="2" top="36" cssclass="sta_WF_Labelbg" width="638" text="" bottom="0"/>
+              <Static id="Static02" taborder="2" text="사진 등록" left="2" top="36" width="110" cssclass="sta_WF_Label_P" bottom="0"/>
+              <Static id="Static02_00" taborder="3" text="미리보기" left="322" top="36" width="110" cssclass="sta_WF_Label" bottom="0"/>
+              <ImageViewer id="ImageViewer00" taborder="4" text="미구현" left="475" top="37" width="131" onload="Div01_ImageViewer00_onload" bottom="0"/>
               <Button id="Button00" taborder="5" text="저장" top="9" width="62" height="23" cssclass="btn_WF_add" onclick="btn_save00_onclick" right="0"/>
               <Static id="sta_box" taborder="6" text="파일을 끌어다 올려놓으세요" left="120" top="42" width="200" height="77" border="3px dotted crimson" color="crimson" textAlign="center"/>
               <Grid id="grd_file00" taborder="7" left="120" top="42" width="200" height="77" binddataset="ds_profile" autofittype="col" ondragenter="div_input_grd_file_ondragenter" ondragleave="div_input_grd_file_ondragleave" ondrop="div_input_grd_file_ondrop" opacity="0.5">
@@ -135,7 +135,7 @@
                 </Formats>
               </Grid>
               <Static id="sta_alert" taborder="8" left="122" top="127" width="370" text="* png 형식의 파일 첨부" font="bold 12px/normal &quot;Gulim&quot;" color="#a80000" bottom="162"/>
-              <Static id="sta_alert00" taborder="9" left="122" top="120" width="370" text="* png 형식의 파일 첨부&#13;&#10;   &#13;&#10;* 120 x 150 파일크기 사용" font="bold 12px/normal &quot;Gulim&quot;" color="#a80000" bottom="50" onclick="Div01_sta_alert_onclick"/>
+              <Static id="sta_alert00" taborder="9" left="120" top="110" width="370" text="* png 형식의 파일 첨부&#13;&#10;   &#13;&#10;* 120 x 150 파일크기 사용" font="bold 12px/normal &quot;Gulim&quot;" color="#a80000" bottom="0" onclick="Div01_sta_alert_onclick"/>
             </Layout>
           </Layouts>
         </Div>

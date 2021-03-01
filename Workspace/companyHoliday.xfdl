@@ -27,9 +27,9 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="휴무일코드"/>
-                <Cell col="1" text="휴무일명"/>
-                <Cell col="2" text="휴무일자"/>
+                <Cell text="휴무일코드" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="1" text="휴무일명" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="2" text="휴무일자" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:comp_hd_seq"/>
@@ -39,7 +39,6 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static00_00" taborder="5" text="휴무일 추가/삭제" left="16" top="0" width="174" height="47" cssclass="sta_WF_condition01"/>
         <Static id="Static00_00_00" taborder="6" text="w&#13;&#10;10" visible="false" top="0" width="10" height="790" background="rgba(251,123,123,0.47843137254901963)" onclick="Static00_00_onclick" left="0"/>
         <Div id="Div00" taborder="7" top="94" right="20" width="640" height="334" cssclass="div_WF_DetailBg" text="">
           <Layouts>
@@ -62,6 +61,14 @@
           </Layouts>
           <InitValue/>
         </Div>
+        <Div id="div_Search00" taborder="8" left="0" top="0" right="20" height="49" cssclass="div_WF_SearchBg">
+          <Layouts>
+            <Layout>
+              <Static id="Static34" taborder="0" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00_00" taborder="5" text="휴무일 추가/삭제" left="16" top="0" width="174" height="47" cssclass="sta_WF_condition01"/>
       </Layout>
     </Layouts>
     <Objects>

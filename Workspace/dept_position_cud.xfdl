@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="dept_position_cud" width="1080" height="670" titletext="New Form" onload="dept_position_cud_onload">
+  <Form id="dept_position_cud" width="980" height="790" titletext="New Form" onload="dept_position_cud_onload">
     <Layouts>
-      <Layout height="670" width="1080" stepcount="0">
+      <Layout height="790" width="980" stepcount="0">
         <Static id="sta_wid00" taborder="0" text="w&#13;&#10;5" visible="false" top="0" width="10" height="790" background="rgba(251,123,123,0.47843137254901963)" left="0"/>
         <Static id="sta_wid" taborder="1" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="sta_higt" taborder="2" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Static id="sta_title" taborder="3" text="부서 목록" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00:0" top="69" width="270" height="23" wordWrap="english"/>
-        <Button id="btn_add" taborder="4" text="부서추가" left="13" top="sta_title:10" width="75" height="28" onclick="btn_add_onclick"/>
+        <Static id="sta_title" taborder="3" text="부서목록" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid00:0" top="69" width="270" height="23" wordWrap="english"/>
+        <Button id="btn_add" taborder="4" text="부서추가" left="10" top="sta_title:10" height="28" onclick="btn_add_onclick" width="120"/>
         <Static id="sta_wid01" taborder="5" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" background="rgba(251,123,123,0.47843137254901963)" left="250"/>
-        <Static id="sta_title00" taborder="6" text="직원 목록" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid01:0" top="69" width="270" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
-        <Grid id="tree_dept" taborder="7" left="sta_wid00:0" top="btn_add:10" autofittype="col" binddataset="gds_stDepartment" formatid="default" treeinitstatus="expand,all" scrollbartype="default default" right="sta_wid01:0" bottom="sta_higt:0" treeusecheckbox="false" oncellclick="tree_dept_oncellclick" oncelldblclick="tree_dept_oncelldblclick">
+        <Static id="sta_title00" taborder="6" text="임/직원 리스트" usedecorate="true" cssclass="sta_WF_title01" left="sta_wid01:0" top="115" width="270" height="23" wordWrap="english" onclick="sta_title00_onclick"/>
+        <Grid id="tree_dept" taborder="7" left="sta_wid00:0" top="btn_add:0" autofittype="col" binddataset="gds_stDepartment" formatid="default" treeinitstatus="expand,all" scrollbartype="default default" right="sta_wid01:0" bottom="22" treeusecheckbox="false" oncellclick="tree_dept_oncellclick" oncelldblclick="tree_dept_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -25,7 +25,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Grid id="grd_dept00" taborder="8" left="270" top="sta_title00:48" right="20" bottom="20" binddataset="ds_selected_member" autofittype="col" onheadclick="grd_dept00_onheadclick">
+        <Grid id="grd_dept00" taborder="8" left="270" right="20" binddataset="ds_selected_member" autofittype="col" onheadclick="grd_dept00_onheadclick" top="sta_title00:0" bottom="22">
           <Formats>
             <Format id="default">
               <Columns>
@@ -43,14 +43,14 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="아이디"/>
-                <Cell col="1" text="이름"/>
-                <Cell col="2" text="성별"/>
-                <Cell col="3" text="연락처"/>
-                <Cell col="4" text="부서" displaytype="normal"/>
-                <Cell col="5" text="직급"/>
-                <Cell col="6" text="입사일"/>
-                <Cell col="7" text="접근권한"/>
+                <Cell text="아이디" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="1" text="이름" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="2" text="성별" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="3" text="연락처" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="4" text="부서" displaytype="normal" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="5" text="직급" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="6" text="입사일" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
+                <Cell col="7" text="접근권한" expandimage="url('imagerc::grd_sort.png')" expandshow="show"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:id"/>
@@ -65,16 +65,16 @@
             </Format>
           </Formats>
         </Grid>
-        <Div id="div_Search" taborder="9" left="10" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
+        <Div id="div_Search" taborder="9" left="0" top="0" right="20" height="49" cssclass="div_WF_SearchBg" text="">
           <Layouts>
             <Layout>
               <Static id="Static34" taborder="0" text="16" visible="false" left="0" top="6" width="16" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
               <Static id="Static05" taborder="1" text="15" visible="false" left="999" top="6" width="15" height="34" background="rgba(251,123,123,0.47843137254901963)"/>
-              <Static id="Static00_00" taborder="2" text="부서관리" left="16" top="0" width="174" height="47" cssclass="sta_WF_condition01"/>
+              <Static id="Static00_00" taborder="2" text="부서/직급 관리" left="16" top="0" width="174" height="47" cssclass="sta_WF_condition01"/>
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btn_toPosi" taborder="10" text="직급관리" left="103" top="102" width="75" height="28" background="#dee8f3" color="black" border="1px solid #b4cbe3" onclick="btn_toPosi_onclick"/>
+        <Button id="btn_toPosi" taborder="10" text="직급관리" left="130" top="102" height="28" background="#dee8f3" color="black" border="1px solid #b4cbe3" onclick="btn_toPosi_onclick" right="sta_wid01:0"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[include "lib_comm::grid_head_sort.xjs";
