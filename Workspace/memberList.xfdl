@@ -92,7 +92,7 @@
               <Calendar id="Calendar01" taborder="8" left="117" top="187" width="200" height="23"/>
               <Edit id="ed_mtrlCd00_00" taborder="44" left="117" top="273" width="100" height="23" readonly="true"/>
               <Edit id="ed_mtrlCd02_00" taborder="45" left="542" top="273" width="65" height="23" readonly="true"/>
-              <Button id="Button00_01" taborder="46" text="추가" top="10" height="23" cssclass="btn_WF_add" width="62" right="180" onclick="Div00_Button00_01_onclick"/>
+              <Button id="Button00_01" taborder="46" text="추가" top="9" height="23" cssclass="btn_WF_add" width="62" right="140" onclick="Div00_Button00_01_onclick"/>
               <Edit id="Edit05_00" taborder="38" left="225" top="345" width="40" height="25" inputtype="number"/>
             </Layout>
           </Layouts>

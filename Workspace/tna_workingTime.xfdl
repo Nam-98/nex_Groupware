@@ -3,7 +3,7 @@
   <Form id="tna_workingTime" width="980" height="790" titletext="New Form" onload="tna_workingTime_onload">
     <Layouts>
       <Layout height="790" mobileorientation="landscape" width="980">
-        <Div id="Div00" taborder="0" top="88" width="640" height="334" cssclass="div_WF_DetailBg" text="" left="17">
+        <Div id="Div00" taborder="0" top="88" width="640" height="334" cssclass="div_WF_DetailBg" text="" left="10">
           <Layouts>
             <Layout width="912" height="393">
               <Static id="Static06" taborder="0" cssclass="sta_WF_Labelbg" left="2" top="252" right="0" height="37"/>
@@ -49,12 +49,13 @@
         <Static id="Static00_00_00_00" taborder="12" text="분" left="408" top="377" width="38" height="33" font="bold 12px/20px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
         <Static id="Static00_02" taborder="13" text="w&#13;&#10;20" visible="false" top="0" width="20" height="790" right="0" background="rgba(251,123,123,0.47843137254901963)"/>
         <Static id="Static01" taborder="14" text="h20" visible="false" left="0" right="0" height="20" bottom="0" background="rgba(251,123,123,0.47843137254901963)"/>
-        <Static id="Static07" taborder="15" cssclass="sta_WF_Labelbg" left="19" top="484" right="323" height="147"/>
+        <Static id="Static07" taborder="15" cssclass="sta_WF_Labelbg" left="10" top="484" right="323" height="147"/>
         <Static id="Static02" taborder="16" text=" * 출근 시간 : 정상 출근과 지각 기준 시간" left="26" top="494" width="610" height="29" font="bold 13px/normal &quot;Gulim&quot;" onclick="Static02_onclick"/>
         <Static id="Static02_00" taborder="17" text="* 퇴근 시간 : 조퇴와 결근 기준 시간" left="30" top="527" width="610" height="29" font="bold 13px/normal &quot;Gulim&quot;"/>
         <Static id="Static02_00_00" taborder="18" text="* 야근 시간 : 정상 퇴근과 야근 기준 시간" left="30" top="559" width="610" height="29" font="bold 13px/normal &quot;Gulim&quot;"/>
         <Static id="Static02_00_00_00" taborder="19" text="* 외근 출근, 교육 훈련, 출장, 휴가는 특이 사항으로 따로 근태 신청서를 올려야 처리 가능. " left="31" top="591" width="590" height="29" font="bold 13px/normal &quot;Gulim&quot;"/>
-        <Static id="Static37" taborder="20" cssclass="sta_WF_title01" left="17" top="449" right="325" height="37" text="참고 사항"/>
+        <Static id="Static37" taborder="20" cssclass="sta_WF_title01" left="10" top="449" right="325" height="37" text="참고 사항"/>
+        <Static id="Static00_00_01" taborder="21" text="w&#13;&#10;10" visible="false" top="0" width="10" height="790" background="rgba(251,123,123,0.47843137254901963)" onclick="Static00_00_onclick" left="0"/>
       </Layout>
     </Layouts>
     <Objects>

@@ -98,7 +98,7 @@ this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	
 	//popup창의 ds_stDepartment에 gds_stDepartment의 값을 그대로 복붙한다. 
 	nexacro.getApplication().gds_stDepartment.filter("");
-	var nRowCnt = this.ds_stDepartment.assign(nexacro.getApplication().gds_stDepartment );
+	var nRowCnt = this.ds_stDepartment.assign(nexacro.getApplication().gds_stDepartment);
 	
 	if(this.parent.dept_level==1){
 		//최상위 부서라면 '상위부서 없음'에 클릭시켜놓는다.
