@@ -127,7 +127,6 @@ this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	objCF.init("popDeptAdd",200,200,300,400);
 	objCF.set_openalign("center middle");
 	objCF.set_formurl("Workspace::form_pop_deptAdd.xfdl");
-	
 	objCF.showModal( this.getOwnerFrame(), {dept_selected:this.tree_dept.getCellPos()}, this, "fn_callback_pop" );
 };
 this.fn_callback_pop = function(id, sRtn){
@@ -156,11 +155,13 @@ this.tree_dept_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEve
 
 this.btn_toPosi_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-// 	var objCF = new ChildFrame();
-// 	objCF.init("popPosi",200,200,300,400);
-// 	objCF.set_openalign("center middle");
-// 	objCF.set_formurl("Workspace::form_pop_deptUdt.xfdl");
-	this.alert("미구현 기능입니다. ");
+	trace("onclick이벤트 들어옴");
+ 	var objCF = new ChildFrame();
+ 	objCF.init("popPosiUdt",200,200,300,400);
+ 	objCF.set_openalign("center middle");
+ 	objCF.set_formurl("Workspace::form_pop_posi.xfdl");
+	objCF.showModal( this.getOwnerFrame(), {}, this, "fn_callback_pop" );
+/*	this.alert("미구현 기능입니다. ");*/
 };
 ]]></Script>
     <Objects>

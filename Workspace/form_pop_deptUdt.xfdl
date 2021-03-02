@@ -97,7 +97,7 @@ this.form_pop_po_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	var p = this.parent
 	
 	//popup창의 ds_stDepartment에 gds_stDepartment의 값을 그대로 복붙한다. 
-	nexacro.getApplication().gds_stDepartment.filter("");
+	nexacro.getApplication().gds_stDepartment.filter('');
 	var nRowCnt = this.ds_stDepartment.assign(nexacro.getApplication().gds_stDepartment);
 	
 	if(this.parent.dept_level==1){
@@ -214,9 +214,10 @@ this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	var totalMem = 0;
 	var colInx = this.ds_stMember.addColumn("dept_tree_code","string");
 	//member테이블에 dept_tree_code넣기
+		//table 에서 원하는 값 찾기 위해 filter 해제
+		this.ds_stDepartment.filter('');
 	for(var i=0; i<this.ds_stMember.rowcount;i++){
 			var dept = this.ds_stMember.getColumn(i,"dept_code");
-			
 			//상위부서 선택 창에 내 부서는 안보이도록 filter해놓아서 getColumn으로 내 부서는 보이지 않아 error발생. 
 			if(dept==this.parent.dept_code){
 				alert("해당 부서에 사원이 존재하여 해당 부서를 삭제할 수 없습니다."); return;

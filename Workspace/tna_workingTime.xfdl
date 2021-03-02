@@ -424,6 +424,7 @@
     <Script type="xscript5.1"><![CDATA[//시간 변경
 this.Div00_btnOK_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+
 	//출근 시간 값
 	var Att_hour = this.Div00.form.com_New_Att_hour.value;
 	var Att_min = this.com_New_Att_min.value;
@@ -523,10 +524,8 @@ this.fn_listCallback = function (id, ErrorCode, ErrorMsg)
 
 ]]></Script>
     <Bind>
-      <BindItem id="item11" compid="Div00.form.com_New_Att_hour" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
       <BindItem id="item0" compid="Div00.form.com_New_Leave_hour" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
       <BindItem id="item2" compid="Div00.form.com_New_Night_hour" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
-      <BindItem id="item3" compid="Div00.form.com_New_Att_min" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
       <BindItem id="item4" compid="Div00.form.com_New_Leave_min" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
       <BindItem id="item6" compid="Div00.form.com_New_Night_min" propid="value" datasetid="ds_addMem" columnid="dept_code"/>
     </Bind>
