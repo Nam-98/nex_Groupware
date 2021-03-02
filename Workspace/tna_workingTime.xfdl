@@ -426,15 +426,16 @@ this.Div00_btnOK_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	//출근 시간 값
 	var Att_hour = this.Div00.form.com_New_Att_hour.value;
-	var Att_min = this.com_New_Att_min.value;
+	var Att_min = this.Div00.form.com_New_Att_min.value;
 	
 	//퇴근 시간 값
-	var Leave_hour = this.com_New_Leave_hour.value;
-	var Leave_min = this.com_New_Leave_min.value;
+	var Leave_hour = this.Div00.form.com_New_Leave_hour.value;
+	var Leave_min = this.Div00.form.com_New_Leave_min.value;
 	
 	//야근 시간
-	var Night_hour = this.com_New_Night_hour.value;
-	var Night_min = this.com_New_Night_min.value;
+	var Night_hour = this.Div00.form.com_New_Night_hour.value;
+	var Night_min = this.Div00.form.com_New_Night_min.value;
+	
 	
 	trace("========="+Att_hour+"/"+Att_min+"/"+Leave_hour+"/"+Leave_min+"/"+Night_hour+"/"+Night_min);
 	
