@@ -72,7 +72,7 @@
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.objApp = nexacro.getApplication();
 this.setTimer(6666,3000);
-
+this.Div01.form.Static00_00.set_cursor("pointer");
 /**
  * @description 퀵베뉴 선택시 해당 화면으로 이동한다.
 */

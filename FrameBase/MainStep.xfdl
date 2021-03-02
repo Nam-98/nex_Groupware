@@ -28,8 +28,8 @@
           <Layouts>
             <Layout>
               <ImageViewer id="ImageViewer00" taborder="2" left="50.00%" top="14.89%" stretch="fixaspectratio" image="url('theme://images/img_WF_mainVisual0002.png')" right="6.80%" bottom="13.56%" border="0px none" background="transparent"/>
-              <Static id="Static01" taborder="1" text="데이터를 빠르게 조회하고 효과적으로 검색하는" left="13.13%" top="147" height="60" cssclass="sta_WF_mainTextS" width="691" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
-              <Static id="Static00" taborder="0" text="그리드 컴포넌트" left="13.13%" top="216" height="80" cssclass="sta_WF_mainTextB" right="32.89%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <Static id="Static01" taborder="1" text="게시글 / 직원 / 근태 / 휴무 / 전자결재" left="13.13%" top="147" height="60" cssclass="sta_WF_mainTextS" width="691" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <Static id="Static00" taborder="0" text="사용자 PAGE 완벽 연동!" left="13.13%" top="216" height="80" cssclass="sta_WF_mainTextB" right="32.89%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
             </Layout>
             <Layout name="Layout0">
               <Static id="Static00" left="11.65%" top="156" width="671" height="12.89%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
@@ -47,8 +47,8 @@
           <Layouts>
             <Layout>
               <ImageViewer id="ImageViewer00" taborder="2" left="46.88%" top="14.89%" stretch="fixaspectratio" image="url('theme://images/img_WF_mainVisual0003.png')" right="6.80%" bottom="13.56%" border="0px none" background="transparent"/>
-              <Static id="Static01" taborder="1" text="간단하고 쉬운 데이터 시각화 컴포넌트" left="13.13%" top="147" height="60" cssclass="sta_WF_mainTextS" width="582" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
-              <Static id="Static00" taborder="0" text="넥사크로 차트" left="13.13%" top="216" height="80" cssclass="sta_WF_mainTextB" right="41.41%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <Static id="Static01" taborder="1" text="(4월 예정 기능) 데이터 기반 통계와 시각화" left="13.13%" top="147" height="60" cssclass="sta_WF_mainTextS" width="582" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
+              <Static id="Static00" taborder="0" text="STJWARE 챠트" left="13.13%" top="216" height="80" cssclass="sta_WF_mainTextB" right="41.41%" font="normal 700 40pt/normal &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
             </Layout>
             <Layout name="Layout0">
               <Static id="Static01" left="11.65%" top="87" width="601" height="60" font="30px &quot;Malgun Gothic&quot;,&quot;Arial&quot;"/>
